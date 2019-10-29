@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CocktailWizard", "CocktailWizard\CocktailWizard.csproj", "{C267AF24-C669-4258-8208-8C39F9D63129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailWizard.Web", "CocktailWizard\CocktailWizard.Web.csproj", "{C267AF24-C669-4258-8208-8C39F9D63129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CocktailWizard.Data", "CocktailWizard.Data\CocktailWizard.Data.csproj", "{E89BFCFB-D702-458A-9AD2-6D96772FBED6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CocktailWizard.Services", "CocktailWizard.Services\CocktailWizard.Services.csproj", "{3BC4C3E4-FAE6-472C-A889-3302E304868B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{C267AF24-C669-4258-8208-8C39F9D63129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C267AF24-C669-4258-8208-8C39F9D63129}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C267AF24-C669-4258-8208-8C39F9D63129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89BFCFB-D702-458A-9AD2-6D96772FBED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89BFCFB-D702-458A-9AD2-6D96772FBED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89BFCFB-D702-458A-9AD2-6D96772FBED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89BFCFB-D702-458A-9AD2-6D96772FBED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC4C3E4-FAE6-472C-A889-3302E304868B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BC4C3E4-FAE6-472C-A889-3302E304868B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BC4C3E4-FAE6-472C-A889-3302E304868B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC4C3E4-FAE6-472C-A889-3302E304868B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
