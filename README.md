@@ -3,7 +3,7 @@ Web application that allows creation of cocktails and follows their distribution
 
 ## Team Members
 Radko Stanev - 
-Desislava Geleva - 
+Dessislava Valchanova - 
 
 ## Project Description
 
