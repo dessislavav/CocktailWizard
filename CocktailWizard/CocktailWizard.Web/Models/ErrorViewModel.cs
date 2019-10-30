@@ -1,6 +1,6 @@
 using System;
 
-namespace CocktailWizard.Web.Models
+namespace CocktailWizard.Models
 {
     public class ErrorViewModel
     {
