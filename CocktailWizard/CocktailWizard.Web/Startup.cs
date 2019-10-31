@@ -1,5 +1,6 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Web.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -71,6 +72,8 @@ namespace CocktailWizard
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseMiddleware<PageNotFoundMiddleware>();
 
             app.UseAuthentication();
 
