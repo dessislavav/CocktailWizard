@@ -8,16 +8,18 @@ namespace CocktailWizard.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<CocktailComment> builder)
         {
-            builder.HasKey(cc => cc.Id);
+            builder.HasKey(ci => new { ci.CocktailId, ci.UserId });
 
             builder.Property(cc => cc.Body)
                 .IsRequired();
 
             builder.HasOne(cc => cc.Cocktail)
-                .WithMany(c => c.Comments);
+                .WithMany(c => c.Comments)
+                .HasForeignKey(c => c.CocktailId);
 
             builder.HasOne(cc => cc.User)
-                .WithMany(u => u.CocktailComments);
+                .WithMany(u => u.CocktailComments)
+                .HasForeignKey(u => u.UserId);
         }
     }
 }

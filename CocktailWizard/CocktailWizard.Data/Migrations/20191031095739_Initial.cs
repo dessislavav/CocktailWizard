@@ -68,6 +68,24 @@ namespace CocktailWizard.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cocktails",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(maxLength: 25, nullable: false),
+                    ImagePath = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cocktails", x => x.Id);
+                    table.UniqueConstraint("AK_Cocktails_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -202,87 +220,60 @@ namespace CocktailWizard.Data.Migrations
                 name: "BarComments",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    BarId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    BarId = table.Column<Guid>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: true),
                     Body = table.Column<string>(maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BarComments", x => x.Id);
-                    table.UniqueConstraint("AK_BarComments_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
+                    table.PrimaryKey("PK_BarComments", x => new { x.BarId, x.UserId });
+                    table.UniqueConstraint("AK_BarComments_BarId_CreatedOn", x => new { x.BarId, x.CreatedOn });
                     table.ForeignKey(
                         name: "FK_BarComments_Bars_BarId",
                         column: x => x.BarId,
                         principalTable: "Bars",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BarComments_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "BarRatings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    BarId = table.Column<Guid>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    Value = table.Column<int>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: true),
-                    BarId = table.Column<Guid>(nullable: true)
+                    Value = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BarRatings", x => x.Id);
-                    table.UniqueConstraint("AK_BarRatings_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
+                    table.PrimaryKey("PK_BarRatings", x => new { x.BarId, x.UserId });
+                    table.UniqueConstraint("AK_BarRatings_CreatedOn", x => x.CreatedOn);
                     table.ForeignKey(
                         name: "FK_BarRatings_Bars_BarId",
                         column: x => x.BarId,
                         principalTable: "Bars",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BarRatings_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cocktails",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(maxLength: 25, nullable: false),
-                    BarId = table.Column<Guid>(nullable: true),
-                    ImagePath = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cocktails", x => x.Id);
-                    table.UniqueConstraint("AK_Cocktails_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
-                    table.ForeignKey(
-                        name: "FK_Cocktails_Bars_BarId",
-                        column: x => x.BarId,
-                        principalTable: "Bars",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -305,65 +296,87 @@ namespace CocktailWizard.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BarCocktails",
+                columns: table => new
+                {
+                    BarId = table.Column<Guid>(nullable: false),
+                    CocktailId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BarCocktails", x => new { x.CocktailId, x.BarId });
+                    table.ForeignKey(
+                        name: "FK_BarCocktails_Bars_BarId",
+                        column: x => x.BarId,
+                        principalTable: "Bars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BarCocktails_Cocktails_CocktailId",
+                        column: x => x.CocktailId,
+                        principalTable: "Cocktails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CocktailComments",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    CocktailId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    CocktailId = table.Column<Guid>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: true),
                     Body = table.Column<string>(maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CocktailComments", x => x.Id);
-                    table.UniqueConstraint("AK_CocktailComments_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
+                    table.PrimaryKey("PK_CocktailComments", x => new { x.CocktailId, x.UserId });
+                    table.UniqueConstraint("AK_CocktailComments_CreatedOn", x => x.CreatedOn);
                     table.ForeignKey(
                         name: "FK_CocktailComments_Cocktails_CocktailId",
                         column: x => x.CocktailId,
                         principalTable: "Cocktails",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CocktailComments_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CocktailRatings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    CocktailId = table.Column<Guid>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    Value = table.Column<int>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: true),
-                    CocktailId = table.Column<Guid>(nullable: true)
+                    Value = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CocktailRatings", x => x.Id);
-                    table.UniqueConstraint("AK_CocktailRatings_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
+                    table.PrimaryKey("PK_CocktailRatings", x => new { x.CocktailId, x.UserId });
+                    table.UniqueConstraint("AK_CocktailRatings_CreatedOn", x => x.CreatedOn);
                     table.ForeignKey(
                         name: "FK_CocktailRatings_Cocktails_CocktailId",
                         column: x => x.CocktailId,
                         principalTable: "Cocktails",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CocktailRatings_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -389,6 +402,26 @@ namespace CocktailWizard.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"), "76793a42-04fa-4278-b688-d3709ae07bbf", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"), "e170cabf-c030-49fc-9e2f-8e0cc9cb54b3", "Member", "MEMBER" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedOn", "DeletedOn", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedOn", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"), 0, "de0e3ac8-db40-4c22-bc99-671b4110e4b4", new DateTime(2019, 10, 31, 9, 57, 39, 535, DateTimeKind.Utc).AddTicks(4031), null, "admin@cocktailwizard.com", false, false, true, null, null, "ADMIN@COCKTAILWIZARD.COM", "ADMIN", "AQAAAAEAACcQAAAAEJe66E6HgspCvOUH33lwM/M5xWrPZCU3rxNoOkSukBe18SyvoTsPA7ge97VobAcfyQ==", null, false, "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN", false, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"), new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -435,8 +468,8 @@ namespace CocktailWizard.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BarComments_BarId",
-                table: "BarComments",
+                name: "IX_BarCocktails_BarId",
+                table: "BarCocktails",
                 column: "BarId");
 
             migrationBuilder.CreateIndex(
@@ -445,19 +478,9 @@ namespace CocktailWizard.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BarRatings_BarId",
-                table: "BarRatings",
-                column: "BarId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BarRatings_UserId",
                 table: "BarRatings",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CocktailComments_CocktailId",
-                table: "CocktailComments",
-                column: "CocktailId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CocktailComments_UserId",
@@ -470,19 +493,9 @@ namespace CocktailWizard.Data.Migrations
                 column: "CocktailId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CocktailRatings_CocktailId",
-                table: "CocktailRatings",
-                column: "CocktailId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CocktailRatings_UserId",
                 table: "CocktailRatings",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Cocktails_BarId",
-                table: "Cocktails",
-                column: "BarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_BarId",
@@ -509,6 +522,9 @@ namespace CocktailWizard.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Bans");
+
+            migrationBuilder.DropTable(
+                name: "BarCocktails");
 
             migrationBuilder.DropTable(
                 name: "BarComments");

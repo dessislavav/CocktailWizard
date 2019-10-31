@@ -1,5 +1,6 @@
 ﻿using CocktailWizard.Data.Configurations;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Data.Seeder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace CocktailWizard.Data.AppContext
         public DbSet<Bar> Bars { get; set; }
         public DbSet<BarComment> BarComments { get; set; }
         public DbSet<BarRating> BarRatings { get; set; }
+        public DbSet<BarCocktail> BarCocktails { get; set; }
         public DbSet<Cocktail> Cocktails { get; set; }
         public DbSet<CocktailComment> CocktailComments { get; set; }
         public DbSet<CocktailRating> CocktailRatings { get; set; }
@@ -28,14 +30,14 @@ namespace CocktailWizard.Data.AppContext
             builder.ApplyConfiguration(new BarConfiguration());
             builder.ApplyConfiguration(new BarCommentConfiguration());
             builder.ApplyConfiguration(new BarRatingConfiguration());
+            builder.ApplyConfiguration(new BarCocktailConfiguration());
             builder.ApplyConfiguration(new CocktailConfiguration());
             builder.ApplyConfiguration(new CocktailIngredientConfiguration());
             builder.ApplyConfiguration(new CocktailCommentConfiguration());
             builder.ApplyConfiguration(new CocktailRatingConfiguration());
             builder.ApplyConfiguration(new IngredientConfiguration());
 
-
-            //builder.Seeder();
+            builder.Seeder();
 
             base.OnModelCreating(builder);
         }

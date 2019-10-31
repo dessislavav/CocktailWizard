@@ -16,7 +16,6 @@ namespace CocktailWizard.Data.Configurations
             builder.HasMany(c => c.CocktailIngredients)
                     .WithOne(ci => ci.Ingredient)
                     .HasForeignKey(ci => ci.IngredientId);
-
         }
     }
 }

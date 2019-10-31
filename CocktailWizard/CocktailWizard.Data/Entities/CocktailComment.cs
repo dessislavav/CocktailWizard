@@ -7,10 +7,9 @@ namespace CocktailWizard.Data.Entities
 {
     public class CocktailComment : Entity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
-        public Guid Id { get; set; }
+        public Guid CocktailId { get; set; }
         public Cocktail Cocktail { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
 
         [Required]

@@ -10,7 +10,7 @@ namespace CocktailWizard.Data.Entities
     {
         public Bar()
         {
-            this.Cocktails = new List<Cocktail>();
+            this.BarCocktails = new List<BarCocktail>();
             this.Comments = new List<BarComment>();
             this.Ingredients = new List<Ingredient>();
             this.Ratings = new List<BarRating>();
@@ -29,7 +29,7 @@ namespace CocktailWizard.Data.Entities
 
         public ICollection<BarRating> Ratings { get; set; }
         public ICollection<BarComment> Comments { get; set; }
-        public ICollection<Cocktail> Cocktails { get; set; }
+        public ICollection<BarCocktail> BarCocktails { get; set; }
         public ICollection<Ingredient> Ingredients { get; set; }
         public string ImagePath { get; set; }
 

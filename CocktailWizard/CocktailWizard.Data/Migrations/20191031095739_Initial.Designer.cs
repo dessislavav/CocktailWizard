@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CocktailWizard.Data.Migrations
 {
     [DbContext(typeof(CWContext))]
-    [Migration("20191029182657_Initial")]
+    [Migration("20191031095739_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,12 +74,25 @@ namespace CocktailWizard.Data.Migrations
                     b.ToTable("Bars");
                 });
 
+            modelBuilder.Entity("CocktailWizard.Data.Entities.BarCocktail", b =>
+                {
+                    b.Property<Guid>("CocktailId");
+
+                    b.Property<Guid>("BarId");
+
+                    b.HasKey("CocktailId", "BarId");
+
+                    b.HasIndex("BarId");
+
+                    b.ToTable("BarCocktails");
+                });
+
             modelBuilder.Entity("CocktailWizard.Data.Entities.BarComment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("BarId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("BarId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<string>("Body")
                         .IsRequired()
@@ -94,13 +107,9 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<Guid?>("UserId");
+                    b.HasKey("BarId", "UserId");
 
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("CreatedOn", "Id");
-
-                    b.HasIndex("BarId");
+                    b.HasAlternateKey("BarId", "CreatedOn");
 
                     b.HasIndex("UserId");
 
@@ -109,10 +118,9 @@ namespace CocktailWizard.Data.Migrations
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.BarRating", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("BarId");
 
-                    b.Property<Guid?>("BarId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd();
@@ -123,15 +131,11 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<Guid?>("UserId");
-
                     b.Property<int>("Value");
 
-                    b.HasKey("Id");
+                    b.HasKey("BarId", "UserId");
 
-                    b.HasAlternateKey("CreatedOn", "Id");
-
-                    b.HasIndex("BarId");
+                    b.HasAlternateKey("CreatedOn");
 
                     b.HasIndex("UserId");
 
@@ -142,8 +146,6 @@ namespace CocktailWizard.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("BarId");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd();
@@ -164,21 +166,18 @@ namespace CocktailWizard.Data.Migrations
 
                     b.HasAlternateKey("CreatedOn", "Id");
 
-                    b.HasIndex("BarId");
-
                     b.ToTable("Cocktails");
                 });
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.CocktailComment", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("CocktailId");
+
+                    b.Property<Guid>("UserId");
 
                     b.Property<string>("Body")
                         .IsRequired()
                         .HasMaxLength(500);
-
-                    b.Property<Guid?>("CocktailId");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd();
@@ -189,13 +188,9 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<Guid?>("UserId");
+                    b.HasKey("CocktailId", "UserId");
 
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("CreatedOn", "Id");
-
-                    b.HasIndex("CocktailId");
+                    b.HasAlternateKey("CreatedOn");
 
                     b.HasIndex("UserId");
 
@@ -217,10 +212,9 @@ namespace CocktailWizard.Data.Migrations
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.CocktailRating", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("CocktailId");
 
-                    b.Property<Guid?>("CocktailId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd();
@@ -231,15 +225,11 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<Guid?>("UserId");
-
                     b.Property<int>("Value");
 
-                    b.HasKey("Id");
+                    b.HasKey("CocktailId", "UserId");
 
-                    b.HasAlternateKey("CreatedOn", "Id");
-
-                    b.HasIndex("CocktailId");
+                    b.HasAlternateKey("CreatedOn");
 
                     b.HasIndex("UserId");
 
@@ -286,6 +276,22 @@ namespace CocktailWizard.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"),
+                            ConcurrencyStamp = "76793a42-04fa-4278-b688-d3709ae07bbf",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"),
+                            ConcurrencyStamp = "e170cabf-c030-49fc-9e2f-8e0cc9cb54b3",
+                            Name = "Member",
+                            NormalizedName = "MEMBER"
+                        });
                 });
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.User", b =>
@@ -348,6 +354,26 @@ namespace CocktailWizard.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "de0e3ac8-db40-4c22-bc99-671b4110e4b4",
+                            CreatedOn = new DateTime(2019, 10, 31, 9, 57, 39, 535, DateTimeKind.Utc).AddTicks(4031),
+                            Email = "admin@cocktailwizard.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@COCKTAILWIZARD.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJe66E6HgspCvOUH33lwM/M5xWrPZCU3rxNoOkSukBe18SyvoTsPA7ge97VobAcfyQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -418,6 +444,13 @@ namespace CocktailWizard.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"),
+                            RoleId = new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -444,45 +477,56 @@ namespace CocktailWizard.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("CocktailWizard.Data.Entities.BarCocktail", b =>
+                {
+                    b.HasOne("CocktailWizard.Data.Entities.Bar", "Bar")
+                        .WithMany("BarCocktails")
+                        .HasForeignKey("BarId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CocktailWizard.Data.Entities.Cocktail", "Cocktail")
+                        .WithMany("BarCocktails")
+                        .HasForeignKey("CocktailId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("CocktailWizard.Data.Entities.BarComment", b =>
                 {
                     b.HasOne("CocktailWizard.Data.Entities.Bar", "Bar")
                         .WithMany("Comments")
-                        .HasForeignKey("BarId");
+                        .HasForeignKey("BarId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CocktailWizard.Data.Entities.User", "User")
                         .WithMany("BarComments")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.BarRating", b =>
                 {
                     b.HasOne("CocktailWizard.Data.Entities.Bar", "Bar")
                         .WithMany("Ratings")
-                        .HasForeignKey("BarId");
+                        .HasForeignKey("BarId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CocktailWizard.Data.Entities.User", "User")
                         .WithMany("BarRatings")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("CocktailWizard.Data.Entities.Cocktail", b =>
-                {
-                    b.HasOne("CocktailWizard.Data.Entities.Bar", "Bar")
-                        .WithMany("Cocktails")
-                        .HasForeignKey("BarId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.CocktailComment", b =>
                 {
                     b.HasOne("CocktailWizard.Data.Entities.Cocktail", "Cocktail")
                         .WithMany("Comments")
-                        .HasForeignKey("CocktailId");
+                        .HasForeignKey("CocktailId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CocktailWizard.Data.Entities.User", "User")
                         .WithMany("CocktailComments")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.CocktailIngredient", b =>
@@ -502,11 +546,13 @@ namespace CocktailWizard.Data.Migrations
                 {
                     b.HasOne("CocktailWizard.Data.Entities.Cocktail", "Cocktail")
                         .WithMany("Ratings")
-                        .HasForeignKey("CocktailId");
+                        .HasForeignKey("CocktailId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CocktailWizard.Data.Entities.User", "User")
                         .WithMany("CocktailRatings")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.Ingredient", b =>

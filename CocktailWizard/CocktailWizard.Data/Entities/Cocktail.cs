@@ -11,6 +11,7 @@ namespace CocktailWizard.Data.Entities
     {
         public Cocktail()
         {
+            this.BarCocktails = new List<BarCocktail>();
             this.CocktailIngredients = new List<CocktailIngredient>();
             this.Ratings = new List<CocktailRating>();
             this.Comments = new List<CocktailComment>();
@@ -24,7 +25,7 @@ namespace CocktailWizard.Data.Entities
         [StringLength(25, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
         public string Name { get; set; }
 
-        public Bar Bar { get; set; }
+        public ICollection<BarCocktail> BarCocktails { get; set; }
         public ICollection<CocktailRating> Ratings { get; set; }
         public ICollection<CocktailComment> Comments { get; set; }
         public ICollection<CocktailIngredient> CocktailIngredients { get; set; }

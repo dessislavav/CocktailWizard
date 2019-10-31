@@ -15,8 +15,8 @@ namespace CocktailWizard.Data.Configurations
 
             builder.Property(c => c.ImagePath);
 
-            builder.HasOne(c => c.Bar)
-                .WithMany(b => b.Cocktails)
+            builder.HasMany(c => c.BarCocktails)
+                .WithOne(b => b.Cocktail)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(c => c.Ratings)

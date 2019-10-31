@@ -21,7 +21,7 @@ namespace CocktailWizard.Data.Configurations
             builder.Property(b => b.Address)
                 .IsRequired();
 
-            builder.HasMany(b => b.Cocktails)
+            builder.HasMany(b => b.BarCocktails)
                 .WithOne(c => c.Bar)
                 .OnDelete(DeleteBehavior.Restrict);
 
