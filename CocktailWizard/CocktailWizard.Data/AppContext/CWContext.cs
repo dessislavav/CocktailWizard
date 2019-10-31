@@ -36,6 +36,8 @@ namespace CocktailWizard.Data.AppContext
             builder.ApplyConfiguration(new CocktailCommentConfiguration());
             builder.ApplyConfiguration(new CocktailRatingConfiguration());
             builder.ApplyConfiguration(new IngredientConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
 
             builder.Seeder();
 
