@@ -2,6 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
+    <head>
+        <link href="~/assets/css/homescreen-images.css" rel="stylesheet" />
+    </head>
+
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/homepage.jpg')">
     <div class="container">
         <div class="row">
@@ -22,8 +26,8 @@
         <div class="section text-center">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
-                    <h2 class="title">Let&apos;s talk product</h2>
-                    <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.</h5>
+                    <h2 class="title">London&apos;s Night Life</h2>
+                    <h5 class="description">London is famed for its nightlife, offering world-class London theatres, top clubs in the West End, an alternative Camden scene, trendy nights out in Shoreditch and more. From evenings of comedy, theatre, music or a night out on the town, there are plenty of fun things to do in London at night. </h5>
                 </div>
             </div>
             <div class="features">
@@ -31,34 +35,96 @@
                     <div class="col-md-4">
                         <div class="info">
                             <div class="icon icon-info">
-                                <i class="material-icons">chat</i>
+                                <i class="material-icons">beenhere</i>
                             </div>
-                            <h4 class="info-title">Free Chat</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+                            <h4 class="info-title">Best Bars</h4>
+                            <p>Here you will find our pick of the best bars in London, just don’t blame us for the headache tomorrow.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="info">
                             <div class="icon icon-success">
-                                <i class="material-icons">verified_user</i>
+                                <i class="material-icons">local_bar</i>
                             </div>
-                            <h4 class="info-title">Verified Users</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+                            <h4 class="info-title">Top Cocktails</h4>
+                            <p>A full list of the most-ordered drinks of 2019 because tasting them all will take too much time.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="info">
                             <div class="icon icon-danger">
-                                <i class="material-icons">fingerprint</i>
+                                <i class="material-icons">how_to_reg</i>
                             </div>
-                            <h4 class="info-title">Fingerprint</h4>
-                            <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
+                            <h4 class="info-title">Book A Table</h4>
+                            <p>Cocktail Wizard is your one-stop to having a good time. Get in contact with bars directly from our website.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @*ROW WITH TOP-RATED BARS*@
         <div class="section text-center">
+            <h2 class="title">Top-Rated Bars</h2>
+            <div class="row">
+                <div class="col-md-4 columnhomescreen">
+                    <img src="~/assets/img/404page.jpg" alt="Snow" style="width:100%">
+                    <h4 class="card-title">
+                        Bar Swift
+                        <br>
+                        <small class="card-description text-muted text-center">Soho, London</small>
+                    </h4>
+                </div>
+                <div class="col-md-4 columnhomescreen">
+                    <img src="~/assets/img/404page.jpg" alt="Forest" style="width:100%">
+                    <h4 class="card-title">
+                        Bar Swift
+                        <br>
+                        <small class="card-description text-muted text-center">Soho, London</small>
+                    </h4>
+                </div>
+                <div class="col-md-4 columnhomescreen">
+                    <img src="~/assets/img/404page.jpg" alt="Mountains" style="width:100%">
+                    <h4 class="card-title">
+                        Bar Swift
+                        <br>
+                        <small class="card-description text-muted text-center">Soho, London</small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        @*ROW WITH TOP-RATED COCKTAILS*@
+        <div class="section text-center">
+            <h2 class="title">Top-Rated Cocktails</h2>
+            <div class="row">
+                <div class="col-md-4 columnhomescreen">
+                    <img src="~/assets/img/404page.jpg" alt="Snow" style="width:100%">
+                    <h4 class="card-title">
+                        Bar Swift
+                        <br>
+                        <small class="card-description text-muted text-center">Soho, London</small>
+                    </h4>
+                </div>
+                <div class="col-md-4 columnhomescreen">
+                    <img src="~/assets/img/404page.jpg" alt="Forest" style="width:100%">
+                    <h4 class="card-title">
+                        Bar Swift
+                        <br>
+                        <small class="card-description text-muted text-center">Soho, London</small>
+                    </h4>
+                </div>
+                <div class="col-md-4 columnhomescreen">
+                    <img src="~/assets/img/404page.jpg" alt="Mountains" style="width:100%">
+                    <h4 class="card-title">
+                        Bar Swift
+                        <br>
+                        <small class="card-description text-muted text-center">Soho, London</small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="section text-center">
             <h2 class="title">Here is our team</h2>
             <div class="team">
                 <div class="row">
@@ -138,12 +204,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="section section-contacts">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
-                    <h2 class="text-center title">Work with us</h2>
-                    <h4 class="text-center description">Provide details about your request. We will responde get back to you in a couple of hours.</h4>
+                    <h2 class="text-center title">We value your feedback</h2>
+                    <h4 class="text-center description">Provide details about your feedback. We will responde get back to you in a couple of hours.</h4>
                     <form class="contact-form">
                         <div class="row">
                             <div class="col-md-6">

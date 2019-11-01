@@ -1,0 +1,11 @@
+﻿.columnhomescreen {
+}
+
+.columnhomescreen img {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.columnhomescreen img:hover {
+        opacity: 0.8;
+}
