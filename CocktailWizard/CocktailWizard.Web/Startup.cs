@@ -1,6 +1,13 @@
 ﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services;
+using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
+using CocktailWizard.Web.Mappers;
+using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Middlewares;
+using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -52,6 +59,10 @@ namespace CocktailWizard
                 .AddEntityFrameworkStores<CWContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<BarService>();
+            services.AddScoped<IViewModelMapper<BarDto, BarViewModel>, BarViewModelMapper>();
+            services.AddScoped<IDtoMapper<Bar, BarDto>, BarDtoMapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -406,17 +406,17 @@ namespace CocktailWizard.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"), "905ea85e-2e99-4317-ab5b-e37820f32201", "Admin", "ADMIN" });
+                values: new object[] { new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"), "dfa9811c-4cbd-4347-8afa-395eadae8bf2", "Manager", "MANAGER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"), "b9c24d14-86ac-4e00-a429-42d40d8a4234", "Member", "MEMBER" });
+                values: new object[] { new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"), "8b2609c7-3709-4335-8e7d-960a31f3ad93", "Member", "MEMBER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedOn", "DeletedOn", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedOn", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"), 0, "3bcccef6-1a02-4ca2-987f-e8f4d342593a", new DateTime(2019, 10, 31, 10, 34, 2, 110, DateTimeKind.Utc).AddTicks(3282), null, "admin@cw.com", false, false, true, null, null, "ADMIN@CW.COM", "ADMIN@CW.COM", "AQAAAAEAACcQAAAAENPZSznnlg1Ui3AzTmdSkbIuXce+5ufEA6upQqvXgO6NPNbAVtMzx2UfQFcBOCvHyw==", null, false, "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN", false, "admin@cw.com" });
+                values: new object[] { new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"), 0, "596fd4e6-971d-46f3-b432-96998a7bc4b5", new DateTime(2019, 11, 2, 19, 59, 50, 612, DateTimeKind.Utc).AddTicks(2874), null, "manager@cw.com", false, false, true, null, null, "MANAGER@CW.COM", "MANAGER@CW.COM", "AQAAAAEAACcQAAAAEEEteXzKXnH0AoK0+E1YupcoCW7H1GzUawWrv44DXd/1N5EKA7d3/5eclcjE35UMEA==", null, false, "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN", false, "manager@cw.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CocktailWizard.Data\CocktailWizard.Data.csproj" />
+  </ItemGroup>
+
 </Project>

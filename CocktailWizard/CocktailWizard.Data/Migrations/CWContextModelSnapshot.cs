@@ -279,14 +279,14 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"),
-                            ConcurrencyStamp = "905ea85e-2e99-4317-ab5b-e37820f32201",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            ConcurrencyStamp = "dfa9811c-4cbd-4347-8afa-395eadae8bf2",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"),
-                            ConcurrencyStamp = "b9c24d14-86ac-4e00-a429-42d40d8a4234",
+                            ConcurrencyStamp = "8b2609c7-3709-4335-8e7d-960a31f3ad93",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
@@ -358,19 +358,19 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3bcccef6-1a02-4ca2-987f-e8f4d342593a",
-                            CreatedOn = new DateTime(2019, 10, 31, 10, 34, 2, 110, DateTimeKind.Utc).AddTicks(3282),
-                            Email = "admin@cw.com",
+                            ConcurrencyStamp = "596fd4e6-971d-46f3-b432-96998a7bc4b5",
+                            CreatedOn = new DateTime(2019, 11, 2, 19, 59, 50, 612, DateTimeKind.Utc).AddTicks(2874),
+                            Email = "manager@cw.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
                             LockoutEnabled = true,
-                            NormalizedEmail = "ADMIN@CW.COM",
-                            NormalizedUserName = "ADMIN@CW.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENPZSznnlg1Ui3AzTmdSkbIuXce+5ufEA6upQqvXgO6NPNbAVtMzx2UfQFcBOCvHyw==",
+                            NormalizedEmail = "MANAGER@CW.COM",
+                            NormalizedUserName = "MANAGER@CW.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEEteXzKXnH0AoK0+E1YupcoCW7H1GzUawWrv44DXd/1N5EKA7d3/5eclcjE35UMEA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN",
                             TwoFactorEnabled = false,
-                            UserName = "admin@cw.com"
+                            UserName = "manager@cw.com"
                         });
                 });
 
