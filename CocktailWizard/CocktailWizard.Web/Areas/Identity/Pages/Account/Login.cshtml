@@ -6,79 +6,79 @@
 }
 
 @*<div class="row">
-        <div class="col-md-4">
-            <section>
-                <form id="account" method="post">
-                    <h4>Use a local account to log in.</h4>
-                    <hr />
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Input.Email"></label>
-                        <input asp-for="Input.Email" class="form-control" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Input.Password"></label>
-                        <input asp-for="Input.Password" class="form-control" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label asp-for="Input.RememberMe">
-                                <input asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                    </div>
-                    <div class="form-group">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>*@
+@*<div class="col-md-6 col-md-offset-2">
+    <section>
+        <h4>Use another service to log in.</h4>
+        <hr />
+        @{
+            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+            {
+                <div>
+                    <p>
+                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                        for details on setting up this ASP.NET application to support logging in via external services.
+                    </p>
+                </div>
+            }
+            else
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div>
                         <p>
-                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                        </p>
-                        <p>
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                            }
                         </p>
                     </div>
                 </form>
-            </section>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
-            <section>
-                <h4>Use another service to log in.</h4>
-                <hr />
-                @{
-                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                    {
-                        <div>
-                            <p>
-                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                                for details on setting up this ASP.NET application to support logging in via external services.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                            <div>
-                                <p>
-                                    @foreach (var provider in Model.ExternalLogins)
-                                    {
-                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                    }
-                                </p>
-                            </div>
-                        </form>
-                    }
-                }
-            </section>
-        </div>
+            }
+        }
+    </section>
+</div>
     </div>
 
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }*@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}*@
 
 
 
@@ -97,11 +97,8 @@
                         <div class="card-header card-header-primary text-center">
                             <h4 class="card-title">Login</h4>
                             <div class="social-line">
-                                <a href="#pablo" class="btn btn-just-icon btn-link">
+                                <a href="https://www.facebook.com/login.php?skip_api_login=1&api_key=523006398547251&kid_directed_site=0&app_id=523006398547251&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D523006398547251%26scope%3Demail%26response_type%3Dcode%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A64655%252Fsignin-facebook%26state%3DCfDJ8Ohuiz77nHlOnBCjwJwRMBrQOub0QlN1ZpJpInYAQDJc9L9etcfeS5MQybabqeKhoIohAAyRNcgL-0vCv8-cXCEVfatP2bsvGLJEHulyLrgpTxdETmvJMYhmiacW432KtNfGglfF9LCnOLhgsC_UnE9hCJulcp7EstMfH3IeVAg4zJZpLT0BdQtemMFhP6Wqx9bso7KmwSYtl4zAE4cpu_63oEIPcFtTRnLCkQtZPNAlKUQhB5vyqhxGbx1gtIauQlmt3HqBcXS7ErLzUsV0eQKlHzIVHB9NKDhhOFFcC1UMNBbtztOrN9mUOGAxHatmEw%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D8ea720d3-f325-4766-b36e-cad111566037&cancel_url=https%3A%2F%2Flocalhost%3A64655%2Fsignin-facebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DCfDJ8Ohuiz77nHlOnBCjwJwRMBrQOub0QlN1ZpJpInYAQDJc9L9etcfeS5MQybabqeKhoIohAAyRNcgL-0vCv8-cXCEVfatP2bsvGLJEHulyLrgpTxdETmvJMYhmiacW432KtNfGglfF9LCnOLhgsC_UnE9hCJulcp7EstMfH3IeVAg4zJZpLT0BdQtemMFhP6Wqx9bso7KmwSYtl4zAE4cpu_63oEIPcFtTRnLCkQtZPNAlKUQhB5vyqhxGbx1gtIauQlmt3HqBcXS7ErLzUsV0eQKlHzIVHB9NKDhhOFFcC1UMNBbtztOrN9mUOGAxHatmEw%23_%3D_&display=page&locale=en_US" class="btn btn-just-icon btn-link">
                                     <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link">
-                                    <i class="fa fa-twitter"></i>
                                 </a>
                                 <a href="#pablo" class="btn btn-just-icon btn-link">
                                     <i class="fa fa-google"></i>
