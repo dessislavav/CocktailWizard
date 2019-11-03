@@ -1,12 +1,13 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
@@ -20,10 +21,10 @@ namespace CocktailWizard.Services
 
         public CocktailService(CWContext context, IDtoMapper<Cocktail, CocktailDto> dtoMapper, IngredientService ingredientService, CocktailIngredientService cocktailIngredientService)
         {
-            this.context = context;
-            this.dtoMapper = dtoMapper;
-            this.ingredientService = ingredientService;
-            this.cocktailIngredientService = cocktailIngredientService;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
+            this.ingredientService = ingredientService ?? throw new ArgumentNullException(nameof(ingredientService));
+            this.cocktailIngredientService = cocktailIngredientService ?? throw new ArgumentNullException(nameof(cocktailIngredientService));
         }
 
         public async Task<ICollection<CocktailDto>> GetAllCocktailsAsync()
@@ -45,7 +46,7 @@ namespace CocktailWizard.Services
 
             if (cocktail == null)
             {
-                throw new ArgumentException("//TODO");
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
 
             var cocktailDto = this.dtoMapper.MapFrom(cocktail);
@@ -57,12 +58,12 @@ namespace CocktailWizard.Services
         {
             if (tempCocktail == null)
             {
-                throw new ArgumentException("//TODO");
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
 
             if (!tempCocktail.CocktailIngredients.Any())
             {
-                throw new ArgumentException("//TODO");
+                throw new BusinessLogicException(ExceptionMessages.CocktailIngredientsNull);
             }
 
             var cocktail = new Cocktail
@@ -90,7 +91,7 @@ namespace CocktailWizard.Services
         {
             if (cocktailDto == null)
             {
-                throw new ArgumentException("TODO");
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
 
             var cocktail = await this.context.Cocktails
@@ -111,7 +112,7 @@ namespace CocktailWizard.Services
             }
             catch (Exception)
             {
-                throw new ArgumentException("TODO");
+                throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
             }
         }
 
@@ -123,7 +124,7 @@ namespace CocktailWizard.Services
 
             if (cocktail == null)
             {
-                throw new ArgumentException("TODO");
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
             cocktail.IsDeleted = true;
             cocktail.DeletedOn = DateTime.UtcNow;

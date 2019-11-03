@@ -1,14 +1,11 @@
-﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
+using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
@@ -69,7 +66,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
 
             }
 
-            ModelState.AddModelError(string.Empty, "//TODO");
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
             return View(barVM);
 
         }
@@ -102,7 +99,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
                 return RedirectToAction("Details", new { id = barDto.Id});
             }
 
-            ModelState.AddModelError(string.Empty, "TODO");
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
 
             return View(barVM);
         }

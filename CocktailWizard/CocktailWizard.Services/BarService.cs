@@ -1,6 +1,8 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,8 +19,8 @@ namespace CocktailWizard.Services
 
         public BarService(CWContext context, IDtoMapper<Bar, BarDto> dtoMapper)
         {
-            this.context = context;
-            this.dtoMapper = dtoMapper;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
         }
 
         public async Task<ICollection<BarDto>> GetAllBarsAsync()
@@ -41,7 +43,7 @@ namespace CocktailWizard.Services
 
             if (bar == null)
             {
-                throw new ArgumentException("//TODO");
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
             }
 
             var mappedBar = this.dtoMapper.MapFrom(bar);
@@ -53,7 +55,7 @@ namespace CocktailWizard.Services
         {
             if (tempBar == null)
             {
-                throw new ArgumentException("//TODO");
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
             }
 
             var bar = new Bar
@@ -76,7 +78,7 @@ namespace CocktailWizard.Services
         {
             if (barDto == null)
             {
-                throw new ArgumentException("TODO");
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
             }
 
             var bar = await this.context.Bars
@@ -98,7 +100,7 @@ namespace CocktailWizard.Services
             }
             catch (Exception)
             {
-                throw new ArgumentException("TODO");
+                throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
             }
         }
 
@@ -108,7 +110,7 @@ namespace CocktailWizard.Services
 
             if (bar == null)
             {
-                throw new ArgumentException("TODO");
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
             }
             bar.IsDeleted = true;
             bar.DeletedOn = DateTime.UtcNow;

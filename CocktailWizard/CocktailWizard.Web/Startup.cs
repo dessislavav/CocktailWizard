@@ -1,13 +1,7 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
-using CocktailWizard.Services;
-using CocktailWizard.Services.DtoMappers;
-using CocktailWizard.Services.DtoMappers.Contracts;
-using CocktailWizard.Web.Mappers;
-using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Middlewares;
-using CocktailWizard.Web.Models;
+using CocktailWizard.Web.Utilities.Middlewares;
 using CocktailWizard.Web.Utilities.Registration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -83,6 +77,7 @@ namespace CocktailWizard
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseGeneralExceptionHandlerMiddleware();
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

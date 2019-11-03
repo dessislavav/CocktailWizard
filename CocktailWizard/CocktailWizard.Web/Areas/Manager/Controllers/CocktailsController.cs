@@ -12,6 +12,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using CocktailWizard.Services.ConstantMessages;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
 {
@@ -78,7 +79,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
                 return RedirectToAction("Details", new { id = cocktailDto.Id });
             }
 
-            ModelState.AddModelError(string.Empty, "//TODO");
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
             return View(cocktailViewModel);
         }
 
@@ -110,7 +111,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
                 return RedirectToAction("Details", new { id = cocktailDto.Id });
             }
 
-            ModelState.AddModelError(string.Empty, "TODO");
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
 
             return View(cocktailVM);
         }

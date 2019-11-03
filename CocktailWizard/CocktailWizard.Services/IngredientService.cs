@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
@@ -18,8 +17,8 @@ namespace CocktailWizard.Services
 
         public IngredientService(CWContext context, IDtoMapper<Ingredient, IngredientDto> dtoMapper)
         {
-            this.context = context;
-            this.dtoMapper = dtoMapper;
+            this.context = context ?? throw new ArgumentNullException(nameof(context)); ;
+            this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper)); ;
         }
 
         public async Task<Ingredient> GetIngredientAsync(string param)
