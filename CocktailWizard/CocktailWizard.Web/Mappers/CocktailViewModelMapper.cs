@@ -6,52 +6,50 @@ using System.Linq;
 
 namespace CocktailWizard.Web.Mappers
 {
-    public class BarViewModelMapper : IViewModelMapper<BarDto, BarViewModel>
+    public class CocktailViewModelMapper : IViewModelMapper<CocktailDto, CocktailViewModel>
     {
-        public BarViewModel MapFrom(BarDto dtoEntity)
+        public CocktailViewModel MapFrom(CocktailDto dtoEntity)
         {
             if (dtoEntity == null)
             {
                 return null;
             }
 
-            return new BarViewModel
+            return new CocktailViewModel
             {
                 Id = dtoEntity.Id,
                 Name = dtoEntity.Name,
-                Address = dtoEntity.Address,
                 Info = dtoEntity.Info,
                 ImagePath = dtoEntity.ImagePath,
-                Phone = dtoEntity.Phone,
+                CocktailIngredients = dtoEntity.CocktailIngredients,
                 AverageRating = dtoEntity.AverageRating,
             };
         }
 
-        public ICollection<BarViewModel> MapFrom(ICollection<BarDto> dtoEntities)
+        public ICollection<CocktailViewModel> MapFrom(ICollection<CocktailDto> dtoEntities)
         {
             return dtoEntities.Select(this.MapFrom).ToList();
         }
 
-        public BarDto MapFrom(BarViewModel entityVM)
+        public CocktailDto MapFrom(CocktailViewModel entityVM)
         {
             if (entityVM == null)
             {
                 return null;
             }
 
-            return new BarDto
+            return new CocktailDto
             {
                 Id = entityVM.Id,
                 Name = entityVM.Name,
-                Address = entityVM.Address,
                 Info = entityVM.Info,
                 ImagePath = entityVM.ImagePath,
-                Phone = entityVM.Phone,
-                AverageRating = entityVM.AverageRating,
+                CocktailIngredients = entityVM.CocktailIngredients,
+                AverageRating = entityVM.AverageRating.Value,
             };
         }
 
-        public ICollection<BarDto> MapFrom(ICollection<BarViewModel> entitiesVM)
+        public ICollection<CocktailDto> MapFrom(ICollection<CocktailViewModel> entitiesVM)
         {
             return entitiesVM.Select(this.MapFrom).ToList();
         }

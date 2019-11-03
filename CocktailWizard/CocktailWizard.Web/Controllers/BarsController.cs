@@ -22,7 +22,7 @@ namespace CocktailWizard.Web.Controllers
         }
 
         // GET: /Bars/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             //if (id == null)
             //{

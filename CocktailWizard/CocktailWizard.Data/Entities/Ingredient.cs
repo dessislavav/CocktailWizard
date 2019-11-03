@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CocktailWizard.Data.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CocktailWizard.Data.Entities
 {
-    public class Ingredient
+    public class Ingredient : Entity
     {
         public Ingredient()
         {

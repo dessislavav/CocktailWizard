@@ -1,11 +1,17 @@
 ﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services;
+using CocktailWizard.Web.Areas.Manager.Models;
+using CocktailWizard.Web.Mappers.Contracts;
+using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
 {
@@ -13,127 +19,119 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     [Authorize(Roles = "Manager")]
     public class CocktailsController : Controller
     {
-        private readonly CWContext _context;
+        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
+        private readonly CocktailService cocktailService;
+        private readonly IngredientService ingredientService;
 
-        public CocktailsController(CWContext context)
+        public CocktailsController(IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, CocktailService cocktailService, IngredientService ingredientService)
         {
-            _context = context;
+            this.cocktailViewModelMapper = cocktailViewModelMapper;
+            this.cocktailService = cocktailService;
+            this.ingredientService = ingredientService;
         }
 
         // GET: Manager/Cocktails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cocktails.ToListAsync());
+            var allCocktails = await this.cocktailService.GetAllCocktailsAsync();
+            var allCocktailsVMs = this.cocktailViewModelMapper.MapFrom(allCocktails);
+
+            return View(allCocktailsVMs);
         }
 
         // GET: Manager/Cocktails/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cocktail = await _context.Cocktails
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cocktail == null)
-            {
-                return NotFound();
-            }
+            var cocktailDto = await this.cocktailService.GetCocktailAsync(id);
+            var cocktailVM = this.cocktailViewModelMapper.MapFrom(cocktailDto);
 
-            return View(cocktail);
+            return View(cocktailVM);
         }
 
         // GET: Manager/Cocktails/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(CreateCocktailViewModel createCocktailVM)
         {
-            return View();
+                var allIngredients = await this.ingredientService.GetAllIngredientsAsync();
+
+                createCocktailVM.AllAvailableIngredients = allIngredients
+                    .Select(b => new SelectListItem(b.Name, b.Name))
+                    .ToList();
+
+                return View(createCocktailVM);
         }
 
         // POST: Manager/Cocktails/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,ImagePath,CreatedOn,ModifiedOn,DeletedOn,IsDeleted")] Cocktail cocktail)
+        public async Task<IActionResult> CreateConfirmed(CocktailViewModel cocktailViewModel)
         {
             if (ModelState.IsValid)
             {
-                cocktail.Id = Guid.NewGuid();
-                _context.Add(cocktail);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var tempCocktail = this.cocktailViewModelMapper.MapFrom(cocktailViewModel);
+                var cocktailDto = await this.cocktailService.CreateAsync(tempCocktail);
+
+                return RedirectToAction("Details", new { id = cocktailDto.Id });
             }
-            return View(cocktail);
+
+            ModelState.AddModelError(string.Empty, "//TODO");
+            return View(cocktailViewModel);
         }
 
         // GET: Manager/Cocktails/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cocktail = await _context.Cocktails.FindAsync(id);
-            if (cocktail == null)
-            {
-                return NotFound();
-            }
-            return View(cocktail);
+            var cocktailDto = await this.cocktailService.GetCocktailAsync(id);
+            var cocktailVM = this.cocktailViewModelMapper.MapFrom(cocktailDto);
+
+            return View(cocktailVM);
         }
 
         // POST: Manager/Cocktails/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,ImagePath,CreatedOn,ModifiedOn,DeletedOn,IsDeleted")] Cocktail cocktail)
+        public async Task<IActionResult> Edit(CocktailViewModel cocktailVM)
         {
-            if (id != cocktail.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(cocktail);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CocktailExists(cocktail.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                var cocktailDto = this.cocktailViewModelMapper.MapFrom(cocktailVM);
+
+                await this.cocktailService.EditAsync(cocktailDto);
+
+                return RedirectToAction("Details", new { id = cocktailDto.Id });
             }
-            return View(cocktail);
+
+            ModelState.AddModelError(string.Empty, "TODO");
+
+            return View(cocktailVM);
         }
 
         // GET: Manager/Cocktails/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cocktail = await _context.Cocktails
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cocktail == null)
+            var cocktailDto = await this.cocktailService.GetCocktailAsync(id);
+
+            if (cocktailDto == null)
             {
                 return NotFound();
             }
+            var cocktailViewModel = this.cocktailViewModelMapper.MapFrom(cocktailDto);
 
-            return View(cocktail);
+            return View(cocktailViewModel);
         }
 
         // POST: Manager/Cocktails/Delete/5
@@ -141,15 +139,14 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var cocktail = await _context.Cocktails.FindAsync(id);
-            _context.Cocktails.Remove(cocktail);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        private bool CocktailExists(Guid id)
-        {
-            return _context.Cocktails.Any(e => e.Id == id);
+            await this.cocktailService.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

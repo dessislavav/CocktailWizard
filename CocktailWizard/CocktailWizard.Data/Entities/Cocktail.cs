@@ -25,6 +25,11 @@ namespace CocktailWizard.Data.Entities
         [StringLength(25, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
         public string Name { get; set; }
 
+        [DisplayName("Cocktail Info")]
+        [Required]
+        [StringLength(150, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
+        public string Info { get; set; }
+
         public ICollection<BarCocktail> BarCocktails { get; set; }
         public ICollection<CocktailRating> Ratings { get; set; }
         public ICollection<CocktailComment> Comments { get; set; }

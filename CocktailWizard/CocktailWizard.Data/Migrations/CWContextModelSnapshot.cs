@@ -58,7 +58,20 @@ namespace CocktailWizard.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DeletedOn");
+
                     b.Property<string>("ImagePath");
+
+                    b.Property<string>("Info")
+                        .IsRequired()
+                        .HasMaxLength(1000);
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -69,6 +82,8 @@ namespace CocktailWizard.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("CreatedOn", "Id");
+
                     b.ToTable("Bars");
                 });
 
@@ -78,7 +93,18 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<Guid>("BarId");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
                     b.HasKey("CocktailId", "BarId");
+
+                    b.HasAlternateKey("CreatedOn");
 
                     b.HasIndex("BarId");
 
@@ -129,7 +155,7 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<int>("Value");
+                    b.Property<double>("Value");
 
                     b.HasKey("BarId", "UserId");
 
@@ -151,6 +177,10 @@ namespace CocktailWizard.Data.Migrations
                     b.Property<DateTime?>("DeletedOn");
 
                     b.Property<string>("ImagePath");
+
+                    b.Property<string>("Info")
+                        .IsRequired()
+                        .HasMaxLength(150);
 
                     b.Property<bool>("IsDeleted");
 
@@ -201,7 +231,18 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<Guid>("CocktailId");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
                     b.HasKey("IngredientId", "CocktailId");
+
+                    b.HasAlternateKey("CreatedOn");
 
                     b.HasIndex("CocktailId");
 
@@ -223,7 +264,7 @@ namespace CocktailWizard.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<int>("Value");
+                    b.Property<double>("Value");
 
                     b.HasKey("CocktailId", "UserId");
 
@@ -239,7 +280,14 @@ namespace CocktailWizard.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("BarId");
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -247,9 +295,81 @@ namespace CocktailWizard.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BarId");
+                    b.HasAlternateKey("CreatedOn", "Id");
 
                     b.ToTable("Ingredients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("91767830-fb0e-4e77-a93a-d01eb2520553"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(3849),
+                            IsDeleted = false,
+                            Name = "Whisky"
+                        },
+                        new
+                        {
+                            Id = new Guid("af31c27c-d4e5-4d19-8304-2c649adb2f49"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5136),
+                            IsDeleted = false,
+                            Name = "Gin"
+                        },
+                        new
+                        {
+                            Id = new Guid("8b4157a7-49f0-4487-b800-c569c9ec7dd6"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5153),
+                            IsDeleted = false,
+                            Name = "Vodka"
+                        },
+                        new
+                        {
+                            Id = new Guid("f97a5f83-f9da-43a3-bef9-67091533ccc9"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5159),
+                            IsDeleted = false,
+                            Name = "Rum"
+                        },
+                        new
+                        {
+                            Id = new Guid("4f036905-92af-4b1b-8879-41b0fa8f1020"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5165),
+                            IsDeleted = false,
+                            Name = "Tequila"
+                        },
+                        new
+                        {
+                            Id = new Guid("0303b014-79b5-4044-9994-85ac83f293fc"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5169),
+                            IsDeleted = false,
+                            Name = "Cointreau"
+                        },
+                        new
+                        {
+                            Id = new Guid("730bcb1e-ed31-4600-9e42-7019898154b5"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5174),
+                            IsDeleted = false,
+                            Name = "Cola"
+                        },
+                        new
+                        {
+                            Id = new Guid("7f5402b0-2136-4abb-b809-86c1cb502f62"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5178),
+                            IsDeleted = false,
+                            Name = "Ginger Ale"
+                        },
+                        new
+                        {
+                            Id = new Guid("f9d9ac89-7c03-4a41-8a1a-b69262f89e16"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5182),
+                            IsDeleted = false,
+                            Name = "Club Soda"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd3b4dcd-1e23-4b02-bdf1-859d892a7d89"),
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5186),
+                            IsDeleted = false,
+                            Name = "Lemon Sour"
+                        });
                 });
 
             modelBuilder.Entity("CocktailWizard.Data.Entities.Role", b =>
@@ -279,14 +399,14 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"),
-                            ConcurrencyStamp = "dfa9811c-4cbd-4347-8afa-395eadae8bf2",
+                            ConcurrencyStamp = "650ae263-8958-413e-a8e8-f886a987e3d8",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"),
-                            ConcurrencyStamp = "8b2609c7-3709-4335-8e7d-960a31f3ad93",
+                            ConcurrencyStamp = "838873eb-cc36-472a-823e-efa1f35ff7d3",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
@@ -358,15 +478,15 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "596fd4e6-971d-46f3-b432-96998a7bc4b5",
-                            CreatedOn = new DateTime(2019, 11, 2, 19, 59, 50, 612, DateTimeKind.Utc).AddTicks(2874),
+                            ConcurrencyStamp = "05b07a8f-5de4-4f55-acc3-c542956a868c",
+                            CreatedOn = new DateTime(2019, 11, 3, 13, 54, 13, 412, DateTimeKind.Utc).AddTicks(3325),
                             Email = "manager@cw.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
                             LockoutEnabled = true,
                             NormalizedEmail = "MANAGER@CW.COM",
                             NormalizedUserName = "MANAGER@CW.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEEteXzKXnH0AoK0+E1YupcoCW7H1GzUawWrv44DXd/1N5EKA7d3/5eclcjE35UMEA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOH9vTx73SxIktJZDiX3Q19dtZku0Fdt9ypJiyaoALfVl9lE0/Re7R4ZJ1M39hKyEQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN",
                             TwoFactorEnabled = false,
@@ -551,13 +671,6 @@ namespace CocktailWizard.Data.Migrations
                         .WithMany("CocktailRatings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CocktailWizard.Data.Entities.Ingredient", b =>
-                {
-                    b.HasOne("CocktailWizard.Data.Entities.Bar")
-                        .WithMany("Ingredients")
-                        .HasForeignKey("BarId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

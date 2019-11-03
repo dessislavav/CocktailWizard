@@ -57,7 +57,12 @@ namespace CocktailWizard.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(maxLength: 25, nullable: false),
+                    Info = table.Column<string>(maxLength: 1000, nullable: false),
                     Address = table.Column<string>(maxLength: 100, nullable: false),
                     ImagePath = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: false)
@@ -65,6 +70,7 @@ namespace CocktailWizard.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bars", x => x.Id);
+                    table.UniqueConstraint("AK_Bars_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
                 });
 
             migrationBuilder.CreateTable(
@@ -77,12 +83,30 @@ namespace CocktailWizard.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(maxLength: 25, nullable: false),
+                    Info = table.Column<string>(maxLength: 150, nullable: false),
                     ImagePath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cocktails", x => x.Id);
                     table.UniqueConstraint("AK_Cocktails_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ingredients",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(maxLength: 25, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ingredients", x => x.Id);
+                    table.UniqueConstraint("AK_Ingredients_CreatedOn_Id", x => new { x.CreatedOn, x.Id });
                 });
 
             migrationBuilder.CreateTable(
@@ -256,7 +280,7 @@ namespace CocktailWizard.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    Value = table.Column<int>(nullable: false)
+                    Value = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -277,34 +301,20 @@ namespace CocktailWizard.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingredients",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 25, nullable: false),
-                    BarId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ingredients", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ingredients_Bars_BarId",
-                        column: x => x.BarId,
-                        principalTable: "Bars",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BarCocktails",
                 columns: table => new
                 {
                     BarId = table.Column<Guid>(nullable: false),
-                    CocktailId = table.Column<Guid>(nullable: false)
+                    CocktailId = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BarCocktails", x => new { x.CocktailId, x.BarId });
+                    table.UniqueConstraint("AK_BarCocktails_CreatedOn", x => x.CreatedOn);
                     table.ForeignKey(
                         name: "FK_BarCocktails_Bars_BarId",
                         column: x => x.BarId,
@@ -359,7 +369,7 @@ namespace CocktailWizard.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    Value = table.Column<int>(nullable: false)
+                    Value = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -384,11 +394,16 @@ namespace CocktailWizard.Data.Migrations
                 columns: table => new
                 {
                     CocktailId = table.Column<Guid>(nullable: false),
-                    IngredientId = table.Column<Guid>(nullable: false)
+                    IngredientId = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CocktailIngredient", x => new { x.IngredientId, x.CocktailId });
+                    table.UniqueConstraint("AK_CocktailIngredient_CreatedOn", x => x.CreatedOn);
                     table.ForeignKey(
                         name: "FK_CocktailIngredient_Cocktails_CocktailId",
                         column: x => x.CocktailId,
@@ -406,17 +421,33 @@ namespace CocktailWizard.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"), "dfa9811c-4cbd-4347-8afa-395eadae8bf2", "Manager", "MANAGER" });
-
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"), "8b2609c7-3709-4335-8e7d-960a31f3ad93", "Member", "MEMBER" });
+                values: new object[,]
+                {
+                    { new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"), "650ae263-8958-413e-a8e8-f886a987e3d8", "Manager", "MANAGER" },
+                    { new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"), "838873eb-cc36-472a-823e-efa1f35ff7d3", "Member", "MEMBER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedOn", "DeletedOn", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedOn", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"), 0, "596fd4e6-971d-46f3-b432-96998a7bc4b5", new DateTime(2019, 11, 2, 19, 59, 50, 612, DateTimeKind.Utc).AddTicks(2874), null, "manager@cw.com", false, false, true, null, null, "MANAGER@CW.COM", "MANAGER@CW.COM", "AQAAAAEAACcQAAAAEEEteXzKXnH0AoK0+E1YupcoCW7H1GzUawWrv44DXd/1N5EKA7d3/5eclcjE35UMEA==", null, false, "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN", false, "manager@cw.com" });
+                values: new object[] { new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"), 0, "05b07a8f-5de4-4f55-acc3-c542956a868c", new DateTime(2019, 11, 3, 13, 54, 13, 412, DateTimeKind.Utc).AddTicks(3325), null, "manager@cw.com", false, false, true, null, null, "MANAGER@CW.COM", "MANAGER@CW.COM", "AQAAAAEAACcQAAAAEOH9vTx73SxIktJZDiX3Q19dtZku0Fdt9ypJiyaoALfVl9lE0/Re7R4ZJ1M39hKyEQ==", null, false, "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN", false, "manager@cw.com" });
+
+            migrationBuilder.InsertData(
+                table: "Ingredients",
+                columns: new[] { "Id", "CreatedOn", "DeletedOn", "IsDeleted", "ModifiedOn", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("91767830-fb0e-4e77-a93a-d01eb2520553"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(3849), null, false, null, "Whisky" },
+                    { new Guid("af31c27c-d4e5-4d19-8304-2c649adb2f49"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5136), null, false, null, "Gin" },
+                    { new Guid("8b4157a7-49f0-4487-b800-c569c9ec7dd6"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5153), null, false, null, "Vodka" },
+                    { new Guid("f97a5f83-f9da-43a3-bef9-67091533ccc9"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5159), null, false, null, "Rum" },
+                    { new Guid("4f036905-92af-4b1b-8879-41b0fa8f1020"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5165), null, false, null, "Tequila" },
+                    { new Guid("0303b014-79b5-4044-9994-85ac83f293fc"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5169), null, false, null, "Cointreau" },
+                    { new Guid("730bcb1e-ed31-4600-9e42-7019898154b5"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5174), null, false, null, "Cola" },
+                    { new Guid("7f5402b0-2136-4abb-b809-86c1cb502f62"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5178), null, false, null, "Ginger Ale" },
+                    { new Guid("f9d9ac89-7c03-4a41-8a1a-b69262f89e16"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5182), null, false, null, "Club Soda" },
+                    { new Guid("dd3b4dcd-1e23-4b02-bdf1-859d892a7d89"), new DateTime(2019, 11, 3, 13, 54, 13, 420, DateTimeKind.Utc).AddTicks(5186), null, false, null, "Lemon Sour" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -496,11 +527,6 @@ namespace CocktailWizard.Data.Migrations
                 name: "IX_CocktailRatings_UserId",
                 table: "CocktailRatings",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_BarId",
-                table: "Ingredients",
-                column: "BarId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -545,6 +571,9 @@ namespace CocktailWizard.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Bars");
+
+            migrationBuilder.DropTable(
                 name: "Ingredients");
 
             migrationBuilder.DropTable(
@@ -552,9 +581,6 @@ namespace CocktailWizard.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Bars");
         }
     }
 }

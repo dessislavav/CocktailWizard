@@ -5,6 +5,7 @@ using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
@@ -22,7 +23,10 @@ namespace CocktailWizard.Services
 
         public async Task<ICollection<BarDto>> GetAllBarsAsync()
         {
-            var allBars = await this.context.Bars.ToListAsync();
+            var allBars = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .ToListAsync();
+
             var mappedBars = this.dtoMapper.MapFrom(allBars);
 
             return mappedBars;
@@ -31,7 +35,9 @@ namespace CocktailWizard.Services
         public async Task<BarDto> GetBarAsync(Guid id)
         {
 
-            var bar = await this.context.Bars.FirstOrDefaultAsync(b => b.Id == id);
+            var bar = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == id);
 
             if (bar == null)
             {
@@ -53,6 +59,7 @@ namespace CocktailWizard.Services
             var bar = new Bar
             {
                 Name = tempBar.Name,
+                Info = tempBar.Info,
                 Address = tempBar.Address,
                 ImagePath = tempBar.ImagePath,
                 Phone = tempBar.Phone
@@ -72,7 +79,9 @@ namespace CocktailWizard.Services
                 throw new ArgumentException("TODO");
             }
 
-            var bar = await this.context.Bars.FirstOrDefaultAsync(b => b.Id == barDto.Id);
+            var bar = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == barDto.Id);
 
             try
             {
@@ -89,11 +98,24 @@ namespace CocktailWizard.Services
             }
             catch (Exception)
             {
-
                 throw new ArgumentException("TODO");
             }
+        }
 
-            
+        public async Task<BarDto> DeleteAsync(Guid id)
+        {
+            var bar = await this.context.Bars.FirstOrDefaultAsync(b => b.Id == id);
+
+            if (bar == null)
+            {
+                throw new ArgumentException("TODO");
+            }
+            bar.IsDeleted = true;
+            bar.DeletedOn = DateTime.UtcNow;
+            await this.context.SaveChangesAsync();
+            var barDto = this.dtoMapper.MapFrom(bar);
+
+            return barDto;
         }
     }
 }

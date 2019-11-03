@@ -8,6 +8,7 @@ using CocktailWizard.Web.Mappers;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Middlewares;
 using CocktailWizard.Web.Models;
+using CocktailWizard.Web.Utilities.Registration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -48,6 +49,12 @@ namespace CocktailWizard
                 options.Password.RequireNonAlphanumeric = false;
             });
 
+            //services.AddAuthentication().AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            //});
+
             services.AddDbContext<CWContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -60,9 +67,9 @@ namespace CocktailWizard
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddScoped<BarService>();
-            services.AddScoped<IViewModelMapper<BarDto, BarViewModel>, BarViewModelMapper>();
-            services.AddScoped<IDtoMapper<Bar, BarDto>, BarDtoMapper>();
+            services.AddBusinessServices();
+            services.AddCustomViewModelMappers();
+            services.AddCustomDtoMappers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,34 +1,30 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.DtoMappers.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace CocktailWizard.Services.DtoMappers
 {
-    public class BarDtoMapper : IDtoMapper<Bar, BarDto>
+    public class IngredientDtoMapper : IDtoMapper<Ingredient, IngredientDto>
     {
-        public BarDto MapFrom(Bar entity)
+        public IngredientDto MapFrom(Ingredient entity)
         {
             if (entity == null)
             {
                 return null;
             }
 
-            return new BarDto
+            return new IngredientDto
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Address = entity.Address,
-                ImagePath = entity.ImagePath,
-                Phone = entity.Phone,
-                AverageRating = entity.Ratings
-                       .Any() ? entity.Ratings
-                       .Average(x => x.Value) : 0.00,
             };
         }
 
-        public ICollection<BarDto> MapFrom(ICollection<Bar> entities)
+        public ICollection<IngredientDto> MapFrom(ICollection<Ingredient> entities)
         {
             return entities.Select(this.MapFrom).ToList();
         }
