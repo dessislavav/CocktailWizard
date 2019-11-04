@@ -57,9 +57,31 @@ namespace CocktailWizard.Services
             return ingredient;
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task<IngredientDto> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var ingredient = this.context.Ingredients.FirstOrDefault(i => i.Id == id);
+            ingredient.IsDeleted = true;
+            ingredient.DeletedOn = DateTime.UtcNow;
+
+            await this.context.SaveChangesAsync();
+
+            var ingredientDto = this.dtoMapper.MapFrom(ingredient);
+
+            return ingredientDto;
+        }
+
+        public async Task<IngredientDto> CreateIngredientAsync(IngredientDto ingredientDto)
+        {
+            var ingredient = new Ingredient
+            {
+                Name = ingredientDto.Name,
+            };
+
+            await this.context.Ingredients.AddAsync(ingredient);
+            await this.context.SaveChangesAsync();
+
+            var newIngredientDto = this.dtoMapper.MapFrom(ingredient);
+            return newIngredientDto;
         }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model AddCocktailsToBarsViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/homepage.jpg')">
+
+</div>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="AddCocktails" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div>Please select the ingredients for this cocktail from the menu below</div>
+                    <div class="form-group">
+                        <label></label>
+                        <select multiple="multiple" asp-for="@Model.SelectedCocktails" asp-items="@Model.AllCocktails" class="custom-select" size="12">
+                            <option hidden disabled selected="">Select...</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="AddCocktails" class="btn btn-primary" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

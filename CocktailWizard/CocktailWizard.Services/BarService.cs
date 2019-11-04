@@ -23,17 +23,6 @@ namespace CocktailWizard.Services
             this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
         }
 
-        public async Task<ICollection<BarDto>> GetAllBarsAsync()
-        {
-            var allBars = await this.context.Bars
-                .Where(b => b.IsDeleted == false)
-                .ToListAsync();
-
-            var mappedBars = this.dtoMapper.MapFrom(allBars);
-
-            return mappedBars;
-        }
-
         public async Task<BarDto> GetBarAsync(Guid id)
         {
 
@@ -50,6 +39,19 @@ namespace CocktailWizard.Services
 
             return mappedBar;
         }
+
+        public async Task<ICollection<BarDto>> GetAllBarsAsync()
+        {
+            var allBars = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .ToListAsync();
+
+            var mappedBars = this.dtoMapper.MapFrom(allBars);
+
+            return mappedBars;
+        }
+
+
 
         public async Task<BarDto> CreateAsync(BarDto tempBar)
         {
@@ -116,6 +118,43 @@ namespace CocktailWizard.Services
             bar.DeletedOn = DateTime.UtcNow;
             await this.context.SaveChangesAsync();
             var barDto = this.dtoMapper.MapFrom(bar);
+
+            return barDto;
+        }
+
+        public async Task<BarDto> AddCocktailsAsync(BarDto barDto, List<string> selectedCocktails)
+        {
+            var bar = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == barDto.Id);
+
+            if (!selectedCocktails.Any())
+            {
+                throw new ArgumentException("TODO");
+            }
+            foreach (var item in selectedCocktails)
+            {
+                var cocktail = await this.context.Cocktails
+                    .FirstOrDefaultAsync(c => c.Name == item) ?? throw new ArgumentException("TODO");
+
+                var barCocktail = await this.context.BarCocktails
+                    .Where(c => c.CocktailId == cocktail.Id && c.BarId == bar.Id)
+                    .FirstOrDefaultAsync();
+
+                if (barCocktail == null)
+                {
+                    barCocktail = new BarCocktail
+                    {
+                        Bar = bar,
+                        Cocktail = cocktail,
+                    };
+
+                    await this.context.BarCocktails.AddAsync(barCocktail);
+                    bar.BarCocktails.Add(barCocktail);
+                    cocktail.BarCocktails.Add(barCocktail);
+                }
+            }
+            await this.context.SaveChangesAsync();
 
             return barDto;
         }

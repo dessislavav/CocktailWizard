@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
+using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -33,9 +34,9 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         }
 
         // POST: Manager/Ingredients/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (id == null)
             {
@@ -43,6 +44,31 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             }
 
             await this.ingredientService.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody]IngredientViewModel ingredientViewModel)
+        {
+            var ingredientDto = this.ingredientViewModelMapper.MapFrom(ingredientViewModel);
+                
+            await this.ingredientService.CreateIngredientAsync(ingredientDto);
+
+            return Json(ingredientViewModel);
+        }
+
+        // POST: Manager/Ingredients/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(IngredientViewModel ingredientViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
 
             return RedirectToAction(nameof(Index));
         }
