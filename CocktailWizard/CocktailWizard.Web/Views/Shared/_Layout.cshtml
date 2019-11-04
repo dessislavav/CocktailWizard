@@ -1,5 +1,4 @@
-﻿
-<!--
+﻿<!--
  =========================================================
  * Material Kit - v2.0.6
  =========================================================
@@ -13,7 +12,6 @@
 
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
-@RenderSection("Scripts", required: false)
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -60,15 +58,15 @@
                     </li>
 
                     <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
-                Login
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
 
-                    <partial name="_BarsCocktailsPartial"/>
+                    <partial name="_BarsCocktailsPartial" />
                     <partial name="_LoginPartial" />
 
                 </ul>
@@ -78,7 +76,7 @@
     <div>
         <main role="main" class="pb-3">
             @RenderBody()
-        </main>*
+        </main>
     </div>
     <footer class="footer footer-default">
         <div class="container">
@@ -117,4 +115,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
+    @RenderSection("Scripts", required: false)
 </body>

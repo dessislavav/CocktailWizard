@@ -56,5 +56,10 @@ namespace CocktailWizard.Services
             await this.context.SaveChangesAsync();
             return ingredient;
         }
+
+        public Task DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

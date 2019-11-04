@@ -3,12 +3,20 @@
 <ul class="navbar-nav">
     @if (User.IsInRole("Manager"))
     {
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Manager" asp-controller="Bars" asp-action="Index">Bars</a>
-        </li>
-        <li class="nav-item">     
-            <a class="nav-link" asp-area="Manager" asp-controller="Cocktails" asp-action="Index">Cocktails <i class="material-icons">local_bar</i>
+        <li class="dropdown nav-item">
+            <a class="dropdown-toggle nav-link" data-toggle="dropdown" asp-area="Manager" asp-controller="Bars" asp-action="Index">Manager Panel
             </a>
+            <div class="dropdown-menu dropdown-with-icons">
+                <a class="dropdown-item" asp-area="Manager" asp-controller="Bars" asp-action="Index">
+                    <i class="material-icons">account_balance</i> Bars
+                </a>
+                <a class="dropdown-item" asp-area="Manager" asp-controller="Cocktails" asp-action="Index">
+                    <i class="material-icons">local_bar</i> Cocktails
+                </a>
+                <a class="dropdown-item" asp-area="Manager" asp-controller="Ingredients" asp-action="Index">
+                    <i class="material-icons">local_bar</i> Ingredients
+                </a>
+            </div>
         </li>
     }
     else
@@ -17,8 +25,9 @@
             <a class="nav-link" asp-area="" asp-controller="Bars" asp-action="Index">Bars</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-controller="Cocktails" asp-action="Index">Cocktails <i class="material-icons">local_bar</i>
-            </a>  
+            <a class="nav-link" asp-area="" asp-controller="Cocktails" asp-action="Index">
+                Cocktails <i class="material-icons">local_bar</i>
+            </a>
         </li>
     }
 </ul>
