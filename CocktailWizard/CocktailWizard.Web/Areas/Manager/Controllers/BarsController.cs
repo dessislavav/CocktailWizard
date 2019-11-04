@@ -1,11 +1,14 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
@@ -16,11 +19,13 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     {
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
         private readonly BarService barService;
+        private readonly CocktailService cocktailService;
 
-        public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, BarService barService)
+        public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, BarService barService, CocktailService cocktailService)
         {
             this.barViewModelMapper = barViewModelMapper;
             this.barService = barService;
+            this.cocktailService = cocktailService;
         }
 
         // GET: Manager/Bars
@@ -136,6 +141,36 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             await this.barService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index)); 
+        }
+
+        // GET: Manager/Bars/AddCocktails
+        public async Task<IActionResult> AddCocktails(AddCocktailsToBarsViewModel addCocktailsVM, Guid id)
+        {
+            var allCocktailsDto = await this.cocktailService.GetAllCocktailsAsync();
+            addCocktailsVM.Id = id;
+            addCocktailsVM.AllCocktails = allCocktailsDto
+                .Select(c => new SelectListItem(c.Name, c.Name))
+                .ToList();
+
+            return View(addCocktailsVM);
+        }
+
+        // POST: Manager/Bars/AddCocktails
+        [HttpPost, ActionName("AddCocktails")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddCocktailsConfirmed(AddCocktailsToBarsViewModel addCocktailsVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var barDto = await this.barService.GetBarAsync(addCocktailsVM.Id);
+
+                await this.barService.AddCocktailsAsync(barDto, addCocktailsVM.SelectedCocktails);
+
+                return RedirectToAction("Details", new { id = barDto.Id });
+            }
+
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
+            return View(addCocktailsVM);
         }
 
     }

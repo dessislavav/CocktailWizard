@@ -75,7 +75,8 @@ namespace CocktailWizard.Services
 
             foreach (var item in tempCocktail.CocktailIngredients)
             {
-                var ingredient = await this.ingredientService.GetIngredientAsync(item) ?? await this.ingredientService.CreateIngredientAsync(item);
+                var ingredient = await this.ingredientService.GetIngredientAsync(item) ?? throw new ArgumentException(ExceptionMessages.IngredientNull);
+
                 var cocktailIngredient = await this.cocktailIngredientService.CreateCocktailIngredient(cocktail.Id, ingredient.Id);
                 cocktail.CocktailIngredients.Add(cocktailIngredient);
             }
@@ -129,6 +130,8 @@ namespace CocktailWizard.Services
             cocktail.IsDeleted = true;
             cocktail.DeletedOn = DateTime.UtcNow;
 
+            this.context.Update(cocktail);
+            await this.context.SaveChangesAsync();
             var cocktailDto = this.dtoMapper.MapFrom(cocktail);
 
             return cocktailDto;

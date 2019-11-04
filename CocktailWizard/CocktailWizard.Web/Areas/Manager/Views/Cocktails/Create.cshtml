@@ -45,11 +45,9 @@
 
     <div>
         <a asp-action="Index">Back to List</a>
-    </div>
+    </div>*@
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }*@
+
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/homepage.jpg')">
 
 </div>
@@ -87,3 +85,7 @@
         </div>
     </div>
 </div>
+
+    section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
