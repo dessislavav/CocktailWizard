@@ -40,10 +40,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Phone)
                 </td>
-                <td>
+                @*<td>
                     <a asp-area="Manager" asp-controller="Bars" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                </td>
+                </td>*@
             </tr>
         }
     </tbody>
 </table>
+
+<partial name="_BarsPartial"/>

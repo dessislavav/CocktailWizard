@@ -8,5 +8,6 @@
         public const string CocktailIngredientsNull = "No cocktail ingredients found.";
         public const string IngredientNull = "No ingredient found.";
         public const string ModelError = "Model state not valid.";
+        public const string BarCommentNull = "No bar comment found.";
     }
 }

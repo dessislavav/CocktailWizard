@@ -1,9 +1,5 @@
 ﻿using CocktailWizard.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Utilities.Registration
 {
@@ -15,6 +11,7 @@ namespace CocktailWizard.Web.Utilities.Registration
             services.AddScoped<CocktailService>();
             services.AddScoped<IngredientService>();
             services.AddScoped<CocktailIngredientService>();
+            services.AddScoped<BarCommentService>();
 
             return services;
         }
