@@ -1,41 +1,113 @@
 ﻿@model BarViewModel
-
 @{
-    ViewData["Title"] = "Details";
-}
+        ViewData["Title"] = "Details";
+    }
 
-<h1>Details</h1>
+<!--
+ =========================================================
+ * Material Kit - v2.0.6
+ =========================================================
 
-<div>
-    <h4>Bar</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
+ * Product Page: https://www.creative-tim.com/product/material-kit
+ * Copyright 2019 Creative Tim (http://www.creative-tim.com)
+   Licensed under MIT (https://github.com/creativetimofficial/material-kit/blob/master/LICENSE.md)
+
+
+ =========================================================
+
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url(@Model.ImagePath);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="title">
+                        <br />
+                        @Model.Name
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile">
+                        <div class="name">
+                            <h2 class="title">@Model.Name</h2>
+                            <h4>@Model.Address</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description text-center">
+                <p>@Model.Info</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile-tabs">
+                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                    <i class="material-icons">camera</i> Studio
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                                    <i class="material-icons">palette</i> Work
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                    <i class="material-icons">favorite</i> Favorite
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content tab-space">
+                <div class="tab-pane active text-center gallery" id="studio">
+                    <div class="row">
+                        <div class="col-md-3 ml-auto">
+                            <img src="/assets/img/examples/studio-2.jpg" class="rounded">
+                            <img src="/assets/img/examples/studio-2.jpg" class="rounded">
+                        </div>
+                        <div class="col-md-3 mr-auto">
+                            <img src="/assets/img/examples/studio-5.jpg" class="rounded">
+                            <img src="/assets/img/examples/studio-4.jpg" class="rounded">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane text-center gallery" id="works">
+                    <div class="row">
+                        <div class="col-md-3 ml-auto">
+                            <img src="/assets/img/examples/olu-eletu.jpg" class="rounded">
+                            <img src="/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
+                            <img src="/assets/img/examples/cynthia-del-rio.jpg" class="rounded">
+                        </div>
+                        <div class="col-md-3 mr-auto">
+                            <img src="/assets/img/examples/mariya-georgieva.jpg" class="rounded">
+                            <img src="/assets/img/examples/clem-onojegaw.jpg" class="rounded">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane text-center gallery" id="favorite">
+                    <div class="row">
+                        <div class="col-md-3 ml-auto">
+                            <img src="/assets/img/examples/mariya-georgieva.jpg" class="rounded">
+                            <img src="/assets/img/examples/studio-3.jpg" class="rounded">
+                        </div>
+                        <div class="col-md-3 mr-auto">
+                            <img src="/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
+                            <img src="/assets/img/examples/olu-eletu.jpg" class="rounded">
+                            <img src="/assets/img/examples/studio-1.jpg" class="rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

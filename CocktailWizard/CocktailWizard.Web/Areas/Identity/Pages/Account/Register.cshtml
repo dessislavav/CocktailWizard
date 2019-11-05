@@ -5,57 +5,30 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-@*<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
-</div>*@
-
-
-
-
-<div class="page-header header-filter" style="background-image: url('/assets/img/register.jpg'); background-size: cover; background-position: top center;">
+<div class="page-header header-filter" style="background-image: url('/assets/img/login.jpg'); background-size: cover; background-position: top center">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                 <div class="card card-login">
-                    <form class="form" id="account" method="post">
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                         <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title">Register</h4>
+                            <h4 class="card-title">Login</h4>
                             <div class="social-line">
-                                <a href="#pablo" class="btn btn-just-icon btn-link">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link">
-                                    <i class="fa fa-google"></i>
-                                </a>
+                                <p>
+                                    <button type="submit" class="btn btn-just-icon btn-link" name="provider" value="Facebook">
+                                        <i class="fa fa-facebook-square"></i>
+                                    </button>
+                                    <button type="submit" class="btn btn-just-icon btn-link" name="provider" value="Google">
+                                        <i class="fa fa-google"></i>
+                                    </button>
+                                </p>
                             </div>
                         </div>
-                        <p class="description text-center">Or Be Classical</p>
+                    </form>
+                    <p class="description text-center">Or Be Classical</p>
+                    <form class="form" id="account" method="post">
                         <div class="card-body">
+                            <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -63,7 +36,6 @@
                                     </span>
                                 </div>
                                 <input asp-for="Input.Email" class="form-control" placeholder="Email..." />
-                                <span asp-validation-for="Input.Email" class="text-danger"></span>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -72,7 +44,6 @@
                                     </span>
                                 </div>
                                 <input asp-for="Input.Password" class="form-control" placeholder="Password..." />
-                                <span asp-validation-for="Input.Password" class="text-danger"></span>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -81,7 +52,6 @@
                                     </span>
                                 </div>
                                 <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Repeat Password..." />
-                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="footer text-center">
@@ -93,3 +63,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

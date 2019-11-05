@@ -34,7 +34,8 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         }
 
         // POST: Manager/Ingredients/Delete/5
-        [HttpPost, ActionName("Delete")]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -58,6 +59,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             return Json(ingredientViewModel);
         }
 
+
         // POST: Manager/Ingredients/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -65,7 +67,8 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                var ingredientDto = await this.ingredientService.GetIngredientAsync(ingredientViewModel.Id);
+                await this.ingredientService.EditAsync(ingredientDto);
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);

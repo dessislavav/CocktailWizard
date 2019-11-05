@@ -19,6 +19,7 @@ namespace CocktailWizard.Services.DtoMappers
             {
                 Id = entity.Id,
                 Name = entity.Name,
+                Info = entity.Info,
                 Address = entity.Address,
                 ImagePath = entity.ImagePath,
                 Phone = entity.Phone,

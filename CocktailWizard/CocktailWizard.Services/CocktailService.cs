@@ -38,6 +38,42 @@ namespace CocktailWizard.Services
             return allCocktailsDtos;
         }
 
+        public async Task<ICollection<CocktailDto>> GetTopCocktails(int num)
+        {
+            //var topCocktails = new List<Cocktail>();
+            //try
+            //{
+            //    topCocktails = await this.context.Cocktails
+            //        .Where(b => b.IsDeleted == false)
+            //        .Include(b => b.Ratings)
+            //        .OrderByDescending(b => b.Ratings
+            //        .Average(r => r.Value))
+            //        .Take(num)
+            //        .ToListAsync();
+            //}
+            //catch (Exception)
+            //{
+            //    topCocktails = await this.context.Cocktails
+            //        .Where(b => b.IsDeleted == false)
+            //        .Take(num)
+            //        .ToListAsync();
+            //}
+
+            var topCocktails = await this.context.Cocktails
+                    .Where(b => b.IsDeleted == false)
+                    .Take(num)
+                    .ToListAsync();
+
+            if (!topCocktails.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
+            }
+
+            var topCocktailsDtos = this.dtoMapper.MapFrom(topCocktails);
+
+            return topCocktailsDtos;
+        }
+
         public async Task<CocktailDto> GetCocktailAsync(Guid id)
         {
             var cocktail = await this.context.Cocktails

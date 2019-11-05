@@ -4,14 +4,16 @@ using CocktailWizard.Data.AppContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CocktailWizard.Data.Migrations
 {
     [DbContext(typeof(CWContext))]
-    partial class CWContextModelSnapshot : ModelSnapshot
+    [Migration("20191105163235_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

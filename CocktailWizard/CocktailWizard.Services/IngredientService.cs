@@ -1,6 +1,8 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,8 +19,8 @@ namespace CocktailWizard.Services
 
         public IngredientService(CWContext context, IDtoMapper<Ingredient, IngredientDto> dtoMapper)
         {
-            this.context = context ?? throw new ArgumentNullException(nameof(context)); ;
-            this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper)); ;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
         }
 
         public async Task<Ingredient> GetIngredientAsync(string param)
@@ -35,11 +37,27 @@ namespace CocktailWizard.Services
             return ingredient;
         }
 
+        public async Task<IngredientDto> GetIngredientAsync(Guid id)
+        {
+            var ingredient = await this.context.Ingredients
+                .Where(i => i.IsDeleted == false)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (ingredient == null)
+            {
+                return null;
+            }
+
+            var ingredientDto = this.dtoMapper.MapFrom(ingredient);
+            return ingredientDto;
+        }
+
         public async Task<ICollection<IngredientDto>> GetAllIngredientsAsync()
         {
             var allIngredients = await this.context.Ingredients
                 .Where(i => i.IsDeleted == false)
                 .ToListAsync();
+
             var allDtoIngredients = this.dtoMapper.MapFrom(allIngredients);
 
             return allDtoIngredients;
@@ -59,7 +77,16 @@ namespace CocktailWizard.Services
 
         public async Task<IngredientDto> DeleteAsync(Guid id)
         {
-            var ingredient = this.context.Ingredients.FirstOrDefault(i => i.Id == id);
+            var ingredient = this.context.Ingredients
+                .Where(i => i.IsDeleted == false)
+                .Include(i => i.CocktailIngredients)
+                .FirstOrDefault(i => i.Id == id);
+                
+            if (!ingredient.CocktailIngredients.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
+            }
+
             ingredient.IsDeleted = true;
             ingredient.DeletedOn = DateTime.UtcNow;
 
@@ -82,6 +109,33 @@ namespace CocktailWizard.Services
 
             var newIngredientDto = this.dtoMapper.MapFrom(ingredient);
             return newIngredientDto;
+        }
+
+        public async Task<IngredientDto> EditAsync(IngredientDto ingredientDto)
+        {
+            if (ingredientDto == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.IngredientNull);
+            }
+
+            var ingredient = await this.context.Ingredients
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == ingredientDto.Id);
+
+            try
+            {
+                ingredient.Name = ingredientDto.Name;
+
+                this.context.Update(ingredient);
+                await this.context.SaveChangesAsync();
+                var editedIngredientDto = this.dtoMapper.MapFrom(ingredient);
+
+                return editedIngredientDto;
+            }
+            catch (Exception)
+            {
+                throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
+            }
         }
     }
 }

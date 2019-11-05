@@ -42,58 +42,354 @@ namespace CocktailWizard.Data.Seeder
                 });
 
             //SEEDING INGREDIENTS
-            builder.Entity<Ingredient>().HasData(
-                new Ingredient
-                {
-                    Id = Guid.Parse("91767830-FB0E-4E77-A93A-D01EB2520553"),
-                    Name = "Whisky"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("AF31C27C-D4E5-4D19-8304-2C649ADB2F49"),
-                    Name = "Gin"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("8B4157A7-49F0-4487-B800-C569C9EC7DD6"),
-                    Name = "Vodka"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("F97A5F83-F9DA-43A3-BEF9-67091533CCC9"),
-                    Name = "Rum"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("4F036905-92AF-4B1B-8879-41B0FA8F1020"),
-                    Name = "Tequila"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("0303B014-79B5-4044-9994-85AC83F293FC"),
-                    Name = "Cointreau"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("730BCB1E-ED31-4600-9E42-7019898154B5"),
-                    Name = "Cola"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("7F5402B0-2136-4ABB-B809-86C1CB502F62"),
-                    Name = "Ginger Ale"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("F9D9AC89-7C03-4A41-8A1A-B69262F89E16"),
-                    Name = "Club Soda"
-                },
-                new Ingredient
-                {
-                    Id = Guid.Parse("DD3B4DCD-1E23-4B02-BDF1-859D892A7D89"),
-                    Name = "Lemon Sour"
-                }
-                );
+            var whisky = new Ingredient
+            {
+                Id = Guid.Parse("91767830-FB0E-4E77-A93A-D01EB2520553"),
+                Name = "Whisky"
+            };
+            var gin = new Ingredient
+            {
+                Id = Guid.Parse("AF31C27C-D4E5-4D19-8304-2C649ADB2F49"),
+                Name = "Gin"
+            };
+            var vodka = new Ingredient
+            {
+                Id = Guid.Parse("8B4157A7-49F0-4487-B800-C569C9EC7DD6"),
+                Name = "Vodka"
+            };
+            var rum = new Ingredient
+            {
+                Id = Guid.Parse("F97A5F83-F9DA-43A3-BEF9-67091533CCC9"),
+                Name = "Rum"
+            };
+            var tequila = new Ingredient
+            {
+                Id = Guid.Parse("4F036905-92AF-4B1B-8879-41B0FA8F1020"),
+                Name = "Tequila"
+            };
+            var cointreau = new Ingredient
+            {
+                Id = Guid.Parse("0303B014-79B5-4044-9994-85AC83F293FC"),
+                Name = "Cointreau"
+            };
+            var cola = new Ingredient
+            {
+                Id = Guid.Parse("730BCB1E-ED31-4600-9E42-7019898154B5"),
+                Name = "Cola"
+            };
+            var gingerAle = new Ingredient
+            {
+                Id = Guid.Parse("7F5402B0-2136-4ABB-B809-86C1CB502F62"),
+                Name = "Ginger ale"
+            };
+            var clubSoda = new Ingredient
+            {
+                Id = Guid.Parse("F9D9AC89-7C03-4A41-8A1A-B69262F89E16"),
+                Name = "Club soda"
+            };
+            var lemonSour = new Ingredient
+            {
+                Id = Guid.Parse("DD3B4DCD-1E23-4B02-BDF1-859D892A7D89"),
+                Name = "Lemon Sour"
+            };
+            var cinnamonSyrup = new Ingredient
+            {
+                Id = Guid.Parse("59BD8032-57F2-4193-8D40-C805EC7D6122"),
+                Name = "Cinnamon Syrup"
+            };
+            var tripleSec = new Ingredient
+            {
+                Id = Guid.Parse("2D403BD0-6656-48A3-80A5-1910F2526D94"),
+                Name = "Triple sec"
+            };
+            var cranberryJuice = new Ingredient
+            {
+                Id = Guid.Parse("99667755-0B3C-4746-89DA-9D8DD7A6169A"),
+                Name = "Cranberry juice"
+            };
+            var limeWedge = new Ingredient
+            {
+                Id = Guid.Parse("5998858C-01E8-41D2-8116-798649A2763F"),
+                Name = "Lime wedge"
+            };
+            var passoa = new Ingredient
+            {
+                Id = Guid.Parse("B988748E-CD6A-48DA-AA36-20773102E426"),
+                Name = "Passoa"
+            };
+            var sugarSyrup = new Ingredient
+            {
+                Id = Guid.Parse("5495D66C-52FF-43F3-B26D-1B5279E07767"),
+                Name = "Sugar syrup"
+            };
+            var prosecco = new Ingredient
+            {
+                Id = Guid.Parse("E05C419E-2F82-425C-B769-2842179D7E85"),
+                Name = "Prosecco"
+            };
+            var raspberries = new Ingredient
+            {
+                Id = Guid.Parse("12B1F952-2E1F-4758-9E80-1C1EFBA96CC5"),
+                Name = "Raspberries"
+            };
+            var strawberries = new Ingredient
+            {
+                Id = Guid.Parse("7982B0CE-B116-44DD-85A8-06E66DF516CC"),
+                Name = "Strawberries"
+            };
+            var peachSchnapps = new Ingredient
+            {
+                Id = Guid.Parse("145FD313-EF00-4003-B95A-A5E6558F255D"),
+                Name = "Peach schnapps"
+            };
+            var oranges = new Ingredient
+            {
+                Id = Guid.Parse("47CAC5AB-7071-46C9-BFBB-0F6FFAFF0F0B"),
+                Name = "Oranges"
+            };
+            var cherries = new Ingredient
+            {
+                Id = Guid.Parse("30743785-290F-460C-B16E-6FC992B44366"),
+                Name = "Cherries"
+            };
+            var olives = new Ingredient
+            {
+                Id = Guid.Parse("CCE2C9A4-E14A-4CF9-83AD-111FA4A19EAF"),
+                Name = "Olives"
+            };
+            var apples = new Ingredient
+            {
+                Id = Guid.Parse("2D5DD44C-41D7-43D0-9139-81AA791089A3"),
+                Name = "Apples"
+            };
+            var kiwis = new Ingredient
+            {
+                Id = Guid.Parse("AD6430E6-0B4B-49AA-B412-7D6F6DDBE5B0"),
+                Name = "Kiwis"
+            };
+
+            builder.Entity<Ingredient>().HasData(whisky, gin, vodka, rum, tequila, cointreau, cola, gingerAle, clubSoda, lemonSour, cinnamonSyrup, tripleSec, cranberryJuice, limeWedge, passoa, sugarSyrup, prosecco, raspberries, strawberries, peachSchnapps, oranges, cherries, olives, apples, kiwis);
+
+            //SEEDING COCKTAILS
+            var cosmopolitan = new Cocktail
+            {
+                Id = Guid.Parse("24E8A669-799A-48B7-BC6F-B6884A33D0C7"),
+                Name = "Cosmopolitan cocktail",
+                Info = "Lipsmackingly sweet-and-sour, the Cosmopolitan cocktail of vodka, cranberry, orange liqueur and citrus is a good time in a glass. Perfect for a party.",
+                ImagePath = "https://i1.wp.com/gigglesgobblesandgulps.com/wp-content/uploads/2018/06/cosmopolitan-cocktail-recipe.jpg?ssl=1",
+            };
+            var passionFruit = new Cocktail
+            {
+                Id = Guid.Parse("E9B10C8B-46ED-45A3-9C66-A2C92D74E112"),
+                Name = "Passion fruit martini",
+                Info = "This easy passion fruit cocktail is bursting with zingy flavours and is perfect for celebrating with friends. Top with prosecco for a special tipple",
+                ImagePath = "https://i2-prod.mirror.co.uk/incoming/article14984511.ece/ALTERNATES/s1200b/0_JAJ_TEM_100419Martini_002JPG.jpg",
+            };
+            var raspberryGin = new Cocktail
+            {
+                Id = Guid.Parse("3EBCD248-C91B-45E4-8900-90748828CC67"),
+                Name = "Raspberry gin",
+                Info = "Preserve the taste of summer in a bottle with this raspberry gin, perfect topped up with tonic. The gin will keep its lovely pink hue for a few months",
+                ImagePath = "http://d1fm27ee7pjs8v.cloudfront.net/images/detailed/68/Raspberry_Gin.jpg",
+            };
+            var sexOnTheBeach = new Cocktail
+            {
+                Id = Guid.Parse("C2ACDFFB-A172-4B52-9316-8A5BBE02C16D"),
+                Name = "Sex on the beach cocktail",
+                Info = "Combine vodka with peach schnapps and cranberry juice to make a classic sex on the beach cocktail. Garnish with cocktail cherries and orange slices.",
+                ImagePath = "https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/53/2018/06/sex-on-the-beach-recipe.jpg",
+            };
+            var pinkGinIcedTea = new Cocktail
+            {
+                Id = Guid.Parse("1686F69D-BAAF-4423-A857-4B4D1684496F"),
+                Name = "Pink gin iced tea",
+                Info = "Blend pink gin with iced tea and you have this unique cocktail, made with spiced rum, elderflower and pink grapefruit. Serve in a jug for a sharing cocktail.",
+                ImagePath = "https://assets.epicurious.com/photos/5d1a68edbd7b210008b3e752/5:4/w_3700,h_2960,c_limit/IcedTea_HERO_062719_105.jpg",
+            };
+            var longIsland = new Cocktail
+            {
+                Id = Guid.Parse("1DC069F0-0CAA-4B64-82C0-66A744607AB1"),
+                Name = "Long Island iced tea",
+                Info = "Mix a jug of this classic cocktail for a summer party. It's made with equal parts of vodka, gin, tequila, rum and triple sec, plus lime, cola and plenty of ice.",
+                ImagePath = "https://www.simplyrecipes.com/wp-content/uploads/2017/07/long-island-ice-tea-horiz-a-1800.jpg",
+            };
+            var michelada = new Cocktail
+            {
+                Id = Guid.Parse("2B113D19-305B-43F0-B149-44E86E7F8308"),
+                Name = "Michelada",
+                Info = "Cold lager, chilli powder, pepper and lime: spice up your lager with this Mexican cocktail, popular throughout Latin America and great for a summer party.",
+                ImagePath = "https://d1doqjmisr497k.cloudfront.net/-/media/mccormick-us/recipes/old-bay/o/2000/old_bay_summer_michelada_2000x1125.jpg?vd=20181011T160350Z&hash=50FB5D8483A2C3F0E67C89EFEAC4025B423348E9",
+            };
+            var whiteSangria = new Cocktail
+            {
+                Id = Guid.Parse("323BC1DD-C842-4689-BC7B-2953787A3129"),
+                Name = "White wine sangria",
+                Info = "Try this refreshing twist on a traditional sangria and use white wine instead of red with elderflower to complement the fruit. Perfect for summer parties.",
+                ImagePath = "https://101recipes.com/wp-content/uploads/2019/04/Easy-White-Wine-Sangria-Recipe-2.jpg",
+            };
+            var bucksFizz = new Cocktail
+            {
+                Id = Guid.Parse("B725576E-25CB-4D3E-B661-68E6DF37E2F7"),
+                Name = "Bucks fizz",
+                Info = "The simple and classic combination of orange juice and champagne makes a perfect cocktail for a celebratory brunch or party",
+                ImagePath = "http://toast.life/media/767804/Bucks-Fizz.jpg",
+            };
+            var cranberryVodka = new Cocktail
+            {
+                Id = Guid.Parse("86A1C72C-4DAF-4E26-A483-67B569B5271F"),
+                Name = "Cranberry vodka",
+                Info = "This bittersweet fruity vodka is best served well chilled in shot glasses. It can also be made with other berries like blackcurrants or strawberries.",
+                ImagePath = "https://cdn.bmstores.co.uk/images/hpcRecipe/imgMain/blog-festivecocktails-051217-2.jpg",
+            };
+
+            builder.Entity<Cocktail>().HasData(cosmopolitan, passionFruit, raspberryGin, sexOnTheBeach, pinkGinIcedTea, longIsland, michelada, whiteSangria, bucksFizz, cranberryVodka);
+
+            //SEEDING BARS
+            var bar1 = new Bar
+            {
+                Id = Guid.Parse("19FB565F-DF92-4F81-AC42-BC256D10469A"),
+                Name = "The Allegory",
+                Info = "In the heart of Shoreditch's happening hub, Principal Place, The Allegory is an everyday escape in London’s buzzing unsquare mile. Linger over a long brunch before finishing with an espresso martini.Enjoy quick catch-ups over pastries and freshly ground coffee, wholesome sharing platters and creative cocktails with colleagues; these one-of-a-kind experiences will be found at The Allegory. With a beautiful alfresco terrace, large open plan bar and cosy candlelit corners, this is a destination you'll want to return to again and again.",
+                Address = "1a Principal Place, Worship Street, London, EC2A 2BA",
+                ImagePath = "https://static.designmynight.com/uploads/2017/10/TheAllegory054-optimised.jpg",
+                Phone = "020 3948 9810",
+            };
+            var bar2 = new Bar
+            {
+                Id = Guid.Parse("49B52950-A806-4075-8260-9BA0BDC1AB06"),
+                Name = "The Refinery",
+                Info = "Statement wallpapers and furniture are complemented by soft lighting and cosy faux fur to create your uber chic, contemporary bar - The Refinery CityPoint. The all-day dining bar & restaurant features a private dining room, sunken lounge and alfresco terrace with a pizza oven in the summer. It suits all occasions from early morning breakfasts right through to late night drinks. Make the most of our set menus for larger groups, or pre order packages when you want a selection of nibbles to eat!",
+                Address = "1 Ropemaker Street, London, EC2Y 9HT",
+                ImagePath = "https://static.designmynight.com/uploads/2016/12/DM006-min-optimised.jpg",
+                Phone = "020 7382 0606",
+            };
+            var bar3 = new Bar
+            {
+                Id = Guid.Parse("6C296D75-BCD2-4711-9A28-6D0B6BCAA34B"),
+                Name = "The Fable",
+                Info = "Inspired by the fantasy world of fairy tales and Aesop's fables, The Fable near Holborn Viaduct in central London, is anything but ordinary. From the vintage typewriter, to the leather bound books, every detail tells a story. Whether you visit for crafted cocktails, a morning latte & eggs Benedict or dinner at dusk, expect to be entranced, enthralled and enchanted.",
+                Address = "52 Holborn Viaduct, London, EC1A 2FD",
+                ImagePath = "https://s3.amazonaws.com/VenueFixer/venue_images/images/000/002/460/original/The-Fable0028.jpg?1412868965",
+                Phone = "0207 651 4940",
+            };
+            var bar4 = new Bar
+            {
+                Id = Guid.Parse("4B6B8336-28DF-48B2-A1FD-BADE70B94EB6"),
+                Name = "Devonshire Terrace",
+                Info = "In the heart of the peaceful Devonshire Square, moments from Liverpool Street Station, Devonshire Terrace is your everyday escape from the hustle and bustle of City life. From quick catch-ups over freshly ground coffee to relaxing after work cocktails in one of our many gorgeous spaces, sit back and relax and we'll take care of the rest. No need to wait for the warmer months to drink and dine alfresco, enjoy our all year round terrace with its beautiful glass domed roof to protect you from the elements.",
+                Address = "Devonshire Terrace, Devonshire Square, London, EC2M 4WY",
+                ImagePath = "https://hirespace.imgix.net/spaces/7065/rdpcg53tvbj.jpg?h=1080&w=1920&auto=format&fit=crop&q=40",
+                Phone = "020 7256 3233",
+            };
+            var bar5 = new Bar
+            {
+                Id = Guid.Parse("93532AFB-FE74-43BE-88A4-1C6948C634B8"),
+                Name = "The Anthologist",
+                Info = "Located right in the heart of the City, The Anthologist is the ideal backdrop for all your drink and food needs, from breakfast meetings to client updates over lunch, after work drinks or dinner with friends. Sample new wines or vintages from across the globe, a unique range of innovative cocktails and relaxed all - day dining fare.",
+                Address = "58 Gresham Street, London, EC2V 7BB",
+                ImagePath = "https://hirespace.imgix.net/spaces/4317/dmtrdvkicpx.jpg?h=1080&w=1920&auto=format&fit=crop&q=40",
+                Phone = "0207 726 8711",
+            };
+            var bar6 = new Bar
+            {
+                Id = Guid.Parse("64C6592D-2C7B-42C4-B18D-5AC34BDC39D1"),
+                Name = "Drake & Morgan",
+                Info = "Our flagship bar & restaurant located in the heart of London's most exciting dining destination with two floors, two show stopping bars, an open kitchen and an extensive year-round outside space. Perfect for alfresco dining and drinks in the sun. Drake & Morgan at King's Cross offers a relaxed drinking and dining space in a beautiful setting. Open from an early morning until late evening, it's perfect for every occasion - from a business meeting and working lunch to a romantic dinner or after work drinks.",
+                Address = "6 Pancras Square, London, N1C 4AG",
+                ImagePath = "https://static.designmynight.com/uploads/2015/09/DM-KX-bar-area-optimised.jpg",
+                Phone = "0203 826 4870",
+            };
+            var bar7 = new Bar
+            {
+                Id = Guid.Parse("84552D70-E670-4391-BD7B-1B54B0282B61"),
+                Name = "The Pagination",
+                Info = "Perfectly positioned on the riverside in Canary Wharf, next to the bridge leading over to West India Quay, The Pagination is the perfect antidote to busy London life. With industrial inspired details, exposed metals, and soft handwoven textures, it offers a sanctuary, day or night and the expansive terrace offers alfresco drinking and dining in both the warmer months and the colder due to the abundance of blankets and hot water bottles to keep you snug.",
+                Address = "9 Cabot Square, London, E14 4EB",
+                ImagePath = "https://static.designmynight.com/uploads/2016/12/DM-Pagin_0016-copy-optimised.jpg",
+                Phone = "020 7512 0397",
+            };
+            var bar8 = new Bar
+            {
+                Id = Guid.Parse("69CE843B-97C4-4164-8BA0-C8CA4EF02CF4"),
+                Name = "The Parlour",
+                Info = "Located in the Park Pavilion on Canada Square, Canary Wharf, The Parlour is a striking & innovative all-day bar with style, substance & seasonally tempting drinks and food. A secret garden-inspired lounge with timber panelling is a must for cocktail lovers & perfect for pre- or post-dinner drinks, whilst the mixology table is ideal for those who want to mix & muddle for themselves. A stunning alfresco terrace, complete with its own bar provides the perfect playpen for those wanting to soak up the sun.",
+                Address = "The Park Pavilion, London, E14 5FW",
+                ImagePath = "https://i.pinimg.com/originals/6e/27/09/6e27095874a8a710ddb2a93adfa8de4e.jpg",
+                Phone = "0207 715 9551",
+            };
+            var bar9 = new Bar
+            {
+                Id = Guid.Parse("363EA8FB-60F3-4AA2-8041-394520E3FB41"),
+                Name = "Opium",
+                Info = "Opium Cocktail Bar & Dim Sum Parlour is a chic, hidden venue in the heart of Chinatown. Run by experienced London bar moguls Dre Masso and Eric Yu, Opium certainly has some pedigree behind it. The decor is oriental themed but again keeps an element of freshness with a twist that makes it modern and current; metal finishes on miss-matched Chinese furniture gives Opium, a contemporary London feel that is very welcome. Expect 3 bars of amazing Asian cocktails and a selection of dim sum - just a little teaser to get your appetite going.",
+                Address = "5-16 Gerrard Street, London, W1D 6JE",
+                ImagePath = "https://static.designmynight.com/uploads/2018/01/0033-optimised.jpg",
+                Phone = "020 7734 7276",
+            };
+            var bar10 = new Bar
+            {
+                Id = Guid.Parse("11F5779B-49B1-43AC-9153-5FA72D810B34"),
+                Name = "The Sipping Room",
+                Info = "An escape from the everyday, The Sipping Room specialises in thoughtful, inspired menus, locally sourced ingredients, and innovative, handcrafted cocktails. Retreat from the world while you enjoy our unrivalled service in the most welcoming environment. Our stylish outdoor terrace provides the perfect alfresco respite throughout the seasons.",
+                Address = "16 Hertsmere Road, London, E14 4AX",
+                ImagePath = "https://www.drakeandmorgan.co.uk/the-sipping-room/wp-content/uploads/sites/29/2018/06/sipping-room-e1528980994126.jpg",
+                Phone = "020 3907 0320",
+            };
+
+            builder.Entity<Bar>().HasData(bar1, bar2, bar3, bar4, bar5, bar6, bar7, bar8, bar9, bar10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //var barCocktail1 = new BarCocktail
+            //{
+            //    BarId = bar1.Id,
+            //    CocktailId = cosmopolitan.Id,
+            //};
+            //var barCocktail2 = new BarCocktail
+            //{
+            //    BarId = bar1.Id,
+            //    CocktailId = passionFruit.Id,
+            //};
+            //var barCocktail3 = new BarCocktail
+            //{
+            //    BarId = bar1.Id,
+            //    CocktailId = raspberryGin.Id,
+            //};
+            //var barCocktail4 = new BarCocktail
+            //{
+            //    BarId = bar1.Id,
+            //    CocktailId = sexOnTheBeach.Id,
+            //};
+            //var barCocktail5 = new BarCocktail
+            //{
+            //    BarId = bar2.Id,
+            //    CocktailId = passionFruit.Id,
+            //};
+            //var barCocktail6 = new BarCocktail
+            //{
+            //    BarId = bar2.Id,
+            //    CocktailId = passionFruit.Id,
+            //};
         }
     }
 }
+
+
+//cosmopolitan, passionFruit, raspberryGin

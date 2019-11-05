@@ -25,7 +25,6 @@ namespace CocktailWizard.Services
 
         public async Task<BarDto> GetBarAsync(Guid id)
         {
-
             var bar = await this.context.Bars
                 .Where(b => b.IsDeleted == false)
                 .FirstOrDefaultAsync(b => b.Id == id);
@@ -38,6 +37,43 @@ namespace CocktailWizard.Services
             var mappedBar = this.dtoMapper.MapFrom(bar);
 
             return mappedBar;
+        }
+
+        public async Task<ICollection<BarDto>> GetTopBars(int num)
+        {
+            //var topBars = new List<Bar>();
+            //try
+            //{
+            //    topBars = await this.context.Bars
+            //         .Where(b => b.IsDeleted == false)
+            //         .Include(b => b.Ratings)
+            //         .Where(b => b.Ratings != null)
+            //         .OrderByDescending(b => b.Ratings
+            //         .Average(r => r.Value))
+            //         .Take(num)
+            //         .ToListAsync();
+            //}
+            //catch (Exception)
+            //{
+            //    topBars = await this.context.Bars
+            //         .Where(b => b.IsDeleted == false)
+            //         .Take(num)
+            //         .ToListAsync();
+            //}
+
+            var topBars = await this.context.Bars
+                 .Where(b => b.IsDeleted == false)
+                 .Take(num)
+                 .ToListAsync();
+
+            if (!topBars.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
+            }
+
+            var topBarsDtos = this.dtoMapper.MapFrom(topBars);
+
+            return topBarsDtos;
         }
 
         public async Task<ICollection<BarDto>> GetAllBarsAsync()

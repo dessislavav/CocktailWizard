@@ -1,10 +1,4 @@
-﻿$('#load-add-ingredient-form').click(function () {
-    let div = $('#ingrediens-div');
-    div.show();
-});
-
-
-$('#ingrediens-to-db').click(function () {
+﻿$('#ingrediens-to-db').click(function () {
     let name = $('#ingredient-name').val();
     let data = {
         'Name': name
@@ -19,10 +13,6 @@ $('#ingrediens-to-db').click(function () {
                 $('input:hidden[name="__RequestVerificationToken"]').val(),
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-        },
-        dataType: 'json',
-        success: function (response) {
-            $('#list-of-ingredients').append("<tr><td>" + response.Name + "</td> </tr>");
         },
         error: function (msg) {
             console.dir(msg);
