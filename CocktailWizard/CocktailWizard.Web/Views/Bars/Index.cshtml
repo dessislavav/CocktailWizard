@@ -27,23 +27,29 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImagePath)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                @*<td>
-                    <a asp-area="Manager" asp-controller="Bars" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                </td>*@
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
+            <td>
+                <a asp-area="" asp-controller="BarComments" asp-action="Create" asp-route-barId="@item.Id">Create Comment</a>
+            </td>
+            <td>
+                <a asp-area="" asp-controller="BarComments" asp-action="Index" asp-route-barId="@item.Id">View Comments</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
