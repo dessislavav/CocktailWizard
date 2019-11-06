@@ -24,6 +24,7 @@ namespace CocktailWizard.Web.Mappers
                 ImagePath = dtoEntity.ImagePath,
                 Phone = dtoEntity.Phone,
                 AverageRating = dtoEntity.AverageRating,
+                GoogleMapsURL = dtoEntity.GoogleMapsURL,
             };
         }
 
@@ -48,6 +49,7 @@ namespace CocktailWizard.Web.Mappers
                 ImagePath = entityVM.ImagePath,
                 Phone = entityVM.Phone,
                 AverageRating = entityVM.AverageRating,
+                GoogleMapsURL = entityVM.GoogleMapsURL,
             };
         }
 

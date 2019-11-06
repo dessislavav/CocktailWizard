@@ -33,14 +33,16 @@ namespace CocktailWizard.Data.Entities
         [StringLength(100, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
         public string Address { get; set; }
 
-        public ICollection<BarRating> Ratings { get; set; } = new List<BarRating>();
-        public ICollection<BarComment> Comments { get; set; }
-        public ICollection<BarCocktail> BarCocktails { get; set; }
-        //public ICollection<Ingredient> Ingredients { get; set; }
         public string ImagePath { get; set; }
+
+        public string GoogleMapsURL { get; set; }
 
         [Required]
         [MinLength(9, ErrorMessage ="The {0} value cannot be under {1} characters.")]
         public string Phone { get; set; }
+
+        public ICollection<BarRating> Ratings { get; set; } = new List<BarRating>();
+        public ICollection<BarComment> Comments { get; set; }
+        public ICollection<BarCocktail> BarCocktails { get; set; }
     }
 }

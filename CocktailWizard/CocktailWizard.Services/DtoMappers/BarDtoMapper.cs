@@ -23,6 +23,7 @@ namespace CocktailWizard.Services.DtoMappers
                 Address = entity.Address,
                 ImagePath = entity.ImagePath,
                 Phone = entity.Phone,
+                GoogleMapsURL = entity.GoogleMapsURL,
                 AverageRating = entity.Ratings
                        .Any() ? entity.Ratings
                        .Average(x => x.Value) : 0.00,

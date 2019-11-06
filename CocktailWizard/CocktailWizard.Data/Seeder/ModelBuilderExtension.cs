@@ -253,6 +253,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "1a Principal Place, Worship Street, London, EC2A 2BA",
                 ImagePath = "https://static.designmynight.com/uploads/2017/10/TheAllegory054-optimised.jpg",
                 Phone = "020 3948 9810",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9930.13386419354!2d-0.0794724!3d51.5217746!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfb717a4393ae1f7!2sThe%20Allegory!5e0!3m2!1sen!2sbg!4v1573065214726!5m2!1sen!2sbg",
             };
             var bar2 = new Bar
             {
@@ -262,6 +263,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "1 Ropemaker Street, London, EC2Y 9HT",
                 ImagePath = "https://static.designmynight.com/uploads/2016/12/DM006-min-optimised.jpg",
                 Phone = "020 7382 0606",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9931.461092179858!2d-0.12384975375194002!3d51.515687677335066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604af32e9d343%3A0x422a8e0b815341b!2sThe%20Refinery!5e0!3m2!1sen!2sbg!4v1573065262411!5m2!1sen!2sbg",
             };
             var bar3 = new Bar
             {
@@ -271,6 +273,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "52 Holborn Viaduct, London, EC1A 2FD",
                 ImagePath = "https://s3.amazonaws.com/VenueFixer/venue_images/images/000/002/460/original/The-Fable0028.jpg?1412868965",
                 Phone = "0207 651 4940",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.7646347568057!2d-0.1070710840279029!3d51.517533917782934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b52ee3d7ad9%3A0xa677a8c2b71574ca!2sThe%20Fable!5e0!3m2!1sen!2sbg!4v1573065312782!5m2!1sen!2sbg",
             };
             var bar4 = new Bar
             {
@@ -280,6 +283,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "Devonshire Terrace, Devonshire Square, London, EC2M 4WY",
                 ImagePath = "https://hirespace.imgix.net/spaces/7065/rdpcg53tvbj.jpg?h=1080&w=1920&auto=format&fit=crop&q=40",
                 Phone = "020 7256 3233",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.788117828657!2d-0.0803738840278907!3d51.517103117814386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cb30d422641%3A0x2c7c1dfd5e33c70!2sDevonshire%20Terrace!5e0!3m2!1sen!2sbg!4v1573065339941!5m2!1sen!2sbg",
             };
             var bar5 = new Bar
             {
@@ -289,6 +293,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "58 Gresham Street, London, EC2V 7BB",
                 ImagePath = "https://hirespace.imgix.net/spaces/4317/dmtrdvkicpx.jpg?h=1080&w=1920&auto=format&fit=crop&q=40",
                 Phone = "0207 726 8711",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.788117828657!2d-0.0803738840278907!3d51.517103117814386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487603552b6c7317%3A0x8e08163a80221ab9!2sThe%20Anthologist!5e0!3m2!1sen!2sbg!4v1573065358702!5m2!1sen!2sbg",
             };
             var bar6 = new Bar
             {
@@ -298,6 +303,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "6 Pancras Square, London, N1C 4AG",
                 ImagePath = "https://static.designmynight.com/uploads/2015/09/DM-KX-bar-area-optimised.jpg",
                 Phone = "0203 826 4870",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.892053039409!2d-0.1282180840274676!3d51.53353971661222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b3c54efa6e1%3A0x9f4c59afccfb8b53!2sDrake%20%26%20Morgan%20at%20King&#39;s%20Cross!5e0!3m2!1sen!2sbg!4v1573065385773!5m2!1sen!2sbg",
             };
             var bar7 = new Bar
             {
@@ -307,6 +313,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "9 Cabot Square, London, E14 4EB",
                 ImagePath = "https://static.designmynight.com/uploads/2016/12/DM-Pagin_0016-copy-optimised.jpg",
                 Phone = "020 7512 0397",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.4112946113805!2d-0.025301484028207793!3d51.50566991865038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b7be6a030f%3A0x93dcb32d47e3e562!2sThe%20Pagination!5e0!3m2!1sen!2sbg!4v1573065408325!5m2!1sen!2sbg",
             };
             var bar8 = new Bar
             {
@@ -316,6 +323,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "The Park Pavilion, London, E14 5FW",
                 ImagePath = "https://i.pinimg.com/originals/6e/27/09/6e27095874a8a710ddb2a93adfa8de4e.jpg",
                 Phone = "0207 715 9551",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39734.535778488505!2d-0.05813209602882269!3d51.50572144844429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b7642f2f9d%3A0x19f521ba29dd3f1a!2sThe%20Parlour!5e0!3m2!1sen!2sbg!4v1573065440869!5m2!1sen!2sbg",
             };
             var bar9 = new Bar
             {
@@ -325,6 +333,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "5-16 Gerrard Street, London, W1D 6JE",
                 ImagePath = "https://static.designmynight.com/uploads/2018/01/0033-optimised.jpg",
                 Phone = "020 7734 7276",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.0790771431516!2d-0.13363628402805472!3d51.511765218204765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604d25acdb76d%3A0xc5c854eeaaa62990!2sOpium%20Cocktail%20bar%20and%20Dim%20Sum%20Parlour!5e0!3m2!1sen!2sbg!4v1573065470157!5m2!1sen!2sbg",
             };
             var bar10 = new Bar
             {
@@ -334,6 +343,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "16 Hertsmere Road, London, E14 4AX",
                 ImagePath = "https://www.drakeandmorgan.co.uk/the-sipping-room/wp-content/uploads/sites/29/2018/06/sipping-room-e1528980994126.jpg",
                 Phone = "020 3907 0320",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.3029276456064!2d-0.0260607840281346!3d51.5076582185051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b6306f0be9%3A0x793dfd9d17079629!2sThe%20Sipping%20Room!5e0!3m2!1sen!2sbg!4v1573065491821!5m2!1sen!2sbg",
             };
 
             builder.Entity<Bar>().HasData(bar1, bar2, bar3, bar4, bar5, bar6, bar7, bar8, bar9, bar10);
