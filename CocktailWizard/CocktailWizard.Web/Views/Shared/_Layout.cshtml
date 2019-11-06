@@ -48,7 +48,7 @@
                             <i class="material-icons">search</i> Search For
                         </a>
                         <div class="dropdown-menu dropdown-with-icons">
-                            <a href="../index.html" class="dropdown-item">
+                            <a asp-area="" asp-controller="Bars" asp-action="Search" class="dropdown-item">
                                 <i class="material-icons">account_balance</i> Bars
                             </a>
                             <a href="https://teamCL.com" class="dropdown-item">
@@ -56,16 +56,6 @@
                             </a>
                         </div>
                     </li>
-
-                    @*<li class="nav-item">
-                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
-                                Login
-                            </a>
-                        </li>*@
-                    @*<li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
-
                     <partial name="_BarsCocktailsPartial" />
                     <partial name="_LoginPartial" />
 

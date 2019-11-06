@@ -34,7 +34,6 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         }
 
         // POST: Manager/Ingredients/Delete/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

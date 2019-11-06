@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CocktailWizard.Services.Extensions;
 
 namespace CocktailWizard.Services
 {
@@ -16,11 +17,13 @@ namespace CocktailWizard.Services
     {
         private readonly CWContext context;
         private readonly IDtoMapper<Bar, BarDto> dtoMapper;
+        private readonly IDtoMapper<Bar, SearchBarDto> searchDtoMapper;
 
-        public BarService(CWContext context, IDtoMapper<Bar, BarDto> dtoMapper)
+        public BarService(CWContext context, IDtoMapper<Bar, BarDto> dtoMapper, IDtoMapper<Bar, SearchBarDto> searchDtoMapper)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
+            this.searchDtoMapper = searchDtoMapper ?? throw new ArgumentNullException(nameof(searchDtoMapper));
         }
 
         public async Task<BarDto> GetBarAsync(Guid id)
@@ -193,6 +196,38 @@ namespace CocktailWizard.Services
             await this.context.SaveChangesAsync();
 
             return barDto;
+        }
+
+        public async Task<ICollection<SearchBarDto>> Search(string searchCriteria, bool byName, bool byAddress, bool byRating)
+        {
+            var terms = searchCriteria.Split(" ");
+            if (byName == false && byAddress == false && byRating == false)
+            {
+                var resultDtos = await this.context.Bars
+                    .Where(b => b.IsDeleted == false)
+                    .Include(b => b.Ratings)
+                    .Where(b => b.Name.Contains(terms) 
+                    || b.Address.Contains(terms))
+                    .OrderBy(b => b.Name)                 
+                    .Select(b => this.searchDtoMapper.MapFrom(b))
+                    .ToListAsync();
+
+                return resultDtos;
+            }
+            else
+            {
+                var allBars = this.context.Bars.Where(b => b.IsDeleted == false).Include(b => b.Ratings);
+                var filteredByName = allBars.Where(b => byName && b.Name.Contains(terms));
+                var filteredByAddress = allBars.Where(b => byAddress && b.Address.Contains(terms));
+                //var filteredByRating = allBars.Where(b => byRating && b.Rating.Name.Contains(terms));
+
+                var filtered = filteredByName.Union(filteredByAddress);
+                // var filtered = filteredByName.Union(filteredByAddress).Union(filteredByRating);
+
+                var mappedResult = filtered.Select(b => this.searchDtoMapper.MapFrom(b)).ToList();
+
+                return mappedResult;
+            }
         }
     }
 }

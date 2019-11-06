@@ -11,8 +11,13 @@ namespace CocktailWizard.Web.Utilities.Registration
         public static IServiceCollection AddCustomDtoMappers(this IServiceCollection services)
         {
             services.AddSingleton<IDtoMapper<Bar, BarDto>, BarDtoMapper>();
+            services.AddSingleton<IDtoMapper<Bar, SearchBarDto>,  SearchBarDtoMapper>();
+
             services.AddSingleton<IDtoMapper<Cocktail, CocktailDto>, CocktailDtoMapper>();
+
             services.AddSingleton<IDtoMapper<Ingredient, IngredientDto>, IngredientDtoMapper>();
+
+            services.AddSingleton<IDtoMapper<BarComment, BarCommentDto>, BarCommentDtoMapper>();
             services.AddSingleton<IDtoMapper<BarComment, BarCommentDto>, BarCommentDtoMapper>();
 
             return services;
