@@ -9,12 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailWizard.Services", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailWizard.Web", "CocktailWizard.Web\CocktailWizard.Web.csproj", "{57DF7877-0F3D-43FA-B001-C7DEE467A76F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30298842-124F-45E1-A865-532861AB458E}"
-	ProjectSection(SolutionItems) = preProject
-		Notes.txt = Notes.txt
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CocktailWizard.Services.Tests", "CocktailWizard.Services.Tests\CocktailWizard.Services.Tests.csproj", "{75DA49CC-254A-4D77-8776-95C036DC455B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailWizard.Services.Tests", "CocktailWizard.Services.Tests\CocktailWizard.Services.Tests.csproj", "{75DA49CC-254A-4D77-8776-95C036DC455B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
