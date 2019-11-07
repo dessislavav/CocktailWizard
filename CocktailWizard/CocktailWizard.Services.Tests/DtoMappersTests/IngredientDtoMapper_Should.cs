@@ -97,7 +97,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
         }
 
         [TestMethod]
-        public void MapFromCollection_Should_CorrectlyMapNameFrom_Ingredient_To_IngredientDto()
+        public void MapFromCollection_Should_ReturnCorrectCountIngredients()
         {
             //Arrange
             var sut = new IngredientDtoMapper();
@@ -120,7 +120,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             var result = sut.MapFrom(ingredientList);
 
             //Assert
-                Assert.AreEqual(result.Count(), 2);
+            Assert.AreEqual(result.Count(), 2);
         }
 
     }
