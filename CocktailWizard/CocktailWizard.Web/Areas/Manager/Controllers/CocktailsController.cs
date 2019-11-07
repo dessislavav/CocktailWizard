@@ -57,7 +57,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         // GET: Manager/Cocktails/Create
         public async Task<IActionResult> Create(CreateCocktailViewModel createCocktailVM)
         {
-                var allIngredients = await this.ingredientService.GetAllIngredientsAsync();
+                var allIngredients = await this.ingredientService.GetIngredientsAsync();
 
                 createCocktailVM.AllAvailableIngredients = allIngredients
                     .Select(b => new SelectListItem(b.Name, b.Name))
