@@ -20,7 +20,12 @@ namespace CocktailWizard.Web.Mappers
                 BarId = dtoEntity.BarId,
                 UserId = dtoEntity.UserId,
                 UserName = dtoEntity.UserName,
-                Body = dtoEntity.Body
+                Body = dtoEntity.Body,
+                CreatedOn = dtoEntity.CreatedOn,
+                ModifiedOn = dtoEntity.ModifiedOn,
+                DeletedOn = dtoEntity.DeletedOn,
+                IsDeleted = dtoEntity.IsDeleted,
+                
             };
         }
 

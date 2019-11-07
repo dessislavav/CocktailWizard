@@ -56,14 +56,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                                    <i class="material-icons">favorite</i> Favorite
+                                    <i class="material-icons">favorite</i> Comments
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="tab-content tab-space">
+            <div class="tab-content tab-space d-flex justify-content-center" >
                 <div class="tab-pane active text-center gallery" id="studio">
                     <div class="row">
                         <div class="col-md-3 ml-auto">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane text-center gallery" id="works">
+                <div class="tab-pane text-center gallery " id="works">
                     <div class="row">
                         <div class="col-md-3 ml-auto">
                             <img src="/assets/img/examples/olu-eletu.jpg" class="rounded">
@@ -89,20 +89,103 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane text-center gallery" id="favorite">
+                <div class="tab-pane text-center gallery justify-content-center" id="favorite">
                     <div class="row">
-                        <div class="col-md-3 ml-auto">
-                            <img src="/assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                            <img src="/assets/img/examples/studio-3.jpg" class="rounded">
-                        </div>
-                        <div class="col-md-3 mr-auto">
-                            <img src="/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                            <img src="/assets/img/examples/olu-eletu.jpg" class="rounded">
-                            <img src="/assets/img/examples/studio-1.jpg" class="rounded">
+                        <div class="row bootstrap snippets d-flex justify-content-center">
+                            <div class="col-md-6 col-md-offset-2 col-sm-12 ">
+                                <div class="comment-wrapper" >
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            @foreach (var body in Model.BarCommentViewModels)
+                                            {
+                                                <input class="form-control" placeholder="write a comment..." rows="3" asp-for="@body.Body"/>
+                                                @*<textarea class="form-control" placeholder="write a comment..." rows="3" asp-for="@body.Body"></textarea>*@
+                                                <span asp-validation-for="@body.Body" class="text-danger"></span>
+                                                <br>
+                                            }
+
+                                            <a class="btn btn-info pull-right" asp-controller="BarComments" asp-action="Create">Post</a>
+                                            <div class="clearfix"></div>
+                                            <hr>
+                                            <ul class="media-list">
+                                                @foreach (var item in Model.BarCommentViewModels)
+                                                {
+                                                    <li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">
+                                                                    @item.CreatedOn
+                                                                </small>
+                                                            </span>
+                                                            @*<strong class="text-success">@MartinoMont</strong>*@
+                                                            <p>
+                                                                @item.Body
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                }
+                                                @*<li class="media">
+                <a href="#" class="pull-left">
+                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                </a>
+                <div class="media-body">
+                    <span class="text-muted pull-right">
+                        <small class="text-muted">30 min ago</small>
+                    </span>
+                    <strong class="text-success">@MartinoMont</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                    </p>
+                </div>
+            </li>
+            <li class="media">
+                <a href="#" class="pull-left">
+                    <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                </a>
+                <div class="media-body">
+                    <span class="text-muted pull-right">
+                        <small class="text-muted">30 min ago</small>
+                    </span>
+                    <strong class="text-success">@LaurenceCorreil</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
+                    </p>
+                </div>
+            </li>*@
+                                                @*<li class="media">
+                <a href="#" class="pull-left">
+                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                </a>
+                <div class="media-body">
+                    <span class="text-muted pull-right">
+                        <small class="text-muted">30 min ago</small>
+                    </span>
+                    <strong class="text-success">@JohnNida</strong>
+                    <p>
+                        Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
+                    </p>
+                </div>
+            </li>*@
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <row>
+                <div align ="center">
+                    <iframe src="@Model.GoogleMapsURL" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+            </row>      
         </div>
     </div>
 </div>

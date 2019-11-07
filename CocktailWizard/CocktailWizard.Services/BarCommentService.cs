@@ -30,11 +30,18 @@ namespace CocktailWizard.Services
                 throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
             }
 
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Id == tempBarComment.UserId);
+
             var barComment = new BarComment
             {
                 BarId = tempBarComment.BarId,
                 UserId = tempBarComment.UserId,
-                Body = tempBarComment.Body
+                Body = tempBarComment.Body,
+                User = user,
+                CreatedOn = tempBarComment.CreatedOn,
+                ModifiedOn = tempBarComment.ModifiedOn,
+                DeletedOn = tempBarComment.DeletedOn,
+                IsDeleted = tempBarComment.IsDeleted
             };
 
             await this.context.BarComments.AddAsync(barComment);

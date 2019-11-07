@@ -67,7 +67,7 @@ namespace CocktailWizard.Web.Controllers
                 var tempBarComment = this.modelMapper.MapFrom(viewModel);
                 var barCommentDto = await this.barCommentService.CreateAsync(tempBarComment);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Bars");
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);

@@ -8,6 +8,7 @@ namespace CocktailWizard.Services.DtoMappers
 {
     public class BarCommentDtoMapper : IDtoMapper<BarComment, BarCommentDto>
     {
+       
         public BarCommentDto MapFrom(BarComment entity)
         {
             if (entity == null)
@@ -19,8 +20,12 @@ namespace CocktailWizard.Services.DtoMappers
             {
                 BarId = entity.BarId,
                 UserId = entity.UserId,
-                //UserName = entity.User.Email,
-                Body = entity.Body          
+                UserName = entity.User.Email.Split('@')[0],
+                Body = entity.Body,
+                CreatedOn = entity.CreatedOn,
+                ModifiedOn = entity.ModifiedOn,
+                DeletedOn = entity.DeletedOn,
+                IsDeleted = entity.IsDeleted
             };
         }
 

@@ -34,5 +34,7 @@ namespace CocktailWizard.Web.Models
         public double? AverageRating { get; set; }
 
         public string GoogleMapsURL { get; set; }
+
+        public ICollection<BarCommentViewModel> BarCommentViewModels { get; set; }
     }
 }
