@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -25,12 +26,40 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             this.ingredientService = ingredientService ?? throw new ArgumentException(nameof(ingredientService));
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var allIngredients = await this.ingredientService.GetAllIngredientsAsync();
-            var allIngredientsVM = this.ingredientViewModelMapper.MapFrom(allIngredients);
+        //public async Task<IActionResult> Index()
+        //{
+        //    var allIngredients = await this.ingredientService.GetAllIngredientsAsync();
+        //    var allIngredientsVM = this.ingredientViewModelMapper.MapFrom(allIngredients);
 
-            return View(allIngredientsVM);
+        //    return View(allIngredientsVM);
+        //}
+
+        public async Task<IActionResult> Index(int? currPage)
+        {
+            var currentPage = currPage ?? 1;
+
+            var totalPages = await this.ingredientService.GetPageCountAsync(10);
+            var tenIngredients = await this.ingredientService.GetTenIngredientsOrderedByNameAsync(currentPage);
+            var mappedTenIngredients = this.ingredientViewModelMapper.MapFrom(tenIngredients);
+
+            var model = new IngredientsListViewModel()
+            {
+                CurrPage = currentPage,
+                TotalPages = totalPages,
+                TenIngredients = mappedTenIngredients,
+            };
+
+            if (totalPages > currentPage)
+            {
+                model.NextPage = currentPage + 1;
+            }
+
+            if (currentPage > 1)
+            {
+                model.PrevPage = currentPage - 1;
+            }
+
+            return View(model);
         }
 
         // POST: Manager/Ingredients/Delete/5

@@ -30,6 +30,7 @@ namespace CocktailWizard.Services
         {
             var bar = await this.context.Bars
                 .Where(b => b.IsDeleted == false)
+                .OrderBy(b => b.Name)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
             if (bar == null)
@@ -44,25 +45,14 @@ namespace CocktailWizard.Services
 
         public async Task<ICollection<BarDto>> GetTopBars(int num)
         {
-            //var topBars = new List<Bar>();
-            //try
-            //{
-            //    topBars = await this.context.Bars
-            //         .Where(b => b.IsDeleted == false)
-            //         .Include(b => b.Ratings)
-            //         .Where(b => b.Ratings != null)
-            //         .OrderByDescending(b => b.Ratings
-            //         .Average(r => r.Value))
-            //         .Take(num)
-            //         .ToListAsync();
-            //}
-            //catch (Exception)
-            //{
-            //    topBars = await this.context.Bars
-            //         .Where(b => b.IsDeleted == false)
-            //         .Take(num)
-            //         .ToListAsync();
-            //}
+            //var topBars = await this.context.Bars
+            //     .Where(b => b.IsDeleted == false)
+            //     .Include(b => b.Ratings)
+            //     .Where(b => b.Ratings != null)
+            //     .OrderByDescending(b => b.Ratings
+            //     .Average(r => r.Value))
+            //     .Take(num)
+            //     .ToListAsync();
 
             var topBars = await this.context.Bars
                  .Where(b => b.IsDeleted == false)
@@ -83,6 +73,7 @@ namespace CocktailWizard.Services
         {
             var allBars = await this.context.Bars
                 .Where(b => b.IsDeleted == false)
+                .OrderBy(b => b.Name)
                 .ToListAsync();
 
             var mappedBars = this.dtoMapper.MapFrom(allBars);
@@ -208,7 +199,7 @@ namespace CocktailWizard.Services
                     .Include(b => b.Ratings)
                     .Where(b => b.Name.Contains(terms) 
                     || b.Address.Contains(terms))
-                    .OrderBy(b => b.Name)                 
+                    .OrderBy(b => b.Name)
                     .Select(b => this.searchDtoMapper.MapFrom(b))
                     .ToListAsync();
 

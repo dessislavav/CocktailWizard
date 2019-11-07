@@ -31,6 +31,7 @@ namespace CocktailWizard.Services
         {
             var allCocktails = await this.context.Cocktails
                 .Where(c => c.IsDeleted == false)
+                .OrderBy(b => b.Name)
                 .ToListAsync();
 
             var allCocktailsDtos = this.dtoMapper.MapFrom(allCocktails);
@@ -40,24 +41,13 @@ namespace CocktailWizard.Services
 
         public async Task<ICollection<CocktailDto>> GetTopCocktails(int num)
         {
-            //var topCocktails = new List<Cocktail>();
-            //try
-            //{
-            //    topCocktails = await this.context.Cocktails
+            //    var topCocktails = await this.context.Cocktails
             //        .Where(b => b.IsDeleted == false)
             //        .Include(b => b.Ratings)
             //        .OrderByDescending(b => b.Ratings
             //        .Average(r => r.Value))
             //        .Take(num)
             //        .ToListAsync();
-            //}
-            //catch (Exception)
-            //{
-            //    topCocktails = await this.context.Cocktails
-            //        .Where(b => b.IsDeleted == false)
-            //        .Take(num)
-            //        .ToListAsync();
-            //}
 
             var topCocktails = await this.context.Cocktails
                     .Where(b => b.IsDeleted == false)

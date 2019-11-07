@@ -52,15 +52,60 @@ namespace CocktailWizard.Services
             return ingredientDto;
         }
 
-        public async Task<ICollection<IngredientDto>> GetAllIngredientsAsync()
+        public async Task<ICollection<IngredientDto>> GetIngredientsAsync()
         {
-            var allIngredients = await this.context.Ingredients
+            var ingredients = await this.context.Ingredients
                 .Where(i => i.IsDeleted == false)
                 .ToListAsync();
 
-            var allDtoIngredients = this.dtoMapper.MapFrom(allIngredients);
+            var dtoIngredients = this.dtoMapper.MapFrom(ingredients);
 
-            return allDtoIngredients;
+            return dtoIngredients;
+        }
+
+        public async Task<ICollection<IngredientDto>> GetIngredientsAsync(int count)
+        {
+            var ingredients = await this.context.Ingredients
+                .Where(i => i.IsDeleted == false)
+                .Take(count)
+                .ToListAsync();
+
+            var dtoIngredients = this.dtoMapper.MapFrom(ingredients);
+
+            return dtoIngredients;
+        }
+
+        public async Task<ICollection<IngredientDto>> GetTenIngredientsOrderedByNameAsync(int currentPage)
+        {
+            List<Ingredient> tenIngredients;
+            if (currentPage == 1)
+            {
+                tenIngredients = await this.context.Ingredients
+                    .OrderBy(x => x.Name)
+                    .Take(10)
+                    .ToListAsync();
+            }
+            else
+            {
+                tenIngredients = await this.context.Ingredients
+                    .OrderBy(x => x.Name)
+                    .Skip((currentPage - 1) * 10)
+                    .Take(10)
+                    .ToListAsync();
+            }
+
+            var dtoIngredients = this.dtoMapper.MapFrom(tenIngredients);
+
+            return dtoIngredients;
+        }
+
+        public async Task<int> GetPageCountAsync(int ingredientsPerPage)
+        {
+            var allIngredientsCount = await context.Ingredients.CountAsync();
+
+            var totalPages = (allIngredientsCount - 1) / ingredientsPerPage + 1;
+
+            return totalPages;
         }
 
         public async Task<Ingredient> CreateIngredientAsync(string param)
