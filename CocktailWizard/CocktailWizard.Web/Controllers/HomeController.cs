@@ -9,37 +9,42 @@ using CocktailWizard.Services;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using CocktailWizard.Data.DtoEntities;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace CocktailWizard.Controllers
 {
     public class HomeController : Controller
     {
-        private IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
-        private BarService barService;
-        private CocktailService cocktailService;
+        private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
+        private readonly BarService barService;
+        private readonly CocktailService cocktailService;
+        private readonly IMemoryCache cache;
+        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
 
-        public IViewModelMapper<CocktailDto, CocktailViewModel> CocktailViewModelMapper { get; }
 
-        public HomeController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, BarService barService, CocktailService cocktailService)
+        public HomeController(
+            IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, 
+            IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
+            BarService barService, 
+            CocktailService cocktailService, 
+            IMemoryCache cache)
         {
-            this.barViewModelMapper = barViewModelMapper;
-            CocktailViewModelMapper = cocktailViewModelMapper;
+            this.barViewModelMapper = barViewModelMapper; ;
+            this.cocktailViewModelMapper = cocktailViewModelMapper;
             this.barService = barService;
             this.cocktailService = cocktailService;
+            this.cache = cache;
         }
-
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View();
-        //}
 
         public async Task<IActionResult> Index(HomeViewModel homeVM)
         {
-            var topBarsDtos = await this.barService.GetTopBars(3);
-            var topBarsVM = this.barViewModelMapper.MapFrom(topBarsDtos);
+            var topBarsVM = (await CacheBarsDtos())
+                .Select(x => this.barViewModelMapper.MapFrom(x))
+                .ToList();
 
-            var topCocktailsDtos = await this.cocktailService.GetTopCocktails(3);
-            var topCocktailsVM = this.CocktailViewModelMapper.MapFrom(topCocktailsDtos);
+            var topCocktailsVM = (await CacheCocktailsDtos())
+                .Select(x => this.cocktailViewModelMapper.MapFrom(x))
+                .ToList();
 
             var homeViewModel = new HomeViewModel
             {
@@ -63,6 +68,30 @@ namespace CocktailWizard.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [NonAction]
+        private async Task<ICollection<BarDto>> CacheBarsDtos()
+        {
+            var topBarsDtos = await cache.GetOrCreateAsync<ICollection<BarDto>>("Bars", async (cacheEntry) =>
+            {
+                cacheEntry.SlidingExpiration = TimeSpan.FromDays(1);
+                return await this.barService.GetTopBars(3);
+            });
+
+            return topBarsDtos;
+        }
+
+        [NonAction]
+        private async Task<ICollection<CocktailDto>> CacheCocktailsDtos()
+        {
+            var topCocktailsDtos = await cache.GetOrCreateAsync<ICollection<CocktailDto>>("Cocktails", async (cacheEntry) =>
+            {
+                cacheEntry.SlidingExpiration = TimeSpan.FromDays(1);
+                return await this.cocktailService.GetTopCocktails(3);
+            });
+
+            return topCocktailsDtos;
         }
     }
 }
