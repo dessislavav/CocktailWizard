@@ -72,7 +72,7 @@
                         @foreach (var bar in @Model.Bars)
                         {
                             <div class="col-md-4">
-                                <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id">
+                                <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@bar.Id">
                                     <img src="@bar.ImagePath" class="detailsimage">
                                 </a>
                                 <h4 class="card-title">

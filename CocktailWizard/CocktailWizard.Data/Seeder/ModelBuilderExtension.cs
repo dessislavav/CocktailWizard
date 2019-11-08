@@ -408,8 +408,80 @@ namespace CocktailWizard.Data.Seeder
                 CocktailId = sexOnTheBeach.Id,
                 CreatedOn = DateTime.Now
             };
+            var barCocktail11 = new BarCocktail
+            {
+                BarId = bar5.Id,
+                CocktailId = whiteSangria.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail12 = new BarCocktail
+            {
+                BarId = bar5.Id,
+                CocktailId = pinkGinIcedTea.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail13 = new BarCocktail
+            {
+                BarId = bar5.Id,
+                CocktailId = michelada.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail14 = new BarCocktail
+            {
+                BarId = bar6.Id,
+                CocktailId = passionFruit.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail15 = new BarCocktail
+            {
+                BarId = bar6.Id,
+                CocktailId = bucksFizz.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail16 = new BarCocktail
+            {
+                BarId = bar6.Id,
+                CocktailId = raspberryGin.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail17 = new BarCocktail
+            {
+                BarId = bar7.Id,
+                CocktailId = longIsland.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail18 = new BarCocktail
+            {
+                BarId = bar7.Id,
+                CocktailId = cosmopolitan.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail19 = new BarCocktail
+            {
+                BarId = bar7.Id,
+                CocktailId = cranberryVodka.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail20 = new BarCocktail
+            {
+                BarId = bar8.Id,
+                CocktailId = sexOnTheBeach.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail21 = new BarCocktail
+            {
+                BarId = bar9.Id,
+                CocktailId = passionFruit.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail22 = new BarCocktail
+            {
+                BarId = bar10.Id,
+                CocktailId = bucksFizz.Id,
+                CreatedOn = DateTime.Now
+            };
 
-            builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10);
+            builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10, barCocktail11, barCocktail12, barCocktail13, barCocktail14, barCocktail15, barCocktail16, barCocktail17, barCocktail18, barCocktail19, barCocktail20, barCocktail21, barCocktail22);
         }
     }
 }
