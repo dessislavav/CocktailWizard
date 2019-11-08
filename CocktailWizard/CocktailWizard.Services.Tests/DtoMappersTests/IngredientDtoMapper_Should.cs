@@ -32,7 +32,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
         }
 
         [TestMethod]
-        public void MapFrom_Should_CorrectlyMapIdFrom_Ingredient_To_IngredientDto()
+        public void MapFrom_Should_CorrectlyMapFrom_Ingredient_To_IngredientDto()
         {
             //Arrange
             var sut = new IngredientDtoMapper();
@@ -48,26 +48,9 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
 
             //Assert
             Assert.AreEqual(result.Id, ingredient.Id);
-        }
-
-        [TestMethod]
-        public void MapFrom_Should_CorrectlyMapNameFrom_Ingredient_To_IngredientDto()
-        {
-            //Arrange
-            var sut = new IngredientDtoMapper();
-
-            var ingredient = new Ingredient
-            {
-                Id = Guid.NewGuid(),
-                Name = "testName"
-            };
-
-            //Act
-            var result = sut.MapFrom(ingredient);
-
-            //Assert
             Assert.AreEqual(result.Name, ingredient.Name);
         }
+
 
         [TestMethod]
         public void MapFromCollection_Should_ReturnCorrectInstanceOfCollection_IngredientDto()
@@ -97,7 +80,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
         }
 
         [TestMethod]
-        public void MapFromCollection_Should_CorrectlyMapNameFrom_Ingredient_To_IngredientDto()
+        public void MapFromCollection_Should_ReturnCorrectCountIngredients()
         {
             //Arrange
             var sut = new IngredientDtoMapper();
@@ -120,7 +103,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             var result = sut.MapFrom(ingredientList);
 
             //Assert
-                Assert.AreEqual(result.Count(), 2);
+            Assert.AreEqual(result.Count(), 2);
         }
 
     }
