@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using CocktailWizard.Data.AppContext;
+﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
-using CocktailWizard.Web.Models;
-using CocktailWizard.Web.Mappers.Contracts;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
-using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Web.Mappers.Contracts;
+using CocktailWizard.Web.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Controllers
 {
@@ -20,11 +16,16 @@ namespace CocktailWizard.Web.Controllers
 
         private readonly IViewModelMapper<BarCommentDto, BarCommentViewModel> modelMapper;
         private readonly BarCommentService barCommentService;
+        private readonly UserManager<User> userManager;
 
-        public BarCommentsController(IViewModelMapper<BarCommentDto, BarCommentViewModel> modelMapper, BarCommentService barCommentService)
+        public BarCommentsController(IViewModelMapper<BarCommentDto,
+            BarCommentViewModel> modelMapper,
+            BarCommentService barCommentService,
+            UserManager<User> userManager)
         {
             this.modelMapper = modelMapper;
             this.barCommentService = barCommentService;
+            this.userManager = userManager;
         }
 
         // GET: BarComments
@@ -49,7 +50,8 @@ namespace CocktailWizard.Web.Controllers
             return View(barCommentVM);
         }
 
-        // GET: BarComments/Create
+        //GET: BarComments/Create
+        [HttpGet]
         public IActionResult Create(Guid barId)
         {
             var barVM = new BarCommentViewModel() { BarId = barId };
@@ -58,20 +60,21 @@ namespace CocktailWizard.Web.Controllers
 
         // POST: BarComments/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(BarCommentViewModel viewModel)
+        public async Task<IActionResult> Create([FromBody]BarCommentViewModel viewModel)
         {
-            if (ModelState.IsValid)
-            {
+            //if (!ModelState.IsValid) return BusinessException
 
-                var tempBarComment = this.modelMapper.MapFrom(viewModel);
-                var barCommentDto = await this.barCommentService.CreateAsync(tempBarComment);
+            var user = await this.userManager.GetUserAsync(User);
 
-                return RedirectToAction("Index", "Bars");
-            }
 
-            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
-            return View(viewModel);
+            viewModel.UserId = user.Id;
+            var commentDto = this.modelMapper.MapFrom(viewModel);
+
+
+            await this.barCommentService.CreateAsync(commentDto);
+
+            return Json(viewModel);
+
         }
 
         // GET: BarComments/Edit/

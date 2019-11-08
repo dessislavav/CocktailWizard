@@ -19,7 +19,7 @@ namespace CocktailWizard.Web.Mappers
             {
                 BarId = dtoEntity.BarId,
                 UserId = dtoEntity.UserId,
-                UserName = dtoEntity.UserName,
+                //UserName = dtoEntity.UserName,
                 Body = dtoEntity.Body,
                 CreatedOn = dtoEntity.CreatedOn,
                 ModifiedOn = dtoEntity.ModifiedOn,
@@ -45,8 +45,12 @@ namespace CocktailWizard.Web.Mappers
             {
                 BarId = entityVM.BarId,
                 UserId = entityVM.UserId,
-                UserName = entityVM.UserName,
-                Body = entityVM.Body
+                //UserName = entityVM.UserName,
+                Body = entityVM.Body,
+                CreatedOn = entityVM.CreatedOn,
+                ModifiedOn = entityVM.ModifiedOn,
+                DeletedOn = entityVM.DeletedOn,
+                IsDeleted = entityVM.IsDeleted
             };
         }
 

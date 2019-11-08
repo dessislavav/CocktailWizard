@@ -4,6 +4,7 @@ using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,21 +31,23 @@ namespace CocktailWizard.Services
                 throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
             }
 
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Id == tempBarComment.UserId);
+            //var user = await this.context.Users.FirstOrDefaultAsync(u => u.Id == tempBarComment.UserId);
 
             var barComment = new BarComment
             {
                 BarId = tempBarComment.BarId,
                 UserId = tempBarComment.UserId,
+
                 Body = tempBarComment.Body,
-                User = user,
+                //User = user,
+                
                 CreatedOn = tempBarComment.CreatedOn,
                 ModifiedOn = tempBarComment.ModifiedOn,
                 DeletedOn = tempBarComment.DeletedOn,
                 IsDeleted = tempBarComment.IsDeleted
             };
 
-            await this.context.BarComments.AddAsync(barComment);
+             this.context.BarComments.Add(barComment);
             await this.context.SaveChangesAsync();
 
             var barCommentDto = this.dtoMapper.MapFrom(barComment);
@@ -55,7 +58,7 @@ namespace CocktailWizard.Services
         {
             var barComments = await this.context.BarComments
                 .Include(bc => bc.Bar)
-                .Include(bc => bc.User)
+                //.Include(bc => bc.User)
                 .Where(bc => bc.IsDeleted == false)
                 .Where(bc => bc.BarId == barId)
                 .ToListAsync();

@@ -19,8 +19,8 @@ namespace CocktailWizard.Services.DtoMappers
             return new BarCommentDto
             {
                 BarId = entity.BarId,
-                UserId = entity.UserId,
-                UserName = entity.User.Email.Split('@')[0],
+                //UserId = entity.UserId,
+                //UserName = entity.User.Email.Split('@')[0],
                 Body = entity.Body,
                 CreatedOn = entity.CreatedOn,
                 ModifiedOn = entity.ModifiedOn,
