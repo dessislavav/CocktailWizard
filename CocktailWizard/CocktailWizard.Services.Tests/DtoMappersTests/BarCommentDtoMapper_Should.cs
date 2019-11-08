@@ -80,7 +80,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             //Assert
             Assert.AreEqual(result.BarId, barComment.BarId);
             Assert.AreEqual(result.UserId, barComment.UserId);
-            Assert.AreEqual(result.UserName, barComment.User.Email.Split('@')[0]);
+            //Assert.AreEqual(result.UserName, barComment.User.Email.Split('@')[0]);
             Assert.AreEqual(result.Body, barComment.Body);
             Assert.AreEqual(result.CreatedOn, barComment.CreatedOn);
         }

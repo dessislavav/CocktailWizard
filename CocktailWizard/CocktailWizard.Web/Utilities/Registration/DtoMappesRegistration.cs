@@ -14,6 +14,7 @@ namespace CocktailWizard.Web.Utilities.Registration
             services.AddSingleton<IDtoMapper<Bar, SearchBarDto>,  SearchBarDtoMapper>();
 
             services.AddSingleton<IDtoMapper<Cocktail, CocktailDto>, CocktailDtoMapper>();
+            services.AddSingleton<IDtoMapper<Cocktail, DetailsCocktailDto>, DetailsCocktailDtoMapper>();
 
             services.AddSingleton<IDtoMapper<Ingredient, IngredientDto>, IngredientDtoMapper>();
 

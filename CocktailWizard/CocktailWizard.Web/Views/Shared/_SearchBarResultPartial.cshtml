@@ -4,18 +4,14 @@
     ViewData["Title"] = "_BarSearchResultPartial";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/barsearchpartial.css" />
-</head>
-
-    <div class="col-md-4">
-        <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id">
-            <img src="@Model.ImagePath" class="detailsimage">
-            <h4 class="card-title">
-                @Model.Name
-                <br>
-                <small class="card-description text-muted text-center">@Model.Address</small>
-                <small class="card-description text-muted text-center">@Model.AverageRating</small>
-            </h4>
-        </a>
-    </div>
+<div class="col-md-4">
+    <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id">
+        <img src="@Model.ImagePath" class="detailsimage">
+    </a>
+    <h4 class="card-title">
+        @Model.Name
+        <br>
+        <small class="card-description text-muted text-center">@Model.Address</small>
+        <small class="card-description text-muted text-center">@Model.AverageRating</small>
+    </h4>
+</div>

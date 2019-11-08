@@ -1,53 +1,186 @@
-﻿@model Cocktail
-
+﻿@model DetailsCocktailViewModel
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+    <head>
+        <link rel="stylesheet" href="~/css/barsearchpartial.css" />
+    </head>
 
-<div>
-    <h4>Cocktail</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DeletedOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DeletedOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-    </dl>
+<!--
+ =========================================================
+ * Material Kit - v2.0.6
+ =========================================================
+ * Product Page: https://www.creative-tim.com/product/material-kit
+ * Copyright 2019 Creative Tim (http://www.creative-tim.com)
+   Licensed under MIT (https://github.com/creativetimofficial/material-kit/blob/master/LICENSE.md)
+ =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<div class="page-header header-filter" data-parallax="true" style="background-image: url(@Model.ImagePath);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">
+                    <br />
+                    @Model.Name
+                </h1>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile">
+                        <div class="name">
+                            <h2 class="title">@Model.Name</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description text-center">
+                <p>@Model.Info</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile-tabs">
+                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                    <i class="material-icons">store_mall_directory</i> Offered In
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                                    <i class="material-icons">rate_review</i>Rating
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                    <i class="material-icons">favorite</i> Comments
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content tab-space justify-content-center">
+                <div class="tab-pane active text-center gallery" id="studio">
+                    <div class="row">
+                        @foreach (var bar in @Model.Bars)
+                        {
+                            <div class="col-md-4">
+                                <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@Model.Id">
+                                    <img src="@bar.ImagePath" class="detailsimage">
+                                </a>
+                                <h4 class="card-title">
+                                    @bar.Name
+                                    <br>
+                                    <small class="card-description text-muted text-center">@bar.Address</small>
+                                    <small class="card-description text-muted text-center">@bar.AverageRating</small>
+                                </h4>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tab-pane text-center gallery " id="works">
+                    <div class="row">
+                        @*PLACE FOR REVIEWS*@
+                    </div>
+                </div>
+                <div class="tab-pane text-center gallery justify-content-center" id="favorite">
+                    <div class="row">
+                        <div class="row bootstrap snippets d-flex justify-content-center">
+                            <div class="col-md-6 col-md-offset-2 col-sm-12 ">
+                                <div class="comment-wrapper">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body">
+                                            <form id="comment-to-db">
+                                                <div>
+                                                    <div>
+                                                        <input type="text" class="form-control" id="comment-body" placeholder="Comment Text" />
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-info pull-right">Post Comment</button>
+                                            </form>
+                                            <div class="clearfix"></div>
+                                            <hr>
+                                            <ul class="media-list">
+                                                @*@foreach (var item in Model.BarCommentViewModels)
+                                                {
+                                                    <li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">
+                                                                    @item.CreatedOn
+                                                                </small>
+                                                            </span>
+                                                            <p>
+                                                                @item.Body
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                }*@
+                                                @*<li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">30 min ago</small>
+                                                            </span>
+                                                            <strong class="text-success">@MartinoMont</strong>
+                                                            <p>
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                                Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">30 min ago</small>
+                                                            </span>
+                                                            <strong class="text-success">@LaurenceCorreil</strong>
+                                                            <p>
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                                Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
+                                                            </p>
+                                                        </div>
+                                                    </li>*@
+                                                @*<li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">30 min ago</small>
+                                                            </span>
+                                                            <strong class="text-success">@JohnNida</strong>
+                                                            <p>
+                                                                Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
+                                                            </p>
+                                                        </div>
+                                                    </li>*@
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

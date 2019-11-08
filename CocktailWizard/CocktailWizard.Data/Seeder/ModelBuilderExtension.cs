@@ -348,58 +348,68 @@ namespace CocktailWizard.Data.Seeder
 
             builder.Entity<Bar>().HasData(bar1, bar2, bar3, bar4, bar5, bar6, bar7, bar8, bar9, bar10);
 
+            var barCocktail1 = new BarCocktail
+            {
+                BarId = bar1.Id,
+                CocktailId = cosmopolitan.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail2 = new BarCocktail
+            {
+                BarId = bar1.Id,
+                CocktailId = passionFruit.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail3 = new BarCocktail
+            {
+                BarId = bar1.Id,
+                CocktailId = raspberryGin.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail4 = new BarCocktail
+            {
+                BarId = bar1.Id,
+                CocktailId = sexOnTheBeach.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail5 = new BarCocktail
+            {
+                BarId = bar2.Id,
+                CocktailId = passionFruit.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail6 = new BarCocktail
+            {
+                BarId = bar2.Id,
+                CocktailId = bucksFizz.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail7 = new BarCocktail
+            {
+                BarId = bar3.Id,
+                CocktailId = longIsland.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail8 = new BarCocktail
+            {
+                BarId = bar3.Id,
+                CocktailId = michelada.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail9 = new BarCocktail
+            {
+                BarId = bar3.Id,
+                CocktailId = cranberryVodka.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail10 = new BarCocktail
+            {
+                BarId = bar4.Id,
+                CocktailId = sexOnTheBeach.Id,
+                CreatedOn = DateTime.Now
+            };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //var barCocktail1 = new BarCocktail
-            //{
-            //    BarId = bar1.Id,
-            //    CocktailId = cosmopolitan.Id,
-            //};
-            //var barCocktail2 = new BarCocktail
-            //{
-            //    BarId = bar1.Id,
-            //    CocktailId = passionFruit.Id,
-            //};
-            //var barCocktail3 = new BarCocktail
-            //{
-            //    BarId = bar1.Id,
-            //    CocktailId = raspberryGin.Id,
-            //};
-            //var barCocktail4 = new BarCocktail
-            //{
-            //    BarId = bar1.Id,
-            //    CocktailId = sexOnTheBeach.Id,
-            //};
-            //var barCocktail5 = new BarCocktail
-            //{
-            //    BarId = bar2.Id,
-            //    CocktailId = passionFruit.Id,
-            //};
-            //var barCocktail6 = new BarCocktail
-            //{
-            //    BarId = bar2.Id,
-            //    CocktailId = passionFruit.Id,
-            //};
+            builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10);
         }
     }
 }
-
-
-//cosmopolitan, passionFruit, raspberryGin

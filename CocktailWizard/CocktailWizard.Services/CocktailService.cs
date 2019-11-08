@@ -5,6 +5,7 @@ using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,17 @@ namespace CocktailWizard.Services
     {
         private readonly CWContext context;
         private readonly IDtoMapper<Cocktail, CocktailDto> dtoMapper;
+        private readonly IDtoMapper<Cocktail, DetailsCocktailDto> detailsCocktailDtoMapper;
+        private readonly IDtoMapper<Bar, BarDto> barDtoMapper;
         private readonly IngredientService ingredientService;
         private readonly CocktailIngredientService cocktailIngredientService;
 
-        public CocktailService(CWContext context, IDtoMapper<Cocktail, CocktailDto> dtoMapper, IngredientService ingredientService, CocktailIngredientService cocktailIngredientService)
+        public CocktailService(CWContext context, IDtoMapper<Cocktail, CocktailDto> dtoMapper, IDtoMapper<Bar, BarDto> barDtoMapper, IDtoMapper<Cocktail, DetailsCocktailDto> detailsCocktailDtoMapper, IngredientService ingredientService, CocktailIngredientService cocktailIngredientService)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
+            this.barDtoMapper = barDtoMapper ?? throw new ArgumentNullException(nameof(barDtoMapper));
+            this.detailsCocktailDtoMapper = detailsCocktailDtoMapper ?? throw new ArgumentNullException(nameof(barDtoMapper));
             this.ingredientService = ingredientService ?? throw new ArgumentNullException(nameof(ingredientService));
             this.cocktailIngredientService = cocktailIngredientService ?? throw new ArgumentNullException(nameof(cocktailIngredientService));
         }
@@ -39,16 +44,27 @@ namespace CocktailWizard.Services
             return allCocktailsDtos;
         }
 
+        public async Task<DetailsCocktailDto> GetCocktailsBars(Guid id)
+        {
+            var cocktail = await this.context.Cocktails
+                .Where(c => c.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == id);
+
+            if (cocktail == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+            }
+
+            var detailsCocktailDto = this.detailsCocktailDtoMapper.MapFrom(cocktail);
+            var bars = await this.context.BarCocktails.Include(b => b.Bar).Where(b => b.CocktailId == cocktail.Id).Select(b => b.Bar).ToListAsync();
+            var mappedBars = this.barDtoMapper.MapFrom(bars);
+            detailsCocktailDto.Bars = mappedBars;
+
+            return detailsCocktailDto;
+        }
+
         public async Task<ICollection<CocktailDto>> GetTopCocktails(int num)
         {
-            //    var topCocktails = await this.context.Cocktails
-            //        .Where(b => b.IsDeleted == false)
-            //        .Include(b => b.Ratings)
-            //        .OrderByDescending(b => b.Ratings
-            //        .Average(r => r.Value))
-            //        .Take(num)
-            //        .ToListAsync();
-
             var topCocktails = await this.context.Cocktails
                     .Where(b => b.IsDeleted == false)
                     .Take(num)
