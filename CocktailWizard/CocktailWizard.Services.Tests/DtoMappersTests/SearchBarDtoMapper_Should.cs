@@ -10,47 +10,42 @@ using System.Text;
 namespace CocktailWizard.Services.Tests.DtoMappersTests
 {
     [TestClass]
-    public class BarDtoMapper_Should
+    public class SearchBarDtoMapper_Should
     {
+        //bez info phone i google
         [TestMethod]
-        public void MapFrom_Should_ReturnCorrectInstanceOf_BarDto()
+        public void MapFrom_Should_ReturnCorrectInstanceOf_SearchBarDto()
         {
             //Arrange
-            var sut = new BarDtoMapper();
+            var sut = new SearchBarDtoMapper();
 
             var bar = new Bar
             {
                 Id = Guid.NewGuid(),
                 Name = "testName",
-                Info = "testInfo",
                 ImagePath = "testPath",
                 Address = "testAddress",
-                GoogleMapsURL = "testMapsLink.gg",
-                Phone = "111-333-666",
             };
 
             //Act
             var result = sut.MapFrom(bar);
 
             //Assert
-            Assert.IsInstanceOfType(result, typeof(BarDto));
+            Assert.IsInstanceOfType(result, typeof(SearchBarDto));
         }
 
         [TestMethod]
-        public void MapFrom_Should_CorrectlyMapFrom_Bar_To_BarDto()
+        public void MapFrom_Should_CorrectlyMapFrom_Bar_To_SearchBarDto()
         {
             //Arrange
-            var sut = new BarDtoMapper();
+            var sut = new SearchBarDtoMapper();
 
             var bar = new Bar
             {
                 Id = Guid.NewGuid(),
                 Name = "testName",
-                Info = "testInfo",
                 ImagePath = "testPath",
                 Address = "testAddress",
-                GoogleMapsURL = "testMapsLink.gg",
-                Phone = "111-333-666",
             };
 
             //Act
@@ -59,28 +54,22 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             //Assert
             Assert.AreEqual(result.Id, bar.Id);
             Assert.AreEqual(result.Name, bar.Name);
-            Assert.AreEqual(result.Info, bar.Info);
             Assert.AreEqual(result.ImagePath, bar.ImagePath);
             Assert.AreEqual(result.Address, bar.Address);
-            Assert.AreEqual(result.GoogleMapsURL, bar.GoogleMapsURL);
-            Assert.AreEqual(result.Phone, bar.Phone);
         }
 
         [TestMethod]
-        public void MapFrom_Should_CorrectlyMapRatingFrom_Bar_To_BarDto_WhenCollectionIsEmpty()
+        public void MapFrom_Should_CorrectlyMapRatingFrom_Bar_To_SearchBarDto_WhenCollectionIsEmpty()
         {
             //Arrange
-            var sut = new BarDtoMapper();
+            var sut = new SearchBarDtoMapper();
 
             var bar = new Bar
             {
                 Id = Guid.NewGuid(),
                 Name = "testName",
-                Info = "testInfo",
                 ImagePath = "testPath",
                 Address = "testAddress",
-                GoogleMapsURL = "testMapsLink.gg",
-                Phone = "111-333-666",
             };
 
             //Act
@@ -91,20 +80,17 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
         }
 
         [TestMethod]
-        public void MapFrom_Should_CorrectlyMapRatingFrom_Bar_To_BarDto_WhenCollectionIsNotEmpty()
+        public void MapFrom_Should_CorrectlyMapRatingFrom_Bar_To_SearchBarDto_WhenCollectionIsNotEmpty()
         {
             //Arrange
-            var sut = new BarDtoMapper();
+            var sut = new SearchBarDtoMapper();
 
             var bar = new Bar
             {
                 Id = Guid.NewGuid(),
                 Name = "testName",
-                Info = "testInfo",
                 ImagePath = "testPath",
                 Address = "testAddress",
-                GoogleMapsURL = "testMapsLink.gg",
-                Phone = "111-333-666",
                 Ratings = new List<BarRating>()
                 {
                     new BarRating
@@ -122,10 +108,10 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
         }
 
         [TestMethod]
-        public void MapFrom_Should_ReturnCorrectInstanceOfCollection_BarDto()
+        public void MapFrom_Should_ReturnCorrectInstanceOfCollection_SearchBarDto()
         {
             //Arrange
-            var sut = new BarDtoMapper();
+            var sut = new SearchBarDtoMapper();
 
             var bars = new List<Bar>()
             {
@@ -133,21 +119,15 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
                 {
                     Id = Guid.NewGuid(),
                     Name = "testName",
-                    Info = "testInfo",
                     ImagePath = "testPath",
                     Address = "testAddress",
-                    GoogleMapsURL = "testMapsLink.gg",
-                    Phone = "111-333-666",
                 },
                 new Bar
                 {
                     Id = Guid.NewGuid(),
                     Name = "testName2",
-                    Info = "testInfo2",
                     ImagePath = "testPath2",
                     Address = "testAddress2",
-                    GoogleMapsURL = "testMapsLink2.gg",
-                    Phone = "111-333-6666",
                 }
             };
 
@@ -155,14 +135,14 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             var result = sut.MapFrom(bars);
 
             //Assert
-            Assert.IsInstanceOfType(result, typeof(List<BarDto>));
+            Assert.IsInstanceOfType(result, typeof(List<SearchBarDto>));
         }
 
         [TestMethod]
         public void MapFromCollection_Should_ReturnCorrectCountBars()
         {
             //Arrange
-            var sut = new BarDtoMapper();
+            var sut = new SearchBarDtoMapper();
 
             var bars = new List<Bar>()
             {
@@ -170,21 +150,15 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
                 {
                     Id = Guid.NewGuid(),
                     Name = "testName",
-                    Info = "testInfo",
                     ImagePath = "testPath",
                     Address = "testAddress",
-                    GoogleMapsURL = "testMapsLink.gg",
-                    Phone = "111-333-666",
                 },
                 new Bar
                 {
                     Id = Guid.NewGuid(),
                     Name = "testName2",
-                    Info = "testInfo2",
                     ImagePath = "testPath2",
                     Address = "testAddress2",
-                    GoogleMapsURL = "testMapsLink2.gg",
-                    Phone = "111-333-6666",
                 }
             };
 

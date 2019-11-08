@@ -34,7 +34,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
         }
 
         [TestMethod]
-        public void MapFrom_Should_CorrectlyMapIdFrom_Cocktail_To_CocktailDto()
+        public void MapFrom_Should_CorrectlyMapFrom_Cocktail_To_CocktailDto()
         {
             //Arrange
             var sut = new CocktailDtoMapper();
@@ -52,68 +52,8 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
 
             //Assert
             Assert.AreEqual(result.Id, cocktail.Id);
-        }
-
-        [TestMethod]
-        public void MapFrom_Should_CorrectlyMapNameFrom_Cocktail_To_CocktailDto()
-        {
-            //Arrange
-            var sut = new CocktailDtoMapper();
-
-            var cocktail = new Cocktail
-            {
-                Id = Guid.NewGuid(),
-                Name = "testName",
-                Info = "testInfo",
-                ImagePath = "testPath",
-            };
-
-            //Act
-            var result = sut.MapFrom(cocktail);
-
-            //Assert
             Assert.AreEqual(result.Name, cocktail.Name);
-        }
-
-        [TestMethod]
-        public void MapFrom_Should_CorrectlyMapInfoFrom_Cocktail_To_CocktailDto()
-        {
-            //Arrange
-            var sut = new CocktailDtoMapper();
-
-            var cocktail = new Cocktail
-            {
-                Id = Guid.NewGuid(),
-                Name = "testName",
-                Info = "testInfo",
-                ImagePath = "testPath",
-            };
-
-            //Act
-            var result = sut.MapFrom(cocktail);
-
-            //Assert
             Assert.AreEqual(result.Info, cocktail.Info);
-        }
-
-        [TestMethod]
-        public void MapFrom_Should_CorrectlyMapImagePathFrom_Cocktail_To_CocktailDto()
-        {
-            //Arrange
-            var sut = new CocktailDtoMapper();
-
-            var cocktail = new Cocktail
-            {
-                Id = Guid.NewGuid(),
-                Name = "testName",
-                Info = "testInfo",
-                ImagePath = "testPath",
-            };
-
-            //Act
-            var result = sut.MapFrom(cocktail);
-
-            //Assert
             Assert.AreEqual(result.ImagePath, cocktail.ImagePath);
         }
 
