@@ -10,11 +10,15 @@ namespace CocktailWizard.Data.Seeder
         public static void Seeder(this ModelBuilder builder)
         {
             //SEEDING ROLES
+            //SEEDING ROLES
+            //SEEDING ROLES
             builder.Entity<Role>().HasData(
                 new Role { Id = Guid.Parse("297D06E6-C058-486F-A18A-06A971EBFCD7"), Name = "Manager", NormalizedName = "MANAGER" },
                 new Role { Id = Guid.Parse("6C8FCD7E-62F6-4F3E-A73D-ACBFD60B97AB"), Name = "Member", NormalizedName = "MEMBER" }
             );
 
+            //SEEDING MANAGER ACCOUNT
+            //SEEDING MANAGER ACCOUNT
             //SEEDING MANAGER ACCOUNT
             var hasher = new PasswordHasher<User>();
 
@@ -41,6 +45,8 @@ namespace CocktailWizard.Data.Seeder
                     UserId = managerUser.Id
                 });
 
+            //SEEDING INGREDIENTS
+            //SEEDING INGREDIENTS
             //SEEDING INGREDIENTS
             var whisky = new Ingredient
             {
@@ -171,6 +177,8 @@ namespace CocktailWizard.Data.Seeder
             builder.Entity<Ingredient>().HasData(whisky, gin, vodka, rum, tequila, cointreau, cola, gingerAle, clubSoda, lemonSour, cinnamonSyrup, tripleSec, cranberryJuice, limeWedge, passoa, sugarSyrup, prosecco, raspberries, strawberries, peachSchnapps, oranges, cherries, olives, apples, kiwis);
 
             //SEEDING COCKTAILS
+            //SEEDING COCKTAILS
+            //SEEDING COCKTAILS
             var cosmopolitan = new Cocktail
             {
                 Id = Guid.Parse("24E8A669-799A-48B7-BC6F-B6884A33D0C7"),
@@ -244,6 +252,8 @@ namespace CocktailWizard.Data.Seeder
 
             builder.Entity<Cocktail>().HasData(cosmopolitan, passionFruit, raspberryGin, sexOnTheBeach, pinkGinIcedTea, longIsland, michelada, whiteSangria, bucksFizz, cranberryVodka);
 
+            //SEEDING BARS
+            //SEEDING BARS
             //SEEDING BARS
             var bar1 = new Bar
             {
@@ -348,6 +358,9 @@ namespace CocktailWizard.Data.Seeder
 
             builder.Entity<Bar>().HasData(bar1, bar2, bar3, bar4, bar5, bar6, bar7, bar8, bar9, bar10);
 
+            //SEEDING BARCOCKTAILS
+            //SEEDING BARCOCKTAILS
+            //SEEDING BARCOCKTAILS
             var barCocktail1 = new BarCocktail
             {
                 BarId = bar1.Id,
@@ -482,6 +495,532 @@ namespace CocktailWizard.Data.Seeder
             };
 
             builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10, barCocktail11, barCocktail12, barCocktail13, barCocktail14, barCocktail15, barCocktail16, barCocktail17, barCocktail18, barCocktail19, barCocktail20, barCocktail21, barCocktail22);
+
+            //SEEDING MOCKUSERS
+            //SEEDING MOCKUSERS
+            //SEEDING MOCKUSERS
+            var user1 = new User
+            {
+                Id = Guid.Parse("8C09D76B-AE1E-48BA-8AF3-DFB85889053E"),
+                UserName = "JohnSmith@Gmail.Com",
+                Email = "JohnSmith@Gmail.Com"
+            };
+            var user2 = new User
+            {
+                Id = Guid.Parse("F069807C-7BCE-4879-928F-4B5771524260"),
+                UserName = "BobRoss@Gmail.Com",
+                Email = "BobRoss@Gmail.Com"
+            };
+            var user3 = new User
+            {
+                Id = Guid.Parse("71183A0B-759E-4903-966F-E7325E8D2EA2"),
+                UserName = "DeanThomas@Gmail.Com",
+                Email = "DeanThomas@Gmail.Com"
+            };
+            var user4 = new User
+            {
+                Id = Guid.Parse("B8BA7616-6FF1-4A98-B848-54DD38B11ADA"),
+                UserName = "JackWinter@Gmail.Com",
+                Email = "JackWinter@Gmail.Com"
+            };
+            var user5 = new User
+            {
+                Id = Guid.Parse("B3179225-FC8F-420A-A825-710FD46DB592"),
+                UserName = "KateP@Gmail.Com",
+                Email = "KateP@Gmail.Com"
+            };
+            var user6 = new User
+            {
+                Id = Guid.Parse("15E5F8BC-801C-4B10-87C6-0B4E3B7EBA8B"),
+                UserName = "SandeepPatel@Gmail.Com",
+                Email = "SandeepPatel@Gmail.Com"
+            };
+            var user7 = new User
+            {
+                Id = Guid.Parse("5DD842C4-7706-4E9E-B481-189E2ADCD744"),
+                UserName = "KumarJoshi@Gmail.Com",
+                Email = "KumarJoshi@Gmail.Com"
+            };
+
+            builder.Entity<User>().HasData(user1, user2, user3, user4, user5, user6, user7);
+
+            //SEEDING BARCOMMENTS
+            //SEEDING BARCOMMENTS
+            //SEEDING BARCOMMENTS
+            var barComment1 = new BarComment
+            {
+                BarId = bar1.Id,
+                UserId = user1.Id,
+                Body = "I must be honest I picked the place because I have never been there. I was by myself and the plan for me was to drink as I needed a night by myself to think and forget everything around me. The barman (by the accent was French) was freaking cool.asked a lot of questions, suggested drinks and was quick and nice to me all night long.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment2 = new BarComment
+            {
+                BarId = bar1.Id,
+                UserId = user2.Id,
+                Body = "Great bar to visit after work. We have been visiting after work most Fridays and some weekdays for the best part of 2 years now. Good atmosphere, great decor and all round friendly staff. Highly recommended.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment3 = new BarComment
+            {
+                BarId = bar1.Id,
+                UserId = user3.Id,
+                Body = "I stumbled across while visiting Canary Wharf and I have to say I was really impressed by how nice and accomodating the staff were. I received a very warm welcome straight from walking through the doors, they looked like they had some sort of event in the evening as all the tables were reserved but they let me seat before the party arrived. I ordered for a beer and some nibbles which came quick and was really tasty. Excactly what I needed after a long day visiting and shopping.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment4 = new BarComment
+            {
+                BarId = bar2.Id,
+                UserId = user4.Id,
+                Body = "Love this place. I've been coming here for 3 years and the staff are wonderful. Amazing service, great location and menu.  They are very dog friendly and treat mine like their own... Highly recommend this place.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment5 = new BarComment
+            {
+                BarId = bar2.Id,
+                UserId = user5.Id,
+                Body = "Sure, I am happy to provide more information. I visited for a work event yesterday evening. The place is good with some nice outside space. Drink options are ok/alright. Music was a big negative though ; as this was a work event we were there to network and talk. This was made impossible as the music volume suddenly (around 7.30pm) was increased dramatically making it impossible to continue any conversation.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment6 = new BarComment
+            {
+                BarId = bar2.Id,
+                UserId = user6.Id,
+                Body = "It’s quite a nice place to go for some drinks and food after work, which is what I did. Although a little cold, there are blankets and warm things to keep you warm under the heaters. Food was good though we was told that the menu we was not the correct one, then was waiting around for ages.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment7 = new BarComment
+            {
+                BarId = bar3.Id,
+                UserId = user7.Id,
+                Body = "I went on Tuesday of the last week and the weather was horrible so I really like the detail of having some blankets outside and also the waitress was super nice and attentive. Best place in Canary wharf!",
+                CreatedOn = DateTime.Now
+            };
+            var barComment8 = new BarComment
+            {
+                BarId = bar3.Id,
+                UserId = user1.Id,
+                Body = "Stuff are friendly, location is charming.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment9 = new BarComment
+            {
+                BarId = bar3.Id,
+                UserId = user2.Id,
+                Body = "Awsome music and drinks.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment10 = new BarComment
+            {
+                BarId = bar4.Id,
+                UserId = user1.Id,
+                Body = "I organised my office Christmas party at the pagination and it was the most epic night ever. The staff were super efficient and executed my plan to the detail. In addition the venue is so nicely decorated for the Christmas holiday. I'm not a fan of vegan food but they didn't have a wide selection, if you aren't fussy then it's a place to check out.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment11 = new BarComment
+            {
+                BarId = bar4.Id,
+                UserId = user2.Id,
+                Body = "One of Canary wharf's more relaxing venues for a breakfast meeting.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment12 = new BarComment
+            {
+                BarId = bar4.Id,
+                UserId = user3.Id,
+                Body = "A dog wandering around sniffing my legs on a Friday night in a well designed bar?",
+                CreatedOn = DateTime.Now
+            };
+            var barComment13 = new BarComment
+            {
+                BarId = bar5.Id,
+                UserId = user4.Id,
+                Body = "Open space, light, modern place. Cosy. No table cloth, table was a bit dirty. Friendly caring service. Food OK - nice BF omlette, but toast too crunchy and dry.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment14 = new BarComment
+            {
+                BarId = bar5.Id,
+                UserId = user5.Id,
+                Body = "1 star because 0 doesn't seem to be an option... I had the misfortune of visiting for lunch and will never make that mistake again.I have been here for drinks before and while service has never been good it's never been noticably terrible before.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment15 = new BarComment
+            {
+                BarId = bar5.Id,
+                UserId = user1.Id,
+                Body = "Highly recommended to anyone looking for breakfast in the Canary Wharf district. Full veggie breakfast and buttermilk pancakes perfectly executed, with punctual service and a cozy atmosphere. Would go again.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment16 = new BarComment
+            {
+                BarId = bar6.Id,
+                UserId = user6.Id,
+                Body = "Get there early if you want to have a table or stool as it gets full very fast and most tables are pre reserved.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment17 = new BarComment
+            {
+                BarId = bar6.Id,
+                UserId = user7.Id,
+                Body = "I been there few times and I can say that everything is fantastic. Especially Tony is a very good guy... I will defenitly come back.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment18 = new BarComment
+            {
+                BarId = bar7.Id,
+                UserId = user1.Id,
+                Body = "Nice seating area outside. Great place for a happy hour. Very friendly staff. Just didn't like the burgers we've ordered. Not really tasty. May try something else next time.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment19 = new BarComment
+            {
+                BarId = bar7.Id,
+                UserId = user2.Id,
+                Body = "Everything is good with this venue - except the food.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment20 = new BarComment
+            {
+                BarId = bar7.Id,
+                UserId = user3.Id,
+                Body = "We instantly felt welcome as soon as we walked in the door. The food was amazing and the staff were very warm and friendly and nothing was  too much trouble. The decor is stunning and I thoroughly recommend this bar/restaurant. We will definitely be going back.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment21 = new BarComment
+            {
+                BarId = bar8.Id,
+                UserId = user4.Id,
+                Body = "Quite good.",
+                CreatedOn = DateTime.Now
+            };
+            var barComment22 = new BarComment
+            {
+                BarId = bar8.Id,
+                UserId = user5.Id,
+                Body = "Good lunchtime menu.. tasty meal, good price, great service and environment. Separate area for food or just drinks",
+                CreatedOn = DateTime.Now
+            };
+            var barComment23 = new BarComment
+            {
+                BarId = bar9.Id,
+                UserId = user6.Id,
+                Body = "I really like this place and had my birthday drinks here after work.  Staff are accommodating, reasonable priced and the outside seating is great",
+                CreatedOn = DateTime.Now
+            };
+            var barComment24 = new BarComment
+            {
+                BarId = bar9.Id,
+                UserId = user7.Id,
+                Body = "One of my favourite bars!",
+                CreatedOn = DateTime.Now
+            };
+            var barComment25 = new BarComment
+            {
+                BarId = bar10.Id,
+                UserId = user1.Id,
+                Body = "Good place, a bit expensive though!",
+                CreatedOn = DateTime.Now
+            };
+            var barComment26 = new BarComment
+            {
+                BarId = bar10.Id,
+                UserId = user2.Id,
+                Body = "Nice inside with a reel modern feel. Cocktails were great!",
+                CreatedOn = DateTime.Now
+            };
+            var barComment27 = new BarComment
+            {
+                BarId = bar10.Id,
+                UserId = user3.Id,
+                Body = "Stylish and great outdoor areas. Expensive.",
+                CreatedOn = DateTime.Now
+            };
+
+            builder.Entity<BarComment>().HasData(barComment1, barComment2, barComment3, barComment4, barComment5, barComment6, barComment7, barComment8, barComment9, barComment10, barComment11, barComment12, barComment13, barComment14, barComment15, barComment16, barComment17, barComment18, barComment19, barComment20, barComment21, barComment22, barComment23, barComment24, barComment25, barComment26, barComment27);
+
+            //SEEDING COCKTAILCOMMENTS
+            //SEEDING COCKTAILCOMMENTS
+            //SEEDING COCKTAILCOMMENTS
+            var cocktailComment1 = new CocktailComment
+            {
+                CocktailId = whiteSangria.Id,
+                UserId = user1.Id,
+                Body = "This drink is summer in a bottle! It tastes amazing on a hot summer day. I have been drinking this for a few years now and it's always as good as the first time. It has such a perfect long island flavor. I would buy it again, for sure. I would also recommend it for someone who doesn't like a strong tasting drink, it's very mild.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment2 = new CocktailComment
+            {
+                CocktailId = whiteSangria.Id,
+                UserId = user2.Id,
+                Body = "I honestly wasnt a fan of this. My husband and friend at the time of trial actually enjoyed it. We brought it out of Walmart- it was something cheap a spur of the moment purchase. It tasted artificial. Like the lemonade could have been better along with the tea. It wasnt a good fit for me. I wouldn't buy my again. I would rather just make my own from scratch that way I know what exactly is in it.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment3 = new CocktailComment
+            {
+                CocktailId = michelada.Id,
+                UserId = user3.Id,
+                Body = "loved!!!! loved!!!! loved!!!! judt a little loud on smell and strong spice taste. i do t drink anymore but I use to and j mean alot. price is affordable on pretty much any salary depends on how badly you want it I suppose. changes would be have more specials or do some drawing prices ect.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment4 = new CocktailComment
+            {
+                CocktailId = michelada.Id,
+                UserId = user4.Id,
+                Body = "I drink this when I'm in the mood for long island ice tea. I love the flavor of the mix. It goes down smooth and taste great. This product compares well to similar products. I would definitely recommend this product to others. I will be purchasing this product again."
+            };
+            var cocktailComment5 = new CocktailComment
+            {
+                CocktailId = pinkGinIcedTea.Id,
+                UserId = user5.Id,
+                Body = "My sister had made some long island iced tea for us. It tastes really good. Almost like an iced tea but with the alcohol. It is pretty expensive but you can get alternatives ones at the liquor store for cheap. I recommend to get it when you or anyone parties.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment6 = new CocktailComment
+            {
+                CocktailId = pinkGinIcedTea.Id,
+                UserId = user6.Id,
+                Body = "It's very smooth. Mostly, it is affordable, easy to find and tastes great. I think this is a popular item all around, especially the brand.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment7 = new CocktailComment
+            {
+                CocktailId = longIsland.Id,
+                UserId = user7.Id,
+                Body = "AWESOME!",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment8 = new CocktailComment
+            {
+                CocktailId = longIsland.Id,
+                UserId = user1.Id,
+                Body = "My sister had made some long island iced tea for us. It tastes really good. Almost like an iced tea but with the alcohol. It is pretty expensive but you can get alternatives ones at the liquor store for cheap. I recommend to get it when you or anyone parties.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment9 = new CocktailComment
+            {
+                CocktailId = cranberryVodka.Id,
+                UserId = user2.Id,
+                Body = "Awsome drink.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment10 = new CocktailComment
+            {
+                CocktailId = cranberryVodka.Id,
+                UserId = user1.Id,
+                Body = "I think this is great for people that like really strong alcohol I’m not really a fan of it I tried it once at a gathering but I don’t think it will be my cuppa tea to actually purchase this at anytime.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment11 = new CocktailComment
+            {
+                CocktailId = bucksFizz.Id,
+                UserId = user2.Id,
+                Body = "This is a really good summer drink to have on the rocks or with Coke I love to have it sitting outside by a fire price of this is well worth the bottle of rum I highly recommend anybody trying this.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment12 = new CocktailComment
+            {
+                CocktailId = bucksFizz.Id,
+                UserId = user3.Id,
+                Body = "I actually like this drink. You can drink it alone. It's inexpensive. It's pretty strong. It's not too bitter but it does have a bit too much sweet & sour taste. I've bought it several times.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment13 = new CocktailComment
+            {
+                CocktailId = sexOnTheBeach.Id,
+                UserId = user4.Id,
+                Body = "This will always be one of my favorite drinks.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment14 = new CocktailComment
+            {
+                CocktailId = sexOnTheBeach.Id,
+                UserId = user5.Id,
+                Body = "This is by far one of my favourites! It is sweet and you don't think it's going to get you drunk but you can end up crawling if you don't drink it responsibly ;) , also it is super cheap and perfect for parties. I totally recommend it straight or with some ice.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment15 = new CocktailComment
+            {
+                CocktailId = raspberryGin.Id,
+                UserId = user1.Id,
+                Body = "perfect for those tea drinking friends you may have coming over to an event you are hosting at your house. very affordable and lasts a really long time compared to some other brands",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment16 = new CocktailComment
+            {
+                CocktailId = raspberryGin.Id,
+                UserId = user6.Id,
+                Body = "OH MY GOODNESS!!! I LOVE THIS STUFF!",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment17 = new CocktailComment
+            {
+                CocktailId = passionFruit.Id,
+                UserId = user7.Id,
+                Body = "One of my favorites to drink!",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment18 = new CocktailComment
+            {
+                CocktailId = passionFruit.Id,
+                UserId = user1.Id,
+                Body = "It is ok..just ok. I wouldn't necessarily recommend. ",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment19 = new CocktailComment
+            {
+                CocktailId = cosmopolitan.Id,
+                UserId = user2.Id,
+                Body = "Tried this once at a party. I'm not a big fan of it, but this was good. It was better than expected. I would try again.",
+                CreatedOn = DateTime.Now
+            };
+            var cocktailComment20 = new CocktailComment
+            {
+                CocktailId = cosmopolitan.Id,
+                UserId = user3.Id,
+                Body = "Always a good one! Mix it with anything you like and it will be delicious. The flavour on its own is too strong for me, but if that's what you like than go for it babes! The bottle can last for ages so I think u get good value for what you've pay for. I would buy again",
+                CreatedOn = DateTime.Now
+            };
+
+            builder.Entity<CocktailComment>().HasData(cocktailComment1, cocktailComment2, cocktailComment3, cocktailComment4, cocktailComment5, cocktailComment6, cocktailComment7, cocktailComment8, cocktailComment9, cocktailComment10, cocktailComment11, cocktailComment12, cocktailComment13, cocktailComment14, cocktailComment15, cocktailComment16, cocktailComment17, cocktailComment18, cocktailComment19, cocktailComment20);
+
+            //SEEDING BARRATINGS
+            //SEEDING BARRATINGS
+            //SEEDING BARRATINGS
+            var barRating1 = new BarRating
+            {
+                UserId = user1.Id,
+                BarId = bar1.Id,
+                Value = 4.00,
+                CreatedOn = DateTime.Now
+            };
+            var barRating2 = new BarRating
+            {
+                UserId = user2.Id,
+                BarId = bar2.Id,
+                Value = 5.00,
+                CreatedOn = DateTime.Now
+            };
+            var barRating3 = new BarRating
+            {
+                UserId = user3.Id,
+                BarId = bar3.Id,
+                Value = 4.70,
+                CreatedOn = DateTime.Now
+            };
+            var barRating4 = new BarRating
+            {
+                UserId = user4.Id,
+                BarId = bar4.Id,
+                Value = 4.20,
+                CreatedOn = DateTime.Now
+            };
+            var barRating5 = new BarRating
+            {
+                UserId = user5.Id,
+                BarId = bar5.Id,
+                Value = 4.50,
+                CreatedOn = DateTime.Now
+            };
+            var barRating6 = new BarRating
+            {
+                UserId = user6.Id,
+                BarId = bar6.Id,
+                Value = 2.60,
+                CreatedOn = DateTime.Now
+            };
+            var barRating7 = new BarRating
+            {
+                UserId = user7.Id,
+                BarId = bar7.Id,
+                Value = 4.30,
+                CreatedOn = DateTime.Now
+            };
+            var barRating8 = new BarRating
+            {
+                UserId = user1.Id,
+                BarId = bar8.Id,
+                Value = 4.30,
+                CreatedOn = DateTime.Now
+            };
+            var barRating9 = new BarRating
+            {
+                UserId = user2.Id,
+                BarId = bar9.Id,
+                Value = 3.90,
+                CreatedOn = DateTime.Now
+            };
+
+            builder.Entity<BarRating>().HasData(barRating1, barRating2, barRating3, barRating4, barRating5, barRating6, barRating7, barRating8, barRating9);
+
+            //SEEDING COCKTAILRATINGS
+            //SEEDING COCKTAILRATINGS
+            //SEEDING COCKTAILRATINGS
+            var cocktailRating1 = new CocktailRating
+            {
+                UserId = user1.Id,
+                CocktailId = whiteSangria.Id,
+                Value = 4.00,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating2 = new CocktailRating
+            {
+                UserId = user2.Id,
+                CocktailId = michelada.Id,
+                Value = 5.00,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating3 = new CocktailRating
+            {
+                UserId = user3.Id,
+                CocktailId = pinkGinIcedTea.Id,
+                Value = 4.70,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating4 = new CocktailRating
+            {
+                UserId = user4.Id,
+                CocktailId = longIsland.Id,
+                Value = 4.20,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating5 = new CocktailRating
+            {
+                UserId = user5.Id,
+                CocktailId = cranberryVodka.Id,
+                Value = 4.50,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating6 = new CocktailRating
+            {
+                UserId = user6.Id,
+                CocktailId = bucksFizz.Id,
+                Value = 2.60,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating7 = new CocktailRating
+            {
+                UserId = user7.Id,
+                CocktailId = sexOnTheBeach.Id,
+                Value = 4.30,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating8 = new CocktailRating
+            {
+                UserId = user1.Id,
+                CocktailId = raspberryGin.Id,
+                Value = 4.30,
+                CreatedOn = DateTime.Now
+            };
+            var cocktailRating9 = new CocktailRating
+            {
+                UserId = user2.Id,
+                CocktailId = passionFruit.Id,
+                Value = 3.90,
+                CreatedOn = DateTime.Now
+            };
+
+            builder.Entity<CocktailRating>().HasData(cocktailRating1, cocktailRating2, cocktailRating3, cocktailRating4, cocktailRating5, cocktailRating6, cocktailRating7, cocktailRating8, cocktailRating9);
         }
     }
 }
