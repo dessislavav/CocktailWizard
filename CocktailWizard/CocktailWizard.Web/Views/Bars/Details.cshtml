@@ -107,7 +107,7 @@
                                             </form>
                                             <div class="clearfix"></div>
                                             <hr>
-                                            <ul class="media-list">
+                                            <ul id="new-comment-here" class="media-list">
                                                 @foreach (var item in Model.BarCommentViewModels)
                                                 {
                                                     <li class="media">
@@ -120,7 +120,7 @@
                                                                     @item.CreatedOn
                                                                 </small>
                                                             </span>
-                                                            @*<strong class="text-success">@MartinoMont</strong>*@
+                                                            <strong class="text-success">@item.UserName</strong>
                                                             <p>
                                                                 @item.Body
                                                             </p>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cocktail>
+﻿@model IEnumerable<CocktailViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,10 +12,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.CreatedOn)
             </th>
             <th>
@@ -26,7 +26,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -36,10 +36,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ImagePath)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CreatedOn)
             </td>
             <td>
@@ -50,7 +50,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
             </td>

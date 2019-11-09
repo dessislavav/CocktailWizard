@@ -65,9 +65,10 @@ namespace CocktailWizard.Web.Controllers
             //if (!ModelState.IsValid) return BusinessException
 
             var user = await this.userManager.GetUserAsync(User);
-
+            var userName = user.Email.Split('@')[0];
 
             viewModel.UserId = user.Id;
+            viewModel.UserName = userName;
             var commentDto = this.modelMapper.MapFrom(viewModel);
 
 

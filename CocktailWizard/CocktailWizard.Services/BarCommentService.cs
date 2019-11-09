@@ -31,23 +31,21 @@ namespace CocktailWizard.Services
                 throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
             }
 
-            //var user = await this.context.Users.FirstOrDefaultAsync(u => u.Id == tempBarComment.UserId);
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Id == tempBarComment.UserId);
+            var userName = user.Email.Split('@')[0];
 
             var barComment = new BarComment
             {
                 BarId = tempBarComment.BarId,
                 UserId = tempBarComment.UserId,
-
                 Body = tempBarComment.Body,
-                //User = user,
-                
                 CreatedOn = tempBarComment.CreatedOn,
                 ModifiedOn = tempBarComment.ModifiedOn,
                 DeletedOn = tempBarComment.DeletedOn,
                 IsDeleted = tempBarComment.IsDeleted
             };
 
-             this.context.BarComments.Add(barComment);
+            await this.context.BarComments.AddAsync(barComment);
             await this.context.SaveChangesAsync();
 
             var barCommentDto = this.dtoMapper.MapFrom(barComment);

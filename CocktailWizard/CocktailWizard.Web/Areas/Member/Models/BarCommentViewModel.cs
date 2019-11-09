@@ -8,8 +8,8 @@ namespace CocktailWizard.Web.Models
     {
         public Guid BarId { get; set; }
         public Guid UserId { get; set; }
-        //[DisplayName("Username")]
-        //public string UserName { get; set; }
+        [DisplayName("Username")]
+        public string UserName { get; set; }
         [DisplayName("Comment Text")]
         [Required]
         [StringLength(500, ErrorMessage = "The {0} value cannot exceed {1} characters.")]

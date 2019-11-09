@@ -15,8 +15,15 @@
         headers: {
             'Content-Type': 'application/json'
         },
+
+        success: function (data) {
+            console.log(data);
+            $('#new-comment-here').append(data.body);
+        },
+ 
         error: function (msg) {
             console.dir(msg);
         }
+
     })
 });

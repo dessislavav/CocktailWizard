@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Member\Data\**" />
+    <Content Remove="Areas\Member\Data\**" />
+    <EmbeddedResource Remove="Areas\Member\Data\**" />
+    <None Remove="Areas\Member\Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GravatarHelper" Version="4.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -22,10 +30,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Manager\Data\" />
-    <Folder Include="Areas\Member\Controllers\" />
-    <Folder Include="Areas\Member\Data\" />
-    <Folder Include="Areas\Member\Models\" />
-    <Folder Include="Areas\Member\Views\" />
   </ItemGroup>
 
 </Project>
