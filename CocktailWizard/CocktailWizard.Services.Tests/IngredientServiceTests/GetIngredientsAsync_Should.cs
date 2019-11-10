@@ -19,10 +19,10 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         public async Task ReturnInstanceOfCollectionTypeIngredientDto()
         {
             //Arrange
-            var options = TestUtilities.GetOptions(MethodBase.GetCurrentMethod().Name);
+            var options = TestUtilities.GetOptions(nameof(ReturnInstanceOfCollectionTypeIngredientDto));
             var mapper = new IngredientDtoMapper();
-            var testGuid = new Guid("b9653c65-2311-4d57-a95b-6522d7bc88f1");
-            var testGuid2 = new Guid("b9653c65-2311-4d57-a95b-6522d7bc88f6");
+            var testGuid = new Guid();
+            var testGuid2 = new Guid();
 
             var entity = new Ingredient
             {
@@ -59,7 +59,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         public async Task ThrowWhen_DatabaseHasNoIngredients()
         {
             //Arrange
-            var options = TestUtilities.GetOptions(MethodBase.GetCurrentMethod().Name);
+            var options = TestUtilities.GetOptions(nameof(ThrowWhen_DatabaseHasNoIngredients));
             var mapper = new IngredientDtoMapper();
 
             using (var assertContext = new CWContext(options))

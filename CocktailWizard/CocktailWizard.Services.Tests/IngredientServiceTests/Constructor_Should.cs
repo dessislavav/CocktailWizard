@@ -15,7 +15,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         public void Constructor_CreatesInstance()
         {
             //Arrange
-            var options = TestUtilities.GetOptions(MethodBase.GetCurrentMethod().Name);
+            var options = TestUtilities.GetOptions(nameof(Constructor_CreatesInstance));
             var mapper = new IngredientDtoMapper();
 
             using (var assertContext = new CWContext(options))
@@ -46,7 +46,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         public void Throw_WhenMapperIsNull()
         {
             //Arrange
-            var options = TestUtilities.GetOptions(nameof(Throw_WhenContextIsNull));
+            var options = TestUtilities.GetOptions(nameof(Throw_WhenMapperIsNull));
 
             using (var assertContext = new CWContext(options))
             {
