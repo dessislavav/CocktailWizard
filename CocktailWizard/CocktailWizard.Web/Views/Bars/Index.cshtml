@@ -1,51 +1,90 @@
-﻿@model IEnumerable<BarViewModel>
+﻿@model BarsIndexViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/crud-ingredients.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">
+                    Bars
+                </h1>
+                <br />
+                <h5>The London bar scene is undoubtedly one of the most diverse in the world, with countless watering-holes to choose from, whatever your tastes might be. Some of the best bars in London are right under your nose, just waiting to be discovered; and we're all about helping you to find them. Whether you're looking to tap into the bars in London with live music, one of the many bars in London with a view, or even just to find out which bars in London open late; you can find your top London bar right here.</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <br />
+                        <table class="table-striped text-center" align="center">
+                            <thead>
+                                <tr align="center">
+                                    <th width="20%">Preview</th>
+                                    <th width="25%">Name</th>
+                                    <th width="30%">Address</th>
+                                    <th width="15%">Phone</th>
+                                    <th width="10%">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var bar in Model.TenBars)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-action="Details" asp-route-id="@bar.Id">
+                                                <img src=@bar.ImagePath height=200 width=300>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span>@bar.Name</span>
+                                        </td>
+                                        <td>
+                                            <span>@bar.Address</span>
+                                        </td>
+                                        <td>
+                                            <span>@bar.Phone</span>
+                                        </td>
+                                        <td>
+                                            <span>@bar.AverageRating</span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="align-content-center">
+                            @if (Model.PrevPage == null)
+                            {
+                                <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
+                            }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@item.Id">Details</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                            <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
 
-<partial name="_BarsPartial"/>
+                            @if (Model.NextPage == null)
+                            {
+                                <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

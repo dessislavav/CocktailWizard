@@ -32,6 +32,39 @@ namespace CocktailWizard.Services
             this.cocktailIngredientService = cocktailIngredientService ?? throw new ArgumentNullException(nameof(cocktailIngredientService));
         }
 
+        public async Task<ICollection<CocktailDto>> GetTenCocktailsOrderedByNameAsync(int currentPage)
+        {
+            List<Cocktail> tenCocktails;
+            if (currentPage == 1)
+            {
+                tenCocktails = await this.context.Cocktails
+                    .OrderBy(x => x.Name)
+                    .Take(10)
+                    .ToListAsync();
+            }
+            else
+            {
+                tenCocktails = await this.context.Cocktails
+                    .OrderBy(x => x.Name)
+                    .Skip((currentPage - 1) * 10)
+                    .Take(10)
+                    .ToListAsync();
+            }
+
+            var dtoCocktails = this.dtoMapper.MapFrom(tenCocktails);
+
+            return dtoCocktails;
+        }
+
+        public async Task<int> GetPageCountAsync(int cocktailsPerPage)
+        {
+            var allCocktails = await context.Cocktails.CountAsync();
+
+            var totalPages = (allCocktails - 1) / cocktailsPerPage + 1;
+
+            return totalPages;
+        }
+
         public async Task<ICollection<CocktailDto>> GetAllCocktailsAsync()
         {
             var allCocktails = await this.context.Cocktails

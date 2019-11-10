@@ -24,12 +24,32 @@ namespace CocktailWizard.Web.Controllers
             this.barViewModelMapper = barViewModelMapper;
         }
         // GET: /Cocktails
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? currPage)
         {
-            var dtoCocktails = await this.cocktailService.GetAllCocktailsAsync();
-            var mappedCocktails = this.cocktailViewModelMapper.MapFrom(dtoCocktails);
+            var currentPage = currPage ?? 1;
 
-            return View(mappedCocktails);
+            var totalPages = await this.cocktailService.GetPageCountAsync(10);
+            var tenCocktails = await this.cocktailService.GetTenCocktailsOrderedByNameAsync(currentPage);
+            var mappedTenCocktails = this.cocktailViewModelMapper.MapFrom(tenCocktails);
+
+            var model = new CocktailsIndexViewModel()
+            {
+                CurrPage = currentPage,
+                TotalPages = totalPages,
+                TenCocktails = mappedTenCocktails,
+            };
+
+            if (totalPages > currentPage)
+            {
+                model.NextPage = currentPage + 1;
+            }
+
+            if (currentPage > 1)
+            {
+                model.PrevPage = currentPage - 1;
+            }
+
+            return View(model);
         }
 
         // GET: /Cocktails/Details/5

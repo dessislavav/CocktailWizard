@@ -69,6 +69,39 @@ namespace CocktailWizard.Services
             return topBarsDtos;
         }
 
+        public async Task<ICollection<BarDto>> GetTenBarsOrderedByNameAsync(int currentPage)
+        {
+            List<Bar> tenBars;
+            if (currentPage == 1)
+            {
+                tenBars = await this.context.Bars
+                    .OrderBy(x => x.Name)
+                    .Take(10)
+                    .ToListAsync();
+            }
+            else
+            {
+                tenBars = await this.context.Bars
+                    .OrderBy(x => x.Name)
+                    .Skip((currentPage - 1) * 10)
+                    .Take(10)
+                    .ToListAsync();
+            }
+
+            var dtoBars = this.dtoMapper.MapFrom(tenBars);
+
+            return dtoBars;
+        }
+
+        public async Task<int> GetPageCountAsync(int barsPerPage)
+        {
+            var allBars = await context.Bars.CountAsync();
+
+            var totalPages = (allBars - 1) / barsPerPage + 1;
+
+            return totalPages;
+        }
+
         public async Task<ICollection<BarDto>> GetAllBarsAsync()
         {
             var allBars = await this.context.Bars

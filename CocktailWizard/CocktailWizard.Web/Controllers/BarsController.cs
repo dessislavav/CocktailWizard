@@ -31,12 +31,33 @@ namespace CocktailWizard.Web.Controllers
             this.barCommentVmMapper = barCommentVmMapper;
             this.barCommentService = barCommentService;
         }
-        public async Task<IActionResult> Index()
-        {
-            var allBars = await this.barService.GetAllBarsAsync();
-            var barVMs = this.barViewModelMapper.MapFrom(allBars);
 
-            return View(barVMs);
+        public async Task<IActionResult> Index(int? currPage)
+        {
+            var currentPage = currPage ?? 1;
+
+            var totalPages = await this.barService.GetPageCountAsync(10);
+            var tenBars = await this.barService.GetTenBarsOrderedByNameAsync(currentPage);
+            var mappedTenBars = this.barViewModelMapper.MapFrom(tenBars);
+
+            var model = new BarsIndexViewModel()
+            {
+                CurrPage = currentPage,
+                TotalPages = totalPages,
+                TenBars = mappedTenBars,
+            };
+
+            if (totalPages > currentPage)
+            {
+                model.NextPage = currentPage + 1;
+            }
+
+            if (currentPage > 1)
+            {
+                model.PrevPage = currentPage - 1;
+            }
+
+            return View(model);
         }
 
         // GET: /Bars/Details
