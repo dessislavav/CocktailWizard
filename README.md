@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/n5m3rut1wsx5j1xx?svg=true)](https://ci.appveyor.com/project/RadkoStanev/cocktailwizard)
+
 # CocktailWizard
 Web application that allows creation of cocktails and follows their distribution and success in amazing bars.
 
@@ -44,6 +46,8 @@ Web application that allows creation of cocktails and follows their distribution
 * HTML
 * CSS
 * Bootstrap
+* AppVeyor
+
 
 ## Notes:
 * Moq, InMemory and MSTest for testing
@@ -51,5 +55,5 @@ Web application that allows creation of cocktails and follows their distribution
 * Used DTO (data transfer objects)
 * Server-side pagination present
 * Used branches durring development ot features
-* Used ??? to manage personal development tasks
+* Used Azure DevOps to manage personal development tasks
 * ?? % Unit test code coverage
