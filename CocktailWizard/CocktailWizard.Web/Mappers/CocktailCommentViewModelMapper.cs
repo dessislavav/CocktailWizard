@@ -6,46 +6,45 @@ using System.Linq;
 
 namespace CocktailWizard.Web.Mappers
 {
-    public class BarCommentViewModelMapper : IViewModelMapper<BarCommentDto, BarCommentViewModel>
+    public class CocktailCommentViewModelMapper : IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel>
     {
-        public BarCommentViewModel MapFrom(BarCommentDto dtoEntity)
+        public CocktailCommentViewModel MapFrom(CocktailCommentDto dtoEntity)
         {
             if (dtoEntity == null)
             {
                 return null;
             }
 
-            return new BarCommentViewModel
+            return new CocktailCommentViewModel
             {
                 Id = dtoEntity.Id,
-                BarId = dtoEntity.BarId,
+                CocktailId = dtoEntity.CocktailId,
                 UserId = dtoEntity.UserId,
                 UserName = dtoEntity.UserName,
                 Body = dtoEntity.Body,
                 CreatedOn = dtoEntity.CreatedOn,
                 ModifiedOn = dtoEntity.ModifiedOn,
                 DeletedOn = dtoEntity.DeletedOn,
-                IsDeleted = dtoEntity.IsDeleted,
-                
+                IsDeleted = dtoEntity.IsDeleted
             };
         }
 
-        public ICollection<BarCommentViewModel> MapFrom(ICollection<BarCommentDto> dtoEntities)
+        public ICollection<CocktailCommentViewModel> MapFrom(ICollection<CocktailCommentDto> dtoEntities)
         {
             return dtoEntities.Select(this.MapFrom).ToList();
         }
 
-        public BarCommentDto MapFrom(BarCommentViewModel entityVM)
+        public CocktailCommentDto MapFrom(CocktailCommentViewModel entityVM)
         {
             if (entityVM == null)
             {
                 return null;
             }
 
-            return new BarCommentDto
+            return new CocktailCommentDto
             {
                 Id = entityVM.Id,
-                BarId = entityVM.BarId,
+                CocktailId = entityVM.CocktailId,
                 UserId = entityVM.UserId,
                 UserName = entityVM.UserName,
                 Body = entityVM.Body,
@@ -56,7 +55,7 @@ namespace CocktailWizard.Web.Mappers
             };
         }
 
-        public ICollection<BarCommentDto> MapFrom(ICollection<BarCommentViewModel> entitiesVM)
+        public ICollection<CocktailCommentDto> MapFrom(ICollection<CocktailCommentViewModel> entitiesVM)
         {
             return entitiesVM.Select(this.MapFrom).ToList();
         }

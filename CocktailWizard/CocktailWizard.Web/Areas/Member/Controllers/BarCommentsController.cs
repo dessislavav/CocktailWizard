@@ -1,6 +1,7 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services;
+using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Identity;
@@ -129,36 +130,46 @@ namespace CocktailWizard.Web.Controllers
             return View();
         }
 
-        // GET: BarComments/Delete
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
+        // GET: Member/BarComments/Delete
+        //[HttpGet]
+        //public async Task<IActionResult> Delete(Guid id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            //var barComment = await _context.BarComments
-            //    .Include(b => b.Bar)
-            //    .Include(b => b.User)
-            //    .FirstOrDefaultAsync(m => m.BarId == id);
-            //if (barComment == null)
-            //{
-            //    return NotFound();
-            //}
+        //    var barDto = await this.barCommentService.GerBarCommentAsync(id);
 
-            return View();
-        }
 
-        // POST: BarComments/Delete/
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            //var barComment = await _context.BarComments.FindAsync(id);
-            //_context.BarComments.Remove(barComment);
-            //await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //    if (barDto == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var barCommmentVm = this.modelMapper.MapFrom(barDto);
+        //    return View(barCommmentVm);
+        //}
+
+        //// POST: BarComments/Delete/
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(Guid id, Guid userId)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (userId == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    await this.barCommentService.DeleteAsync(id, userId);
+
+        //    return RedirectToAction(nameof(Index));
+        //}
 
     }
 }

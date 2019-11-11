@@ -10,9 +10,12 @@
 
     $.ajax({
         type: "POST",
-        url: "/BarComments/Create/",
+        url: "/Member/BarComments/Create/",
         data: JSON.stringify(data),
         headers: {
+            RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val(),
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
 

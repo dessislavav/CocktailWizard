@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CocktailWizard.Web.Utilities.Registration
 {
-    public static class DtoMappesRegistration
+    public static class DtoMapperRegistration
     {
         public static IServiceCollection AddCustomDtoMappers(this IServiceCollection services)
         {
@@ -19,7 +19,7 @@ namespace CocktailWizard.Web.Utilities.Registration
             services.AddSingleton<IDtoMapper<Ingredient, IngredientDto>, IngredientDtoMapper>();
 
             services.AddSingleton<IDtoMapper<BarComment, BarCommentDto>, BarCommentDtoMapper>();
-            services.AddSingleton<IDtoMapper<BarComment, BarCommentDto>, BarCommentDtoMapper>();
+            services.AddSingleton<IDtoMapper<CocktailComment, CocktailCommentDto>, CocktailCommentDtoMapper>();
 
             return services;
         }

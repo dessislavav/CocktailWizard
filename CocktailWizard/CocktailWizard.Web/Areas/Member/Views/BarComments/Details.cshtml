@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BarCommentViewModel>
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BarComment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedOn)
+        </dt>
+        @foreach (var item in Model)
+        {
+            <dd class="col-sm-10">
+                @Html.DisplayFor(ModelItem => item.UserName)
+            </dd>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(ModelItem => item.Body)
+            </dd>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(ModelItem => item.CreatedOn)
+            </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(ModelItem => item.ModifiedOn)
+            </dd>
+            <dd class="col-sm-10">
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </dd>
+            <dd class="col-sm-10">
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            </dd>
+        }
+
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@foreach (var item in Model)
+{
+<div hidden class="form-group">
+    <label asp-for="@item.BarId" class="control-label"></label>
+    <input asp-for="@item.BarId" type="hidden" value="@item.BarId">
+</div>
+
+<div hidden class="form-group">
+      <label asp-for="@item.Id" class="control-label"></label>
+    <input asp-for="@item.Id" type="hidden" value="@item.Id">
+    </div>
+<div hidden class="form-group">
+    <label asp-for="@item.UserId" class="control-label"></label>
+    <input asp-for="@item.UserId" type="hidden" value="@item.UserId">
+</div>
+}
+

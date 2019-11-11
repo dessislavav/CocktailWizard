@@ -2,10 +2,11 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace CocktailWizard.Web.Models
+namespace CocktailWizard.Web.Areas.Member.Models
 {
     public class BarCommentViewModel
     {
+        public Guid Id { get; set; }
         public Guid BarId { get; set; }
         public Guid UserId { get; set; }
         [DisplayName("Username")]
