@@ -4,6 +4,7 @@ using CocktailWizard.Services;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Controllers
 {
+    [Area("Member")]
+    [Authorize(Roles = "Member")]
     public class BarCommentsController : Controller
     {
 
@@ -51,16 +54,9 @@ namespace CocktailWizard.Web.Controllers
             return View(barCommentVM);
         }
 
-        //GET: BarComments/Create
-        [HttpGet]
-        public IActionResult Create(Guid barId)
-        {
-            var barVM = new BarCommentViewModel() { BarId = barId };
-            return View(barVM);
-        }
-
         // POST: BarComments/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody]BarCommentViewModel viewModel)
         {
             //if (!ModelState.IsValid) return BusinessException

@@ -36,6 +36,7 @@ namespace CocktailWizard.Services
 
             var barComment = new BarComment
             {
+                Id = tempBarComment.Id,
                 BarId = tempBarComment.BarId,
                 UserId = tempBarComment.UserId,
                 Body = tempBarComment.Body,

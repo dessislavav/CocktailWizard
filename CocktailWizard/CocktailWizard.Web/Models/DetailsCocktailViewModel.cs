@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CocktailWizard.Web.Areas.Member.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,5 +25,6 @@ namespace CocktailWizard.Web.Models
         public string ImagePath { get; set; }
 
         public double? AverageRating { get; set; }
+        public ICollection<CocktailCommentViewModel> CocktailCommentViewModels { get; set; }
     }
 }
