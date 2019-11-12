@@ -35,8 +35,13 @@ namespace CocktailWizard.Web.Controllers
         // GET: BarComments
         public async Task<IActionResult> Index(Guid barId)
         {
-            var barComments = await this.barCommentService.GetBarCommentsAsync(barId);
-            var barCommentsVm = this.modelMapper.MapFrom(barComments);
+            if (barId == null)
+            {
+                return NotFound();
+            }
+
+            var barCommentDtos = await this.barCommentService.GetBarCommentsAsync(barId);
+            var barCommentsVm = this.modelMapper.MapFrom(barCommentDtos);
             return View(barCommentsVm);
         }
 

@@ -20,8 +20,8 @@ namespace CocktailWizard.Services
 
         public BarCommentService(CWContext context, IDtoMapper<BarComment, BarCommentDto> dtoMapper)
         {
-            this.context = context;
-            this.dtoMapper = dtoMapper;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
         }
 
         public async Task<BarCommentDto> CreateAsync(BarCommentDto tempBarComment)
@@ -30,9 +30,6 @@ namespace CocktailWizard.Services
             {
                 throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
             }
-
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Id == tempBarComment.UserId);
-            var userName = user.Email.Split('@')[0];
 
             var barComment = new BarComment
             {
@@ -62,8 +59,9 @@ namespace CocktailWizard.Services
                 .Where(bc => bc.BarId == barId)
                 .ToListAsync();
 
-            var mappedBarComments = this.dtoMapper.MapFrom(barComments);
-            return mappedBarComments;
+            var barCommentDtos = this.dtoMapper.MapFrom(barComments);
+
+            return barCommentDtos;
                 
         }
     }

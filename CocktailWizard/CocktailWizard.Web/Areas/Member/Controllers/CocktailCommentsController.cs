@@ -36,30 +36,31 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
         }
 
         // GET: Member/CocktailComments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Guid cocktailId)
         {
-            var cWContext = _context.CocktailComments.Include(c => c.Cocktail).Include(c => c.User);
-            return View(await cWContext.ToListAsync());
+            if (cocktailId == null)
+            {
+                return NotFound();
+            }
+
+            var cocktailCommentDtos = await this.cocktailCommentService.GetCocktailCommentsAsync(cocktailId);
+            var cocktailCommentsVm = this.modelMapper.MapFrom(cocktailCommentDtos);
+
+            return View(cocktailCommentsVm);
         }
 
-        // GET: Member/CocktailComments/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        // GET: Member/CocktailComments/Details/
+        public async Task<IActionResult> Details(Guid cocktailId)
         {
-            if (id == null)
+            if (cocktailId == null)
             {
                 return NotFound();
             }
 
-            var cocktailComment = await _context.CocktailComments
-                .Include(c => c.Cocktail)
-                .Include(c => c.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cocktailComment == null)
-            {
-                return NotFound();
-            }
+            var cocktailCommentDtos = await this.cocktailCommentService.GetCocktailCommentsAsync(cocktailId);
+            var cocktailCommentsVm = this.modelMapper.MapFrom(cocktailCommentDtos);
 
-            return View(cocktailComment);
+            return View(cocktailCommentsVm);
         }
 
         // POST: Member/CocktailComments/Create

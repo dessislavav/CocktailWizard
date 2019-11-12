@@ -3,9 +3,9 @@
     ViewData["Title"] = "Details";
 }
 
-    <head>
-        <link rel="stylesheet" href="~/css/barsearchpartial.css" />
-    </head>
+<head>
+    <link rel="stylesheet" href="~/css/barsearchpartial.css" />
+</head>
 
 <!--
  =========================================================
@@ -97,19 +97,26 @@
                                 <div class="comment-wrapper">
                                     <div class="panel panel-info">
                                         <div class="panel-body">
-                                            <form id="comment-to-db">
-                                                <div>
+                                            @* //TODO: think of a better restriction *@
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <form id="comment-to-db">
                                                     <div>
-                                                        <input type="text" class="form-control" id="comment-body" placeholder="Comment Text" />
-                                                        <br>
+                                                        <div>
+                                                            <input type="text" class="form-control" id="comment-body" placeholder="Comment Text" />
+                                                            <br>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-info pull-right">Post Comment</button>
-                                            </form>
-                                            <div class="clearfix"></div>
-                                            <hr>
-                                            <ul class="media-list">
-                                                @*@foreach (var item in Model.BarCommentViewModels)
+
+                                                    <button type="submit" class="btn btn-info pull-right">Post Comment</button>
+                                                </form>
+                                                <div class="clearfix"></div>
+                                                <hr>
+                                            }
+                                         
+                                            <ul id="new-comment-here" class="media-list">
+                                                @foreach (var item in Model.CocktailCommentViewModels)
                                                 {
                                                     <li class="media">
                                                         <a href="#" class="pull-left">
@@ -121,56 +128,58 @@
                                                                     @item.CreatedOn
                                                                 </small>
                                                             </span>
+                                                            <strong class="text-success">@item.UserName</strong>
                                                             <p>
                                                                 @item.Body
                                                             </p>
                                                         </div>
                                                     </li>
-                                                }*@
+                                                    <br />
+                                                }
                                                 @*<li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                <small class="text-muted">30 min ago</small>
-                                                            </span>
-                                                            <strong class="text-success">@MartinoMont</strong>
-                                                            <p>
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                                Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                <small class="text-muted">30 min ago</small>
-                                                            </span>
-                                                            <strong class="text-success">@LaurenceCorreil</strong>
-                                                            <p>
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                                Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
-                                                            </p>
-                                                        </div>
-                                                    </li>*@
+                <a href="#" class="pull-left">
+                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                </a>
+                <div class="media-body">
+                    <span class="text-muted pull-right">
+                        <small class="text-muted">30 min ago</small>
+                    </span>
+                    <strong class="text-success">@MartinoMont</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                    </p>
+                </div>
+            </li>
+            <li class="media">
+                <a href="#" class="pull-left">
+                    <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                </a>
+                <div class="media-body">
+                    <span class="text-muted pull-right">
+                        <small class="text-muted">30 min ago</small>
+                    </span>
+                    <strong class="text-success">@LaurenceCorreil</strong>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
+                    </p>
+                </div>
+            </li>*@
                                                 @*<li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                <small class="text-muted">30 min ago</small>
-                                                            </span>
-                                                            <strong class="text-success">@JohnNida</strong>
-                                                            <p>
-                                                                Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
-                                                            </p>
-                                                        </div>
-                                                    </li>*@
+                <a href="#" class="pull-left">
+                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                </a>
+                <div class="media-body">
+                    <span class="text-muted pull-right">
+                        <small class="text-muted">30 min ago</small>
+                    </span>
+                    <strong class="text-success">@JohnNida</strong>
+                    <p>
+                        Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
+                    </p>
+                </div>
+            </li>*@
                                             </ul>
                                         </div>
                                     </div>
@@ -184,3 +193,8 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/AddCocktailComment.js"></script>
+}

@@ -20,7 +20,7 @@ namespace CocktailWizard.Services.DtoMappers
                 Id = entity.Id,
                 CocktailId = entity.CocktailId,
                 UserId = entity.UserId,
-                //UserName = entity.User.Email.Split('@')[0],
+                UserName = entity.User.Email.Split('@')[0],
                 Body = entity.Body,
                 CreatedOn = entity.CreatedOn,
                 ModifiedOn = entity.ModifiedOn,

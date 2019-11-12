@@ -1,11 +1,9 @@
-﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
+﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,17 +17,21 @@ namespace CocktailWizard.Web.Controllers
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
         private readonly CocktailService cocktailService;
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper;
+        private readonly CocktailCommentService cocktailCommentService;
+
         public CocktailsController(CocktailService cocktailService, 
             IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
             IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper, 
             IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
-            IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper)
+            IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper,
+            CocktailCommentService cocktailCommentService)
         {
             this.cocktailService = cocktailService;
             this.cocktailViewModelMapper = cocktailViewModelMapper;
             this.detailsCocktailViewModelMapper = detailsCocktailViewModelMapper;
             this.barViewModelMapper = barViewModelMapper;
             this.cocktailCommentVmMapper = cocktailCommentVmMapper;
+            this.cocktailCommentService = cocktailCommentService;
         }
         // GET: /Cocktails
         public async Task<IActionResult> Index(int? currPage)
@@ -60,7 +62,7 @@ namespace CocktailWizard.Web.Controllers
             return View(model);
         }
 
-        // GET: /Cocktails/Details/5
+        // GET: /Cocktails/Details/
         public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
@@ -69,20 +71,22 @@ namespace CocktailWizard.Web.Controllers
             }
 
             var dtoCocktail = await this.cocktailService.GetCocktailsBars(id);
-            var cocktailDtos = await this.cocktailService.GetAllCocktailsAsync();
-            //var cocktailCommentVM = this.cocktailCommentVmMapper.MapFrom(cocktailDtos);
+
+            var cocktailCommentDtos = await this.cocktailCommentService.GetCocktailCommentsAsync(id);
+            var cocktailCommentVM = this.cocktailCommentVmMapper.MapFrom(cocktailCommentDtos);
+
             var barsVM = this.barViewModelMapper.MapFrom(dtoCocktail.Bars);
             var cocktailVM = this.detailsCocktailViewModelMapper.MapFrom(dtoCocktail);
             cocktailVM.Bars = barsVM;
 
-            //if (cocktailVM != null)
-            //{
-            //    cocktailVM.CocktailCommentViewModels = coktailCommentVM;
-            //}
-            //else
-            //{
-            //    cocktailVM.CocktailCommentViewModels = new List<CocktailCommentViewModel>();
-            //}
+            if (cocktailVM != null)
+            {
+                cocktailVM.CocktailCommentViewModels = cocktailCommentVM;
+            }
+            else
+            {
+                cocktailVM.CocktailCommentViewModels = new List<CocktailCommentViewModel>();
+            }
 
             return View(cocktailVM);
         }

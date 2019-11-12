@@ -5,6 +5,9 @@ using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
@@ -16,8 +19,8 @@ namespace CocktailWizard.Services
 
         public CocktailCommentService(CWContext context, IDtoMapper<CocktailComment, CocktailCommentDto> dtoMapper)
         {
-            this.context = context;
-            this.dtoMapper = dtoMapper;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
         }
 
         public async Task<CocktailCommentDto> CreateAsync(CocktailCommentDto tempCocktailComment)
@@ -26,9 +29,6 @@ namespace CocktailWizard.Services
             {
                 throw new BusinessLogicException(ExceptionMessages.CocktailCommentNull);
             }
-
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Id == tempCocktailComment.UserId);
-            var userName = user.Email.Split('@')[0];
 
             var cocktailComment = new CocktailComment
             {
@@ -47,6 +47,20 @@ namespace CocktailWizard.Services
 
             var cocktailCommentDto = this.dtoMapper.MapFrom(cocktailComment);
             return cocktailCommentDto; 
+        }
+
+        public async Task<ICollection<CocktailCommentDto>> GetCocktailCommentsAsync(Guid cocktailId)
+        {
+            var cocktailComments = await this.context.CocktailComments
+                .Include(cc => cc.Cocktail)
+                .Include(cc => cc.User)
+                .Where(cc => cc.IsDeleted == false)
+                .Where(cc => cc.CocktailId == cocktailId)
+                .ToListAsync();
+
+            var cocktailCommentDtos = this.dtoMapper.MapFrom(cocktailComments);
+            return cocktailCommentDtos;
+
         }
     }
 }
