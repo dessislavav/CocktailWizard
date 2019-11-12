@@ -23,6 +23,8 @@ namespace CocktailWizard.Web.Utilities.Registration
 
             services.AddSingleton<IViewModelMapper<SearchBarDto, BarViewModel>, SearchBarViewModelMapper>();
 
+            services.AddSingleton<IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel>, CocktailRatingViewModelMapper>();
+
             return services;
         }
     }
