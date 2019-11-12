@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bootbox.JS" Version="5.2.0" />
     <PackageReference Include="GravatarHelper" Version="4.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
@@ -30,6 +31,51 @@
 
   <ItemGroup>
     <Folder Include="Areas\Manager\Data\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\scripts\locales\ar.js" />
+    <None Include="wwwroot\scripts\locales\az.js" />
+    <None Include="wwwroot\scripts\locales\bg_BG.js" />
+    <None Include="wwwroot\scripts\locales\cs.js" />
+    <None Include="wwwroot\scripts\locales\da.js" />
+    <None Include="wwwroot\scripts\locales\de.js" />
+    <None Include="wwwroot\scripts\locales\el.js" />
+    <None Include="wwwroot\scripts\locales\en.js" />
+    <None Include="wwwroot\scripts\locales\es.js" />
+    <None Include="wwwroot\scripts\locales\et.js" />
+    <None Include="wwwroot\scripts\locales\eu.js" />
+    <None Include="wwwroot\scripts\locales\fa.js" />
+    <None Include="wwwroot\scripts\locales\fi.js" />
+    <None Include="wwwroot\scripts\locales\fr.js" />
+    <None Include="wwwroot\scripts\locales\he.js" />
+    <None Include="wwwroot\scripts\locales\hr.js" />
+    <None Include="wwwroot\scripts\locales\hu.js" />
+    <None Include="wwwroot\scripts\locales\id.js" />
+    <None Include="wwwroot\scripts\locales\it.js" />
+    <None Include="wwwroot\scripts\locales\ja.js" />
+    <None Include="wwwroot\scripts\locales\ka.js" />
+    <None Include="wwwroot\scripts\locales\ko.js" />
+    <None Include="wwwroot\scripts\locales\lt.js" />
+    <None Include="wwwroot\scripts\locales\lv.js" />
+    <None Include="wwwroot\scripts\locales\nl.js" />
+    <None Include="wwwroot\scripts\locales\no.js" />
+    <None Include="wwwroot\scripts\locales\pl.js" />
+    <None Include="wwwroot\scripts\locales\pt-br.js" />
+    <None Include="wwwroot\scripts\locales\pt.js" />
+    <None Include="wwwroot\scripts\locales\ru.js" />
+    <None Include="wwwroot\scripts\locales\sk.js" />
+    <None Include="wwwroot\scripts\locales\sl.js" />
+    <None Include="wwwroot\scripts\locales\sq.js" />
+    <None Include="wwwroot\scripts\locales\sv.js" />
+    <None Include="wwwroot\scripts\locales\sw.js" />
+    <None Include="wwwroot\scripts\locales\ta.js" />
+    <None Include="wwwroot\scripts\locales\th.js" />
+    <None Include="wwwroot\scripts\locales\tr.js" />
+    <None Include="wwwroot\scripts\locales\uk.js" />
+    <None Include="wwwroot\scripts\locales\zh_CN.js" />
+    <None Include="wwwroot\scripts\locales\zh_TW.js" />
   </ItemGroup>
 
 </Project>

@@ -11,93 +11,95 @@
         </div>
     </div>
 </div>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" align="center">
+                    <br />
+                    <table class="table-striped text-center" align="center">
+                        <thead>
+                            <tr class="data-item data-head" align="center">
+                                <th width="50%"></th>
+                                <th width="25%"></th>
+                                <th width="25%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ingredient in Model.TenIngredients)
+                            {
+                                <tr class="data-item">
+                                    <td class="data-col dt-client">
+                                        <span class="lead client-name">@ingredient.Name</span>
+                                    </td>
+                                    <td class="data-col dt-client">
+                                        @using (Html.BeginForm("Delete", "Ingredients", new { id = ingredient.Id }, FormMethod.Post))
+                                        {
+                                            @Html.Hidden("Id", ingredient.Id)
+                                            <button data-id="@ingredient.Id" type="submit" class="btn btn-primary btn-raised delete-item">Delete<i class="material-icons">delete</i></button>
+                                        }
+                                    </td>
+                                    <td class="data-col dt-client">
+                                        @using (Html.BeginForm("Edit", "Ingredients", new { id = ingredient.Id, @class = "newName" }, FormMethod.Post))
+                                        {
+                                            <asp:hiddenfield id="newName" value=""/>
+                                            @Html.Hidden("Id", ingredient.Id)
+                                            <button data-id="@ingredient.Id" type="submit" class="btn btn-primary btn-raised edit-item">Edit<i class="material-icons">edit</i></button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+                    @if (Model.PrevPage == null)
+                    {
+                        <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
+                        <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
+                    }
 
-<div>
-    <table class="mobile-transact-table-scroll data-table client-list" id="client-table-list-by-id">
-        <thead>
-            <tr class="data-item data-head">
-                <th class="data-col dt-user">Name</th>
-                <th class="data-col dt-token">Manage Ingredients</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var ingredient in Model.TenIngredients)
-            {
-                <tr class="data-item">
-                    <td class="data-col dt-client">
-                        <span class="lead client-name">@ingredient.Name</span>
-                    </td>
-                    <td class="data-col dt-client">
-                        @*<div class="flex-col"><a class="btn btn-sm btn-primary-alt btn-auto" href="/Manager/Ingredients/Edit?=@ingredient.Id" data-id="@ingredient.Id">Edit</a></div>*@
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-ingredient="@ingredient.Id">Delete</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
 
-    @if (Model.PrevPage == null)
-    {
-        <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
-    }
-    else
-    {
-        <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
-        <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
-    }
-
-    <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
-
-    @if (Model.NextPage == null)
-    {
-        <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
-    }
-    else
-    {
-        <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
-        <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
-    }
-</div>
-
-<form>
-    <div class="col-md-6">
-        <div style="display:normal" id="ingrediens-div">
-            <div class="m-4">
-                <div>
-                    Name:
-                    <input type="text" class=" form-control" id="ingredient-name" />
+                    @if (Model.NextPage == null)
+                    {
+                        <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
+                        <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
+                    }
+                    <br />
+                    <form>
+                        <div class="col-md-6">
+                            <div style="display:normal" id="ingrediens-div">
+                                <div class="m-4">
+                                    <div>
+                                        <input type="text" class=" form-control" id="ingredient-name" placeholder="Name of the new ingredient..." />
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" id="ingrediens-to-db">Add new ingredient</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <button class="btn btn-light" id="ingrediens-to-db">Add new ingredient</button>
-        </div>
-    </div>
-</form>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
-            <div class="modal-body">
-                Are you sure you want to delete this ingredient?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a asp-action="Delete" asp-route-id="" type="submit" method="post" class="btn btn-primary">Delete</a>
-            </div>
+
         </div>
     </div>
 </div>
 
-@*@section Scripts{
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/js/ModalDeleteConfirm.js"></script>
-    }*@
+
+@section scripts
+{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/IngredientsDeleteConfirm.js"></script>
+    <script src="~/js/AddIngredientAjax.js"></script>
+    <script src="~/js/IngredientsEditModal.js"></script>
+
+}

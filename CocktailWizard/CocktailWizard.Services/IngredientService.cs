@@ -81,6 +81,7 @@ namespace CocktailWizard.Services
             if (currentPage == 1)
             {
                 tenIngredients = await this.context.Ingredients
+                    .Where(i => i.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Take(10)
                     .ToListAsync();
@@ -88,6 +89,7 @@ namespace CocktailWizard.Services
             else
             {
                 tenIngredients = await this.context.Ingredients
+                    .Where(i => i.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Skip((currentPage - 1) * 10)
                     .Take(10)
@@ -127,7 +129,7 @@ namespace CocktailWizard.Services
                 .Include(i => i.CocktailIngredients)
                 .FirstOrDefault(i => i.Id == id);
                 
-            if (!ingredient.CocktailIngredients.Any())
+            if (ingredient.CocktailIngredients.Any())
             {
                 throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
             }
