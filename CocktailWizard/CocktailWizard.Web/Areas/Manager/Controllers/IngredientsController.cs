@@ -20,7 +20,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         private readonly IViewModelMapper<IngredientDto, IngredientViewModel> ingredientViewModelMapper;
         private readonly IngredientService ingredientService;
 
-        public IngredientsController(IViewModelMapper<IngredientDto, IngredientViewModel> ingredientViewModelMapper, 
+        public IngredientsController(IViewModelMapper<IngredientDto, IngredientViewModel> ingredientViewModelMapper,
                                      IngredientService ingredientService)
         {
             this.ingredientViewModelMapper = ingredientViewModelMapper ?? throw new ArgumentException(nameof(ingredientViewModelMapper));
@@ -74,7 +74,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         public async Task<IActionResult> Add([FromBody]IngredientViewModel ingredientViewModel)
         {
             var ingredientDto = this.ingredientViewModelMapper.MapFrom(ingredientViewModel);
-                
+
             await this.ingredientService.CreateIngredientAsync(ingredientDto);
 
             return Json(ingredientViewModel);
@@ -84,13 +84,12 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         // POST: Manager/Ingredients/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(IngredientViewModel ingredientViewModel)
         public async Task<IActionResult> Edit(Guid id, string newName)
         {
             if (ModelState.IsValid)
             {
-                //var ingredientDto = await this.ingredientService.GetIngredientAsync(ingredientViewModel.Id);
-                //await this.ingredientService.EditAsync(ingredientDto);
+                var ingredientDto = await this.ingredientService.GetIngredientAsync(id);
+                await this.ingredientService.EditAsync(ingredientDto);
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);

@@ -30,7 +30,7 @@
                             {
                                 <tr class="data-item">
                                     <td class="data-col dt-client">
-                                        <span class="lead client-name">@ingredient.Name</span>
+                                        <span id="@ingredient.Id+name" value="@ingredient.Name">@ingredient.Name</span>
                                     </td>
                                     <td class="data-col dt-client">
                                         @using (Html.BeginForm("Delete", "Ingredients", new { id = ingredient.Id }, FormMethod.Post))
@@ -39,13 +39,37 @@
                                             <button data-id="@ingredient.Id" type="submit" class="btn btn-primary btn-raised delete-item">Delete<i class="material-icons">delete</i></button>
                                         }
                                     </td>
-                                    <td class="data-col dt-client">
-                                        @using (Html.BeginForm("Edit", "Ingredients", new { id = ingredient.Id, @class = "newName" }, FormMethod.Post))
-                                        {
-                                            <asp:hiddenfield id="newName" value=""/>
-                                            @Html.Hidden("Id", ingredient.Id)
-                                            <button data-id="@ingredient.Id" type="submit" class="btn btn-primary btn-raised edit-item">Edit<i class="material-icons">edit</i></button>
-                                        }
+                                    <td>
+                                        <button id="@ingredient.Id" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
+                                            Edit
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade @ingredient.Id" id="@ingredient.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            Edit Ingredient
+                                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                            <div class="form-group">
+                                                                <input type="text" id="@ingredient.Id+IngName" data-val-required="true" class="form-control" placeholder="New name..." />
+                                                                <span class="text-danger"></span>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" value="@ingredient.Id" onclick="SaveModal(this.value)"> Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             }
@@ -87,12 +111,42 @@
                         </div>
                     </form>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
+
+@*<script>
+    function showModal(id) {
+        $(`.${id}`).modal('show');
+    };
+    function SaveModal(id) {
+        let currentElementId = id + '+IngName';
+        let input = document.getElementById(currentElementId);
+        let newNameValue = $(input).val();
+        let oldElementId = id + '+name';
+        let oldElement = document.getElementById(oldElementId);
+        $(oldElement).text(newNameValue);
+        $(`.${id}`).modal('hide');
+
+        $.ajax(
+
+            {
+                type: "Post",
+                url: "Ingredients/Edit",
+
+                data: {
+                    'id': id,
+                    'newName': newNameValue
+                },
+                headers: {
+                    RequestVerificationToken:
+                        $('input:hidden[name="__RequestVerificationToken"]').val(),
+                },
+
+            })
+    }
+</script>*@
 
 
 @section scripts
