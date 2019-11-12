@@ -18,13 +18,17 @@ namespace CocktailWizard.Web.Controllers
         private readonly CocktailService cocktailService;
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper;
         private readonly CocktailCommentService cocktailCommentService;
+        private readonly CocktailRatingService cocktailRatingService;
+        private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper;
 
         public CocktailsController(CocktailService cocktailService, 
             IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
             IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper, 
             IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
             IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper,
-            CocktailCommentService cocktailCommentService)
+            CocktailCommentService cocktailCommentService,
+            IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper,
+            CocktailRatingService cocktailRatingService)
         {
             this.cocktailService = cocktailService;
             this.cocktailViewModelMapper = cocktailViewModelMapper;
@@ -32,6 +36,8 @@ namespace CocktailWizard.Web.Controllers
             this.barViewModelMapper = barViewModelMapper;
             this.cocktailCommentVmMapper = cocktailCommentVmMapper;
             this.cocktailCommentService = cocktailCommentService;
+            this.cocktailRatingService = cocktailRatingService;
+            this.cocktailRatingVmMapper = cocktailRatingVmMapper;
         }
         // GET: /Cocktails
         public async Task<IActionResult> Index(int? currPage)
@@ -75,6 +81,9 @@ namespace CocktailWizard.Web.Controllers
             var cocktailCommentDtos = await this.cocktailCommentService.GetCocktailCommentsAsync(id);
             var cocktailCommentVM = this.cocktailCommentVmMapper.MapFrom(cocktailCommentDtos);
 
+            var cocktailRatingDtos = await this.cocktailRatingService.GetAllRatingsAsync(id);
+            var cocktailRatingVM = this.cocktailRatingVmMapper.MapFrom(cocktailRatingDtos);
+
             var barsVM = this.barViewModelMapper.MapFrom(dtoCocktail.Bars);
             var cocktailVM = this.detailsCocktailViewModelMapper.MapFrom(dtoCocktail);
             cocktailVM.Bars = barsVM;
@@ -86,6 +95,15 @@ namespace CocktailWizard.Web.Controllers
             else
             {
                 cocktailVM.CocktailCommentViewModels = new List<CocktailCommentViewModel>();
+            }
+
+            if (cocktailVM != null)
+            {
+                cocktailVM.CocktailRatingViewModels = cocktailRatingVM;
+            }
+            else
+            {
+                cocktailVM.CocktailRatingViewModels = new List<CocktailRatingViewModel>();
             }
 
             return View(cocktailVM);
