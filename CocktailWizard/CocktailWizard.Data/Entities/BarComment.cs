@@ -9,6 +9,7 @@ namespace CocktailWizard.Data.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
+        public Guid Id { get; set; }
         public Guid BarId { get; set; }
         public Bar Bar { get; set; }
         public Guid UserId { get; set; }

@@ -36,6 +36,7 @@ namespace CocktailWizard.Services
 
             var barComment = new BarComment
             {
+                Id = tempBarComment.Id,
                 BarId = tempBarComment.BarId,
                 UserId = tempBarComment.UserId,
                 Body = tempBarComment.Body,
@@ -56,7 +57,7 @@ namespace CocktailWizard.Services
         {
             var barComments = await this.context.BarComments
                 .Include(bc => bc.Bar)
-                //.Include(bc => bc.User)
+                .Include(bc => bc.User)
                 .Where(bc => bc.IsDeleted == false)
                 .Where(bc => bc.BarId == barId)
                 .ToListAsync();

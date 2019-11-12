@@ -6,22 +6,21 @@ using System.Linq;
 
 namespace CocktailWizard.Services.DtoMappers
 {
-    public class BarCommentDtoMapper : IDtoMapper<BarComment, BarCommentDto>
+    public class CocktailCommentDtoMapper : IDtoMapper<CocktailComment, CocktailCommentDto>
     {
-       
-        public BarCommentDto MapFrom(BarComment entity)
+        public CocktailCommentDto MapFrom(CocktailComment entity)
         {
             if (entity == null)
             {
                 return null;
             }
 
-            return new BarCommentDto
+            return new CocktailCommentDto
             {
                 Id = entity.Id,
-                BarId = entity.BarId,
-                //UserId = entity.UserId,
-                UserName = entity.User.Email.Split('@')[0],
+                CocktailId = entity.CocktailId,
+                UserId = entity.UserId,
+                //UserName = entity.User.Email.Split('@')[0],
                 Body = entity.Body,
                 CreatedOn = entity.CreatedOn,
                 ModifiedOn = entity.ModifiedOn,
@@ -30,7 +29,7 @@ namespace CocktailWizard.Services.DtoMappers
             };
         }
 
-        public ICollection<BarCommentDto> MapFrom(ICollection<BarComment> entities)
+        public ICollection<CocktailCommentDto> MapFrom(ICollection<CocktailComment> entities)
         {
             return entities.Select(this.MapFrom).ToList();
         }

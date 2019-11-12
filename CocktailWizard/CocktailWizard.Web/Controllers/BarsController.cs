@@ -1,5 +1,6 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
+using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Mvc;

@@ -2,15 +2,15 @@
     e.preventDefault();
     const body = $('#comment-body').val();
     const parts = location.pathname.split('/');
-    const barId = parts[parts.length - 1];
+    const cocktailId = parts[parts.length - 1];
     const data = {
         'Body': body,
-        'BarId': barId
+        'CocktailId': cocktailId
     }
 
     $.ajax({
         type: "POST",
-        url: "/Member/BarComments/Create/",
+        url: "/Member/CocktailComments/Create/",
         data: JSON.stringify(data),
         headers: {
             RequestVerificationToken:
@@ -23,7 +23,7 @@
             console.log(data);
             $('#new-comment-here').append(data.body);
         },
- 
+
         error: function (msg) {
             console.dir(msg);
         }

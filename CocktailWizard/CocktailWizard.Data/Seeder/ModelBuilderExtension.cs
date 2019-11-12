@@ -549,6 +549,7 @@ namespace CocktailWizard.Data.Seeder
             //SEEDING BARCOMMENTS
             var barComment1 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar1.Id,
                 UserId = user1.Id,
                 Body = "I must be honest I picked the place because I have never been there. I was by myself and the plan for me was to drink as I needed a night by myself to think and forget everything around me. The barman (by the accent was French) was freaking cool.asked a lot of questions, suggested drinks and was quick and nice to me all night long.",
@@ -556,6 +557,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment2 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar1.Id,
                 UserId = user2.Id,
                 Body = "Great bar to visit after work. We have been visiting after work most Fridays and some weekdays for the best part of 2 years now. Good atmosphere, great decor and all round friendly staff. Highly recommended.",
@@ -563,6 +565,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment3 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar1.Id,
                 UserId = user3.Id,
                 Body = "I stumbled across while visiting Canary Wharf and I have to say I was really impressed by how nice and accomodating the staff were. I received a very warm welcome straight from walking through the doors, they looked like they had some sort of event in the evening as all the tables were reserved but they let me seat before the party arrived. I ordered for a beer and some nibbles which came quick and was really tasty. Excactly what I needed after a long day visiting and shopping.",
@@ -570,6 +573,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment4 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar2.Id,
                 UserId = user4.Id,
                 Body = "Love this place. I've been coming here for 3 years and the staff are wonderful. Amazing service, great location and menu.  They are very dog friendly and treat mine like their own... Highly recommend this place.",
@@ -577,6 +581,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment5 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar2.Id,
                 UserId = user5.Id,
                 Body = "Sure, I am happy to provide more information. I visited for a work event yesterday evening. The place is good with some nice outside space. Drink options are ok/alright. Music was a big negative though ; as this was a work event we were there to network and talk. This was made impossible as the music volume suddenly (around 7.30pm) was increased dramatically making it impossible to continue any conversation.",
@@ -584,6 +589,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment6 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar2.Id,
                 UserId = user6.Id,
                 Body = "It’s quite a nice place to go for some drinks and food after work, which is what I did. Although a little cold, there are blankets and warm things to keep you warm under the heaters. Food was good though we was told that the menu we was not the correct one, then was waiting around for ages.",
@@ -591,6 +597,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment7 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar3.Id,
                 UserId = user7.Id,
                 Body = "I went on Tuesday of the last week and the weather was horrible so I really like the detail of having some blankets outside and also the waitress was super nice and attentive. Best place in Canary wharf!",
@@ -598,6 +605,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment8 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar3.Id,
                 UserId = user1.Id,
                 Body = "Stuff are friendly, location is charming.",
@@ -605,6 +613,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment9 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar3.Id,
                 UserId = user2.Id,
                 Body = "Awsome music and drinks.",
@@ -612,6 +621,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment10 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar4.Id,
                 UserId = user1.Id,
                 Body = "I organised my office Christmas party at the pagination and it was the most epic night ever. The staff were super efficient and executed my plan to the detail. In addition the venue is so nicely decorated for the Christmas holiday. I'm not a fan of vegan food but they didn't have a wide selection, if you aren't fussy then it's a place to check out.",
@@ -619,6 +629,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment11 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar4.Id,
                 UserId = user2.Id,
                 Body = "One of Canary wharf's more relaxing venues for a breakfast meeting.",
@@ -626,6 +637,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment12 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar4.Id,
                 UserId = user3.Id,
                 Body = "A dog wandering around sniffing my legs on a Friday night in a well designed bar?",
@@ -633,6 +645,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment13 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar5.Id,
                 UserId = user4.Id,
                 Body = "Open space, light, modern place. Cosy. No table cloth, table was a bit dirty. Friendly caring service. Food OK - nice BF omlette, but toast too crunchy and dry.",
@@ -640,6 +653,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment14 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar5.Id,
                 UserId = user5.Id,
                 Body = "1 star because 0 doesn't seem to be an option... I had the misfortune of visiting for lunch and will never make that mistake again.I have been here for drinks before and while service has never been good it's never been noticably terrible before.",
@@ -647,6 +661,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment15 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar5.Id,
                 UserId = user1.Id,
                 Body = "Highly recommended to anyone looking for breakfast in the Canary Wharf district. Full veggie breakfast and buttermilk pancakes perfectly executed, with punctual service and a cozy atmosphere. Would go again.",
@@ -654,6 +669,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment16 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar6.Id,
                 UserId = user6.Id,
                 Body = "Get there early if you want to have a table or stool as it gets full very fast and most tables are pre reserved.",
@@ -661,6 +677,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment17 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar6.Id,
                 UserId = user7.Id,
                 Body = "I been there few times and I can say that everything is fantastic. Especially Tony is a very good guy... I will defenitly come back.",
@@ -668,6 +685,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment18 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar7.Id,
                 UserId = user1.Id,
                 Body = "Nice seating area outside. Great place for a happy hour. Very friendly staff. Just didn't like the burgers we've ordered. Not really tasty. May try something else next time.",
@@ -675,6 +693,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment19 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar7.Id,
                 UserId = user2.Id,
                 Body = "Everything is good with this venue - except the food.",
@@ -682,6 +701,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment20 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar7.Id,
                 UserId = user3.Id,
                 Body = "We instantly felt welcome as soon as we walked in the door. The food was amazing and the staff were very warm and friendly and nothing was  too much trouble. The decor is stunning and I thoroughly recommend this bar/restaurant. We will definitely be going back.",
@@ -689,6 +709,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment21 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar8.Id,
                 UserId = user4.Id,
                 Body = "Quite good.",
@@ -696,6 +717,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment22 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar8.Id,
                 UserId = user5.Id,
                 Body = "Good lunchtime menu.. tasty meal, good price, great service and environment. Separate area for food or just drinks",
@@ -703,6 +725,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment23 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar9.Id,
                 UserId = user6.Id,
                 Body = "I really like this place and had my birthday drinks here after work.  Staff are accommodating, reasonable priced and the outside seating is great",
@@ -710,6 +733,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment24 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar9.Id,
                 UserId = user7.Id,
                 Body = "One of my favourite bars!",
@@ -717,6 +741,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment25 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar10.Id,
                 UserId = user1.Id,
                 Body = "Good place, a bit expensive though!",
@@ -724,6 +749,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment26 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar10.Id,
                 UserId = user2.Id,
                 Body = "Nice inside with a reel modern feel. Cocktails were great!",
@@ -731,6 +757,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var barComment27 = new BarComment
             {
+                Id = Guid.NewGuid(),
                 BarId = bar10.Id,
                 UserId = user3.Id,
                 Body = "Stylish and great outdoor areas. Expensive.",
@@ -744,6 +771,7 @@ namespace CocktailWizard.Data.Seeder
             //SEEDING COCKTAILCOMMENTS
             var cocktailComment1 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = whiteSangria.Id,
                 UserId = user1.Id,
                 Body = "This drink is summer in a bottle! It tastes amazing on a hot summer day. I have been drinking this for a few years now and it's always as good as the first time. It has such a perfect long island flavor. I would buy it again, for sure. I would also recommend it for someone who doesn't like a strong tasting drink, it's very mild.",
@@ -751,6 +779,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment2 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = whiteSangria.Id,
                 UserId = user2.Id,
                 Body = "I honestly wasnt a fan of this. My husband and friend at the time of trial actually enjoyed it. We brought it out of Walmart- it was something cheap a spur of the moment purchase. It tasted artificial. Like the lemonade could have been better along with the tea. It wasnt a good fit for me. I wouldn't buy my again. I would rather just make my own from scratch that way I know what exactly is in it.",
@@ -758,6 +787,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment3 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = michelada.Id,
                 UserId = user3.Id,
                 Body = "loved!!!! loved!!!! loved!!!! judt a little loud on smell and strong spice taste. i do t drink anymore but I use to and j mean alot. price is affordable on pretty much any salary depends on how badly you want it I suppose. changes would be have more specials or do some drawing prices ect.",
@@ -765,12 +795,14 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment4 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = michelada.Id,
                 UserId = user4.Id,
                 Body = "I drink this when I'm in the mood for long island ice tea. I love the flavor of the mix. It goes down smooth and taste great. This product compares well to similar products. I would definitely recommend this product to others. I will be purchasing this product again."
             };
             var cocktailComment5 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = pinkGinIcedTea.Id,
                 UserId = user5.Id,
                 Body = "My sister had made some long island iced tea for us. It tastes really good. Almost like an iced tea but with the alcohol. It is pretty expensive but you can get alternatives ones at the liquor store for cheap. I recommend to get it when you or anyone parties.",
@@ -778,6 +810,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment6 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = pinkGinIcedTea.Id,
                 UserId = user6.Id,
                 Body = "It's very smooth. Mostly, it is affordable, easy to find and tastes great. I think this is a popular item all around, especially the brand.",
@@ -785,6 +818,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment7 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = longIsland.Id,
                 UserId = user7.Id,
                 Body = "AWESOME!",
@@ -792,6 +826,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment8 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = longIsland.Id,
                 UserId = user1.Id,
                 Body = "My sister had made some long island iced tea for us. It tastes really good. Almost like an iced tea but with the alcohol. It is pretty expensive but you can get alternatives ones at the liquor store for cheap. I recommend to get it when you or anyone parties.",
@@ -799,6 +834,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment9 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = cranberryVodka.Id,
                 UserId = user2.Id,
                 Body = "Awsome drink.",
@@ -806,6 +842,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment10 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = cranberryVodka.Id,
                 UserId = user1.Id,
                 Body = "I think this is great for people that like really strong alcohol I’m not really a fan of it I tried it once at a gathering but I don’t think it will be my cuppa tea to actually purchase this at anytime.",
@@ -813,6 +850,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment11 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = bucksFizz.Id,
                 UserId = user2.Id,
                 Body = "This is a really good summer drink to have on the rocks or with Coke I love to have it sitting outside by a fire price of this is well worth the bottle of rum I highly recommend anybody trying this.",
@@ -820,6 +858,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment12 = new CocktailComment
             {
+                Id = Guid.Parse("AA150FA0-708C-4BFD-8267-31081EC84E90"),
                 CocktailId = bucksFizz.Id,
                 UserId = user3.Id,
                 Body = "I actually like this drink. You can drink it alone. It's inexpensive. It's pretty strong. It's not too bitter but it does have a bit too much sweet & sour taste. I've bought it several times.",
@@ -827,6 +866,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment13 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = sexOnTheBeach.Id,
                 UserId = user4.Id,
                 Body = "This will always be one of my favorite drinks.",
@@ -834,6 +874,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment14 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = sexOnTheBeach.Id,
                 UserId = user5.Id,
                 Body = "This is by far one of my favourites! It is sweet and you don't think it's going to get you drunk but you can end up crawling if you don't drink it responsibly ;) , also it is super cheap and perfect for parties. I totally recommend it straight or with some ice.",
@@ -841,6 +882,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment15 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = raspberryGin.Id,
                 UserId = user1.Id,
                 Body = "perfect for those tea drinking friends you may have coming over to an event you are hosting at your house. very affordable and lasts a really long time compared to some other brands",
@@ -848,6 +890,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment16 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = raspberryGin.Id,
                 UserId = user6.Id,
                 Body = "OH MY GOODNESS!!! I LOVE THIS STUFF!",
@@ -855,6 +898,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment17 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = passionFruit.Id,
                 UserId = user7.Id,
                 Body = "One of my favorites to drink!",
@@ -862,6 +906,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment18 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = passionFruit.Id,
                 UserId = user1.Id,
                 Body = "It is ok..just ok. I wouldn't necessarily recommend. ",
@@ -869,6 +914,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment19 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = cosmopolitan.Id,
                 UserId = user2.Id,
                 Body = "Tried this once at a party. I'm not a big fan of it, but this was good. It was better than expected. I would try again.",
@@ -876,6 +922,7 @@ namespace CocktailWizard.Data.Seeder
             };
             var cocktailComment20 = new CocktailComment
             {
+                Id = Guid.NewGuid(),
                 CocktailId = cosmopolitan.Id,
                 UserId = user3.Id,
                 Body = "Always a good one! Mix it with anything you like and it will be delicious. The flavour on its own is too strong for me, but if that's what you like than go for it babes! The bottle can last for ages so I think u get good value for what you've pay for. I would buy again",

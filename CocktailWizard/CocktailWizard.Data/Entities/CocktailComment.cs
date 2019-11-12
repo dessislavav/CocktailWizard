@@ -1,12 +1,12 @@
 ﻿using CocktailWizard.Data.Entities.Abstract;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CocktailWizard.Data.Entities
 {
     public class CocktailComment : Entity
     {
+        public Guid Id { get; set; }
         public Guid CocktailId { get; set; }
         public Cocktail Cocktail { get; set; }
         public Guid UserId { get; set; }
