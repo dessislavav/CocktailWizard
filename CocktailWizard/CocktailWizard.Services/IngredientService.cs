@@ -158,20 +158,25 @@ namespace CocktailWizard.Services
             return newIngredientDto;
         }
 
-        public async Task<IngredientDto> EditAsync(IngredientDto ingredientDto)
+        public async Task<IngredientDto> EditAsync(Guid id, string newName)
         {
-            if (ingredientDto == null)
+            if (id == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.IngredientNull);
+            }
+
+            if (String.IsNullOrEmpty(newName))
             {
                 throw new BusinessLogicException(ExceptionMessages.IngredientNull);
             }
 
             var ingredient = await this.context.Ingredients
                 .Where(b => b.IsDeleted == false)
-                .FirstOrDefaultAsync(b => b.Id == ingredientDto.Id);
+                .FirstOrDefaultAsync(b => b.Id == id);
 
             try
             {
-                ingredient.Name = ingredientDto.Name;
+                ingredient.Name = newName;
 
                 this.context.Update(ingredient);
                 await this.context.SaveChangesAsync();
