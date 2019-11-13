@@ -34,23 +34,37 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
             this.cocktailRatingService = cocktailRatingService;
         }
 
-        // POST: Member/CocktailRatings/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] CocktailRatingViewModel viewModel)
+
+
+        [HttpGet]
+        public IActionResult Create()
         {
-            // if model state
-            var user = await this.userManager.GetUserAsync(User);
-            var userName = user.Email.Split('@')[0];
-
-            viewModel.UserId = user.Id;
-            viewModel.UserName = userName;
-            var commentDto = this.modelMapper.MapFrom(viewModel);
+            return View();
+        }
 
 
-            await this.cocktailRatingService.CreateAsync(commentDto);
+        // POST: Member/CocktailRatings/Create
+        [HttpPost, ActionName("Create")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CocktailRatingViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await this.userManager.GetUserAsync(User);
+                var userName = user.Email.Split('@')[0];
 
-            return Json(viewModel);
+                viewModel.UserId = user.Id;
+                viewModel.UserName = userName;
+                var ratingDto = this.modelMapper.MapFrom(viewModel);
+
+
+                await this.cocktailRatingService.CreateAsync(ratingDto);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(viewModel);
+
         }
     }
 }

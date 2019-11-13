@@ -5,6 +5,7 @@
 
 <head>
     <link rel="stylesheet" href="~/css/barsearchpartial.css" />
+    <link rel="stylesheet" href="~/css/StarRating.css" />
 </head>
 
 <!--
@@ -87,7 +88,66 @@
                 </div>
                 <div class="tab-pane text-center gallery " id="works">
                     <div class="row">
-                        @*PLACE FOR REVIEWS*@
+                        <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div hidden class="form-group">
+                                <input asp-for="CocktailRatingViewModels.First().CocktailId" type="hidden" value="@Model.Id">
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="star-source">
+                                        <svg>
+                                            <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
+                                                <stop stop-color="#bf209f" offset="0%"></stop>
+                                                <stop stop-color="#d62a9d" offset="60%"></stop>
+                                                <stop stop-color="#ED009E" offset="100%"></stop>
+                                            </linearGradient>
+                                            <symbol id="star" viewBox="153 89 106 108">
+                                                <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
+                                            </symbol>
+                                        </svg>
+                                    </div>
+                                    <div class="star-container">
+                                        <input type="radio" name="star" id="five" value="5">
+                                        <label for="five">
+                                            <svg class="star">
+                                                <use xlink:href="#star" />
+                                            </svg>
+                                        </label>
+                                        <input type="radio" name="star" id="four" value="4">
+                                        <label for="four">
+                                            <svg class="star">
+                                                <use xlink:href="#star" />
+                                            </svg>
+                                        </label>
+                                        <input type="radio" name="star" id="three" value="3">
+                                        <label for="three">
+                                            <svg class="star">
+                                                <use xlink:href="#star" />
+                                            </svg>
+                                        </label>
+                                        <input type="radio" name="star" id="two" value="2">
+                                        <label for="two">
+                                            <svg class="star">
+                                                <use xlink:href="#star" />
+                                            </svg>
+                                        </label>
+                                        <input type="radio" name="star" id="one" value="1">
+                                        <label for="one">
+                                            <svg class="star">
+                                                <use xlink:href="#star" />
+                                            </svg>
+                                        </label>
+                                        <input asp-for="CocktailRatingViewModels.First().Value" hidden="hidden" id="currentValue" value="" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Add rating" class="btn btn-primary" />
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="tab-pane text-center gallery justify-content-center" id="favorite">
@@ -114,7 +174,7 @@
                                                 <div class="clearfix"></div>
                                                 <hr>
                                             }
-                                         
+
                                             <ul id="new-comment-here" class="media-list">
                                                 @foreach (var item in Model.CocktailCommentViewModels)
                                                 {
@@ -137,49 +197,49 @@
                                                     <br />
                                                 }
                                                 @*<li class="media">
-                <a href="#" class="pull-left">
-                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                </a>
-                <div class="media-body">
-                    <span class="text-muted pull-right">
-                        <small class="text-muted">30 min ago</small>
-                    </span>
-                    <strong class="text-success">@MartinoMont</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                    </p>
-                </div>
-            </li>
-            <li class="media">
-                <a href="#" class="pull-left">
-                    <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-                </a>
-                <div class="media-body">
-                    <span class="text-muted pull-right">
-                        <small class="text-muted">30 min ago</small>
-                    </span>
-                    <strong class="text-success">@LaurenceCorreil</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
-                    </p>
-                </div>
-            </li>*@
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">30 min ago</small>
+                                                            </span>
+                                                            <strong class="text-success">@MartinoMont</strong>
+                                                            <p>
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                                Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">30 min ago</small>
+                                                            </span>
+                                                            <strong class="text-success">@LaurenceCorreil</strong>
+                                                            <p>
+                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                                Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
+                                                            </p>
+                                                        </div>
+                                                    </li>*@
                                                 @*<li class="media">
-                <a href="#" class="pull-left">
-                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
-                </a>
-                <div class="media-body">
-                    <span class="text-muted pull-right">
-                        <small class="text-muted">30 min ago</small>
-                    </span>
-                    <strong class="text-success">@JohnNida</strong>
-                    <p>
-                        Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
-                    </p>
-                </div>
-            </li>*@
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <span class="text-muted pull-right">
+                                                                <small class="text-muted">30 min ago</small>
+                                                            </span>
+                                                            <strong class="text-success">@JohnNida</strong>
+                                                            <p>
+                                                                Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
+                                                            </p>
+                                                        </div>
+                                                    </li>*@
                                             </ul>
                                         </div>
                                     </div>
@@ -197,4 +257,13 @@
 @section Scripts{
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/AddCocktailComment.js"></script>
+    <script>
+        $(".star-container").on("change", (getId) => {
+            let rt = $(getId)[0].target.defaultValue;
+            console.log(rt);
+            let a = $("#currentValue").val(rt);
+            console.log(a);
+        });
+    </script>
+
 }
