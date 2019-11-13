@@ -88,8 +88,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-                var ingredientDto = await this.ingredientService.GetIngredientAsync(id);
-                await this.ingredientService.EditAsync(ingredientDto);
+                await this.ingredientService.EditAsync(id, newName);
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
