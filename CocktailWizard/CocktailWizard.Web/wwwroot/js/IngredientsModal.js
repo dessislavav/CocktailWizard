@@ -5,9 +5,11 @@ function SaveModal(id) {
     let currentElementId = id + '+IngName';
     let input = document.getElementById(currentElementId);
     let newNameValue = $(input).val();
+
     let oldElementId = id + '+name';
     let oldElement = document.getElementById(oldElementId);
     $(oldElement).text(newNameValue);
+
     $(`.${id}`).modal('hide');
 
     $.ajax(

@@ -28,35 +28,6 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             this.cocktailService = cocktailService;
         }
 
-        // GET: Manager/Bars
-        public async Task<IActionResult> Index()
-        {
-            var allBars = await this.barService.GetAllBarsAsync();
-            var barVMs = this.barViewModelMapper.MapFrom(allBars);
-
-            return View(barVMs);
-        }
-
-        // GET: Manager/Bars/Details/5
-        public async Task<IActionResult> Details(Guid id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var barDto = await this.barService.GetBarAsync(id);
-            var barVM = this.barViewModelMapper.MapFrom(barDto);
-
-            return View(barVM);
-        }
-
-        // GET: Manager/Bars/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Manager/Bars/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,40 +47,25 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
 
         }
 
-        // GET: Manager/Bars/Edit/
-        public async Task<IActionResult> Edit(Guid id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var barDto = await this.barService.GetBarAsync(id);
-            var barVM = this.barViewModelMapper.MapFrom(barDto);
-
-            return View(barVM);
-        }
-
         // POST: Manager/Bars/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(BarViewModel barVM)
+        public async Task<IActionResult> Edit(Guid id, string newName, string newInfo, string newAddress, string newPhone, string newImagePath)
         {
             if (ModelState.IsValid)
             {
-                var barDto = this.barViewModelMapper.MapFrom(barVM);
-
-                await this.barService.EditAsync(barDto);
+                var barDto = await this.barService.EditAsync(id, newName, newInfo, newAddress, newPhone, newImagePath);
 
                 return RedirectToAction("Details", new { id = barDto.Id});
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
-
-            return View(barVM);
+            return View();
         }
 
-        // GET: Manager/Bars/Delete/5
+        // POST: Manager/Bars/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
@@ -117,30 +73,16 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
                 return NotFound();
             }
 
-            var barDto = await this.barService.GetBarAsync(id);
-
-            if (barDto == null)
+            try
             {
-                return NotFound();
+                await this.barService.DeleteAsync(id);
             }
-            var barViewModel = this.barViewModelMapper.MapFrom(barDto);
-
-            return View(barViewModel);
-        }
-
-        // POST: Manager/Bars/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            if (id == null)
+            catch (Exception)
             {
-                return NotFound();
+                throw;
             }
-
-            await this.barService.DeleteAsync(id);
-
-            return RedirectToAction(nameof(Index)); 
+            
+            return RedirectToAction("Index", "Bars", new { area = "" });
         }
 
         // GET: Manager/Bars/AddCocktails

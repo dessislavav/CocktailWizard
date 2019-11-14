@@ -19,7 +19,7 @@
                     <br />
                     <table class="table-striped text-center" align="center">
                         <thead>
-                            <tr class="data-item data-head" align="center">
+                            <tr align="center">
                                 <th width="50%"></th>
                                 <th width="25%"></th>
                                 <th width="25%"></th>
@@ -28,19 +28,19 @@
                         <tbody>
                             @foreach (var ingredient in Model.TenIngredients)
                             {
-                                <tr class="data-item">
-                                    <td class="data-col dt-client">
+                                <tr>
+                                    <td>
                                         <span id="@ingredient.Id+name" value="@ingredient.Name">@ingredient.Name</span>
                                     </td>
-                                    <td class="data-col dt-client">
+                                    <td>
                                         @using (Html.BeginForm("Delete", "Ingredients", new { id = ingredient.Id }, FormMethod.Post))
                                         {
                                             @Html.Hidden("Id", ingredient.Id)
-                                            <button data-id="@ingredient.Id" type="submit" class="btn btn-primary btn-raised delete-item">Delete<i class="material-icons">delete</i></button>
+                                            <button data-id="@ingredient.Id" type="submit" class="btn btn-primary btn-sm btn-block delete-item">Delete</button>
                                         }
                                     </td>
                                     <td>
-                                        <button id="@ingredient.Id" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
+                                        <button id="@ingredient.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
                                             Edit
                                         </button>
 

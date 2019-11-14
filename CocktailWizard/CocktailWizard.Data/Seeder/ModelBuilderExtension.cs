@@ -252,6 +252,131 @@ namespace CocktailWizard.Data.Seeder
 
             builder.Entity<Cocktail>().HasData(cosmopolitan, passionFruit, raspberryGin, sexOnTheBeach, pinkGinIcedTea, longIsland, michelada, whiteSangria, bucksFizz, cranberryVodka);
 
+            //SEEDING COCKTAILINGREDIENTS
+            //SEEDING COCKTAILINGREDIENTS
+            //SEEDING COCKTAILINGREDIENTS
+            var cocktailIngredient1 = new CocktailIngredient
+            {
+                CocktailId = cosmopolitan.Id,
+                IngredientId = vodka.Id,
+            };
+
+            var cocktailIngredient2 = new CocktailIngredient
+            {
+                CocktailId = cosmopolitan.Id,
+                IngredientId = limeWedge.Id,
+            };
+
+            var cocktailIngredient3 = new CocktailIngredient
+            {
+                CocktailId = passionFruit.Id,
+                IngredientId = vodka.Id,
+            };
+
+            var cocktailIngredient4 = new CocktailIngredient
+            {
+                CocktailId = passionFruit.Id,
+                IngredientId = limeWedge.Id,
+            };
+
+            var cocktailIngredient5 = new CocktailIngredient
+            {
+                CocktailId = raspberryGin.Id,
+                IngredientId = raspberries.Id,
+            };
+
+            var cocktailIngredient6 = new CocktailIngredient
+            {
+                CocktailId = raspberryGin.Id,
+                IngredientId = gin.Id,
+            };
+
+            var cocktailIngredient7 = new CocktailIngredient
+            {
+                CocktailId = sexOnTheBeach.Id,
+                IngredientId = vodka.Id,
+            };
+
+            var cocktailIngredient8 = new CocktailIngredient
+            {
+                CocktailId = sexOnTheBeach.Id,
+                IngredientId = oranges.Id,
+            };
+
+            var cocktailIngredient9 = new CocktailIngredient
+            {
+                CocktailId = pinkGinIcedTea.Id,
+                IngredientId = gin.Id,
+            };
+
+            var cocktailIngredient10 = new CocktailIngredient
+            {
+                CocktailId = pinkGinIcedTea.Id,
+                IngredientId = kiwis.Id,
+            };
+
+            var cocktailIngredient11 = new CocktailIngredient
+            {
+                CocktailId = longIsland.Id,
+                IngredientId = vodka.Id,
+            };
+
+            var cocktailIngredient12 = new CocktailIngredient
+            {
+                CocktailId = longIsland.Id,
+                IngredientId = rum.Id,
+            };
+
+            var cocktailIngredient13 = new CocktailIngredient
+            {
+                CocktailId = longIsland.Id,
+                IngredientId = lemonSour.Id,
+            };
+
+            var cocktailIngredient14 = new CocktailIngredient
+            {
+                CocktailId = michelada.Id,
+                IngredientId = lemonSour.Id,
+            };
+
+            var cocktailIngredient15 = new CocktailIngredient
+            {
+                CocktailId = michelada.Id,
+                IngredientId =gingerAle.Id,
+            };
+
+            var cocktailIngredient16 = new CocktailIngredient
+            {
+                CocktailId = whiteSangria.Id,
+                IngredientId = strawberries.Id,
+            };
+
+            var cocktailIngredient17 = new CocktailIngredient
+            {
+                CocktailId = whiteSangria.Id,
+                IngredientId = vodka.Id,
+            };
+
+            var cocktailIngredient18 = new CocktailIngredient
+            {
+                CocktailId = bucksFizz.Id,
+                IngredientId = vodka.Id,
+            };
+
+            var cocktailIngredient19 = new CocktailIngredient
+            {
+                CocktailId = cranberryVodka.Id,
+                IngredientId = vodka.Id,
+            };
+
+            var cocktailIngredient20 = new CocktailIngredient
+            {
+                CocktailId = cranberryVodka.Id,
+                IngredientId = cranberryJuice.Id,
+            };
+
+            builder.Entity<CocktailIngredient>().HasData(cocktailIngredient1, cocktailIngredient2, cocktailIngredient3, cocktailIngredient4, cocktailIngredient5, cocktailIngredient6, cocktailIngredient7, cocktailIngredient8, cocktailIngredient9, cocktailIngredient10, cocktailIngredient11, cocktailIngredient12, cocktailIngredient13, cocktailIngredient14, cocktailIngredient15, cocktailIngredient16, cocktailIngredient17, cocktailIngredient18, cocktailIngredient19, cocktailIngredient20);
+
             //SEEDING BARS
             //SEEDING BARS
             //SEEDING BARS

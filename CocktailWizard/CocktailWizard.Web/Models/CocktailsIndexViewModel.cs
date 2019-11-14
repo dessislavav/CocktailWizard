@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CocktailWizard.Web.Areas.Manager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +16,6 @@ namespace CocktailWizard.Web.Models
 
         public int TotalPages { get; set; }
         public ICollection<CocktailViewModel> TenCocktails { get; set; }
+        public CreateCocktailViewModel CreateNewCocktail { get; set; }
     }
 }

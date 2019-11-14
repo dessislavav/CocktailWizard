@@ -3,7 +3,7 @@
         e.preventDefault();
 
         var form = $(this).closest('form');
-        bootbox.confirm("Are you sure you want to delete this ingredient?", function (result) {
+        bootbox.confirm("Are you sure you want to delete this bar?", function (result) {
             if (result === true) {
                 form.trigger('submit');
             }

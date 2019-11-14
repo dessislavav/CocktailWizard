@@ -109,7 +109,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 await assertContext.SaveChangesAsync();
                 var sut = new IngredientService(assertContext, mapper);
                 var result = await sut.DeleteAsync(ingTestGuid);
-                Assert.AreSame(result, typeof(IngredientDto));
+                Assert.IsInstanceOfType(result, typeof(IngredientDto));
             }
         }
     }

@@ -75,6 +75,7 @@ namespace CocktailWizard.Services
             if (currentPage == 1)
             {
                 tenBars = await this.context.Bars
+                    .Where(b => b.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Take(10)
                     .ToListAsync();
@@ -82,6 +83,7 @@ namespace CocktailWizard.Services
             else
             {
                 tenBars = await this.context.Bars
+                    .Where(b => b.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Skip((currentPage - 1) * 10)
                     .Take(10)
@@ -139,23 +141,24 @@ namespace CocktailWizard.Services
             return barDto;
         }
 
-        public async Task<BarDto> EditAsync(BarDto barDto)
+        public async Task<BarDto> EditAsync(Guid id, string newName, string newInfo, string newAddress, string newPhone, string newImagePath)
         {
-            if (barDto == null)
+            var bar = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == id);
+
+            if (bar == null)
             {
                 throw new BusinessLogicException(ExceptionMessages.BarNull);
             }
 
-            var bar = await this.context.Bars
-                .Where(b => b.IsDeleted == false)
-                .FirstOrDefaultAsync(b => b.Id == barDto.Id);
-
             try
             {
-                bar.Name = barDto.Name;
-                bar.ImagePath = barDto.ImagePath;
-                bar.Address = barDto.Address;
-                bar.Phone = barDto.Phone;
+                bar.Name = newName;
+                bar.Info = newInfo;
+                bar.Address = newAddress;
+                bar.Phone = newPhone;
+                bar.ImagePath = newImagePath;
 
                 this.context.Update(bar);
                 await this.context.SaveChangesAsync();
@@ -230,7 +233,7 @@ namespace CocktailWizard.Services
                 var resultDtos = await this.context.Bars
                     .Where(b => b.IsDeleted == false)
                     .Include(b => b.Ratings)
-                    .Where(b => b.Name.Contains(terms) 
+                    .Where(b => b.Name.Contains(terms)
                     || b.Address.Contains(terms))
                     .OrderBy(b => b.Name)
                     .Select(b => this.searchDtoMapper.MapFrom(b))

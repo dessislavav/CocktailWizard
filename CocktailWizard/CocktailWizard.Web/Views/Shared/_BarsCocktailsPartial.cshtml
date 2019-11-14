@@ -4,17 +4,20 @@
     @if (User.IsInRole("Manager"))
     {
         <li class="dropdown nav-item">
-            <a class="dropdown-toggle nav-link" data-toggle="dropdown" asp-area="Manager" asp-controller="Bars" asp-action="Index">Manager Panel
+            <a class="dropdown-toggle nav-link" data-toggle="dropdown" asp-area="" asp-controller="Bars" asp-action="Index">Manager Panel
             </a>
             <div class="dropdown-menu dropdown-with-icons">
-                <a class="dropdown-item" asp-area="Manager" asp-controller="Bars" asp-action="Index">
+                <a class="dropdown-item" asp-area="" asp-controller="Bars" asp-action="Index">
                     <i class="material-icons">account_balance</i> Bars
                 </a>
-                <a class="dropdown-item" asp-area="Manager" asp-controller="Cocktails" asp-action="Index">
+                <a class="dropdown-item" asp-area="" asp-controller="Cocktails" asp-action="Index">
                     <i class="material-icons">local_bar</i> Cocktails
                 </a>
                 <a class="dropdown-item" asp-area="Manager" asp-controller="Ingredients" asp-action="Index">
                     <i class="material-icons">local_bar</i> Ingredients
+                </a>
+                <a class="dropdown-item" asp-area="Manager" asp-controller="Users" asp-action="Index">
+                    <i class="material-icons">local_bar</i> Users
                 </a>
             </div>
         </li>

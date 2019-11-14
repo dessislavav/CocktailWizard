@@ -163,22 +163,22 @@ namespace CocktailWizard.Services
             return cocktailDto;
         }
 
-        public async Task<CocktailDto> EditAsync(CocktailDto cocktailDto)
+        public async Task<CocktailDto> EditAsync(Guid id, string newName, string newInfo, string newImagePath)
         {
-            if (cocktailDto == null)
+            var cocktail = await this.context.Cocktails
+                .Where(c => c.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == id);
+
+            if (cocktail == null)
             {
                 throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
 
-            var cocktail = await this.context.Cocktails
-                .Where(c => c.IsDeleted == false)
-                .FirstOrDefaultAsync(b => b.Id == cocktailDto.Id);
-
             try
             {
-                cocktail.Name = cocktailDto.Name;
-                cocktail.ImagePath = cocktailDto.ImagePath;
-                cocktail.Info = cocktailDto.Info;
+                cocktail.Name = newName;
+                cocktail.Info = newInfo;
+                cocktail.ImagePath = newImagePath;
 
                 this.context.Update(cocktail);
                 await this.context.SaveChangesAsync();

@@ -23,6 +23,8 @@ namespace CocktailWizard.Web.Utilities.Registration
 
             services.AddSingleton<IDtoMapper<CocktailRating, CocktailRatingDto>, CocktailRatingDtoMapper>();
 
+            services.AddSingleton<IDtoMapper<User, UserDto>, UserDtoMapper>();
+
             return services;
         }
     }

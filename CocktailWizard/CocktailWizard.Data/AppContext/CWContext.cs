@@ -20,6 +20,7 @@ namespace CocktailWizard.Data.AppContext
         public DbSet<BarRating> BarRatings { get; set; }
         public DbSet<BarCocktail> BarCocktails { get; set; }
         public DbSet<Cocktail> Cocktails { get; set; }
+        public DbSet<CocktailIngredient> CocktailIngredients { get; set; }
         public DbSet<CocktailComment> CocktailComments { get; set; }
         public DbSet<CocktailRating> CocktailRatings { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }

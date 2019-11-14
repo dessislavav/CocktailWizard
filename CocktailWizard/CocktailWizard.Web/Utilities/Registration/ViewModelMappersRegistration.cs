@@ -1,4 +1,5 @@
 ﻿using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers;
 using CocktailWizard.Web.Mappers.Contracts;
@@ -24,6 +25,8 @@ namespace CocktailWizard.Web.Utilities.Registration
             services.AddSingleton<IViewModelMapper<SearchBarDto, BarViewModel>, SearchBarViewModelMapper>();
 
             services.AddSingleton<IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel>, CocktailRatingViewModelMapper>();
+
+            services.AddSingleton<IViewModelMapper<UserDto, UserViewModel>, UserViewModelMapper>();
 
             return services;
         }

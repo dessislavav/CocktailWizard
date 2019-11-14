@@ -28,5 +28,6 @@ namespace CocktailWizard.Data.Entities
         public ICollection<BarRating> BarRatings { get; set; }
         public ICollection<CocktailRating> CocktailRatings { get; set; }
         public ICollection<Ban> Bans { get; set; }
+        public bool IsBanned { get; set; }
     }
 }

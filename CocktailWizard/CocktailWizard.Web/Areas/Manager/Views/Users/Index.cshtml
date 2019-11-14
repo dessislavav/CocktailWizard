@@ -1,0 +1,94 @@
+﻿@model UsersViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/404page.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">
+                    <br />
+                    Manage Users
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Registered </th>
+                            <th> Username</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ActiveUsers)
+                        {
+                            <tr>
+                                <td>
+                                    @item.CreatedOn.ToShortDateString()
+                                </td>
+                                <td>
+                                    @item.UserName
+                                </td>
+                                <td>
+                                    @item.Email
+                                </td>
+                                <td>
+                                    <a class="btn btn-outline-danger" asp-area="Manager" asp-controller="Users" asp-action="CreateBan" asp-route-id="@item.Id">Ban</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <h5>List of banned users</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Registered
+                            </th>
+                            <th>
+                                Username
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Reason
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.BannedUsers)
+                        {
+                            <tr>
+                                <td>
+                                    @item.CreatedOn.ToShortDateString()
+                                </td>
+                                <td>
+                                    @item.UserName
+                                </td>
+                                <td>
+                                    @item.Email
+                                </td>
+                                <td>
+                                    @item.ReasonForBan
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
