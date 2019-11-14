@@ -15,49 +15,49 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
     [TestClass]
     public class DeleteAsync_Should
     {
-        //[TestMethod]
-        //public async Task ThrowWhen_IngredientIsUsedInCocktails()
-        //{
-        //    //Arrange
-        //    var options = TestUtilities.GetOptions(nameof(ThrowWhen_IngredientIsUsedInCocktails));
-        //    var mapper = new IngredientDtoMapper();
-        //    var ingTestGuid = Guid.NewGuid();
-        //    var cocktailTestGuid = Guid.NewGuid();
+        [TestMethod]
+        public async Task ThrowWhen_IngredientIsUsedInCocktails()
+        {
+            //Arrange
+            var options = TestUtilities.GetOptions(nameof(ThrowWhen_IngredientIsUsedInCocktails));
+            var mapper = new IngredientDtoMapper();
+            var ingTestGuid = Guid.NewGuid();
+            var cocktailTestGuid = Guid.NewGuid();
 
-        //    var ingredient = new Ingredient
-        //    {
-        //        Id = ingTestGuid,
-        //        Name = "djodjan",
-        //        IsDeleted = false,
-        //    };
+            var ingredient = new Ingredient
+            {
+                Id = ingTestGuid,
+                Name = "djodjan",
+                IsDeleted = false,
+            };
 
-        //    var cocktail = new Cocktail
-        //    {
-        //       Id = cocktailTestGuid,
-        //       Name = "test"
-        //    };
+            var cocktail = new Cocktail
+            {
+                Id = cocktailTestGuid,
+                Name = "test"
+            };
 
-        //    var cocktailIngr = new CocktailIngredient
-        //    {
-        //        CocktailId = cocktail.Id,
-        //        IngredientId = ingredient.Id,
-        //    };
+            var cocktailIngr = new CocktailIngredient
+            {
+                CocktailId = cocktail.Id,
+                IngredientId = ingredient.Id,
+            };
 
-        //    using (var arrangeContext = new CWContext(options))
-        //    {
-        //        await arrangeContext.Ingredients.AddAsync(ingredient);
-        //        await arrangeContext.Cocktails.AddAsync(cocktail);
-        //        await arrangeContext.CocktailIngredients.AddAsync(cocktailIngr);
-        //        await arrangeContext.SaveChangesAsync();
-        //    }
+            using (var arrangeContext = new CWContext(options))
+            {
+                await arrangeContext.Ingredients.AddAsync(ingredient);
+                await arrangeContext.Cocktails.AddAsync(cocktail);
+                await arrangeContext.CocktailIngredients.AddAsync(cocktailIngr);
+                await arrangeContext.SaveChangesAsync();
+            }
 
-        //    using (var assertContext = new CWContext(options))
-        //    {
-        //        //Act & Assert
-        //        var sut = new IngredientService(assertContext, mapper);
-        //        await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.DeleteAsync(ingredient.Id));
-        //    }
-        //}
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                var sut = new IngredientService(assertContext, mapper);
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.DeleteAsync(ingredient.Id));
+            }
+        }
 
         [TestMethod]
         public async Task UpdatePropertiesWhen_ValuesAreValid()

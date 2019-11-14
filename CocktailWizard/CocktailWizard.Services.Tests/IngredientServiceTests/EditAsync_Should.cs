@@ -45,7 +45,6 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
 
             using (var arrangeContext = new CWContext(options))
             {
-                //Act & Assert
                 await arrangeContext.Ingredients.AddAsync(entity);
                 await arrangeContext.SaveChangesAsync();
             }
@@ -56,6 +55,36 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 var sut = new IngredientService(assertContext, mapper);
                 var result = await sut.EditAsync(testGuid, "newDjodjan");
                 Assert.AreEqual("newDjodjan", result.Name);
+            }
+        }
+
+        [TestMethod]
+        public async Task SetNewParamsToCorrectEntity_WhenValueIsValid()
+        {
+            //Arrange
+            var options = TestUtilities.GetOptions(nameof(SetNewParamsToCorrectEntity_WhenValueIsValid));
+            var mapper = new IngredientDtoMapper();
+            var testGuid = Guid.NewGuid();
+
+            var entity = new Ingredient
+            {
+                Id = testGuid,
+                Name = "djodjan",
+                IsDeleted = false
+            };
+
+            using (var arrangeContext = new CWContext(options))
+            {
+                await arrangeContext.Ingredients.AddAsync(entity);
+                await arrangeContext.SaveChangesAsync();
+            }
+
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                var sut = new IngredientService(assertContext, mapper);
+                var result = await sut.EditAsync(testGuid, "newDjodjan");
+                Assert.AreEqual(entity.Id, result.Id);
             }
         }
     }

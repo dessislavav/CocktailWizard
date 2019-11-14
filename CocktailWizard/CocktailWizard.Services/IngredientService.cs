@@ -165,11 +165,6 @@ namespace CocktailWizard.Services
 
         public async Task<IngredientDto> EditAsync(Guid id, string newName)
         {
-            if (id == null)
-            {
-                throw new BusinessLogicException(ExceptionMessages.IngredientNull);
-            }
-
             if (String.IsNullOrEmpty(newName))
             {
                 throw new BusinessLogicException(ExceptionMessages.IngredientNull);
