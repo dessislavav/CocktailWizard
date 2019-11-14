@@ -16,7 +16,7 @@ namespace CocktailWizard.Services
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<CocktailIngredient> CreateCocktailIngredient(Guid cocktailId, Guid ingredientId)
+        public async Task<CocktailIngredient> CreateCocktailIngredientAsync(Guid cocktailId, Guid ingredientId)
         {
             var cocktailIngredient = new CocktailIngredient
             {
@@ -24,7 +24,9 @@ namespace CocktailWizard.Services
                 IngredientId = ingredientId,             
             };
 
+            await this.context.CocktailIngredients.AddAsync(cocktailIngredient);
             await this.context.SaveChangesAsync();
+
             return cocktailIngredient;
         }
     }

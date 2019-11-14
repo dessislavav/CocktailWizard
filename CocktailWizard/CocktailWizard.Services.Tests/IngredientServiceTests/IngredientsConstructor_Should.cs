@@ -9,7 +9,7 @@ using System.Text;
 namespace CocktailWizard.Services.Tests.IngredientServiceTests
 {
     [TestClass]
-    public class Constructor_Should
+    public class IngredientsConstructor_Should
     {
         [TestMethod]
         public void Constructor_CreatesInstance()

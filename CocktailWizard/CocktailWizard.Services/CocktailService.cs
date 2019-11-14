@@ -152,7 +152,7 @@ namespace CocktailWizard.Services
             {
                 var ingredient = await this.ingredientService.GetIngredientAsync(item) ?? throw new ArgumentException(ExceptionMessages.IngredientNull);
 
-                var cocktailIngredient = await this.cocktailIngredientService.CreateCocktailIngredient(cocktail.Id, ingredient.Id);
+                var cocktailIngredient = await this.cocktailIngredientService.CreateCocktailIngredientAsync(cocktail.Id, ingredient.Id);
                 cocktail.CocktailIngredients.Add(cocktailIngredient);
             }
 
