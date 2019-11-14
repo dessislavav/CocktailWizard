@@ -32,17 +32,16 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 IsDeleted = true
             };
 
-            using (var actContext = new CWContext(options))
+            using (var arrangeContext = new CWContext(options))
             {
-                //Act
-                await actContext.Ingredients.AddAsync(entity);
-                await actContext.Ingredients.AddAsync(entity2);
-                await actContext.SaveChangesAsync();
+                await arrangeContext.Ingredients.AddAsync(entity);
+                await arrangeContext.Ingredients.AddAsync(entity2);
+                await arrangeContext.SaveChangesAsync();
             }
 
             using (var assertContext = new CWContext(options))
             {
-                //Assert
+                //Act & Assert
                 var sut = new IngredientService(assertContext, mapper);
                 var result = await sut.GetPageCountAsync(10);
                 Assert.AreEqual(1, result);
