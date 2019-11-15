@@ -68,6 +68,7 @@ namespace CocktailWizard
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddBusinessServices();
+            services.AddHostedServices();
             services.AddCustomViewModelMappers();
             services.AddCustomDtoMappers();
         }

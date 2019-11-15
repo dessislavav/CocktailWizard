@@ -104,13 +104,16 @@ namespace CocktailWizard.Services
 
         public async Task CheckForExpiredBansAsync()
         {
-            //var expiredBans = await this.context.Bans.Include(b => b.User).Where(b => b. < DateTime.Now).ToListAsync();
+            var expiredBans = await this.context.Bans
+                .Include(b => b.User)
+                .Where(b => b.ExpiresOn < DateTime.UtcNow)
+                .ToListAsync();
 
-            //expiredBans.ForEach(b => b.Expired = true);
-            //expiredBans.ForEach(b => b.User.IsBanned = false);
-            //expiredBans.ForEach(b => b.User.LockoutEnabled = false);
+            expiredBans.ForEach(b => b.HasExpired = true);
+            expiredBans.ForEach(b => b.User.IsBanned = false);
+            expiredBans.ForEach(b => b.User.LockoutEnabled = false);
 
-            //return;
+            return;
         }
     }
 }
