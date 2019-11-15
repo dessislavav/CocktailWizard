@@ -88,6 +88,7 @@ namespace CocktailWizard.Web.Controllers
             var cocktailVM = this.detailsCocktailViewModelMapper.MapFrom(dtoCocktail);
             cocktailVM.Bars = barsVM;
 
+            //TODO: Fix logic here
             if (cocktailVM != null)
             {
                 cocktailVM.CocktailCommentViewModels = cocktailCommentVM;

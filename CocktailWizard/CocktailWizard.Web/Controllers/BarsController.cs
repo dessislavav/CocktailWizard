@@ -17,20 +17,29 @@ namespace CocktailWizard.Web.Controllers
         private readonly IViewModelMapper<SearchBarDto, BarViewModel> searchBarVmMapper;
         private readonly IViewModelMapper<BarCommentDto, BarCommentViewModel> barCommentVmMapper;
         private readonly BarCommentService barCommentService;
+        private readonly IViewModelMapper<BarRatingDto, BarRatingViewModel> barRatingVmMapper;
+        private readonly BarRatingService barRatingService;
         private readonly BarService barService;
+        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
 
         public BarsController(
             IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
             IViewModelMapper<SearchBarDto, BarViewModel> searchBarVmMapper,
             IViewModelMapper<BarCommentDto, BarCommentViewModel> barCommentVmMapper,
             BarCommentService barCommentService,
-            BarService barService)
+            IViewModelMapper<BarRatingDto, BarRatingViewModel> barRatingVmMapper,
+            BarRatingService barRatingService,
+            BarService barService,
+            IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper)
         {
             this.barViewModelMapper = barViewModelMapper;
             this.barService = barService;
+            this.cocktailViewModelMapper = cocktailViewModelMapper;
             this.searchBarVmMapper = searchBarVmMapper;
             this.barCommentVmMapper = barCommentVmMapper;
             this.barCommentService = barCommentService;
+            this.barRatingVmMapper = barRatingVmMapper;
+            this.barRatingService = barRatingService;
         }
 
         public async Task<IActionResult> Index(int? currPage)
@@ -69,11 +78,19 @@ namespace CocktailWizard.Web.Controllers
                 return NotFound();
             }
 
-            var barCommentsDto = await this.barCommentService.GetBarCommentsAsync(id);
-            var barCommentVM = this.barCommentVmMapper.MapFrom(barCommentsDto);
-            var barDto = await this.barService.GetBarAsync(id);
-            var barVM = this.barViewModelMapper.MapFrom(barDto);
+            var barDto = await this.barService.GetBarCocktails(id);
 
+            var barCommentDtos = await this.barCommentService.GetBarCommentsAsync(id);
+            var barCommentVM = this.barCommentVmMapper.MapFrom(barCommentDtos);
+
+            var barRatingDtos = await this.barRatingService.GetAllRatingsAsync(id);
+            var barRatingVM = this.barRatingVmMapper.MapFrom(barRatingDtos);
+
+            var cocktailsVM = this.cocktailViewModelMapper.MapFrom(barDto.Cocktails);
+            var barVM = this.barViewModelMapper.MapFrom(barDto);
+            barVM.Cocktails = cocktailsVM;
+
+            //TODO: Fix logic here
             if (barCommentVM != null)
             {
                 barVM.BarCommentViewModels = barCommentVM;
@@ -82,7 +99,15 @@ namespace CocktailWizard.Web.Controllers
             {
                 barVM.BarCommentViewModels = new List<BarCommentViewModel>();
             }
-            
+            if (barCommentVM != null)
+            {
+                barVM.BarRatingViewModels = barRatingVM;
+            }
+            else
+            {
+                barVM.BarRatingViewModels = new List<BarRatingViewModel>();
+            }
+
 
             return View(barVM);
         }

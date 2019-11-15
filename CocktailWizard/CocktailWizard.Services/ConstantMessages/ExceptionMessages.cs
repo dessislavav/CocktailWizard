@@ -15,6 +15,7 @@
         public const string BarCommentNull = "No bar comment found.";
         public const string CocktailCommentNull = "No cocktail comment found.";
 
+        public const string BarRatingNull = "No bar rating found";
         public const string CocktailRatingNull = "No cocktail rating found";
     }
 }

@@ -3,13 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Models
 {
     public class BarViewModel
     {
+        public BarViewModel()
+        {
+            AverageRating = 0.00;
+            this.Cocktails = new List<CocktailViewModel>();
+        }
         public Guid Id { get; set; }
 
         [DisplayName("Bar Name")]
@@ -25,6 +28,7 @@ namespace CocktailWizard.Web.Models
         [Required]
         [StringLength(1000, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
         public string Info { get; set; }
+        public ICollection<CocktailViewModel> Cocktails { get; set; }
 
         public string ImagePath { get; set; }
 
@@ -37,5 +41,6 @@ namespace CocktailWizard.Web.Models
         public string GoogleMapsURL { get; set; }
 
         public ICollection<BarCommentViewModel> BarCommentViewModels { get; set; }
+        public ICollection<BarRatingViewModel> BarRatingViewModels { get; set; }
     }
 }

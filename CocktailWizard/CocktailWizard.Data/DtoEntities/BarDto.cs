@@ -12,6 +12,7 @@ namespace CocktailWizard.Data.DtoEntities
         public string Info { get; set; }
         public string ImagePath { get; set; }
         public string Phone { get; set; }
+        public ICollection<CocktailDto> Cocktails { get; set; }
         public double? AverageRating { get; set; }
         public string GoogleMapsURL { get; set; }
     }

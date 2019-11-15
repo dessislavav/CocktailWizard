@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
+﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services;
 using CocktailWizard.Web.Areas.Member.Models;
@@ -11,34 +6,32 @@ using CocktailWizard.Web.Mappers.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Areas.Member.Controllers
 {
     [Area("Member")]
     [Authorize(Roles = "Member")]
-    public class CocktailRatingsController : Controller
+    public class BarRatingsController : Controller
     {
-        private readonly CWContext context;
         private readonly UserManager<User> userManager;
-        private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> modelMapper;
-        private readonly CocktailRatingService cocktailRatingService;
+        private readonly IViewModelMapper<BarRatingDto, BarRatingViewModel> modelMapper;
+        private readonly BarRatingService barRatingService;
 
-        public CocktailRatingsController(CWContext context,
-            UserManager<User> userManager,
-            IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> modelMapper,
-            CocktailRatingService cocktailRatingService)
+        public BarRatingsController(UserManager<User> userManager,
+            IViewModelMapper<BarRatingDto, BarRatingViewModel> modelMapper,
+            BarRatingService barRatingService)
         {
-            this.context = context;
             this.userManager = userManager;
             this.modelMapper = modelMapper;
-            this.cocktailRatingService = cocktailRatingService;
+            this.barRatingService = barRatingService;
         }
 
 
-        // POST: Member/CocktailRatings/Create
+        // POST: Member/BarRatings/Create
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CocktailRatingViewModel viewModel)
+        public async Task<IActionResult> Create(BarRatingViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -50,7 +43,7 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
                 var ratingDto = this.modelMapper.MapFrom(viewModel);
 
 
-                await this.cocktailRatingService.CreateAsync(ratingDto);
+                await this.barRatingService.CreateAsync(ratingDto);
 
                 return RedirectToAction("Index", "Home");
             }

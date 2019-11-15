@@ -22,7 +22,12 @@ namespace CocktailWizard.Services
         private readonly IngredientService ingredientService;
         private readonly CocktailIngredientService cocktailIngredientService;
 
-        public CocktailService(CWContext context, IDtoMapper<Cocktail, CocktailDto> dtoMapper, IDtoMapper<Bar, BarDto> barDtoMapper, IDtoMapper<Cocktail, DetailsCocktailDto> detailsCocktailDtoMapper, IngredientService ingredientService, CocktailIngredientService cocktailIngredientService)
+        public CocktailService(CWContext context, 
+            IDtoMapper<Cocktail, CocktailDto> dtoMapper, 
+            IDtoMapper<Bar, BarDto> barDtoMapper, 
+            IDtoMapper<Cocktail, DetailsCocktailDto> detailsCocktailDtoMapper, 
+            IngredientService ingredientService, 
+            CocktailIngredientService cocktailIngredientService)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
@@ -89,7 +94,12 @@ namespace CocktailWizard.Services
             }
 
             var detailsCocktailDto = this.detailsCocktailDtoMapper.MapFrom(cocktail);
-            var bars = await this.context.BarCocktails.Include(b => b.Bar).Where(b => b.CocktailId == cocktail.Id).Select(b => b.Bar).ToListAsync();
+            var bars = await this.context.BarCocktails
+                .Include(b => b.Bar)
+                .Where(b => b.CocktailId == cocktail.Id)
+                .Select(b => b.Bar)
+                .ToListAsync();
+
             var mappedBars = this.barDtoMapper.MapFrom(bars);
             detailsCocktailDto.Bars = mappedBars;
 

@@ -18,12 +18,17 @@ namespace CocktailWizard.Services
         private readonly CWContext context;
         private readonly IDtoMapper<Bar, BarDto> dtoMapper;
         private readonly IDtoMapper<Bar, SearchBarDto> searchDtoMapper;
+        private readonly IDtoMapper<Cocktail, CocktailDto> cocktailDtoMapper;
 
-        public BarService(CWContext context, IDtoMapper<Bar, BarDto> dtoMapper, IDtoMapper<Bar, SearchBarDto> searchDtoMapper)
+        public BarService(CWContext context, 
+            IDtoMapper<Bar, BarDto> dtoMapper, 
+            IDtoMapper<Bar, SearchBarDto> searchDtoMapper,
+            IDtoMapper<Cocktail, CocktailDto> cocktailDtoMapper)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
             this.searchDtoMapper = searchDtoMapper ?? throw new ArgumentNullException(nameof(searchDtoMapper));
+            this.cocktailDtoMapper = cocktailDtoMapper ?? throw new ArgumentNullException(nameof(cocktailDtoMapper));
         }
 
         public async Task<BarDto> GetBarAsync(Guid id)
@@ -41,6 +46,31 @@ namespace CocktailWizard.Services
             var mappedBar = this.dtoMapper.MapFrom(bar);
 
             return mappedBar;
+        }
+
+        public async Task<BarDto> GetBarCocktails(Guid id)
+        {
+            var bar = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == id);
+
+            if (bar == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
+            }
+
+            var barDto = this.dtoMapper.MapFrom(bar);
+            var cocktails = await this.context.BarCocktails
+                .Include(b => b.Cocktail)
+                .Where(b => b.BarId == bar.Id)
+                .Select(b => b.Cocktail)
+                .ToListAsync();
+
+            var mappedCocktails = this.cocktailDtoMapper.MapFrom(cocktails);
+            barDto.Cocktails = mappedCocktails;
+
+            return barDto;
+
         }
 
         public async Task<ICollection<BarDto>> GetTopBars(int num)
