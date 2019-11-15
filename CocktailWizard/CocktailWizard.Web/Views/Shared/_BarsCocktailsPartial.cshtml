@@ -14,10 +14,10 @@
                     <i class="material-icons">local_bar</i> Cocktails
                 </a>
                 <a class="dropdown-item" asp-area="Manager" asp-controller="Ingredients" asp-action="Index">
-                    <i class="material-icons">local_bar</i> Ingredients
+                    <i class="material-icons">eco</i> Ingredients
                 </a>
                 <a class="dropdown-item" asp-area="Manager" asp-controller="Users" asp-action="Index">
-                    <i class="material-icons">local_bar</i> Users
+                    <i class="material-icons">face</i> Users
                 </a>
             </div>
         </li>
@@ -25,7 +25,9 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link" asp-area="" asp-controller="Bars" asp-action="Index">Bars</a>
+            <a class="nav-link" asp-area="" asp-controller="Bars" asp-action="Index">
+            Bars <i class="material-icons">account_balance</i>
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" asp-area="" asp-controller="Cocktails" asp-action="Index">
