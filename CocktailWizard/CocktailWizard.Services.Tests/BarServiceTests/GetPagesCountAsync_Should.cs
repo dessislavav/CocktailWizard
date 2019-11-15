@@ -1,7 +1,10 @@
 ﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,8 +20,9 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectCountWhen_ValidValueIsPassed));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
             var testGuid = Guid.NewGuid();
             var testGuid2 = Guid.NewGuid();
 
@@ -43,7 +47,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
                 var result = await sut.GetPageCountAsync(10);
                 Assert.AreEqual(1, result);
             }
@@ -54,8 +58,9 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectCountWhen_ValidValueIsPassed));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
             var testGuid = Guid.NewGuid();
             var testGuid2 = Guid.NewGuid();
 
@@ -80,7 +85,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
                 var result = await sut.GetPageCountAsync(10);
                 Assert.IsInstanceOfType(result, typeof(int));
             }

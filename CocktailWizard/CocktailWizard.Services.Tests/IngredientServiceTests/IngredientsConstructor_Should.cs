@@ -1,6 +1,10 @@
 ﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -16,12 +20,12 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(Constructor_CreatesInstance));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act 
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
 
                 //Assert
                 Assert.IsNotNull(sut);
@@ -33,12 +37,12 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(Throw_WhenContextIsNull));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                Assert.ThrowsException<ArgumentNullException>(() => new IngredientService(null, mapper));
+                Assert.ThrowsException<ArgumentNullException>(() => new IngredientService(null, mapperMock.Object));
             }
         }
 

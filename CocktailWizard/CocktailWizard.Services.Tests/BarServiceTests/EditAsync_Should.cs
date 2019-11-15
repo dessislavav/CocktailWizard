@@ -3,8 +3,10 @@ using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +23,9 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(CorrectlyUpdateEntity));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
             var testGuid = Guid.NewGuid();
 
             var bar = new Bar
@@ -41,9 +44,11 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 await arrangeContext.SaveChangesAsync();
             }
 
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Bar>())).Returns(It.IsAny<BarDto>);
+
             using (var assertContext = new CWContext(options))
             {
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
                 var result = await sut.EditAsync(testGuid, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667", "newImagePath");
                 var edittedBar = await assertContext.Bars.FirstAsync();
                 Assert.AreEqual("newTestName", edittedBar.Name);
@@ -59,8 +64,9 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectTypeOfEntity));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
             var testGuid = Guid.NewGuid();
 
             var bar = new Bar
@@ -73,6 +79,18 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 ImagePath = "testImagePath",
             };
 
+            var dtoEntity = new BarDto
+            {
+                Id = testGuid,
+                Name = "testBar",
+                Info = "testInfo",
+                Address = "testAddress",
+                ImagePath = "testImagePath",
+                Phone = "111-333-666"
+            };
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Bar>())).Returns(dtoEntity);
+
             using (var arrangeContext = new CWContext(options))
             {
                 await arrangeContext.Bars.AddAsync(bar);
@@ -81,7 +99,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
 
             using (var assertContext = new CWContext(options))
             {
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
                 var result = await sut.EditAsync(testGuid, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667", "newImagePath");
                 Assert.IsInstanceOfType(result, typeof(BarDto));
             }
@@ -92,8 +110,9 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ThrowWhen_NoBarFound));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
             var testGuid = Guid.NewGuid();
             var testGuid2 = Guid.NewGuid();
 
@@ -107,6 +126,8 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 ImagePath = "testImagePath",
             };
 
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Bar>())).Returns(It.IsAny<BarDto>);
+
             using (var arrangeContext = new CWContext(options))
             {
                 await arrangeContext.Bars.AddAsync(bar);
@@ -115,7 +136,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
 
             using (var assertContext = new CWContext(options))
             {
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
                 await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.EditAsync(testGuid2, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667", "newImagePath"));
             }
         }

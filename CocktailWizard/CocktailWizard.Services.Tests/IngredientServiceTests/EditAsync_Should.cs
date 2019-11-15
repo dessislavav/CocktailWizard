@@ -1,8 +1,12 @@
 ﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,12 +22,12 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ThrowWhen_NewNameIsEmptyString));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.EditAsync(Guid.NewGuid(), String.Empty));
             }
         }
@@ -33,7 +37,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(SetCorrectParam_WhenValueIsValid));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = Guid.NewGuid();
 
             var entity = new Ingredient
@@ -42,6 +46,14 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 Name = "djodjan",
                 IsDeleted = false
             };
+
+            var ingredientDto = new IngredientDto
+            {
+                Id = testGuid,
+                Name = "djodjan",
+            };
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Ingredient>())).Returns(ingredientDto);
 
             using (var arrangeContext = new CWContext(options))
             {
@@ -52,9 +64,10 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var result = await sut.EditAsync(testGuid, "newDjodjan");
-                Assert.AreEqual("newDjodjan", result.Name);
+                var ingredient = await assertContext.Ingredients.FirstAsync();
+                Assert.AreEqual("newDjodjan", ingredient.Name);
             }
         }
 
@@ -63,7 +76,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(SetNewParamsToCorrectEntity_WhenValueIsValid));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = Guid.NewGuid();
 
             var entity = new Ingredient
@@ -72,6 +85,14 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 Name = "djodjan",
                 IsDeleted = false
             };
+
+            var ingredientDto = new IngredientDto
+            {
+                Id = testGuid,
+                Name = "djodjan",
+            };
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Ingredient>())).Returns(ingredientDto);
 
             using (var arrangeContext = new CWContext(options))
             {
@@ -82,7 +103,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var result = await sut.EditAsync(testGuid, "newDjodjan");
                 Assert.AreEqual(entity.Id, result.Id);
             }

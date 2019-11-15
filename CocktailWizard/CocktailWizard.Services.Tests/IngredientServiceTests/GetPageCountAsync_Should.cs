@@ -1,7 +1,10 @@
 ﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +20,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectCountWhen_ValidValueIsPassed));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
 
             var entity = new Ingredient
             {
@@ -42,7 +45,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var result = await sut.GetPageCountAsync(10);
                 Assert.AreEqual(1, result);
             }
@@ -53,7 +56,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectType_ValidValueIsPassed));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
 
             var entity = new Ingredient
             {
@@ -78,7 +81,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var result = await sut.GetPageCountAsync(10);
                 Assert.IsInstanceOfType(result, typeof(int));
             }

@@ -2,7 +2,9 @@
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -19,7 +21,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnInstanceOfTypeIngredientDto));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = new Guid("b9653c65-2311-4d57-a95b-6522d7bc88f6");
 
             var entity = new Ingredient
@@ -28,6 +30,14 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 Name = "djodjan6",
                 IsDeleted = false
             };
+
+            var ingredientDto = new IngredientDto
+            {
+                Id = testGuid,
+                Name = "djodjan",
+            };
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Ingredient>())).Returns(ingredientDto);
 
             using (var actContext = new CWContext(options))
             {
@@ -39,7 +49,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var ingredient = await sut.GetIngredientAsync(testGuid);
                 Assert.IsInstanceOfType(ingredient, typeof(IngredientDto));
             }
@@ -50,7 +60,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnInstanceOfTypeIngredient));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = new Guid("b9653c65-2311-4d57-a95b-6522d7bc88f4");
 
             var entity = new Ingredient
@@ -70,7 +80,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var ingredient = await sut.GetIngredientAsync("djodjan5");
                 Assert.IsInstanceOfType(ingredient, typeof(Ingredient));
             }
@@ -81,7 +91,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnNullWhen_IngredientIdIsNull));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = new Guid("b9653c65-2311-4d57-a95b-6522d7bc88f3");
 
             var entity = new Ingredient
@@ -101,7 +111,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var ingredient = await sut.GetIngredientAsync(null);
                 Assert.IsNull(ingredient);
             }
@@ -112,7 +122,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnNullWhen_IngredientIsDeleted));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = new Guid("b9653c65-2311-4d57-a95b-6522d7bc88f2");
 
             var entity = new Ingredient
@@ -132,7 +142,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var ingredient = await sut.GetIngredientAsync(testGuid);
                 Assert.IsNull(ingredient);
             }
@@ -143,7 +153,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnNullWhen_IngredientIsDeletedByString));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = new Guid("b9653c65-2311-4d57-a95b-6522d7bc88f0");
 
             var entity = new Ingredient
@@ -163,7 +173,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var ingredient = await sut.GetIngredientAsync("djodjan2");
                 Assert.IsNull(ingredient);
             }

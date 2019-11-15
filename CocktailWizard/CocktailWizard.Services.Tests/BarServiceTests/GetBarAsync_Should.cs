@@ -3,7 +3,9 @@ using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,8 +21,9 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectDtoWhen_ParamsAreValid));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
             var testGuid = Guid.NewGuid();
 
             var bar1 = new Bar
@@ -28,6 +31,14 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 Id = testGuid,
                 Name = "testBar1",
             };
+
+            var barDto1 = new BarDto
+            {
+                Id = testGuid,
+                Name = "testBar1",
+            };
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Bar>())).Returns(barDto1);
 
             using (var arrangeContext = new CWContext(options))
             {
@@ -38,7 +49,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
                 var result = await sut.GetBarAsync(testGuid);
                 Assert.IsInstanceOfType(result, typeof(BarDto));
                 Assert.AreEqual("testBar1", result.Name);
@@ -50,10 +61,13 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ThrowWhen_BarNotFound));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
             var testGuid = Guid.NewGuid();
             var testGuid2 = Guid.NewGuid();
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<Bar>())).Returns(It.IsAny<BarDto>);
 
             var bar1 = new Bar
             {
@@ -70,7 +84,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
                 await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.GetBarAsync(testGuid2));
             }
         }

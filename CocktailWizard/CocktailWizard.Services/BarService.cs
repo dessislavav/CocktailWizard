@@ -73,7 +73,7 @@ namespace CocktailWizard.Services
 
         }
 
-        public async Task<ICollection<BarDto>> GetTopBars(int num)
+        public async Task<ICollection<BarDto>> GetTopBarsAsync(int num)
         {
             var topBars = await this.context.Bars
                  .Where(b => b.IsDeleted == false)

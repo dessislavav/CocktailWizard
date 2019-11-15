@@ -1,6 +1,10 @@
 ﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,13 +19,14 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(BarServiceConstructor_CreatesInstance));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act 
-                var sut = new BarService(assertContext, mapper, searchMapper);
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
 
                 //Assert
                 Assert.IsNotNull(sut);
@@ -33,13 +38,14 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(Throw_WhenContextIsNull));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                Assert.ThrowsException<ArgumentNullException>(() => new BarService(null, mapper, searchMapper));
+                Assert.ThrowsException<ArgumentNullException>(() => new BarService(null, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object));
             }
         }
 
@@ -48,13 +54,14 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(Throw_WhenBarMapperIsNull));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                Assert.ThrowsException<ArgumentNullException>(() => new BarService(assertContext, null, searchMapper));
+                Assert.ThrowsException<ArgumentNullException>(() => new BarService(assertContext, null, searchMapperMock.Object, cocktailMapperMock.Object));
             }
         }
 
@@ -63,13 +70,30 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(Throw_WhenSearchMapperIsNull));
-            var mapper = new BarDtoMapper();
-            var searchMapper = new SearchBarDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                Assert.ThrowsException<ArgumentNullException>(() => new BarService(assertContext, mapper, null));
+                Assert.ThrowsException<ArgumentNullException>(() => new BarService(assertContext, mapperMock.Object, null, cocktailMapperMock.Object));
+            }
+        }
+
+        [TestMethod]
+        public void Throw_WhenCocktailMapperIsNull()
+        {
+            //Arrange
+            var options = TestUtilities.GetOptions(nameof(Throw_WhenSearchMapperIsNull));
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
+
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                Assert.ThrowsException<ArgumentNullException>(() => new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, null));
             }
         }
     }

@@ -3,7 +3,9 @@ using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -20,7 +22,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnInstanceOfCollectionTypeIngredientDto));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = new Guid();
             var testGuid2 = new Guid();
 
@@ -37,6 +39,10 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 IsDeleted = false
             };
 
+            var list = new List<IngredientDto>() { new IngredientDto { Id = testGuid, Name = "djodjan" }, new IngredientDto { Id = testGuid2, Name = "testIngredient" } };
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<ICollection<Ingredient>>())).Returns(list);
+
             using (var arrangeContext = new CWContext(options))
             {
                 await arrangeContext.Ingredients.AddAsync(entity);
@@ -47,7 +53,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var ingredient = await sut.GetIngredientsAsync();
                 Assert.IsInstanceOfType(ingredient, typeof(ICollection<IngredientDto>));
             }
@@ -59,12 +65,12 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ThrowWhen_DatabaseHasNoIngredients));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
 
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
                 var asd = sut.GetIngredientsAsync();
                 await Assert.ThrowsExceptionAsync<BusinessLogicException> (() => sut.GetIngredientsAsync());
             }
@@ -75,7 +81,7 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         {
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectCountOfTypeIngredientDto));
-            var mapper = new IngredientDtoMapper();
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
             var testGuid = new Guid();
             var testGuid2 = new Guid();
             var testGuid3 = new Guid();
@@ -99,6 +105,10 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
                 IsDeleted = false
             };
 
+            var list = new List<IngredientDto>() { new IngredientDto { Id = testGuid, Name = "djodjan" }, new IngredientDto { Id = testGuid2, Name = "testIngredient" }, new IngredientDto { Id = testGuid3, Name = "testIngredient2" } };
+
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<ICollection<Ingredient>>())).Returns(list);
+
             using (var arrangeContext = new CWContext(options))
             {
                 await arrangeContext.Ingredients.AddAsync(entity);
@@ -110,9 +120,9 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
-                var sut = new IngredientService(assertContext, mapper);
-                var ingredient = await sut.GetIngredientsAsync(2);
-                Assert.AreEqual(2, ingredient.Count);
+                var sut = new IngredientService(assertContext, mapperMock.Object);
+                var ingredient = await sut.GetIngredientsAsync(3);
+                Assert.AreEqual(3, ingredient.Count);
             }
         }
     }
