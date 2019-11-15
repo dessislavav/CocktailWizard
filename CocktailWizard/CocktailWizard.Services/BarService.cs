@@ -43,7 +43,7 @@ namespace CocktailWizard.Services
             return mappedBar;
         }
 
-        public async Task<ICollection<BarDto>> GetTopBars(int num)
+        public async Task<ICollection<BarDto>> GetTopBarsAsync(int num)
         {
             var topBars = await this.context.Bars
                  .Where(b => b.IsDeleted == false)
@@ -195,12 +195,13 @@ namespace CocktailWizard.Services
 
             if (!selectedCocktails.Any())
             {
-                throw new ArgumentException("TODO");
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
+
             foreach (var item in selectedCocktails)
             {
                 var cocktail = await this.context.Cocktails
-                    .FirstOrDefaultAsync(c => c.Name == item) ?? throw new ArgumentException("TODO");
+                    .FirstOrDefaultAsync(c => c.Name == item) ?? throw new BusinessLogicException(ExceptionMessages.CocktailNull);
 
                 var barCocktail = await this.context.BarCocktails
                     .Where(c => c.CocktailId == cocktail.Id && c.BarId == bar.Id)
@@ -224,7 +225,7 @@ namespace CocktailWizard.Services
             return barDto;
         }
 
-        public async Task<ICollection<SearchBarDto>> Search(string searchCriteria, bool byName, bool byAddress, bool byRating)
+        public async Task<ICollection<SearchBarDto>> SearchAsync(string searchCriteria, bool byName, bool byAddress, bool byRating)
         {
             var terms = searchCriteria.Split(" ");
             if (byName == false && byAddress == false && byRating == false)

@@ -95,7 +95,7 @@ namespace CocktailWizard.Web.Controllers
                 return View();
             }
 
-            var result = await this.barService.Search(barSearchVM.SearchName, barSearchVM.SearchByName, barSearchVM.SearchByAddress, barSearchVM.SearchByRating);
+            var result = await this.barService.SearchAsync(barSearchVM.SearchName, barSearchVM.SearchByName, barSearchVM.SearchByAddress, barSearchVM.SearchByRating);
             barSearchVM.SearchResults = result.Select(b => this.searchBarVmMapper.MapFrom(b)).ToList();
 
             return View(barSearchVM);
