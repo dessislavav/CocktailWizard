@@ -125,7 +125,7 @@
                                     <div class="star-container">
                                         <input type="radio" name="star" id="five" value="5">
                                         <label for="five">
-                                            <svg class="star">
+                                            <svg class="star">                                      
                                                 <use xlink:href="#star" />
                                             </svg>
                                         </label>
@@ -255,3 +255,7 @@
             });
         </script>
     }
+
+    <script>
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    </script>
