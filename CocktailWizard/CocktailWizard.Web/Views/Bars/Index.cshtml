@@ -26,7 +26,7 @@
                     <div class="col-md-12">
                         <div>
                             <br />
-                            <partial name="_CreateBarModalPartial" , model="@Model.CreateNewBar" />                            
+                            <partial name="_CreateBarModalPartial" , model="@Model.CreateNewBar" />
                             <br />
                             <table class="table-striped text-center" align="center">
                                 <thead>
@@ -243,4 +243,5 @@ else
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/BarIndexModal.js"></script>
     <script src="~/js/deletebar.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
