@@ -1,8 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CocktailWizard.Services.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,7 +29,7 @@ namespace CocktailWizard.Services
         {
             using (var scope = this.serviceProvider.CreateScope())
             {
-                var banService = scope.ServiceProvider.GetRequiredService<BanService>();
+                var banService = scope.ServiceProvider.GetRequiredService<IBanService>();
 
                 await banService.CheckForExpiredBansAsync();
             }

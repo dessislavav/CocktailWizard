@@ -1,13 +1,12 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
 {
-    public class CocktailIngredientService
+    public class CocktailIngredientService : ICocktailIngredientService
     {
         private readonly CWContext context;
 
@@ -21,7 +20,7 @@ namespace CocktailWizard.Services
             var cocktailIngredient = new CocktailIngredient
             {
                 CocktailId = cocktailId,
-                IngredientId = ingredientId,             
+                IngredientId = ingredientId,
             };
 
             await this.context.CocktailIngredients.AddAsync(cocktailIngredient);

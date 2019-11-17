@@ -1,5 +1,5 @@
 ﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Services;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
@@ -15,20 +15,20 @@ namespace CocktailWizard.Web.Controllers
         private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
         private readonly IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper;
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
-        private readonly CocktailService cocktailService;
+        private readonly ICocktailService cocktailService;
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper;
-        private readonly CocktailCommentService cocktailCommentService;
-        private readonly CocktailRatingService cocktailRatingService;
+        private readonly ICocktailCommentService cocktailCommentService;
+        private readonly ICocktailRatingService cocktailRatingService;
         private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper;
 
-        public CocktailsController(CocktailService cocktailService, 
+        public CocktailsController(ICocktailService cocktailService, 
             IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
             IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper, 
             IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
             IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper,
-            CocktailCommentService cocktailCommentService,
+            ICocktailCommentService cocktailCommentService,
             IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper,
-            CocktailRatingService cocktailRatingService)
+            ICocktailRatingService cocktailRatingService)
         {
             this.cocktailService = cocktailService;
             this.cocktailViewModelMapper = cocktailViewModelMapper;

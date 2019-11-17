@@ -71,6 +71,7 @@ namespace CocktailWizard
             services.AddHostedServices();
             services.AddCustomViewModelMappers();
             services.AddCustomDtoMappers();
+            services.AddMvc().AddNToastNotifyToastr();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +97,7 @@ namespace CocktailWizard
             app.UseMiddleware<PageNotFoundMiddleware>();
 
             app.UseAuthentication();
+            app.UseNToastNotify();
 
             app.UseMvc(routes =>
             {

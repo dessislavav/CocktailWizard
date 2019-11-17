@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Services;
+﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
 {
@@ -18,10 +16,10 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     public class IngredientsController : Controller
     {
         private readonly IViewModelMapper<IngredientDto, IngredientViewModel> ingredientViewModelMapper;
-        private readonly IngredientService ingredientService;
+        private readonly IIngredientService ingredientService;
 
         public IngredientsController(IViewModelMapper<IngredientDto, IngredientViewModel> ingredientViewModelMapper,
-                                     IngredientService ingredientService)
+                                     IIngredientService ingredientService)
         {
             this.ingredientViewModelMapper = ingredientViewModelMapper ?? throw new ArgumentException(nameof(ingredientViewModelMapper));
             this.ingredientService = ingredientService ?? throw new ArgumentException(nameof(ingredientService));

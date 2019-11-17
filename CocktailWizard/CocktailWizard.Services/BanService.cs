@@ -2,6 +2,7 @@
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers;
 using CocktailWizard.Services.DtoMappers.Contracts;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
 {
-    public class BanService
+    public class BanService : IBanService
     {
         private readonly CWContext context;
         private readonly IDtoMapper<User, UserDto> dtoMapper;

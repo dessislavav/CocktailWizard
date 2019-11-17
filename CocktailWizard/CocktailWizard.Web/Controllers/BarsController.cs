@@ -1,5 +1,6 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
@@ -16,20 +17,20 @@ namespace CocktailWizard.Web.Controllers
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
         private readonly IViewModelMapper<SearchBarDto, BarViewModel> searchBarVmMapper;
         private readonly IViewModelMapper<BarCommentDto, BarCommentViewModel> barCommentVmMapper;
-        private readonly BarCommentService barCommentService;
+        private readonly IBarCommentService barCommentService;
         private readonly IViewModelMapper<BarRatingDto, BarRatingViewModel> barRatingVmMapper;
-        private readonly BarRatingService barRatingService;
-        private readonly BarService barService;
+        private readonly IBarRatingService barRatingService;
+        private readonly IBarService barService;
         private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
 
         public BarsController(
             IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
             IViewModelMapper<SearchBarDto, BarViewModel> searchBarVmMapper,
             IViewModelMapper<BarCommentDto, BarCommentViewModel> barCommentVmMapper,
-            BarCommentService barCommentService,
+            IBarCommentService barCommentService,
             IViewModelMapper<BarRatingDto, BarRatingViewModel> barRatingVmMapper,
-            BarRatingService barRatingService,
-            BarService barService,
+            IBarRatingService barRatingService,
+            IBarService barService,
             IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper)
         {
             this.barViewModelMapper = barViewModelMapper;

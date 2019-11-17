@@ -1,18 +1,15 @@
-﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
-using CocktailWizard.Services;
+﻿using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using CocktailWizard.Services.ConstantMessages;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
 {
@@ -21,10 +18,10 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     public class CocktailsController : Controller
     {
         private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
-        private readonly CocktailService cocktailService;
-        private readonly IngredientService ingredientService;
+        private readonly ICocktailService cocktailService;
+        private readonly IIngredientService ingredientService;
 
-        public CocktailsController(IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, CocktailService cocktailService, IngredientService ingredientService)
+        public CocktailsController(IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, ICocktailService cocktailService, IIngredientService ingredientService)
         {
             this.cocktailViewModelMapper = cocktailViewModelMapper;
             this.cocktailService = cocktailService;

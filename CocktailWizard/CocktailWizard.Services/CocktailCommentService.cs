@@ -2,6 +2,7 @@
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
 {
-    public class CocktailCommentService
+    public class CocktailCommentService : ICocktailCommentService
     {
         private readonly CWContext context;
         private readonly IDtoMapper<CocktailComment, CocktailCommentDto> dtoMapper;
@@ -46,7 +47,7 @@ namespace CocktailWizard.Services
             await this.context.SaveChangesAsync();
 
             var cocktailCommentDto = this.dtoMapper.MapFrom(cocktailComment);
-            return cocktailCommentDto; 
+            return cocktailCommentDto;
         }
 
         public async Task<ICollection<CocktailCommentDto>> GetCocktailCommentsAsync(Guid cocktailId)

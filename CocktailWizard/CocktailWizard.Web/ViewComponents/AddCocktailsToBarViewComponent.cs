@@ -1,9 +1,8 @@
-﻿using CocktailWizard.Services;
+﻿using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Manager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +11,9 @@ namespace CocktailWizard.Web.ViewComponents
     public class AddCocktailsToBarViewComponent : ViewComponent
     {
 
-        private readonly CocktailService cocktailService;
+        private readonly ICocktailService cocktailService;
 
-        public AddCocktailsToBarViewComponent(CocktailService cocktailService)
+        public AddCocktailsToBarViewComponent(ICocktailService cocktailService)
         {
             this.cocktailService = cocktailService;
         }

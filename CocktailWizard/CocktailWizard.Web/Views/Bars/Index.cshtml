@@ -4,6 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
+
+    <head>
+        <link rel="stylesheet" href="~/css/CropRating.css" />
+    </head>
+
 @if (User.IsInRole("Manager"))
 {
     <div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/crud-ingredients.jpg)">
@@ -58,7 +63,12 @@
                                                 <span>@bar.Phone</span>
                                             </td>
                                             <td>
-                                                <span>@bar.AverageRating</span>
+                                                <div class="containerrating">
+                                                    <img src="~/assets/img/small_stars_empty.png" />
+                                                    <div class="crop" style="width:100px">
+                                                        <img src="~/assets/img/stars_small.png" />
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td>
                                                 <!-- EDIT Modal Button -->
@@ -175,10 +185,10 @@ else
                                 <thead>
                                     <tr align="center">
                                         <th width="20%"></th>
-                                        <th width="25%"></th>
+                                        <th width="20%"></th>
                                         <th width="30%"></th>
                                         <th width="15%"></th>
-                                        <th width="10%"></th>
+                                        <th width="15%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -200,7 +210,12 @@ else
                                                 <span>@bar.Phone</span>
                                             </td>
                                             <td>
-                                                <span>@bar.AverageRating</span>
+                                                <div class="containerrating" style="position:absolute">
+                                                    <img src="~/assets/img/small_stars_empty.png" />
+                                                    <div class="crop" style="width:@(bar.AverageRating*25.2)px">
+                                                        <img src="~/assets/img/stars_small.png" />
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     }

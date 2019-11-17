@@ -1,4 +1,5 @@
 ﻿using CocktailWizard.Services;
+using CocktailWizard.Services.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CocktailWizard.Web.Utilities.Registration
@@ -7,19 +8,19 @@ namespace CocktailWizard.Web.Utilities.Registration
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-            services.AddScoped<BarService>();
-            services.AddScoped<CocktailService>();
+            services.AddScoped<IBarService, BarService>();
+            services.AddScoped<ICocktailService, CocktailService>();
 
-            services.AddScoped<IngredientService>();
-            services.AddScoped<CocktailIngredientService>();
+            services.AddScoped<IIngredientService, IngredientService>();
+            services.AddScoped<ICocktailIngredientService, CocktailIngredientService>();
 
-            services.AddScoped<BarCommentService>();
-            services.AddScoped<CocktailCommentService>();
+            services.AddScoped<IBarCommentService, BarCommentService>();
+            services.AddScoped<ICocktailCommentService, CocktailCommentService>();
 
-            services.AddScoped<BarRatingService>();
-            services.AddScoped<CocktailRatingService>();
+            services.AddScoped<IBarRatingService, BarRatingService>();
+            services.AddScoped<ICocktailRatingService, CocktailRatingService>();
 
-            services.AddScoped<BanService>();
+            services.AddScoped<IBanService, BanService>();
 
             return services;
         }

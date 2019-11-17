@@ -6,6 +6,7 @@
 <head>
     <link rel="stylesheet" href="~/css/barsearchpartial.css" />
     <link rel="stylesheet" href="~/css/StarRating.css" />
+    <link rel="stylesheet" href="~/css/CropRating.css" />
 </head>
 
 <!--
@@ -91,7 +92,7 @@
                         <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div hidden class="form-group">
-                                <input asp-for="CocktailRatingViewModels.First().CocktailId" type="hidden" value="@Model.Id">
+                                <input asp-for="CocktailRatingViewModels.FirstOrDefault().CocktailId" type="hidden" value="@Model.Id">
                             </div>
                             <div class="container">
                                 <div class="row">
@@ -138,7 +139,7 @@
                                                 <use xlink:href="#star" />
                                             </svg>
                                         </label>
-                                        <input asp-for="CocktailRatingViewModels.First().Value" hidden="hidden" id="currentValue" value="" />
+                                        <input asp-for="CocktailRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
                                     </div>
 
 

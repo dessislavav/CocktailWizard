@@ -13,15 +13,15 @@ using CocktailWizard.Services.Extensions;
 
 namespace CocktailWizard.Services
 {
-    public class BarService
+    public class BarService : IBarService
     {
         private readonly CWContext context;
         private readonly IDtoMapper<Bar, BarDto> dtoMapper;
         private readonly IDtoMapper<Bar, SearchBarDto> searchDtoMapper;
         private readonly IDtoMapper<Cocktail, CocktailDto> cocktailDtoMapper;
 
-        public BarService(CWContext context, 
-            IDtoMapper<Bar, BarDto> dtoMapper, 
+        public BarService(CWContext context,
+            IDtoMapper<Bar, BarDto> dtoMapper,
             IDtoMapper<Bar, SearchBarDto> searchDtoMapper,
             IDtoMapper<Cocktail, CocktailDto> cocktailDtoMapper)
         {
@@ -51,6 +51,7 @@ namespace CocktailWizard.Services
         public async Task<BarDto> GetBarCocktails(Guid id)
         {
             var bar = await this.context.Bars
+
                 .Where(b => b.IsDeleted == false)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
@@ -98,6 +99,7 @@ namespace CocktailWizard.Services
             if (currentPage == 1)
             {
                 tenBars = await this.context.Bars
+                    .Include(b => b.Ratings)
                     .Where(b => b.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Take(10)
@@ -106,6 +108,7 @@ namespace CocktailWizard.Services
             else
             {
                 tenBars = await this.context.Bars
+                    .Include(b => b.Ratings)
                     .Where(b => b.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Skip((currentPage - 1) * 10)
@@ -236,7 +239,7 @@ namespace CocktailWizard.Services
                     .FirstOrDefaultAsync(c => c.Name == item) ?? throw new BusinessLogicException(ExceptionMessages.CocktailNull);
 
                 var barCocktail = await this.context.BarCocktails
-                    .Where(c => c.IsDeleted == false) 
+                    .Where(c => c.IsDeleted == false)
                     .Where(c => c.CocktailId == cocktail.Id && c.BarId == bar.Id)
                     .FirstOrDefaultAsync();
 

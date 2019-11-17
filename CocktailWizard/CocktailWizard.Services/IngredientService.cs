@@ -2,6 +2,7 @@
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
 {
-    public class IngredientService
+    public class IngredientService : IIngredientService
     {
         private readonly CWContext context;
         private readonly IDtoMapper<Ingredient, IngredientDto> dtoMapper;
@@ -133,7 +134,7 @@ namespace CocktailWizard.Services
                 .Where(i => i.IsDeleted == false)
                 .Include(i => i.CocktailIngredients)
                 .FirstOrDefault(i => i.Id == id);
-                
+
             if (ingredient.CocktailIngredients.Any())
             {
                 throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);

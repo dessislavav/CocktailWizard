@@ -1,6 +1,7 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 using System;
 using System.Threading.Tasks;
 
@@ -19,17 +21,20 @@ namespace CocktailWizard.Web.Controllers
     {
 
         private readonly IViewModelMapper<BarCommentDto, BarCommentViewModel> modelMapper;
-        private readonly BarCommentService barCommentService;
+        private readonly IBarCommentService barCommentService;
         private readonly UserManager<User> userManager;
+        private readonly IToastNotification toastNotification;
 
         public BarCommentsController(IViewModelMapper<BarCommentDto,
             BarCommentViewModel> modelMapper,
-            BarCommentService barCommentService,
-            UserManager<User> userManager)
+            IBarCommentService barCommentService,
+            UserManager<User> userManager,
+            IToastNotification toastNotification)
         {
             this.modelMapper = modelMapper;
             this.barCommentService = barCommentService;
             this.userManager = userManager;
+            this.toastNotification = toastNotification;
         }
 
         // GET: BarComments
@@ -131,46 +136,22 @@ namespace CocktailWizard.Web.Controllers
             return View();
         }
 
-        // GET: Member/BarComments/Delete
-        //[HttpGet]
-        //public async Task<IActionResult> Delete(Guid id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var barDto = await this.barCommentService.GerBarCommentAsync(id);
 
 
-        //    if (barDto == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // POST: BarComments/Delete/
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(Guid barId)
+        {
+            if (barId == null)
+            {
+                return NotFound();
+            }
 
-        //    var barCommmentVm = this.modelMapper.MapFrom(barDto);
-        //    return View(barCommmentVm);
-        //}
-
-        //// POST: BarComments/Delete/
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(Guid id, Guid userId)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (userId == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    await this.barCommentService.DeleteAsync(id, userId);
-
-        //    return RedirectToAction(nameof(Index));
-        //}
+            await this.barCommentService.DeleteAsync(barId);
+            this.toastNotification.AddSuccessToastMessage("Comment magically deleted");
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }

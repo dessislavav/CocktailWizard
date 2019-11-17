@@ -2,6 +2,7 @@
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
 {
-    public class CocktailRatingService
+    public class CocktailRatingService : ICocktailRatingService
     {
         private readonly CWContext context;
         private readonly IDtoMapper<CocktailRating, CocktailRatingDto> dtoMapper;
@@ -64,6 +65,6 @@ namespace CocktailWizard.Services
 
             return cocktailRatingDtos;
         }
-     
+
     }
 }

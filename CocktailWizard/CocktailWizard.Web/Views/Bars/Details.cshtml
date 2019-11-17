@@ -4,10 +4,10 @@
 }
 @inject UserManager<User> UserManager
 
-    <head>
-        <link rel="stylesheet" href="~/css/barsearchpartial.css" />
-        <link rel="stylesheet" href="~/css/StarRating.css" />
-    </head>
+<head>
+    <link rel="stylesheet" href="~/css/barsearchpartial.css" />
+    <link rel="stylesheet" href="~/css/StarRating.css" />
+</head>
 <!--
  =========================================================
  * Material Kit - v2.0.6
@@ -75,20 +75,30 @@
                         {
                             @await Component.InvokeAsync("AddCocktailsToBar", new { Id = @Model.Id })
                         }
-                        @foreach (var cocktail in @Model.Cocktails)
+                        @if (Model.Cocktails.Count == 0)
                         {
-                            <div class="col-md-4">
-                                <a asp-area="" asp-controller="Cocktails" asp-action="Details" asp-route-id="@cocktail.Id">
-                                    <img src="@cocktail.ImagePath" class="detailsimage">
-                                </a>
-                                <h4 class="card-title">
-                                    @cocktail.Name
-                                    <br>
-                                    <small class="card-description text-muted text-center">@cocktail.Info</small>
-                                    @*<small class="card-description text-muted text-center">@cocktail.AverageRating</small>*@
-                                </h4>
-                            </div>
+                            <h4 class="card-title">
+                                No cocktails found.
+                            </h4>
                         }
+                        else
+                        {
+                            @foreach (var cocktail in @Model.Cocktails)
+                            {
+                                <div class="col-md-4">
+                                    <a asp-area="" asp-controller="Cocktails" asp-action="Details" asp-route-id="@cocktail.Id">
+                                        <img src="@cocktail.ImagePath" class="detailsimage">
+                                    </a>
+                                    <h4 class="card-title">
+                                        @cocktail.Name
+                                        <br>
+                                        <small class="card-description text-muted text-center">@cocktail.Info</small>
+                                        @*<small class="card-description text-muted text-center">@cocktail.AverageRating</small>*@
+                                    </h4>
+                                </div>
+                            }
+                        }
+
                     </div>
                 </div>
                 <div class="tab-pane text-center gallery " id="works">
@@ -96,7 +106,7 @@
                         <form asp-area="Member" asp-controller="BarRatings" asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div hidden class="form-group">
-                                <input asp-for="BarRatingViewModels.First().BarId" type="hidden" value="@Model.Id">
+                                <input asp-for="BarRatingViewModels.FirstOrDefault().BarId" type="hidden" value="@Model.Id">
                             </div>
                             <div class="container">
                                 <div class="row">
@@ -143,7 +153,7 @@
                                                 <use xlink:href="#star" />
                                             </svg>
                                         </label>
-                                        <input asp-for="BarRatingViewModels.First().Value" hidden="hidden" id="currentValue" value="" />
+                                        <input asp-for="BarRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
                                     </div>
 
 
@@ -183,27 +193,37 @@
                                             <ul id="new-comment-here" class="media-list">
                                                 @foreach (var item in Model.BarCommentViewModels)
                                                 {
-                                                    <li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                <small class="text-muted">
-                                                                    @item.CreatedOn
-                                                                </small>
-                                                            </span>
-                                                            <strong class="text-success">@item.UserName</strong>
-                                                            <p>
-                                                                @item.Body
-                                                            </p>
+                                                <li class="media">
+                                                    <a href="#" class="pull-left">
+                                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span class="text-muted pull-right">
+                                                            <small class="text-muted">
+                                                                @item.CreatedOn
+                                                            </small>
+                                                        </span>
+                                                        <strong class="text-success">@item.UserName</strong>
+                                                        <p>
+                                                            @item.Body
+                                                        </p>
+                                                    </div>
+                                                    @if (item.UserName == User.Identity.Name.Split('@')[0])
+                                                    {
+
+                                                        <div class=" media-body">
+                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"> edit</i>                                                      
                                                         </div>
-                                                    </li>
-                                                    <br />
-
-                                                    @*<button type="submit" class="btn btn-dark pull-right" asp-area="Member" asp-controller="BarComments" asp-action="Delete">Delete Comment</button>*@
-
-
+                                                        <div class="media-body">
+                                                            <form asp-area="Member"asp-controller="BarComments"asp-action="Delete">
+                                                                <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
+                                                                <input type="submit" value="Delete" class="btn btn-danger" /> 
+                                                            </form>
+                                                        </div>
+                                                    }
+                                                </li>                                         
+                                                    <br/>
+                                                    <br/>
                                                 }
                                             </ul>
                                         </div>

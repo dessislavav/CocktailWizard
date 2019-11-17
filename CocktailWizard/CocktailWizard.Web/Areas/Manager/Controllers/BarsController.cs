@@ -1,6 +1,7 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Services;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
@@ -18,10 +19,10 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     public class BarsController : Controller
     {
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
-        private readonly BarService barService;
-        private readonly CocktailService cocktailService;
+        private readonly IBarService barService;
+        private readonly ICocktailService cocktailService;
 
-        public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, BarService barService, CocktailService cocktailService)
+        public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, IBarService barService, ICocktailService cocktailService)
         {
             this.barViewModelMapper = barViewModelMapper;
             this.barService = barService;

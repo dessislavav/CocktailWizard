@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CocktailWizard.Data.AppContext;
+using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.Contracts;
+using CocktailWizard.Web.Areas.Member.Models;
+using CocktailWizard.Web.Mappers.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.Entities;
-using Microsoft.AspNetCore.Authorization;
-using CocktailWizard.Web.Areas.Member.Models;
-using Microsoft.AspNetCore.Identity;
-using CocktailWizard.Web.Mappers.Contracts;
-using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Services;
+using System;
+using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Areas.Member.Controllers
 {
@@ -23,11 +21,11 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
         private readonly CWContext _context;
         private readonly UserManager<User> userManager;
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> modelMapper;
-        private readonly CocktailCommentService cocktailCommentService;
+        private readonly ICocktailCommentService cocktailCommentService;
         public CocktailCommentsController(CWContext context, 
             UserManager<User> userManager,
             IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> modelMapper,
-            CocktailCommentService cocktailCommentService)
+            ICocktailCommentService cocktailCommentService)
         {
             _context = context;
             this.userManager = userManager;

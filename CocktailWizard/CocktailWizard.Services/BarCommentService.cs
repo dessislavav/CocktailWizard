@@ -2,6 +2,7 @@
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
 {
-    public class BarCommentService
+    public class BarCommentService : IBarCommentService
     {
         private readonly CWContext context;
         private readonly IDtoMapper<BarComment, BarCommentDto> dtoMapper;
@@ -26,7 +27,7 @@ namespace CocktailWizard.Services
 
         public async Task<BarCommentDto> CreateAsync(BarCommentDto tempBarComment)
         {
-            if(tempBarComment == null)
+            if (tempBarComment == null)
             {
                 throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
             }
@@ -62,7 +63,36 @@ namespace CocktailWizard.Services
             var barCommentDtos = this.dtoMapper.MapFrom(barComments);
 
             return barCommentDtos;
-                
+
+        }
+
+        public async Task<BarComment> GetBarCommentAsync(Guid barId)
+        {
+            var barComment = await this.context.BarComments
+                .Include(bc => bc.Bar)
+                .Include(bc => bc.User)
+                .Where(bc => bc.IsDeleted == false)
+                .Where(bc => bc.BarId == barId)
+                .FirstOrDefaultAsync();
+
+            //var barCommentDto = this.dtoMapper.MapFrom(barComment);
+
+            return barComment;
+        }
+
+        public async Task<BarCommentDto> DeleteAsync(Guid barId)
+        {
+            var comment = await this.GetBarCommentAsync(barId);
+
+            comment.DeletedOn = DateTime.UtcNow;
+            comment.IsDeleted = true;
+
+            this.context.Update(comment);
+            await this.context.SaveChangesAsync();
+
+            var commentDto = this.dtoMapper.MapFrom(comment);
+
+            return commentDto;
         }
     }
 }

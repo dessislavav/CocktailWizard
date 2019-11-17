@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Services;
+﻿using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
 {
@@ -16,10 +14,10 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     public class UsersController : Controller
     {
         //private readonly IToastNotification toastNotification;
-        private readonly BanService banService;
+        private readonly IBanService banService;
         private readonly IViewModelMapper<UserDto, UserViewModel> userMapper;
 
-        public UsersController(BanService banService, IViewModelMapper<UserDto, UserViewModel> userMapper)
+        public UsersController(IBanService banService, IViewModelMapper<UserDto, UserViewModel> userMapper)
         {
             this.banService = banService;
             this.userMapper = userMapper;

@@ -2,6 +2,7 @@
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -13,21 +14,21 @@ using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
 {
-    public class CocktailService
+    public class CocktailService : ICocktailService
     {
         private readonly CWContext context;
         private readonly IDtoMapper<Cocktail, CocktailDto> dtoMapper;
         private readonly IDtoMapper<Cocktail, DetailsCocktailDto> detailsCocktailDtoMapper;
         private readonly IDtoMapper<Bar, BarDto> barDtoMapper;
-        private readonly IngredientService ingredientService;
-        private readonly CocktailIngredientService cocktailIngredientService;
+        private readonly IIngredientService ingredientService;
+        private readonly ICocktailIngredientService cocktailIngredientService;
 
-        public CocktailService(CWContext context, 
-            IDtoMapper<Cocktail, CocktailDto> dtoMapper, 
-            IDtoMapper<Bar, BarDto> barDtoMapper, 
-            IDtoMapper<Cocktail, DetailsCocktailDto> detailsCocktailDtoMapper, 
-            IngredientService ingredientService, 
-            CocktailIngredientService cocktailIngredientService)
+        public CocktailService(CWContext context,
+            IDtoMapper<Cocktail, CocktailDto> dtoMapper,
+            IDtoMapper<Bar, BarDto> barDtoMapper,
+            IDtoMapper<Cocktail, DetailsCocktailDto> detailsCocktailDtoMapper,
+            IIngredientService ingredientService,
+            ICocktailIngredientService cocktailIngredientService)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));

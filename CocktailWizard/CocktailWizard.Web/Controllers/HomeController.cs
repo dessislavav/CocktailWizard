@@ -10,14 +10,15 @@ using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using CocktailWizard.Data.DtoEntities;
 using Microsoft.Extensions.Caching.Memory;
+using CocktailWizard.Services.Contracts;
 
 namespace CocktailWizard.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
-        private readonly BarService barService;
-        private readonly CocktailService cocktailService;
+        private readonly IBarService barService;
+        private readonly ICocktailService cocktailService;
         private readonly IMemoryCache cache;
         private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
 
@@ -25,8 +26,8 @@ namespace CocktailWizard.Controllers
         public HomeController(
             IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, 
             IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
-            BarService barService, 
-            CocktailService cocktailService, 
+            IBarService barService, 
+            ICocktailService cocktailService, 
             IMemoryCache cache)
         {
             this.barViewModelMapper = barViewModelMapper; ;

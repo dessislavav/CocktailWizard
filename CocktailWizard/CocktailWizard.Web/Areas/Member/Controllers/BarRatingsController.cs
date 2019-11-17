@@ -1,6 +1,7 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services;
+using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -16,11 +17,11 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly IViewModelMapper<BarRatingDto, BarRatingViewModel> modelMapper;
-        private readonly BarRatingService barRatingService;
+        private readonly IBarRatingService barRatingService;
 
         public BarRatingsController(UserManager<User> userManager,
             IViewModelMapper<BarRatingDto, BarRatingViewModel> modelMapper,
-            BarRatingService barRatingService)
+            IBarRatingService barRatingService)
         {
             this.userManager = userManager;
             this.modelMapper = modelMapper;
