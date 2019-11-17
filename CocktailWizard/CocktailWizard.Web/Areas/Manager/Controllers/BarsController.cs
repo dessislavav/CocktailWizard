@@ -68,10 +68,6 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
             try
             {
@@ -85,22 +81,9 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             return RedirectToAction("Index", "Bars", new { area = "" });
         }
 
-        // GET: Manager/Bars/AddCocktails
-        public async Task<IActionResult> AddCocktails(AddCocktailsToBarsViewModel addCocktailsVM, Guid id)
-        {
-            var allCocktailsDto = await this.cocktailService.GetAllCocktailsAsync();
-            addCocktailsVM.Id = id;
-            addCocktailsVM.AllCocktails = allCocktailsDto
-                .Select(c => new SelectListItem(c.Name, c.Name))
-                .ToList();
-
-            return View(addCocktailsVM);
-        }
-
-        // POST: Manager/Bars/AddCocktails
-        [HttpPost, ActionName("AddCocktails")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddCocktailsConfirmed(AddCocktailsToBarsViewModel addCocktailsVM)
+        public async Task<IActionResult> AddCocktails(AddCocktailsToBarsViewModel addCocktailsVM)
         {
             if (ModelState.IsValid)
             {

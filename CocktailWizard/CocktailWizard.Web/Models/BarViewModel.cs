@@ -30,6 +30,7 @@ namespace CocktailWizard.Web.Models
         public string Info { get; set; }
         public ICollection<CocktailViewModel> Cocktails { get; set; }
 
+        [DisplayName("Image URL Path")]
         public string ImagePath { get; set; }
 
         [Required]

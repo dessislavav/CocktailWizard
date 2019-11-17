@@ -26,7 +26,8 @@
                     <div class="col-md-12">
                         <div>
                             <br />
-                            <a asp-area="Manager" asp-controller="Cocktails" asp-action="Create" class="btn btn-primary btn-block btn-lg">Create Cocktail</a>
+                            @await Component.InvokeAsync("CreateCocktail")
+                            @*<a asp-area="Manager" asp-controller="Cocktails" asp-action="Create" class="btn btn-primary btn-block btn-lg">Create Cocktail</a>*@
                             <br />
                             <table class="table-striped text-center" align="center">
                                 <thead>
@@ -97,7 +98,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @*<a asp-area="Manager" asp-controller="Bars" asp-action="AddCocktails" asp-route-id="@cocktail.Id" class="btn btn-primary btn-sm btn-block">Add Cocktails</a>*@
                                                 <form asp-area="Manager" asp-controller="Cocktails" asp-action="Delete" asp-route-id="@cocktail.Id" method="post">
                                                     <button type="submit" class="btn btn-primary btn-sm btn-block">Delete</button>
                                                 </form>

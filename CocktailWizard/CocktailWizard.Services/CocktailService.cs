@@ -43,6 +43,7 @@ namespace CocktailWizard.Services
             if (currentPage == 1)
             {
                 tenCocktails = await this.context.Cocktails
+                    .Where(x => x.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Take(10)
                     .ToListAsync();
@@ -50,6 +51,7 @@ namespace CocktailWizard.Services
             else
             {
                 tenCocktails = await this.context.Cocktails
+                    .Where(x => x.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Skip((currentPage - 1) * 10)
                     .Take(10)
@@ -158,16 +160,17 @@ namespace CocktailWizard.Services
                 ImagePath = tempCocktail.ImagePath,
             };
 
+            await this.context.Cocktails.AddAsync(cocktail);
+            await this.context.SaveChangesAsync();
+
             foreach (var item in tempCocktail.CocktailIngredients)
             {
                 var ingredient = await this.ingredientService.GetIngredientAsync(item) ?? throw new ArgumentException(ExceptionMessages.IngredientNull);
 
                 var cocktailIngredient = await this.cocktailIngredientService.CreateCocktailIngredientAsync(cocktail.Id, ingredient.Id);
                 cocktail.CocktailIngredients.Add(cocktailIngredient);
+                await this.context.SaveChangesAsync();
             }
-
-            await this.context.Cocktails.AddAsync(cocktail);
-            await this.context.SaveChangesAsync();
 
             var cocktailDto = this.dtoMapper.MapFrom(cocktail);
             return cocktailDto;

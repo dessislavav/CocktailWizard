@@ -61,6 +61,7 @@ namespace CocktailWizard.Services
 
             var barDto = this.dtoMapper.MapFrom(bar);
             var cocktails = await this.context.BarCocktails
+                .Where(b => b.IsDeleted == false)
                 .Include(b => b.Cocktail)
                 .Where(b => b.BarId == bar.Id)
                 .Select(b => b.Cocktail)
@@ -231,9 +232,11 @@ namespace CocktailWizard.Services
             foreach (var item in selectedCocktails)
             {
                 var cocktail = await this.context.Cocktails
+                    .Where(c => c.IsDeleted == false)
                     .FirstOrDefaultAsync(c => c.Name == item) ?? throw new BusinessLogicException(ExceptionMessages.CocktailNull);
 
                 var barCocktail = await this.context.BarCocktails
+                    .Where(c => c.IsDeleted == false) 
                     .Where(c => c.CocktailId == cocktail.Id && c.BarId == bar.Id)
                     .FirstOrDefaultAsync();
 

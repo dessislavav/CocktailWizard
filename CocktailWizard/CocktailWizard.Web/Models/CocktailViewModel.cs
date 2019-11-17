@@ -29,6 +29,7 @@ namespace CocktailWizard.Web.Models
 
         public ICollection<string> CocktailIngredients { get; set; }
 
+        [DisplayName("Image URL Path")]
         public string ImagePath { get; set; }
 
         public double? AverageRating { get; set; }
