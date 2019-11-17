@@ -43,8 +43,8 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
-            return View(barVM);
 
+            return RedirectToAction("Index", "Bars", new { area = "" });
         }
 
         // POST: Manager/Bars/Edit/

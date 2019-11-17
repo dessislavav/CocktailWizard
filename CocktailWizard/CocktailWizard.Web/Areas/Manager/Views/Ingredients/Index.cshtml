@@ -32,7 +32,7 @@
                                     <td>
                                         <span id="@ingredient.Id+name" value="@ingredient.Name">@ingredient.Name</span>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 13px">
                                         @using (Html.BeginForm("Delete", "Ingredients", new { id = ingredient.Id }, FormMethod.Post))
                                         {
                                             @Html.Hidden("Id", ingredient.Id)
