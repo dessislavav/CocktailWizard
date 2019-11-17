@@ -1,6 +1,6 @@
 ﻿@model IngredientViewModel
 
-<!-- Create Account Modal -->
+<!-- Modal -->
 <div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -16,12 +16,14 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <input asp-for="Name" class="form-control" placeholder="Username">
                         <span asp-validation-for="Name" class="text-danger-custom"></span>
-                    <div class="text-centered">
-                        <img id="ImgPreview-create-account" class="preview1" src="" />
-                        <input type="button" id="removeImage1-create-account" value="x" class="btn-rmv1" />
+
+                        <div class="text-centered">
+                            <img id="ImgPreview-create-account" class="preview1" src="" />
+                            <input type="button" id="removeImage1-create-account" value="x" class="btn-rmv1" />
+                        </div>
+                        <label name="Image" class="btn btn-primary-custom browse margin-5">Upload Image</label>
+                        <input type="file" id="imag-create-account" name="UserImage" class="btn btn-primary file" accept="image/*">
                     </div>
-                    <label name="Image" class="btn btn-primary-custom browse margin-5">Upload Image</label>
-                    <input type="file" id="imag-create-account" name="UserImage" class="btn btn-primary file" accept="image/*">
                 </form>
             </div>
         </div>

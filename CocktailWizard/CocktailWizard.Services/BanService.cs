@@ -77,29 +77,27 @@ namespace CocktailWizard.Services
             }
         }
 
-        public async Task RemoveAsync(User user)
+        public async Task RemoveAsync(Guid id)
         {
-            if (user != null)
-            {
+
                 var ban = await this.context.Bans
                 .Include(u => u.User)
-                .Where(b => b.User == user
+                .Where(b => b.User.Id == id
                 && b.HasExpired == false)
                 .FirstOrDefaultAsync();
 
+            if (ban == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.ModelError);
+            }
+
                 ban.ExpiresOn = DateTime.UtcNow;
                 ban.HasExpired = true;
-                user.IsBanned = false;
-                user.LockoutEnd = DateTime.UtcNow;
-                user.LockoutEnabled = false;
+                ban.User.IsBanned = false;
+                ban.User.LockoutEnd = DateTime.UtcNow;
+                ban.User.LockoutEnabled = false;
 
                 await this.context.SaveChangesAsync();
-            }
-            else
-            {
-                throw new ArgumentNullException("User value null");
-            }
-
         }
 
         public async Task CheckForExpiredBansAsync()
