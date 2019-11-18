@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CocktailWizard.Web.Tests.ViewModelMappersTests
+namespace CocktailWizard.Services.Tests.ViewModelMappersTests
 {
     [TestClass]
     public class BarViewModelMapper_Should
