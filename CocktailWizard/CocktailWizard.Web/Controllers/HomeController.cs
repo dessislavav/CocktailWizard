@@ -37,7 +37,7 @@ namespace CocktailWizard.Controllers
             this.cache = cache;
         }
 
-        public async Task<IActionResult> Index(HomeViewModel homeVM)
+        public async Task<IActionResult> Index()
         {
             var topBarsVM = (await CacheBarsDtos())
                 .Select(x => this.barViewModelMapper.MapFrom(x))

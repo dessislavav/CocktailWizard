@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CocktailWizard.Services.Extensions;
 
 namespace CocktailWizard.Services
 {
@@ -224,6 +225,35 @@ namespace CocktailWizard.Services
             var cocktailDto = this.dtoMapper.MapFrom(cocktail);
 
             return cocktailDto;
+        }
+
+        public async Task<ICollection<CocktailDto>> SearchAsync(string searchCriteria, bool byName, bool byRating, double ratingValue)
+        {
+            var terms = searchCriteria.Split(" ");
+            if (byName == false && byRating == false)
+            {
+                var resultDtos = await this.context.Cocktails
+                    .Where(b => b.IsDeleted == false)
+                    .Include(b => b.Ratings)
+                    .Where(b => b.Name.Contains(terms))
+                    .OrderBy(b => b.Name)
+                    .Select(b => this.dtoMapper.MapFrom(b))
+                    .ToListAsync();
+
+                return resultDtos;
+            }
+            else
+            {
+                var allCocktails = this.context.Cocktails.Where(b => b.IsDeleted == false).Include(b => b.Ratings);
+                var filteredByName = allCocktails.Where(b => byName && b.Name.Contains(terms));
+                var filteredByRating = allCocktails.Where(b => byRating && b.Ratings.Any() ? (b.Ratings.Average(x => x.Value) >= ratingValue) : false);
+
+                var filtered = filteredByName.Union(filteredByRating);
+
+                var mappedResult = filtered.Select(b => this.dtoMapper.MapFrom(b)).ToList();
+
+                return mappedResult;
+            }
         }
     }
 }

@@ -20,11 +20,12 @@ namespace CocktailWizard.Web.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var allIngredients = await this.ingredientService.GetIngredientsAsync();
-            var model = new CreateCocktailViewModel();
-
-            model.AllAvailableIngredients = allIngredients
+            var model = new CreateCocktailViewModel
+            {
+                AllAvailableIngredients = allIngredients
                     .Select(b => new SelectListItem(b.Name, b.Name))
-                    .ToList();
+                    .ToList()
+            };
 
             return View(model);
 

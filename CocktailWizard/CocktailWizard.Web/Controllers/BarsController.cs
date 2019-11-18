@@ -116,7 +116,7 @@ namespace CocktailWizard.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Search([FromQuery]SearchBarViewModel barSearchVM)
         {
-            if (string.IsNullOrWhiteSpace(barSearchVM.SearchName) || barSearchVM.SearchName.Length < 3)
+            if (string.IsNullOrWhiteSpace(barSearchVM.SearchName))
             {
                 return View();
             }
@@ -125,7 +125,6 @@ namespace CocktailWizard.Web.Controllers
             barSearchVM.SearchResults = result.Select(b => this.searchBarVmMapper.MapFrom(b)).ToList();
 
             return View(barSearchVM);
-
         }
     }
 }

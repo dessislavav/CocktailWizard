@@ -16,5 +16,6 @@ namespace CocktailWizard.Services.Contracts
         Task<int> GetPageCountAsync(int cocktailsPerPage);
         Task<ICollection<CocktailDto>> GetTenCocktailsOrderedByNameAsync(int currentPage);
         Task<ICollection<CocktailDto>> GetTopCocktails(int num);
+        Task<ICollection<CocktailDto>> SearchAsync(string searchCriteria, bool byName, bool byRating, double ratingValue);
     }
 }
