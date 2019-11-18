@@ -284,7 +284,6 @@ namespace CocktailWizard.Services
                 var filteredByAddress = allBars.Where(b => byAddress && b.Address.Contains(terms));
                 var filteredByRating = allBars.Where(b => byRating && b.Ratings.Any() ? (b.Ratings.Average(x => x.Value) >= ratingValue) : false);
 
-                //var filtered = filteredByName.Union(filteredByAddress);
                 var filtered = filteredByName.Union(filteredByAddress).Union(filteredByRating);
 
                 var mappedResult = filtered.Select(b => this.searchDtoMapper.MapFrom(b)).ToList();

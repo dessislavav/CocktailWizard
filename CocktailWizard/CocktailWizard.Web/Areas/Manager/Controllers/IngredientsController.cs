@@ -6,6 +6,7 @@ using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using System;
 using System.Threading.Tasks;
 
@@ -17,12 +18,15 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     {
         private readonly IViewModelMapper<IngredientDto, IngredientViewModel> ingredientViewModelMapper;
         private readonly IIngredientService ingredientService;
+        private readonly IToastNotification toastNotification;
 
         public IngredientsController(IViewModelMapper<IngredientDto, IngredientViewModel> ingredientViewModelMapper,
-                                     IIngredientService ingredientService)
+                                     IIngredientService ingredientService,
+                                     IToastNotification toastNotification)
         {
             this.ingredientViewModelMapper = ingredientViewModelMapper ?? throw new ArgumentException(nameof(ingredientViewModelMapper));
             this.ingredientService = ingredientService ?? throw new ArgumentException(nameof(ingredientService));
+            this.toastNotification = toastNotification ?? throw new ArgumentException(nameof(toastNotification));
         }
 
         public async Task<IActionResult> Index(int? currPage)
@@ -58,12 +62,15 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                this.toastNotification.AddSuccessToastMessage("Ingredient successfully deleted");
+                await this.ingredientService.DeleteAsync(id);
             }
-
-            await this.ingredientService.DeleteAsync(id);
+            catch (Exception)
+            {
+                this.toastNotification.AddWarningToastMessage("Ingredient couldn't be deleted");
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -74,7 +81,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             var ingredientDto = this.ingredientViewModelMapper.MapFrom(ingredientViewModel);
 
             await this.ingredientService.CreateIngredientAsync(ingredientDto);
-
+            this.toastNotification.AddSuccessToastMessage("Ingredient successfully created");
             return Json(ingredientViewModel);
         }
 
@@ -87,10 +94,11 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             if (ModelState.IsValid)
             {
                 await this.ingredientService.EditAsync(id, newName);
+                this.toastNotification.AddSuccessToastMessage("Ingredient successfully edited");
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
-
+            this.toastNotification.AddSuccessToastMessage("Ingredient couldn't be edited");
             return RedirectToAction(nameof(Index));
         }
     }

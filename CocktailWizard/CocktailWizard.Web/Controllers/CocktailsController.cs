@@ -6,6 +6,7 @@ using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Controllers
@@ -110,5 +111,21 @@ namespace CocktailWizard.Web.Controllers
             return View(cocktailVM);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Search([FromQuery]SearchCocktailViewModel model)
+        {
+            if (string.IsNullOrWhiteSpace(model.SearchName))
+            {
+                return View();
+            }
+
+            var result = await this.cocktailService.SearchAsync(model.SearchName, model.SearchByName, model.SearchByRating, model.Value);
+
+            model.SearchResults = result
+                .Select(b => this.cocktailViewModelMapper.MapFrom(b))
+                .ToList();
+
+            return View(model);
+        }
     }
 }

@@ -8,6 +8,7 @@ using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,13 +21,13 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
     {
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
         private readonly IBarService barService;
-        private readonly ICocktailService cocktailService;
+        private readonly IToastNotification toastNotification;
 
-        public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, IBarService barService, ICocktailService cocktailService)
+        public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, IBarService barService, IToastNotification toastNotification)
         {
-            this.barViewModelMapper = barViewModelMapper;
-            this.barService = barService;
-            this.cocktailService = cocktailService;
+            this.barViewModelMapper = barViewModelMapper ?? throw new ArgumentNullException(nameof(barViewModelMapper));
+            this.barService = barService ?? throw new ArgumentNullException(nameof(barService));
+            this.toastNotification = toastNotification ?? throw new ArgumentNullException(nameof(toastNotification));
         }
 
         // POST: Manager/Bars/Create
@@ -39,12 +40,14 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
                 var tempBar = this.barViewModelMapper.MapFrom(barVM);
                 var barDto = await this.barService.CreateAsync(tempBar);
 
+                this.toastNotification.AddSuccessToastMessage("Bar successfully created");
                 return RedirectToAction("Details", new { id = barDto.Id });
 
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
 
+            this.toastNotification.AddWarningToastMessage("Incorrect input, please try again");
             return RedirectToAction("Index", "Bars", new { area = "" });
         }
 
@@ -57,11 +60,13 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             {
                 var barDto = await this.barService.EditAsync(id, newName, newInfo, newAddress, newPhone, newImagePath);
 
+                this.toastNotification.AddSuccessToastMessage("Bar successfully edited");
                 return RedirectToAction("Details", new { id = barDto.Id});
             }
 
+            this.toastNotification.AddWarningToastMessage("Incorrect input, please try again");
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
-            return View();
+            return RedirectToAction("Index", "Bars", new { area = "" });
         }
 
         // POST: Manager/Bars/Delete/5
@@ -76,9 +81,10 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             }
             catch (Exception)
             {
-                throw;
+                this.toastNotification.AddWarningToastMessage("Bar couldn't be deleted");
             }
-            
+
+            this.toastNotification.AddSuccessToastMessage("Bar successfully deleted");
             return RedirectToAction("Index", "Bars", new { area = "" });
         }
 
@@ -92,10 +98,12 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
 
                 await this.barService.AddCocktailsAsync(barDto, addCocktailsVM.SelectedCocktails);
 
+                this.toastNotification.AddSuccessToastMessage("Cocktails successfuly added");
                 return RedirectToAction("Details", new { id = barDto.Id });
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
+            this.toastNotification.AddWarningToastMessage("Cocktails were not added");
             return View(addCocktailsVM);
         }
 
