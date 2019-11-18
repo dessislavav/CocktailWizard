@@ -12,5 +12,6 @@ namespace CocktailWizard.Services.Contracts
         Task<BarCommentDto> DeleteAsync(Guid barId);
         Task<BarComment> GetBarCommentAsync(Guid barId);
         Task<ICollection<BarCommentDto>> GetBarCommentsAsync(Guid barId);
+        Task<BarCommentDto> EditAsync(Guid id, string newBody);
     }
 }

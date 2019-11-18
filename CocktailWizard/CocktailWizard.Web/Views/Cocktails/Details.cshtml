@@ -68,6 +68,8 @@
                     </div>
                 </div>
             </div>
+
+            @* Bars offered in *@
             <div class="tab-content tab-space justify-content-center">
                 <div class="tab-pane active text-center gallery" id="studio">
                     <div class="row">
@@ -87,8 +89,9 @@
                         }
                     </div>
                 </div>
-                <div class="tab-pane text-center gallery " id="works">
-                    <div class="row">
+                @* Add cocktail rating *@
+                <div class="tab-pane text-center gallery justify-content-center " id="works">
+                    <div class="row bootstrap snippets d-flex justify-content-center">
                         <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div hidden class="form-group">
@@ -141,16 +144,16 @@
                                         </label>
                                         <input asp-for="CocktailRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
                                     </div>
-
-
                                 </div>
                             </div>
+                            @* Button add rating *@
                             <div class="form-group">
                                 <input type="submit" value="Add rating" class="btn btn-primary" />
                             </div>
                         </form>
                     </div>
                 </div>
+                @* Add cocktail comment *@
                 <div class="tab-pane text-center gallery justify-content-center" id="favorite">
                     <div class="row">
                         <div class="row bootstrap snippets d-flex justify-content-center">
@@ -176,6 +179,7 @@
                                                 <hr>
                                             }
 
+                                            @* List cocktail comments *@
                                             <ul id="new-comment-here" class="media-list">
                                                 @foreach (var item in Model.CocktailCommentViewModels)
                                                 {
@@ -202,7 +206,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -215,13 +218,6 @@
 @section Scripts{
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/AddCocktailComment.js"></script>
-    <script>
-        $(".star-container").on("change", (getId) => {
-            let rt = $(getId)[0].target.defaultValue;
-            console.log(rt);
-            let a = $("#currentValue").val(rt);
-            console.log(a);
-        });
-    </script>
+    <script src="~/js/AddRating.js"></script>
 
 }

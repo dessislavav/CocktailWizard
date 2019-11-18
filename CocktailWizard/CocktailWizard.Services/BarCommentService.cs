@@ -66,6 +66,7 @@ namespace CocktailWizard.Services
 
         }
 
+        // Returns BarComment!!!
         public async Task<BarComment> GetBarCommentAsync(Guid barId)
         {
             var barComment = await this.context.BarComments
@@ -86,6 +87,23 @@ namespace CocktailWizard.Services
 
             comment.DeletedOn = DateTime.UtcNow;
             comment.IsDeleted = true;
+
+            this.context.Update(comment);
+            await this.context.SaveChangesAsync();
+
+            var commentDto = this.dtoMapper.MapFrom(comment);
+
+            return commentDto;
+        }
+
+        public async Task<BarCommentDto> EditAsync(Guid id, string newBody)
+        {
+            var comment = await this.context.BarComments
+                .Where(bc => bc.IsDeleted == false)
+                .FirstOrDefaultAsync(bc => bc.Id == id);
+
+            comment.ModifiedOn = DateTime.UtcNow;
+            comment.Body = newBody;
 
             this.context.Update(comment);
             await this.context.SaveChangesAsync();

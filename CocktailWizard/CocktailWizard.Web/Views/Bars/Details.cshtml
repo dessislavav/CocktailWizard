@@ -68,6 +68,7 @@
                     </div>
                 </div>
             </div>
+            @* Cocktails the bar offers *@
             <div class="tab-content tab-space d-flex justify-content-center">
                 <div class="tab-pane active text-center gallery" id="studio">
                     <div class="row">
@@ -101,6 +102,7 @@
 
                     </div>
                 </div>
+                @* Add bar rating *@
                 <div class="tab-pane text-center gallery " id="works">
                     <div class="row">
                         <form asp-area="Member" asp-controller="BarRatings" asp-action="Create">
@@ -125,7 +127,7 @@
                                     <div class="star-container">
                                         <input type="radio" name="star" id="five" value="5">
                                         <label for="five">
-                                            <svg class="star">                                      
+                                            <svg class="star">
                                                 <use xlink:href="#star" />
                                             </svg>
                                         </label>
@@ -157,12 +159,14 @@
                                     </div>
                                 </div>
                             </div>
+                            @* Button add rating *@
                             <div class="form-group">
                                 <input type="submit" value="Add rating" class="btn btn-primary" />
                             </div>
                         </form>
                     </div>
                 </div>
+                @* Add bar comment *@
                 <div class="tab-pane text-center gallery justify-content-center" id="favorite">
                     <div class="row">
                         <div class="row bootstrap snippets d-flex justify-content-center">
@@ -187,41 +191,79 @@
                                                 <div class="clearfix"></div>
                                                 <hr>
                                             }
-
+                                            @* List bar comments *@
                                             <ul id="new-comment-here" class="media-list">
                                                 @foreach (var item in Model.BarCommentViewModels)
                                                 {
-                                                <li class="media">
-                                                    <a href="#" class="pull-left">
-                                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        <span class="text-muted pull-right">
-                                                            <small class="text-muted">
-                                                                @item.CreatedOn
-                                                            </small>
-                                                        </span>
-                                                        <strong class="text-success">@item.UserName</strong>
-                                                        <p>
-                                                            @item.Body
-                                                        </p>
-                                                    </div>
-                                                    @if (item.UserName == User.Identity.Name.Split('@')[0])
-                                                    {
-
-                                                        <div class=" media-body">
-                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"> edit</i>                                                      
-                                                        </div>
+                                                    <li class="media">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                        </a>
                                                         <div class="media-body">
-                                                            <form asp-area="Member"asp-controller="BarComments"asp-action="Delete">
-                                                                <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
-                                                                <input type="submit" value="Delete" class="btn btn-danger" /> 
-                                                            </form>
+                                                            <span class="text-muted pull-right">
+                                                                @if (item.ModifiedOn != null)
+                                                                {
+                                                                    <small class="text-muted">
+                                                                        Edited on @item.ModifiedOn
+                                                                    </small>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <small class="text-muted">
+                                                                        @item.CreatedOn
+                                                                    </small>
+                                                                }
+
+                                                            </span>
+                                                            <strong class="text-success">@item.UserName</strong>
+                                                            <p>
+                                                                <span id="@item.Id+body" value="@item.Body">@item.Body</span>
+                                                            </p>
                                                         </div>
-                                                    }
-                                                </li>                                         
-                                                    <br/>
-                                                    <br/>
+                                                        @* Buttons to edit/delete comment *@
+                                                        @if (User.Identity.IsAuthenticated && item.UserName == User.Identity.Name.Split('@')[0])
+                                                        {
+                                                            <div class="media-body">
+                                                                <form asp-area="Member" asp-controller="BarComments" asp-action="Delete">
+                                                                    <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
+                                                                    <input type="submit" value="Delete" class="btn btn-outline-danger" />
+                                                                </form>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <button id="@item.Id" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
+                                                                    Edit
+                                                                </button>
+                                                            </div>
+                                                        }
+                                                                <!-- Modal to edit comment-->
+                                                                <div class="modal fade @item.Id" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form>
+                                                                                    Edit Comment
+                                                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" id="@item.Id+CommentBody" data-val-required="true" class="form-control" placeholder="New text..." />
+                                                                                        <span class="text-danger"></span>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="button" class="btn btn-primary" value="@item.Id" onclick="SaveModal(this.value)"> Save changes</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                    </li>
+                                                    <br />
+                                                    <br />
                                                 }
                                             </ul>
                                         </div>
@@ -241,19 +283,13 @@
         </div>
     </row>
 
-    @section Scripts{
+    @section Scripts
+    {
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/js/AddComment.js"></script>
-        <script>
-            $(".star-container").on("change", (getId) => {
-                let rt = $(getId)[0].target.defaultValue;
-                console.log(rt);
-                let a = $("#currentValue").val(rt);
-                console.log(a);
-            });
-        </script>
+        <script src="~/js/EditComment.js"></script>
+        <script src="~/js/AddRating.js"></script>
     }
 
-    <script>
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    </script>
+
+
