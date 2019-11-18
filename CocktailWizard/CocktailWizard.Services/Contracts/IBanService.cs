@@ -11,6 +11,6 @@ namespace CocktailWizard.Services.Contracts
         Task CheckForExpiredBansAsync();
         Task CreateAsync(Guid id, string description, int period);
         Task<ICollection<UserDto>> GetAllAsync(string param);
-        Task RemoveAsync(User user);
+        Task RemoveAsync(Guid id);
     }
 }

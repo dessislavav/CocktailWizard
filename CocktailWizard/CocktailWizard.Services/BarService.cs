@@ -261,7 +261,7 @@ namespace CocktailWizard.Services
             return barDto;
         }
 
-        public async Task<ICollection<SearchBarDto>> SearchAsync(string searchCriteria, bool byName, bool byAddress, bool byRating)
+        public async Task<ICollection<SearchBarDto>> SearchAsync(string searchCriteria, bool byName, bool byAddress, bool byRating, double ratingValue)
         {
             var terms = searchCriteria.Split(" ");
             if (byName == false && byAddress == false && byRating == false)
@@ -282,10 +282,10 @@ namespace CocktailWizard.Services
                 var allBars = this.context.Bars.Where(b => b.IsDeleted == false).Include(b => b.Ratings);
                 var filteredByName = allBars.Where(b => byName && b.Name.Contains(terms));
                 var filteredByAddress = allBars.Where(b => byAddress && b.Address.Contains(terms));
-                //var filteredByRating = allBars.Where(b => byRating && b.Rating.Name.Contains(terms));
+                var filteredByRating = allBars.Where(b => byRating && b.Ratings.Any() ? (b.Ratings.Average(x => x.Value) >= ratingValue) : false);
 
-                var filtered = filteredByName.Union(filteredByAddress);
-                // var filtered = filteredByName.Union(filteredByAddress).Union(filteredByRating);
+                //var filtered = filteredByName.Union(filteredByAddress);
+                var filtered = filteredByName.Union(filteredByAddress).Union(filteredByRating);
 
                 var mappedResult = filtered.Select(b => this.searchDtoMapper.MapFrom(b)).ToList();
 

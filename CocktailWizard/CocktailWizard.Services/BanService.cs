@@ -6,6 +6,7 @@ using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers;
 using CocktailWizard.Services.DtoMappers.Contracts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,8 @@ namespace CocktailWizard.Services
             if (param == "active")
             {
                 users = await this.context.Users
-                    .Where(u => u.IsBanned == false)
+                    .Where(u => u.IsBanned == false 
+                    && u.UserName != "manager@cw.com")
                     .ToListAsync();
             }
             else if (param == "banned")

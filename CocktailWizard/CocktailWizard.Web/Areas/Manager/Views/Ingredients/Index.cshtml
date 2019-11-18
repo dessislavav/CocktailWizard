@@ -17,6 +17,19 @@
             <div class="row">
                 <div class="col-md-12" align="center">
                     <br />
+                    <form>
+                        <div class="col-md-6">
+                            <div style="display:normal" id="ingrediens-div">
+                                <div class="m-4">
+                                    <div>
+                                        <input type="text" class=" form-control" id="ingredient-name" placeholder="Name of the new ingredient..." />
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" id="ingrediens-to-db">Add new ingredient</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br />
                     <table class="table-striped text-center" align="center">
                         <thead>
                             <tr align="center">
@@ -97,19 +110,6 @@
                         <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
                         <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
                     }
-                    <br />
-                    <form>
-                        <div class="col-md-6">
-                            <div style="display:normal" id="ingrediens-div">
-                                <div class="m-4">
-                                    <div>
-                                        <input type="text" class=" form-control" id="ingredient-name" placeholder="Name of the new ingredient..." />
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary" id="ingrediens-to-db">Add new ingredient</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

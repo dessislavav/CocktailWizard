@@ -17,6 +17,6 @@ namespace CocktailWizard.Services
         Task<int> GetPageCountAsync(int barsPerPage);
         Task<ICollection<BarDto>> GetTenBarsOrderedByNameAsync(int currentPage);
         Task<ICollection<BarDto>> GetTopBarsAsync(int num);
-        Task<ICollection<SearchBarDto>> SearchAsync(string searchCriteria, bool byName, bool byAddress, bool byRating);
+        Task<ICollection<SearchBarDto>> SearchAsync(string searchCriteria, bool byName, bool byAddress, bool byRating, double ratingValue);
     }
 }

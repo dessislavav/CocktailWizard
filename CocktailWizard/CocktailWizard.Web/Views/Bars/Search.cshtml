@@ -5,16 +5,18 @@
 
 <head>
     <link rel="stylesheet" href="~/css/barsearchpartial.css" />
+    <link rel="stylesheet" href="~/css/StarRating.css" />
 </head>
 
-<div class="page-header header-filter" data-parallax="true" style="background-color:black">
+
+<div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/search.jpg); opacity:1.2">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1>Define your search</h1>
-                <div class="row mt-2">
+                <div class="row mt-12">
                     <form class="col-md-12" asp-controller="Bars" asp-action="Search" method="get">
-                        <row>
+                        <row style="align-content:baseline">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div id="name-button" class="custom-control custom-checkbox custom-control-inline">
                                 <input asp-for="@Model.SearchByName" type="checkbox" class="custom-control-input" id="defaultInline1">
@@ -29,11 +31,61 @@
                             <div id="rating-button" class="custom-control custom-checkbox custom-control-inline">
                                 <input type="checkbox" asp-for="@Model.SearchByRating" class="custom-control-input" id="defaultInline3">
                                 <label class="check custom-control-label" for="defaultInline3">Rating</label>
+                                <div class="container" style="transform: scale(0.6); top: -17px">
+                                    <div class="row">
+                                        <div class="star-source">
+                                            <svg>
+                                                <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
+                                                    <stop stop-color="#bf209f" offset="0%"></stop>
+                                                    <stop stop-color="#d62a9d" offset="60%"></stop>
+                                                    <stop stop-color="#ED009E" offset="100%"></stop>
+                                                </linearGradient>
+                                                <symbol id="star" viewBox="153 89 106 108">
+                                                    <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
+                                                </symbol>
+                                            </svg>
+                                        </div>
+                                        <div class="star-container">
+                                            <input type="radio" name="star" id="five" value="5">
+                                            <label for="five">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="four" value="4">
+                                            <label for="four">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="three" value="3">
+                                            <label for="three">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="two" value="2">
+                                            <label for="two">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="one" value="1">
+                                            <label for="one">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input asp-for="@Model.Value" hidden="hidden" id="currentValue" value="" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </row>
                         <div class="form-group">
                             <label class="bmd-label-floating">Your Search...</label>
                             <input asp-for="@Model.SearchName" type="text" class="form-control">
+                            <button type="submit" class="btn btn-primary btn-block"><i class="material-icons">search</i>Search</button>
                         </div>
                     </form>
                 </div>
@@ -42,7 +94,7 @@
     </div>
 </div>
 
-<div class="main main-raised">
+<div class="main main-raised" style="position:sticky">
     <div class="profile-content img-fluid">
         <div class="container">
             <div class="row">
@@ -68,4 +120,13 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $(".star-container").on("change", (getId) => {
+            let rt = $(getId)[0].target.defaultValue;
+            console.log(rt);
+            let a = $("#currentValue").val(rt);
+            console.log(a);
+        });
+    </script>
 }
