@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CocktailWizard.Services\CocktailWizard.Services.csproj" />
+    <ProjectReference Include="..\CocktailWizard.Web\CocktailWizard.Web.csproj" />
   </ItemGroup>
 
 </Project>
