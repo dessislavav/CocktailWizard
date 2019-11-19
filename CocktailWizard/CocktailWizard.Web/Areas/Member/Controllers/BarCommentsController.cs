@@ -1,7 +1,9 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services;
+using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
@@ -85,29 +87,13 @@ namespace CocktailWizard.Web.Controllers
 
         }
 
-        // GET: BarComments/Edit/
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var barComment = await _context.BarComments.FindAsync(id);
-            //if (barComment == null)
-            //{
-            //    return NotFound();
-            //}
-
-            return View();
-        }
 
         // POST: BarComments/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, BarComment barComment)
+        public async Task<IActionResult> Edit(Guid id, string newBody)
         {
-            if (id != barComment.BarId)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -116,24 +102,17 @@ namespace CocktailWizard.Web.Controllers
             {
                 try
                 {
-                    //_context.Update(barComment);
-                    //await _context.SaveChangesAsync();
+                    await this.barCommentService.EditAsync(id, newBody);
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (BusinessLogicException)
                 {
-                    //if (!BarCommentExists(barComment.BarId))
-                    //{
-                    //    return NotFound();
-                    //}
-                    //else
-                    //{
-                    //    throw;
-                    //}
+                    throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
                 }
-                return RedirectToAction(nameof(Index));
+                this.toastNotification.AddSuccessToastMessage("Comment magically edited.");
+                return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -149,7 +128,7 @@ namespace CocktailWizard.Web.Controllers
             }
 
             await this.barCommentService.DeleteAsync(barId);
-            this.toastNotification.AddSuccessToastMessage("Comment magically deleted");
+            this.toastNotification.AddSuccessToastMessage("Comment magically deleted.");
             return RedirectToAction("Index", "Home");
         }
 
