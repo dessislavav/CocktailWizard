@@ -77,6 +77,22 @@ namespace CocktailWizard.Services.Tests.IngredientServiceTests
         }
 
         [TestMethod]
+        public async Task ThrowWhen_DatabaseHasNoIngredientsOverload()
+        {
+            //Arrange
+            var options = TestUtilities.GetOptions(nameof(ThrowWhen_DatabaseHasNoIngredientsOverload));
+            var mapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
+
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                var sut = new IngredientService(assertContext, mapperMock.Object);
+                var asd = sut.GetIngredientsAsync();
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.GetIngredientsAsync(2));
+            }
+        }
+
+        [TestMethod]
         public async Task ReturnCorrectCountOfTypeIngredientDto()
         {
             //Arrange

@@ -76,6 +76,11 @@ namespace CocktailWizard.Services
                 .Take(count)
                 .ToListAsync();
 
+            if (!ingredients.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.IngredientNull);
+            }
+
             var dtoIngredients = this.dtoMapper.MapFrom(ingredients);
 
             return dtoIngredients;
