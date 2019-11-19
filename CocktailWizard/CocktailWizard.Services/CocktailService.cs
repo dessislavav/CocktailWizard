@@ -45,6 +45,7 @@ namespace CocktailWizard.Services
             if (currentPage == 1)
             {
                 tenCocktails = await this.context.Cocktails
+                    .Include(x => x.Ratings)
                     .Where(x => x.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Take(10)
@@ -53,6 +54,7 @@ namespace CocktailWizard.Services
             else
             {
                 tenCocktails = await this.context.Cocktails
+                    .Include(x => x.Ratings)
                     .Where(x => x.IsDeleted == false)
                     .OrderBy(x => x.Name)
                     .Skip((currentPage - 1) * 10)
