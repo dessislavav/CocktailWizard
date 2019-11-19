@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
 
-namespace CocktailWizard.Web.Utilities.Middlewares
+namespace CocktailWizard.Web.Middlewares
 {
     public class GeneralExceptionHandlerMiddleware
     {

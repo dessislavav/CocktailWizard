@@ -1,7 +1,6 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Web.Middlewares;
-using CocktailWizard.Web.Utilities.Middlewares;
 using CocktailWizard.Web.Utilities.Registration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
