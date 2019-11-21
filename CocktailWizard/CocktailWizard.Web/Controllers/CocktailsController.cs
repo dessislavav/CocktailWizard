@@ -77,7 +77,7 @@ namespace CocktailWizard.Web.Controllers
                 return NotFound();
             }
 
-            var dtoCocktail = await this.cocktailService.GetCocktailsBars(id);
+            var dtoCocktail = await this.cocktailService.GetCocktailsBarAsync(id);
 
             var cocktailCommentDtos = await this.cocktailCommentService.GetCocktailCommentsAsync(id);
             var cocktailCommentVM = this.cocktailCommentVmMapper.MapFrom(cocktailCommentDtos);

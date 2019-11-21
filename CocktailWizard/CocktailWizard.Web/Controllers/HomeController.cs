@@ -89,7 +89,7 @@ namespace CocktailWizard.Controllers
             var topCocktailsDtos = await cache.GetOrCreateAsync<ICollection<CocktailDto>>("Cocktails", async (cacheEntry) =>
             {
                 cacheEntry.SlidingExpiration = TimeSpan.FromDays(1);
-                return await this.cocktailService.GetTopCocktails(3);
+                return await this.cocktailService.GetTopCocktailsAsync(3);
             });
 
             return topCocktailsDtos;
