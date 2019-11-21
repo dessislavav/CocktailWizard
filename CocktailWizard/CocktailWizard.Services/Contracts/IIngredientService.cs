@@ -18,5 +18,6 @@ namespace CocktailWizard.Services.Contracts
         Task<ICollection<IngredientDto>> GetIngredientsAsync(int count);
         Task<int> GetPageCountAsync(int ingredientsPerPage);
         Task<ICollection<IngredientDto>> GetTenIngredientsOrderedByNameAsync(int currentPage);
+        //why no merge
     }
 }
