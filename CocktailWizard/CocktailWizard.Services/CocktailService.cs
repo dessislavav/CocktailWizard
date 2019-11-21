@@ -88,7 +88,7 @@ namespace CocktailWizard.Services
             return allCocktailsDtos;
         }
 
-        public async Task<DetailsCocktailDto> GetCocktailsBars(Guid id)
+        public async Task<DetailsCocktailDto> GetCocktailsBarAsync(Guid id)
         {
             var cocktail = await this.context.Cocktails
                 .Where(c => c.IsDeleted == false)
@@ -112,7 +112,7 @@ namespace CocktailWizard.Services
             return detailsCocktailDto;
         }
 
-        public async Task<ICollection<CocktailDto>> GetTopCocktails(int num)
+        public async Task<ICollection<CocktailDto>> GetTopCocktailsAsync(int num)
         {
             var topCocktails = await this.context.Cocktails
                     .Where(b => b.IsDeleted == false)
