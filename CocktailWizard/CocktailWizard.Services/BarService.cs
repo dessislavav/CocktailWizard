@@ -34,6 +34,7 @@ namespace CocktailWizard.Services
         public async Task<BarDto> GetBarAsync(Guid id)
         {
             var bar = await this.context.Bars
+                .Include(b => b.BarCocktails)
                 .Where(b => b.IsDeleted == false)
                 .OrderBy(b => b.Name)
                 .FirstOrDefaultAsync(b => b.Id == id);
@@ -255,6 +256,46 @@ namespace CocktailWizard.Services
                     bar.BarCocktails.Add(barCocktail);
                     cocktail.BarCocktails.Add(barCocktail);
                 }
+            }
+            await this.context.SaveChangesAsync();
+
+            return barDto;
+        }
+
+        public async Task<BarDto> RemoveCocktailsAsync(BarDto barDto, List<string> selectedCocktails)
+        {
+            var bar = await this.context.Bars
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == barDto.Id);
+
+            if (bar == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
+            }
+
+            if (!selectedCocktails.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+            }
+
+            foreach (var item in selectedCocktails)
+            {
+                var cocktail = await this.context.Cocktails
+                    .Where(c => c.IsDeleted == false)
+                    .FirstOrDefaultAsync(c => c.Name == item) ?? throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+
+                var barCocktail = await this.context.BarCocktails
+                    .Where(c => c.IsDeleted == false)
+                    .Where(c => c.CocktailId == cocktail.Id && c.BarId == bar.Id)
+                    .FirstOrDefaultAsync();
+
+                if (barCocktail == null)
+                {
+                    throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+                }
+
+                barCocktail.IsDeleted = true;
+                barCocktail.DeletedOn = DateTime.UtcNow;
             }
             await this.context.SaveChangesAsync();
 

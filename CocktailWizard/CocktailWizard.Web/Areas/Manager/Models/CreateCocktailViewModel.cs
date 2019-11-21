@@ -1,4 +1,5 @@
 ﻿using CocktailWizard.Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace CocktailWizard.Web.Areas.Manager.Models
     {
         public CocktailViewModel CocktailViewModel {get; set; }
         public List<SelectListItem> AllAvailableIngredients { get; set; }
+        public IFormFile File { get; set; }
     }
 }

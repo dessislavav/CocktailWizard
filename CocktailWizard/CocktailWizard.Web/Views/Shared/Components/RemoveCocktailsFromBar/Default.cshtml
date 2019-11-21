@@ -1,31 +1,31 @@
-﻿@model AddCocktailsToBarsViewModel
+﻿@model RemoveCocktailsFromBarsViewModel
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal2">
-    Add Cocktails
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal3">
+    Remove Cocktails
 </button>
 
 <!-- Modal -->
-<div class="modal" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-area="Manager" asp-controller="Bars" asp-action="AddCocktails" method="post">
+                <form asp-area="Manager" asp-controller="Bars" asp-action="RemoveCocktails" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="Id" />
-                    <div>Please select the cocktails you would like to add to this bar</div>
+                    <div>Please select the cocktails you would like to remove from this bar</div>
                     <div class="form-group">
                         <label></label>
                         <select multiple="multiple" asp-for="@Model.SelectedCocktails" asp-items="@Model.AllCocktails" class="custom-select" size="12">
                             <option hidden disabled selected="">Select...</option>
                         </select>
                     </div>
-                    <input type="submit" value="Add Cocktails" class="btn btn-primary" />
+                    <input type="submit" value="Remove Cocktails" class="btn btn-primary" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </form>
             </div>

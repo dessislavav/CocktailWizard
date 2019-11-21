@@ -438,7 +438,7 @@ namespace CocktailWizard.Data.Seeder
                 Address = "6 Pancras Square, London, N1C 4AG",
                 ImagePath = "/assets/img/bars/drakeandmorgan.jpg",
                 Phone = "0203 826 4870",
-                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2481.892053039409!2d-0.1282180840274676!3d51.53353971661222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b3c54efa6e1%3A0x9f4c59afccfb8b53!2sDrake%20%26%20Morgan%20at%20King&#39;s%20Cross!5e0!3m2!1sen!2sbg!4v1573065385773!5m2!1sen!2sbg",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2481.8884131207687!2d-0.12620106137695375!3d51.53360647633398!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9f4c59afccfb8b53!2sDrake%20%26%20Morgan%20at%20King&#39;s%20Cross!5e0!3m2!1sen!2sbg!4v1574331218993!5m2!1sen!2sbg",
             };
             var bar7 = new Bar
             {

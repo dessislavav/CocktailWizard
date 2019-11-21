@@ -1,5 +1,6 @@
 ﻿using CocktailWizard.Services;
 using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.Providers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CocktailWizard.Web.Utilities.Registration
@@ -21,6 +22,8 @@ namespace CocktailWizard.Web.Utilities.Registration
             services.AddScoped<ICocktailRatingService, CocktailRatingService>();
 
             services.AddScoped<IBanService, BanService>();
+
+            services.AddScoped<IFileServiceProvider, FileServiceProvider>();
 
             return services;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,8 +30,9 @@ namespace CocktailWizard.Web.Models
 
         public ICollection<string> CocktailIngredients { get; set; }
 
-        [DisplayName("Image URL Path")]
+        [DisplayName("Image Path")]
         public string ImagePath { get; set; }
+        public IFormFile File { get; set; }
 
         public double? AverageRating { get; set; }
     }

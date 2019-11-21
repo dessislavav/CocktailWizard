@@ -8,6 +8,7 @@ namespace CocktailWizard.Services
     public interface IBarService
     {
         Task<BarDto> AddCocktailsAsync(BarDto barDto, List<string> selectedCocktails);
+        Task<BarDto> RemoveCocktailsAsync(BarDto barDto, List<string> selectedCocktails);
         Task<BarDto> CreateAsync(BarDto tempBar);
         Task<BarDto> DeleteAsync(Guid id);
         Task<BarDto> EditAsync(Guid id, string newName, string newInfo, string newAddress, string newPhone, string newImagePath);

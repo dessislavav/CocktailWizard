@@ -9,13 +9,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Cocktail</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-area="Manager" asp-controller="Cocktails" asp-action="Create">
+                <form enctype="multipart/form-data" asp-area="Manager" asp-controller="Cocktails" asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="@Model.CocktailViewModel.Name" class="control-label"></label>
@@ -28,9 +28,9 @@
                         <span asp-validation-for="@Model.CocktailViewModel.Info" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="@Model.CocktailViewModel.ImagePath" class="control-label"></label>
-                        <input asp-for="@Model.CocktailViewModel.ImagePath" class="form-control" />
-                        <span asp-validation-for="@Model.CocktailViewModel.ImagePath" class="text-danger"></span>
+                        <label asp-for="@Model.CocktailViewModel.File" class="btn btn-primary btn-sm"></label>
+                        <input asp-for="@Model.CocktailViewModel.File" type="file">
+                        <span asp-validation-for="@Model.CocktailViewModel.File"></span>
                     </div>
                     <div>Please select the ingredients for this cocktail from the menu below</div>
                     <div class="form-group">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-primary" />
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

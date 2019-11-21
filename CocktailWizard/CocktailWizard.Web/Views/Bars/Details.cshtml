@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="~/css/StarRating.css" />
 </head>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url(@Model.ImagePath);">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url(@Model.ImagePath)">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <h1 class="title">
-                    <br />
                     @Model.Name
                 </h1>
+                <br />
             </div>
         </div>
     </div>
@@ -24,265 +24,269 @@
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile">
-                        <div class="name">
-                            <h2 class="title">@Model.Name</h2>
-                            <h4>@Model.Address</h4>
+            <div class="section text-center">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="name">
+                                <h2 class="title">@Model.Name</h2>
+                                <h4>@Model.Address</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="description text-center">
-                <p>@Model.Info</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile-tabs">
-                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                                    <i class="material-icons">local_bar</i> Cocktails
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                                    <i class="material-icons">rate_review</i> Rating
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                                    <i class="material-icons">favorite</i> Comments
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="description text-center">
+                    <p>@Model.Info</p>
                 </div>
-            </div>
-            @* Cocktails the bar offers *@
-            <div class="tab-content tab-space d-flex justify-content-center">
-                <div class="tab-pane active text-center gallery" id="studio">
-                    <div class="row">
-                        @if (User.IsInRole("Manager"))
-                        {
-                            @await Component.InvokeAsync("AddCocktailsToBar", new { Id = @Model.Id })
-                        }
-                        @if (Model.Cocktails.Count == 0)
-                        {
-                            <h4 class="card-title">
-                                No cocktails found.
-                            </h4>
-                        }
-                        else
-                        {
-                            @foreach (var cocktail in @Model.Cocktails)
-                            {
-                                <div class="col-md-4">
-                                    <a asp-area="" asp-controller="Cocktails" asp-action="Details" asp-route-id="@cocktail.Id">
-                                        <img src="@cocktail.ImagePath" class="detailsimage">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                        <i class="material-icons">local_bar</i> Cocktails
                                     </a>
-                                    <h4 class="card-title">
-                                        @cocktail.Name
-                                        <br>
-                                        <small class="card-description text-muted text-center">@cocktail.Info</small>
-                                        @*<small class="card-description text-muted text-center">@cocktail.AverageRating</small>*@
-                                    </h4>
-                                </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                                        <i class="material-icons">rate_review</i> Rating
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                        <i class="material-icons">favorite</i> Comments
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @* Cocktails the bar offers *@
+                <div class="tab-content tab-space d-flex justify-content-center">
+                    <div class="tab-pane active text-center gallery" id="studio">
+                        <div class="row">
+                            <container style="width: -webkit-fill-available">
+                                @if (User.IsInRole("Manager"))
+                                {
+                                    @await Component.InvokeAsync("AddCocktailsToBar", new { Id = @Model.Id })
+                                    @await Component.InvokeAsync("RemoveCocktailsFromBar", new { Id = @Model.Id })
+                                }
+                            </container>
+                            @if (Model.Cocktails.Count == 0)
+                            {
+                                <h4 class="card-title">
+                                    No cocktails found.
+                                </h4>
                             }
-                        }
+                            else
+                            {
+                                @foreach (var cocktail in @Model.Cocktails)
+                                {
+                                    <div class="col-md-4">
+                                        <a asp-area="" asp-controller="Cocktails" asp-action="Details" asp-route-id="@cocktail.Id">
+                                            <img src="@cocktail.ImagePath" class="detailsimage">
+                                        </a>
+                                        <h4 class="card-title">
+                                            @cocktail.Name
+                                            <br>
+                                            <small class="card-description text-muted text-center">@cocktail.Info</small>
+                                        </h4>
+                                    </div>
+                                }
+                            }
 
+                        </div>
                     </div>
-                </div>
-                @* Add bar rating *@
-                <div class="tab-pane text-center gallery " id="works">
-                    <div class="row">
-                        <form asp-area="Member" asp-controller="BarRatings" asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div hidden class="form-group">
-                                <input asp-for="BarRatingViewModels.FirstOrDefault().BarId" type="hidden" value="@Model.Id">
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="star-source">
-                                        <svg>
-                                            <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
-                                                <stop stop-color="#bf209f" offset="0%"></stop>
-                                                <stop stop-color="#d62a9d" offset="60%"></stop>
-                                                <stop stop-color="#ED009E" offset="100%"></stop>
-                                            </linearGradient>
-                                            <symbol id="star" viewBox="153 89 106 108">
-                                                <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
-                                            </symbol>
-                                        </svg>
-                                    </div>
-                                    <div class="star-container">
-                                        <input type="radio" name="star" id="five" value="5">
-                                        <label for="five">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="four" value="4">
-                                        <label for="four">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="three" value="3">
-                                        <label for="three">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="two" value="2">
-                                        <label for="two">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="one" value="1">
-                                        <label for="one">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input asp-for="BarRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
-                                    </div>
+                    @* Add bar rating *@
+                    <div class="tab-pane text-center gallery " id="works">
+                        <div class="row">
+                            <form asp-area="Member" asp-controller="BarRatings" asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div hidden class="form-group">
+                                    <input asp-for="BarRatingViewModels.FirstOrDefault().BarId" type="hidden" value="@Model.Id">
                                 </div>
-                            </div>
-                            @* Button add rating *@
-                            <div class="form-group">
-                                <input type="submit" value="Add rating" class="btn btn-primary" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                @* Add bar comment *@
-                <div class="tab-pane text-center gallery justify-content-center" id="favorite">
-                    <div class="row">
-                        <div class="row bootstrap snippets d-flex justify-content-center">
-                            <div class="col-md-6 col-md-offset-2 col-sm-12 ">
-                                <div class="comment-wrapper">
-                                    <div class="panel panel-info">
-                                        <div class="panel-body">
-                                            @* //TODO: think of a better restriction *@
-
-                                            @if (User.Identity.IsAuthenticated)
-                                            {
-                                                <form id="comment-to-db">
-                                                    <div>
-                                                        <div>
-                                                            <input type="text" class="form-control" id="comment-body" placeholder="Comment Text" />
-                                                            <br>
-                                                        </div>
-                                                    </div>
-
-                                                    <button type="submit" class="btn btn-info pull-right">Post Comment</button>
-                                                </form>
-                                                <div class="clearfix"></div>
-                                                <hr>
-                                            }
-                                            @* List bar comments *@
-                                            <ul id="new-comment-here" class="media-list">
-                                                @foreach (var item in Model.BarCommentViewModels)
-                                                {
-                                                    <li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                @if (item.ModifiedOn != null)
-                                                                {
-                                                                    <small class="text-muted">
-                                                                        Edited on @item.ModifiedOn
-                                                                    </small>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <small class="text-muted">
-                                                                        @item.CreatedOn
-                                                                    </small>
-                                                                }
-
-                                                            </span>
-                                                            <strong class="text-success">@item.UserName</strong>
-                                                            <p>
-                                                                <span id="@item.Id+body" value="@item.Body">@item.Body</span>
-                                                            </p>
-                                                        </div>
-                                                        @* Buttons to edit/delete comment *@
-                                                        @if (User.Identity.IsAuthenticated && item.UserName == User.Identity.Name.Split('@')[0])
-                                                        {
-                                                            <div class="media-body">
-                                                                <form asp-area="Member" asp-controller="BarComments" asp-action="Delete">
-                                                                    <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
-                                                                    <input type="submit" value="Delete" class="btn btn-outline-danger" />
-                                                                </form>
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <button id="@item.Id" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
-                                                                    Edit
-                                                                </button>
-                                                            </div>
-                                                        }
-                                                                <!-- Modal to edit comment-->
-                                                                <div class="modal fade @item.Id" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                    <span aria-hidden="true">&times;</span>
-                                                                                </button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <form>
-                                                                                    Edit Comment
-                                                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                                                    <div class="form-group">
-                                                                                        <input type="text" id="@item.Id+CommentBody" data-val-required="true" class="form-control" placeholder="New text..." />
-                                                                                        <span class="text-danger"></span>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                                <button type="button" class="btn btn-primary" value="@item.Id" onclick="SaveModal(this.value)"> Save changes</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                    </li>
-                                                    <br />
-                                                    <br />
-                                                }
-                                            </ul>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="star-source">
+                                            <svg>
+                                                <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
+                                                    <stop stop-color="#bf209f" offset="0%"></stop>
+                                                    <stop stop-color="#d62a9d" offset="60%"></stop>
+                                                    <stop stop-color="#ED009E" offset="100%"></stop>
+                                                </linearGradient>
+                                                <symbol id="star" viewBox="153 89 106 108">
+                                                    <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
+                                                </symbol>
+                                            </svg>
+                                        </div>
+                                        <div class="star-container">
+                                            <input type="radio" name="star" id="five" value="5">
+                                            <label for="five">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="four" value="4">
+                                            <label for="four">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="three" value="3">
+                                            <label for="three">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="two" value="2">
+                                            <label for="two">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="one" value="1">
+                                            <label for="one">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input asp-for="BarRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
                                         </div>
                                     </div>
                                 </div>
+                                @* Button add rating *@
+                                <div class="form-group">
+                                    <input type="submit" value="Add rating" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    @* Add bar comment *@
+                    <div class="tab-pane text-center gallery justify-content-center" id="favorite">
+                        <div class="row">
+                            <div class="row bootstrap snippets d-flex justify-content-center">
+                                <div class="col-md-6 col-md-offset-2 col-sm-12 ">
+                                    <div class="comment-wrapper">
+                                        <div class="panel panel-info">
+                                            <div class="panel-body">
+                                                @* //TODO: think of a better restriction *@
 
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <form id="comment-to-db">
+                                                        <div>
+                                                            <div>
+                                                                <input type="text" class="form-control" id="comment-body" placeholder="Comment Text" />
+                                                                <br>
+                                                            </div>
+                                                        </div>
+
+                                                        <button type="submit" class="btn btn-info pull-right">Post Comment</button>
+                                                    </form>
+                                                    <div class="clearfix"></div>
+                                                    <hr>
+                                                }
+                                                @* List bar comments *@
+                                                <ul id="new-comment-here" class="media-list">
+                                                    @foreach (var item in Model.BarCommentViewModels)
+                                                    {
+                                                        <li class="media">
+                                                            <a href="#" class="pull-left">
+                                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <span class="text-muted pull-right">
+                                                                    @if (item.ModifiedOn != null)
+                                                                    {
+                                                                        <small class="text-muted">
+                                                                            Edited on @item.ModifiedOn
+                                                                        </small>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <small class="text-muted">
+                                                                            @item.CreatedOn
+                                                                        </small>
+                                                                    }
+
+                                                                </span>
+                                                                <strong class="text-success">@item.UserName</strong>
+                                                                <p>
+                                                                    <span id="@item.Id+body" value="@item.Body">@item.Body</span>
+                                                                </p>
+                                                            </div>
+                                                            @* Buttons to edit/delete comment *@
+                                                            @if (User.Identity.IsAuthenticated && item.UserName == User.Identity.Name.Split('@')[0])
+                                                            {
+                                                                <div class="media-body">
+                                                                    <form asp-area="Member" asp-controller="BarComments" asp-action="Delete">
+                                                                        <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
+                                                                        <input type="submit" value="Delete" class="btn btn-outline-danger" />
+                                                                    </form>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <button id="@item.Id" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
+                                                                        Edit
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            <!-- Modal to edit comment-->
+                                                            <div class="modal fade @item.Id" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form>
+                                                                                Edit Comment
+                                                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                                                <div class="form-group">
+                                                                                    <input type="text" id="@item.Id+CommentBody" data-val-required="true" class="form-control" placeholder="New text..." />
+                                                                                    <span class="text-danger"></span>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="button" class="btn btn-primary" value="@item.Id" onclick="SaveModal(this.value)"> Save changes</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <row>
         <div align="center">
             <iframe src="@Model.GoogleMapsURL" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
         </div>
+        <br />
     </row>
+</div>
 
-    @section Scripts
+
+@section Scripts
     {
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/js/AddComment.js"></script>
-        <script src="~/js/EditComment.js"></script>
-        <script src="~/js/AddRating.js"></script>
-    }
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/AddComment.js"></script>
+    <script src="~/js/EditComment.js"></script>
+    <script src="~/js/AddRating.js"></script>
+}
 
 
 

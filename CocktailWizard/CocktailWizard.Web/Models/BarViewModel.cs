@@ -1,4 +1,5 @@
 ﻿using CocktailWizard.Web.Areas.Member.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,8 +31,10 @@ namespace CocktailWizard.Web.Models
         public string Info { get; set; }
         public ICollection<CocktailViewModel> Cocktails { get; set; }
 
-        [DisplayName("Image URL Path")]
+        [DisplayName("Image Path")]
         public string ImagePath { get; set; }
+
+        public IFormFile File { get; set; }
 
         [Required]
         [MinLength(9, ErrorMessage = "The {0} value cannot be under {1} characters.")]
