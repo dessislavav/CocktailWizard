@@ -35,7 +35,7 @@ Web application that allows creation of cocktails and follows their distribution
      * Manage bars – CRUD operations for bars
      * Set cocktails as available in particular bars 
 
-## Technologies:
+## Technologies
 * ASP.NET Core
 * ASP.NET Identity
 * Entity Framework Core
@@ -49,7 +49,7 @@ Web application that allows creation of cocktails and follows their distribution
 * AppVeyor
 
 
-## Notes:
+## Notes
 * Moq, InMemory and MSTest for testing
 * Used caching for performance optimization
 * Used DTO (data transfer objects)
@@ -57,3 +57,6 @@ Web application that allows creation of cocktails and follows their distribution
 * Used branches durring development ot features
 * Used Azure DevOps to manage personal development tasks
 * ?? % Unit test code coverage
+
+## Database Diagram
+![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/DatabaseDiagram.png)
