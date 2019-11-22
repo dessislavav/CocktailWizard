@@ -114,17 +114,17 @@ namespace CocktailWizard.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Search([FromQuery]SearchBarViewModel barSearchVM)
+        public async Task<IActionResult> Search([FromQuery]SearchBarViewModel model)
         {
-            if (string.IsNullOrWhiteSpace(barSearchVM.SearchName))
+            if (string.IsNullOrWhiteSpace(model.SearchName) && model.Value == 0)
             {
                 return View();
             }
 
-            var result = await this.barService.SearchAsync(barSearchVM.SearchName, barSearchVM.SearchByName, barSearchVM.SearchByAddress, barSearchVM.SearchByRating, barSearchVM.Value);
-            barSearchVM.SearchResults = result.Select(b => this.searchBarVmMapper.MapFrom(b)).ToList();
+            var result = await this.barService.SearchAsync(model.SearchName, model.SearchByName, model.SearchByAddress, model.SearchByRating, model.Value);
+            model.SearchResults = result.Select(b => this.searchBarVmMapper.MapFrom(b)).ToList();
 
-            return View(barSearchVM);
+            return View(model);
         }
     }
 }

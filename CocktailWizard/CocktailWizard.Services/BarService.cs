@@ -306,6 +306,16 @@ namespace CocktailWizard.Services
 
         public async Task<ICollection<SearchBarDto>> SearchAsync(string searchCriteria, bool byName, bool byAddress, bool byRating, double ratingValue)
         {
+            //Case where only rating is selected as a search criteria
+            if (string.IsNullOrEmpty(searchCriteria))
+            {
+                var allBars = this.context.Bars.Where(b => b.IsDeleted == false).Include(b => b.Ratings);
+                var filteredByRating = await allBars.Where(b => byRating && b.Ratings.Any() ? (b.Ratings.Average(x => x.Value) >= ratingValue) : false).ToListAsync();
+                var mappedResult = this.searchDtoMapper.MapFrom(filteredByRating);
+                return mappedResult;
+            }
+
+            //Case where no criterias are selected so all bars are filtered
             var terms = searchCriteria.Split(" ");
             if (byName == false && byAddress == false && byRating == false)
             {
@@ -320,6 +330,8 @@ namespace CocktailWizard.Services
 
                 return resultDtos;
             }
+
+            //Case where certain criterias are selected so we filter only those bars
             else
             {
                 var allBars = this.context.Bars.Where(b => b.IsDeleted == false).Include(b => b.Ratings);
