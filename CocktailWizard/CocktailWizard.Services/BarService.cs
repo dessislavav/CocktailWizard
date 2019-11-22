@@ -242,7 +242,6 @@ namespace CocktailWizard.Services
                     .FirstOrDefaultAsync(c => c.Name == item) ?? throw new BusinessLogicException(ExceptionMessages.CocktailNull);
 
                 var barCocktail = await this.context.BarCocktails
-                    .Where(c => c.IsDeleted == false)
                     .Where(c => c.CocktailId == cocktail.Id && c.BarId == bar.Id)
                     .FirstOrDefaultAsync();
 
@@ -253,12 +252,17 @@ namespace CocktailWizard.Services
                         Bar = bar,
                         Cocktail = cocktail,
                     };
-
                     await this.context.BarCocktails.AddAsync(barCocktail);
                     bar.BarCocktails.Add(barCocktail);
                     cocktail.BarCocktails.Add(barCocktail);
                 }
+                else
+                {
+                    barCocktail.IsDeleted = false;
+                    barCocktail.DeletedOn = DateTime.MinValue;
+                }
             }
+
             await this.context.SaveChangesAsync();
 
             return barDto;
