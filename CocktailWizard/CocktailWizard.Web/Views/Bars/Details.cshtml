@@ -4,10 +4,12 @@
 }
 @inject UserManager<User> UserManager
 
-<head>
-    <link rel="stylesheet" href="~/css/barsearchpartial.css" />
-    <link rel="stylesheet" href="~/css/StarRating.css" />
-</head>
+    <head>
+        <link rel="stylesheet" href="~/css/barsearchpartial.css" />
+        <link rel="stylesheet" href="~/css/StarRating.css" />
+        <link rel="stylesheet" href="~/css/CropRating.css" />
+    </head>
+
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url(@Model.ImagePath)">
     <div class="container">
@@ -30,12 +32,22 @@
                         <div class="profile">
                             <div class="name">
                                 <h2 class="title">@Model.Name</h2>
-                                <h4>@Model.Address</h4>
+                                <row style="-webkit-appearance: meter;padding-right: 133px">
+                                    <div class="containerrating" style="position:absolute; margin-top:-13px">
+                                        <img src="~/assets/img/small_stars_empty.png" />
+                                        <div class="crop" style="width:@(Model.AverageRating*25.2)px">
+                                            <img src="~/assets/img/stars_small.png" />
+                                        </div>
+                                    </div>
+                                </row>
+                                <br />
+                                <h4 style="padding-top: 20px">@Model.Address</h4>
+                                <hr />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="description text-center">
+                <div class="description text-center" style="padding-top: 20px; padding-bottom: 20px">
                     <p>@Model.Info</p>
                 </div>
                 <div class="row">

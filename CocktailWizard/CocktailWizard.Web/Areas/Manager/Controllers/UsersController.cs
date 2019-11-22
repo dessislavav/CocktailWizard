@@ -60,7 +60,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
                 return RedirectToAction("Index", "Users");
             }
             ModelState.AddModelError(String.Empty, "Please fill in the form!");
-            this.toastNotification.AddSuccessToastMessage("User couldn't be banned");
+            this.toastNotification.AddWarningToastMessage("User couldn't be banned");
             return View(entity);
         }
     }

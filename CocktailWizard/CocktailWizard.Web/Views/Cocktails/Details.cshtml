@@ -29,11 +29,20 @@
                     <div class="profile">
                         <div class="name">
                             <h2 class="title">@Model.Name</h2>
+                            <row style="-webkit-appearance: meter;padding-right: 133px">
+                                <div class="containerrating" style="position:absolute; margin-top:-13px">
+                                    <img src="~/assets/img/small_stars_empty.png" />
+                                    <div class="crop" style="width:@(Model.AverageRating*25.2)px">
+                                        <img src="~/assets/img/stars_small.png" />
+                                    </div>
+                                </div>
+                            </row>
+                            <br />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="description text-center">
+            <div class="description text-center" style="padding-top: 20px; padding-bottom: 20px">
                 <p>@Model.Info</p>
             </div>
             <div class="row">
@@ -74,7 +83,6 @@
                                     @bar.Name
                                     <br>
                                     <small class="card-description text-muted text-center">@bar.Address</small>
-                                    <small class="card-description text-muted text-center">@bar.AverageRating</small>
                                 </h4>
                             </div>
                         }

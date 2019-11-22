@@ -52,8 +52,9 @@ namespace CocktailWizard.Services
         public async Task<BarDto> GetBarCocktails(Guid id)
         {
             var bar = await this.context.Bars
-
-                .Where(b => b.IsDeleted == false)
+                .Include(b => b.Ratings)
+                .Where(b => b.IsDeleted == false)       
+                .Include(b => b.Ratings)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
             if (bar == null)
@@ -125,6 +126,7 @@ namespace CocktailWizard.Services
         public async Task<int> GetPageCountAsync(int barsPerPage)
         {
             var allBars = await context.Bars
+                .Where(b => b.IsDeleted == false)
                 .CountAsync();
 
             var totalPages = (allBars - 1) / barsPerPage + 1;
