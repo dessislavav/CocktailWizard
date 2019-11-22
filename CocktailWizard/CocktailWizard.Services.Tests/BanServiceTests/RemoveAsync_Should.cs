@@ -1,6 +1,7 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -48,6 +49,25 @@ namespace CocktailWizard.Services.Tests.BanServiceTests
                 Assert.AreEqual(user.IsBanned, false);
                 Assert.AreEqual(ban.HasExpired, true);
                 Assert.AreEqual(user.LockoutEnd < DateTime.Now, true);
+            }
+        }
+
+        [TestMethod]
+        public async Task ThrowWhen_NoBanIsFound()
+        {
+            //Arrange
+            var options = TestUtilities.GetOptions(nameof(CorrectlyRemoveBan_WhenParamsAreValid));
+            var mapperMock = new Mock<IDtoMapper<User, UserDto>>();
+            var testGuid = Guid.NewGuid();
+            var userTest = new User { Id = testGuid, UserName = "Pesho", IsBanned = true, LockoutEnabled = true, LockoutEnd = DateTime.UtcNow.AddDays(1) };
+
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                await assertContext.Users.AddAsync(userTest);
+                await assertContext.SaveChangesAsync();
+                var sut = new BanService(assertContext, mapperMock.Object);
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.RemoveAsync(testGuid));
             }
         }
     }
