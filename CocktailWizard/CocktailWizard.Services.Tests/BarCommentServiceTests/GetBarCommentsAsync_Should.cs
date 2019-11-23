@@ -48,8 +48,8 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
 
             var list = new List<BarCommentDto>()
             {
-                new BarCommentDto{ Id = id, Body = "testbody" },
-                new BarCommentDto { Id = twoId, Body = "testbodytwo"},
+                new BarCommentDto{ Id = id, BarId = barId, Body = "testbody" },
+                new BarCommentDto { Id = twoId, BarId = barId, Body = "testbodytwo"},
             };
 
             mapperMock.Setup(x => x.MapFrom(It.IsAny<ICollection<BarComment>>())).Returns(list);
