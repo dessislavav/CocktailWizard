@@ -32,7 +32,7 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
             var bar = new Bar
             {
                 Id = barId,
-                Name = "tesname"
+                Name = "testname"
             };
 
             var entity = new BarComment
@@ -56,7 +56,7 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
                 await actContext.BarComments.AddAsync(entity);
                 await actContext.SaveChangesAsync();
                 var service = new BarCommentService(actContext, mapperMock.Object);
-                var result = await service.DeleteAsync(barId);
+                var result = await service.DeleteAsync(id, barId);
                 await actContext.SaveChangesAsync();
             }
 

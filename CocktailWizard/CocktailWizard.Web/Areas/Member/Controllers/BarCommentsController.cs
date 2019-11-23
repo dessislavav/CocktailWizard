@@ -120,14 +120,19 @@ namespace CocktailWizard.Web.Controllers
         // POST: BarComments/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid barId)
+        public async Task<IActionResult> DeleteConfirmed(Guid id, Guid barId)
         {
             if (barId == null)
             {
                 return NotFound();
             }
 
-            await this.barCommentService.DeleteAsync(barId);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await this.barCommentService.DeleteAsync(id, barId);
             this.toastNotification.AddSuccessToastMessage("Comment magically deleted.");
             return RedirectToAction("Index", "Home");
         }

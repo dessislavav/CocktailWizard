@@ -91,13 +91,14 @@ namespace CocktailWizard.Services
             return barComment;
         }
 
-        public async Task<BarCommentDto> DeleteAsync(Guid barId)
+        public async Task<BarCommentDto> DeleteAsync(Guid id, Guid barId)
         {  
             
             var comment = await this.context.BarComments
                 .Include(bc => bc.Bar)
                 .Include(bc => bc.User)
                 .Where(bc => bc.IsDeleted == false)
+                .Where(bc => bc.Id == id)
                 .Where(bc => bc.BarId == barId)
                 .FirstOrDefaultAsync();
 
