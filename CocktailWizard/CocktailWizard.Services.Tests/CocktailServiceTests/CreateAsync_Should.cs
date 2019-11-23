@@ -43,12 +43,21 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
 
             mapperMock.Setup(x => x.MapFrom(It.IsAny<Cocktail>())).Returns(entityDto);
 
+            var ingredientId = Guid.NewGuid();
 
             var ingredient = new Ingredient
             {
-                Id = Guid.NewGuid(),
+                Id = ingredientId,
                 Name = "TestIngredient"
             };
+
+            var ingredientDto = new IngredientDto
+            {
+                Id = ingredientId,
+                Name = "TestIngredient"
+            };
+
+            ingredientMapperMock.Setup(x => x.MapFrom(ingredient)).Returns(ingredientDto);
 
             var cocktailIngredient = new CocktailIngredient
             {
@@ -56,23 +65,12 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 IngredientId = ingredient.Id
             };
 
-            foreach (var item in entityDto.CocktailIngredients)
-            {
 
-                var ingredientDa = await ingredientServiceMock.Object.GetIngredientAsync(item);
-
-            }
+            ingredientServiceMock.Setup(x => x.GetIngredientAsync(It.IsAny<string>()))
+                .Returns(Task.FromResult(ingredient));
             cocktailIngredientServiceMock.Setup(x => x.CreateCocktailIngredientAsync(It.IsAny<Guid>(), It.IsAny<Guid>()))
                 .Returns(Task.FromResult(cocktailIngredient));
 
-            using (var actContext = new CWContext(options))
-            {
-                //Act
-
-                await actContext.Ingredients.AddAsync(ingredient);
-                await actContext.CocktailIngredients.AddAsync(cocktailIngredient);
-                await actContext.SaveChangesAsync();
-            }
 
             using (var assertContext = new CWContext(options))
             {
@@ -135,15 +133,19 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
             var ingredientServiceMock = new Mock<IIngredientService>();
             var cocktailIngredientServiceMock = new Mock<ICocktailIngredientService>();
 
+            string[] ingredients = new string[] {};
+
             var entityDto = new CocktailDto
             {
                 Id = Guid.NewGuid(),
                 Name = "TestName",
                 Info = "TestInfo",
-                ImagePath = "TestImagePath"
+                ImagePath = "TestImagePath",
+                CocktailIngredients = ingredients
             };
 
             mapperMock.Setup(x => x.MapFrom(It.IsAny<Cocktail>())).Returns(It.IsAny<CocktailDto>);
+
 
             using (var assertContext = new CWContext(options))
             {
