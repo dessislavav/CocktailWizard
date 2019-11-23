@@ -60,6 +60,11 @@ namespace CocktailWizard.Services
                 .Where(bc => bc.BarId == barId)
                 .ToListAsync();
 
+            if (!barComments.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
+            }
+
             var barCommentDtos = this.dtoMapper.MapFrom(barComments);
 
             return barCommentDtos;
@@ -76,14 +81,30 @@ namespace CocktailWizard.Services
                 .Where(bc => bc.BarId == barId)
                 .FirstOrDefaultAsync();
 
+            if (barComment == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
+            }
+
             //var barCommentDto = this.dtoMapper.MapFrom(barComment);
 
             return barComment;
         }
 
         public async Task<BarCommentDto> DeleteAsync(Guid barId)
-        {
-            var comment = await this.GetBarCommentAsync(barId);
+        {  
+            
+            var comment = await this.context.BarComments
+                .Include(bc => bc.Bar)
+                .Include(bc => bc.User)
+                .Where(bc => bc.IsDeleted == false)
+                .Where(bc => bc.BarId == barId)
+                .FirstOrDefaultAsync();
+
+            if (comment == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
+            }
 
             comment.DeletedOn = DateTime.UtcNow;
             comment.IsDeleted = true;
@@ -101,6 +122,11 @@ namespace CocktailWizard.Services
             var comment = await this.context.BarComments
                 .Where(bc => bc.IsDeleted == false)
                 .FirstOrDefaultAsync(bc => bc.Id == id);
+
+            if (comment == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
+            }
 
             comment.ModifiedOn = DateTime.UtcNow;
             comment.Body = newBody;
