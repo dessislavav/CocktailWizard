@@ -16,17 +16,14 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
     [Authorize(Roles = "Member")]
     public class CocktailRatingsController : Controller
     {
-        private readonly CWContext context;
         private readonly UserManager<User> userManager;
         private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> modelMapper;
         private readonly ICocktailRatingService cocktailRatingService;
 
-        public CocktailRatingsController(CWContext context,
-            UserManager<User> userManager,
-            IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> modelMapper,
-            ICocktailRatingService cocktailRatingService)
+        public CocktailRatingsController(UserManager<User> userManager,
+                                         IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> modelMapper,
+                                         ICocktailRatingService cocktailRatingService)
         {
-            this.context = context;
             this.userManager = userManager;
             this.modelMapper = modelMapper;
             this.cocktailRatingService = cocktailRatingService;

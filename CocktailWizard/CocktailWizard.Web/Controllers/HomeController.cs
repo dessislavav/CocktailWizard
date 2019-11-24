@@ -17,18 +17,17 @@ namespace CocktailWizard.Controllers
     public class HomeController : Controller
     {
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
+        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
         private readonly IBarService barService;
         private readonly ICocktailService cocktailService;
         private readonly IMemoryCache cache;
-        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
 
 
-        public HomeController(
-            IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, 
-            IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
-            IBarService barService, 
-            ICocktailService cocktailService, 
-            IMemoryCache cache)
+        public HomeController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, 
+                              IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
+                              IBarService barService, 
+                              ICocktailService cocktailService, 
+                              IMemoryCache cache)
         {
             this.barViewModelMapper = barViewModelMapper; ;
             this.cocktailViewModelMapper = cocktailViewModelMapper;

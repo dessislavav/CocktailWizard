@@ -20,8 +20,8 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
         private readonly IBarRatingService barRatingService;
 
         public BarRatingsController(UserManager<User> userManager,
-            IViewModelMapper<BarRatingDto, BarRatingViewModel> modelMapper,
-            IBarRatingService barRatingService)
+                                    IViewModelMapper<BarRatingDto, BarRatingViewModel> modelMapper,
+                                    IBarRatingService barRatingService)
         {
             this.userManager = userManager;
             this.modelMapper = modelMapper;

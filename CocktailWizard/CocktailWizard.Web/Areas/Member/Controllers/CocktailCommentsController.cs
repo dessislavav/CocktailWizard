@@ -23,9 +23,9 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> modelMapper;
         private readonly ICocktailCommentService cocktailCommentService;
         public CocktailCommentsController(CWContext context, 
-            UserManager<User> userManager,
-            IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> modelMapper,
-            ICocktailCommentService cocktailCommentService)
+                                          UserManager<User> userManager,
+                                          IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> modelMapper,
+                                          ICocktailCommentService cocktailCommentService)
         {
             _context = context;
             this.userManager = userManager;

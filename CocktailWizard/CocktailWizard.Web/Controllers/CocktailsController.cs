@@ -23,13 +23,13 @@ namespace CocktailWizard.Web.Controllers
         private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper;
 
         public CocktailsController(ICocktailService cocktailService, 
-            IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
-            IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper, 
-            IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
-            IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper,
-            ICocktailCommentService cocktailCommentService,
-            IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper,
-            ICocktailRatingService cocktailRatingService)
+                                   IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
+                                   IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper, 
+                                   IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
+                                   IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper,
+                                   ICocktailCommentService cocktailCommentService,
+                                   IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper,
+                                   ICocktailRatingService cocktailRatingService)
         {
             this.cocktailService = cocktailService;
             this.cocktailViewModelMapper = cocktailViewModelMapper;

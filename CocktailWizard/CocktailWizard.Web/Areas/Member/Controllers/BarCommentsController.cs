@@ -27,11 +27,10 @@ namespace CocktailWizard.Web.Controllers
         private readonly UserManager<User> userManager;
         private readonly IToastNotification toastNotification;
 
-        public BarCommentsController(IViewModelMapper<BarCommentDto,
-            BarCommentViewModel> modelMapper,
-            IBarCommentService barCommentService,
-            UserManager<User> userManager,
-            IToastNotification toastNotification)
+        public BarCommentsController(IViewModelMapper<BarCommentDto,BarCommentViewModel> modelMapper,
+                                     IBarCommentService barCommentService,
+                                     UserManager<User> userManager,
+                                     IToastNotification toastNotification)
         {
             this.modelMapper = modelMapper;
             this.barCommentService = barCommentService;

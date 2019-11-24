@@ -8,55 +8,59 @@
     <link rel="stylesheet" href="~/css/CropRating.css" />
 </head>
 
-@if (User.IsInRole("Manager"))
-{
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/crud-ingredients.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 class="title">
-                        Cocktails
-                    </h1>
-                    <br />
-                    <h5>We spent countless hours of research in hundreds of bars to bring you the best and most creative cocktails on Earth. Cheers!</h5>
-                </div>
+
+<div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/crud-ingredients.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">
+                    Cocktails
+                </h1>
+                <br />
+                <h5>We spent countless hours of research in hundreds of bars to bring you the best and most creative cocktails on Earth. Cheers!</h5>
             </div>
         </div>
     </div>
-    <div class="main main-raised">
-        <div class="profile-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div>
-                            <br />
+</div>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <br />
+                        @if (User.IsInRole("Manager"))
+                        {
                             @await Component.InvokeAsync("CreateCocktail")
-                            <br />
-                            <table class="table-striped text-center" align="center">
-                                <thead>
-                                    <tr align="center">
-                                        <th width="20%"></th>
-                                        <th width="25%"></th>
-                                        <th width="40%"></th>
-                                        <th width="15%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var cocktail in Model.TenCocktails)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <a asp-action="Details" asp-route-id="@cocktail.Id">
-                                                    <img src=@cocktail.ImagePath height=200 width=300>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <span>@cocktail.Name</span>
-                                            </td>
-                                            <td>
-                                                <span>@cocktail.Info</span>
-                                            </td>
-                                            <td>
+                        }
+                        <br />
+                        <table class="table-striped text-center" align="center">
+                            <thead>
+                                <tr align="center">
+                                    <th width="20%"></th>
+                                    <th width="25%"></th>
+                                    <th width="40%"></th>
+                                    <th width="15%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var cocktail in Model.TenCocktails)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-action="Details" asp-route-id="@cocktail.Id">
+                                                <img src=@cocktail.ImagePath height=200 width=300>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span>@cocktail.Name</span>
+                                        </td>
+                                        <td>
+                                            <span>@cocktail.Info</span>
+                                        </td>
+                                        <td>
+                                            @if (User.IsInRole("Manager"))
+                                            {
                                                 <!-- EDIT Modal Button -->
                                                 <button id="@cocktail.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#editModal" onclick="showEditModal(this.id)">Edit</button>
                                                 <!-- EDIT Modal -->
@@ -97,133 +101,53 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <form asp-area="Manager" asp-controller="Bars" asp-action="Delete" asp-route-id="@cocktail.Id" method="post">
+                                                <form asp-area="Manager" asp-controller="Cocktails" asp-action="Delete" asp-route-id="@cocktail.Id" method="post">
                                                     <button data-id="@cocktail.Id" type="submit" class="btn btn-primary btn-sm btn-block delete-item">Delete</button>
                                                 </form>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            <div class="align-content-center">
-                                @if (Model.PrevPage == null)
-                                {
-                                    <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
-                                }
-                                else
-                                {
-                                    <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
-                                    <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
-                                }
-
-                                <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
-
-                                @if (Model.NextPage == null)
-                                {
-                                    <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
-                                }
-                                else
-                                {
-                                    <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
-                                    <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-}
-else
-{
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/crud-ingredients.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 class="title">
-                        Cocktails
-                    </h1>
-                    <br />
-                    <h5>We spent countless hours of research in hundreds of bars to bring you the best and most creative cocktails on Earth. Cheers!</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="main main-raised">
-        <div class="profile-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div>
-                            <br />
-                            <table class="table-striped text-center" align="center">
-                                <thead>
-                                    <tr align="center">
-                                        <th width="20%"></th>
-                                        <th width="25%"></th>
-                                        <th width="40%"></th>
-                                        <th width="15%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var cocktail in Model.TenCocktails)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <a asp-action="Details" asp-route-id="@cocktail.Id">
-                                                    <img src=@cocktail.ImagePath height=200 width=300>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <span>@cocktail.Name</span>
-                                            </td>
-                                            <td>
-                                                <span>@cocktail.Info</span>
-                                            </td>
-                                            <td>
+                                            }
+                                            else
+                                            {
                                                 <div class="containerrating" style="position:absolute; margin-top:-13px">
                                                     <img src="~/assets/img/small_stars_empty.png" />
                                                     <div class="crop" style="width:@(cocktail.AverageRating*25.2)px">
                                                         <img src="~/assets/img/stars_small.png" />
                                                     </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            <div class="align-content-center">
-                                @if (Model.PrevPage == null)
-                                {
-                                    <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
+                                            }
+                                        </td>
+                                    </tr>
                                 }
-                                else
-                                {
-                                    <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
-                                    <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
-                                }
+                            </tbody>
+                        </table>
+                        <div class="align-content-center">
+                            @if (Model.PrevPage == null)
+                            {
+                                <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
+                            }
 
-                                <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
+                            <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
 
-                                @if (Model.NextPage == null)
-                                {
-                                    <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
-                                }
-                                else
-                                {
-                                    <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
-                                    <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
-                                }
-                            </div>
+                            @if (Model.NextPage == null)
+                            {
+                                <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-}
-
+</div>
 
 @section scripts
 {
