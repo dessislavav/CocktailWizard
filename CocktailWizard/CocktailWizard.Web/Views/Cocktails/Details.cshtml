@@ -73,19 +73,30 @@
             <div class="tab-content tab-space justify-content-center">
                 <div class="tab-pane active text-center gallery" id="studio">
                     <div class="row">
-                        @foreach (var bar in @Model.Bars)
+                        @if (Model.Bars.Count == 0)
                         {
-                            <div class="col-md-4">
-                                <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@bar.Id">
-                                    <img src="@bar.ImagePath" class="detailsimage">
-                                </a>
-                                <h4 class="card-title">
-                                    @bar.Name
-                                    <br>
-                                    <small class="card-description text-muted text-center">@bar.Address</small>
-                                </h4>
-                            </div>
+                            <h4 class="card-title">
+                                No bars found.
+                            </h4>
                         }
+                        else
+                        {
+
+                            @foreach (var bar in @Model.Bars)
+                            {
+                                <div class="col-md-4">
+                                    <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@bar.Id">
+                                        <img src="@bar.ImagePath" class="detailsimage">
+                                    </a>
+                                    <h4 class="card-title">
+                                        @bar.Name
+                                        <br>
+                                        <small class="card-description text-muted text-center">@bar.Address</small>
+                                    </h4>
+                                </div>
+                            }
+                        }
+
                     </div>
                 </div>
                 @* Add cocktail rating *@
@@ -180,26 +191,36 @@
 
                                             @* List cocktail comments *@
                                             <ul id="new-comment-here" class="media-list">
-                                                @foreach (var item in Model.CocktailCommentViewModels)
+                                                @if (!Model.CocktailCommentViewModels.Any())
                                                 {
-                                                    <li class="media">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span class="text-muted pull-right">
-                                                                <small class="text-muted">
-                                                                    @item.CreatedOn
-                                                                </small>
-                                                            </span>
-                                                            <strong class="text-success">@item.UserName</strong>
-                                                            <p>
-                                                                @item.Body
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <br />
+                                                <h4 class="card-title">
+                                                    No comments found.
+                                                </h4>
                                                 }
+                                                else
+                                                {
+                                                    @foreach (var item in Model.CocktailCommentViewModels)
+                                                    {
+                                                        <li class="media">
+                                                            <a href="#" class="pull-left">
+                                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <span class="text-muted pull-right">
+                                                                    <small class="text-muted">
+                                                                        @item.CreatedOn
+                                                                    </small>
+                                                                </span>
+                                                                <strong class="text-success">@item.UserName</strong>
+                                                                <p>
+                                                                    @item.Body
+                                                                </p>
+                                                            </div>
+                                                        </li>
+                                                        <br />
+                                                    }
+                                                }
+
                                             </ul>
                                         </div>
                                     </div>

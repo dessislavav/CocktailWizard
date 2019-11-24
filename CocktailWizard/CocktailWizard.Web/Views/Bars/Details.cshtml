@@ -177,26 +177,26 @@
                             }
                             else
                             {
-                        <div style="align-content:center">
-                            <p class="card-description text-muted text-center">You've rated this bar already. Your rating:</p>
-                            <div class="containerrating" style="position:absolute; padding-left: 55px;">
-                                <img src="~/assets/img/small_stars_empty.png" />
-                                <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
-                                    <img src="~/assets/img/stars_small.png" />
+                                <div style="align-content:center">
+                                    <p class="card-description text-muted text-center">You've rated this bar already. Your rating:</p>
+                                    <div class="containerrating" style="position:absolute; padding-left: 55px;">
+                                        <img src="~/assets/img/small_stars_empty.png" />
+                                        <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
+                                            <img src="~/assets/img/stars_small.png" />
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
                             }
                         </div>
                     </div>
                     @* Add bar comment *@
                     <div class="tab-pane text-center gallery justify-content-center" id="favorite">
                         <div class="row">
-                            <div class="row bootstrap snippets d-flex justify-content-center">
+                            <div class="row bootstrap snippets">
                                 <div class="col-md-6 col-md-offset-2 col-sm-12 ">
                                     <div class="comment-wrapper">
                                         <div class="panel panel-info">
-                                            <div class="panel-body">
+                                            <div class="panel-body" style="width:450px;">
                                                 @* //TODO: think of a better restriction *@
 
                                                 @if (User.Identity.IsAuthenticated)
@@ -209,84 +209,96 @@
                                                             </div>
                                                         </div>
 
-                                                        <button type="submit" class="btn btn-info pull-right">Post Comment</button>
+                                                        <button type="submit" class="btn btn-info pull-right" style="background-color:#9c27b0; width:130px;height:35px; padding-left:20px; padding-right:20px;">Add Comment</button>
                                                     </form>
                                                     <div class="clearfix"></div>
                                                     <hr>
                                                 }
                                                 @* List bar comments *@
                                                 <ul id="new-comment-here" class="media-list">
-                                                    @foreach (var item in Model.BarCommentViewModels)
+                                                    @if (!Model.BarCommentViewModels.Any())
                                                     {
-                                                        <li class="media">
-                                                            <a href="#" class="pull-left">
-                                                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                                                            </a>
-                                                            <div class="media-body">
-                                                                <span class="text-muted pull-right">
-                                                                    @if (item.ModifiedOn != null)
-                                                                    {
-                                                                        <small class="text-muted">
-                                                                            Edited on @item.ModifiedOn
-                                                                        </small>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <small class="text-muted">
-                                                                            @item.CreatedOn
-                                                                        </small>
-                                                                    }
+                                                        <h4 class="card-title">
+                                                            No comments found.
+                                                        </h4>
+                                                    }
+                                                    else
+                                                    {
 
-                                                                </span>
-                                                                <strong class="text-success">@item.UserName</strong>
-                                                                <p>
-                                                                    <span id="@item.Id+body" value="@item.Body">@item.Body</span>
-                                                                </p>
-                                                            </div>
-                                                            @* Buttons to edit/delete comment *@
-                                                            @if (User.Identity.IsAuthenticated && item.UserName == User.Identity.Name.Split('@')[0])
-                                                            {
-                                                                <div class="media-body">
-                                                                    <form asp-area="Member" asp-controller="BarComments" asp-action="Delete">
-                                                                        <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
-                                                                        <input asp-for="BarCommentViewModels.First().Id" type="hidden" value="@item.Id">
 
-                                                                        <input type="submit" value="Delete" class="btn btn-outline-danger" />
-                                                                    </form>
-                                                                </div>
+                                                        @foreach (var item in Model.BarCommentViewModels)
+                                                        {
+                                                            <li class="media">
+                                                                <a href="#" class="pull-left">
+                                                                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                                </a>
                                                                 <div class="media-body">
-                                                                    <button id="@item.Id" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
-                                                                        Edit
-                                                                    </button>
-                                                                </div>
-                                                            }
-                                                            <!-- Modal to edit comment-->
-                                                            <div class="modal fade @item.Id" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
+                                                                    <span class="text-muted pull-right">
+                                                                        @if (item.ModifiedOn != null)
+                                                                        {
+                                                                            <small class="text-muted">
+                                                                                Edited on @item.ModifiedOn
+                                                                            </small>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <small class="text-muted">
+                                                                                @item.CreatedOn
+                                                                            </small>
+                                                                        }
+
+                                                                    </span>
+                                                                    <strong class="text-success">@item.UserName</strong>
+                                                                    <p style="text-align: left;margin-left: 16px;">
+                                                                        <span id="@item.Id+body" value="@item.Body">@item.Body</span>
+                                                                    </p>
+
+                                                                    @* Buttons to edit/delete comment *@
+                                                                    @if (User.Identity.IsAuthenticated && item.UserName == User.Identity.Name.Split('@')[0])
+                                                                    {
+                                                                        <div style="display: inline-flex;">
+                                                                            <form asp-area="Member" asp-controller="BarComments" asp-action="Delete">
+                                                                                <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
+                                                                                <input asp-for="BarCommentViewModels.First().Id" type="hidden" value="@item.Id">
+
+                                                                                <input type="submit" value="Delete" class="btn btn-outline-danger" style="width:60px;height:30px; padding-left:10px; padding-right:10px; padding-top:8px; padding-bottom:8px;" />
+                                                                            </form>
+                                                                            @*</div>
+                                                                                <div class="media-body">*@
+                                                                            <button id="@item.Id" type="button" class="btn btn-outline-success" style="width:60px;height:30px; padding-left:10px; padding-right:10px; padding-top:8px; padding-bottom:8px;" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
+                                                                                Edit
                                                                             </button>
                                                                         </div>
-                                                                        <div class="modal-body">
-                                                                            <form>
-                                                                                Edit Comment
-                                                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                                                <div class="form-group">
-                                                                                    <input type="text" id="@item.Id+CommentBody" data-val-required="true" class="form-control" placeholder="New text..." />
-                                                                                    <span class="text-danger"></span>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="button" class="btn btn-primary" value="@item.Id" onclick="SaveModal(this.value)"> Save changes</button>
+                                                                    }
+                                                                </div>
+                                                                <!-- Modal to edit comment-->
+                                                                <div class="modal fade @item.Id" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form>
+                                                                                    Edit Comment
+                                                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" id="@item.Id+CommentBody" data-val-required="true" class="form-control" placeholder="New text..." />
+                                                                                        <span class="text-danger"></span>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="button" class="btn btn-primary" value="@item.Id" onclick="SaveModal(this.value)"> Save changes</button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </li>
+                                                            </li>
+                                                        }
                                                     }
                                                 </ul>
                                             </div>

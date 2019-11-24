@@ -27,7 +27,7 @@ namespace CocktailWizard.Web.Controllers
         private readonly UserManager<User> userManager;
         private readonly IToastNotification toastNotification;
 
-        public BarCommentsController(IViewModelMapper<BarCommentDto,BarCommentViewModel> modelMapper,
+        public BarCommentsController(IViewModelMapper<BarCommentDto, BarCommentViewModel> modelMapper,
                                      IBarCommentService barCommentService,
                                      UserManager<User> userManager,
                                      IToastNotification toastNotification)
@@ -70,20 +70,26 @@ namespace CocktailWizard.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody]BarCommentViewModel viewModel)
         {
-            //if (!ModelState.IsValid) return BusinessException
 
-            var user = await this.userManager.GetUserAsync(User);
-            var userName = user.Email.Split('@')[0];
+            try
+            {
+                var user = await this.userManager.GetUserAsync(User);
+                var userName = user.Email.Split('@')[0];
 
-            viewModel.UserId = user.Id;
-            viewModel.UserName = userName;
-            var commentDto = this.modelMapper.MapFrom(viewModel);
+                viewModel.UserId = user.Id;
+                viewModel.UserName = userName;
+                var commentDto = this.modelMapper.MapFrom(viewModel);
 
 
-            await this.barCommentService.CreateAsync(commentDto);
+                await this.barCommentService.CreateAsync(commentDto);
+                return Json(viewModel);
+            }
+            catch (Exception)
+            {
+                this.toastNotification.AddErrorToastMessage("Text must be between 2 and 500 symbols.");
+            }
 
-            return Json(viewModel);
-
+            return View();
         }
 
 

@@ -31,6 +31,10 @@ namespace CocktailWizard.Services
             {
                 throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
             }
+            if (String.IsNullOrEmpty(tempBarComment.Body))
+            {
+                throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
+            }
 
             var barComment = new BarComment
             {
@@ -43,6 +47,8 @@ namespace CocktailWizard.Services
                 DeletedOn = tempBarComment.DeletedOn,
                 IsDeleted = tempBarComment.IsDeleted
             };
+
+
 
             await this.context.BarComments.AddAsync(barComment);
             await this.context.SaveChangesAsync();
@@ -59,11 +65,6 @@ namespace CocktailWizard.Services
                 .Where(bc => bc.IsDeleted == false)
                 .Where(bc => bc.BarId == barId)
                 .ToListAsync();
-
-            if (!barComments.Any())
-            {
-                throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
-            }
 
             var barCommentDtos = this.dtoMapper.MapFrom(barComments);
 

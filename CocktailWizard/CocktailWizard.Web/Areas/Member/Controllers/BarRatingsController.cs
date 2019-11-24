@@ -46,7 +46,7 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
 
                 await this.barRatingService.CreateAsync(ratingDto);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Details", "Bars", new { id = viewModel.BarId });
             }
 
             return View(viewModel);
