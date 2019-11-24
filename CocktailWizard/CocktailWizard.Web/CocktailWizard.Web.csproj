@@ -9,12 +9,20 @@
   <ItemGroup>
     <Compile Remove="Areas\Manager\Data\**" />
     <Compile Remove="Areas\Member\Data\**" />
+    <Compile Remove="Areas\Member\Views\BarComments\**" />
+    <Compile Remove="Areas\Member\Views\CocktailComments\**" />
     <Content Remove="Areas\Manager\Data\**" />
     <Content Remove="Areas\Member\Data\**" />
+    <Content Remove="Areas\Member\Views\BarComments\**" />
+    <Content Remove="Areas\Member\Views\CocktailComments\**" />
     <EmbeddedResource Remove="Areas\Manager\Data\**" />
     <EmbeddedResource Remove="Areas\Member\Data\**" />
+    <EmbeddedResource Remove="Areas\Member\Views\BarComments\**" />
+    <EmbeddedResource Remove="Areas\Member\Views\CocktailComments\**" />
     <None Remove="Areas\Manager\Data\**" />
     <None Remove="Areas\Member\Data\**" />
+    <None Remove="Areas\Member\Views\BarComments\**" />
+    <None Remove="Areas\Member\Views\CocktailComments\**" />
   </ItemGroup>
 
   <ItemGroup>

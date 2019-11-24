@@ -89,7 +89,7 @@ namespace CocktailWizard.Web.Controllers
                 this.toastNotification.AddErrorToastMessage("Text must be between 2 and 500 symbols.");
             }
 
-            return View();
+            return View(viewModel);
         }
 
 
@@ -127,18 +127,14 @@ namespace CocktailWizard.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id, Guid barId)
         {
-            if (barId == null)
-            {
-                return NotFound();
-            }
-
-            if (id == null)
+            if (barId == null || id == null)
             {
                 return NotFound();
             }
 
             await this.barCommentService.DeleteAsync(id, barId);
             this.toastNotification.AddSuccessToastMessage("Comment magically deleted.");
+
             return RedirectToAction("Index", "Home");
         }
 

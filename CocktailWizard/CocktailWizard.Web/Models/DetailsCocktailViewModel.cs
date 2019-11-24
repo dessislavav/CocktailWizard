@@ -25,5 +25,6 @@ namespace CocktailWizard.Web.Models
         public double? AverageRating { get; set; }
         public ICollection<CocktailCommentViewModel> CocktailCommentViewModels { get; set; }
         public ICollection<CocktailRatingViewModel> CocktailRatingViewModels { get; set; }
+        public double? CurrentUserRating { get; set; }
     }
 }

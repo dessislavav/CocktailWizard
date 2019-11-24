@@ -1,8 +1,10 @@
 ﻿using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace CocktailWizard.Web.Controllers
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper;
         private readonly ICocktailCommentService cocktailCommentService;
         private readonly ICocktailRatingService cocktailRatingService;
+        private readonly UserManager<User> userManager;
         private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper;
 
         public CocktailsController(ICocktailService cocktailService, 
@@ -29,7 +32,8 @@ namespace CocktailWizard.Web.Controllers
                                    IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper,
                                    ICocktailCommentService cocktailCommentService,
                                    IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper,
-                                   ICocktailRatingService cocktailRatingService)
+                                   ICocktailRatingService cocktailRatingService,
+                                   UserManager<User> userManager)
         {
             this.cocktailService = cocktailService;
             this.cocktailViewModelMapper = cocktailViewModelMapper;
@@ -38,6 +42,7 @@ namespace CocktailWizard.Web.Controllers
             this.cocktailCommentVmMapper = cocktailCommentVmMapper;
             this.cocktailCommentService = cocktailCommentService;
             this.cocktailRatingService = cocktailRatingService;
+            this.userManager = userManager;
             this.cocktailRatingVmMapper = cocktailRatingVmMapper;
         }
         // GET: /Cocktails
@@ -88,6 +93,18 @@ namespace CocktailWizard.Web.Controllers
             var barsVM = this.barViewModelMapper.MapFrom(dtoCocktail.Bars);
             var cocktailVM = this.detailsCocktailViewModelMapper.MapFrom(dtoCocktail);
             cocktailVM.Bars = barsVM;
+
+            var userId = this.userManager.GetUserId(HttpContext.User);
+
+            try
+            {
+                var currentUserRating = await this.cocktailRatingService.GetRatingAsync(id, Guid.Parse(userId));
+                cocktailVM.CurrentUserRating = currentUserRating.Value;
+            }
+            catch (Exception)
+            {
+                cocktailVM.CurrentUserRating = null;
+            }
 
             //TODO: Fix logic here
             if (cocktailVM != null)

@@ -1,7 +1,9 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 using System;
 using System.Threading.Tasks;
 
@@ -18,19 +21,20 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
     [Authorize(Roles = "Member")]
     public class CocktailCommentsController : Controller
     {
-        private readonly CWContext _context;
         private readonly UserManager<User> userManager;
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> modelMapper;
         private readonly ICocktailCommentService cocktailCommentService;
-        public CocktailCommentsController(CWContext context, 
-                                          UserManager<User> userManager,
+        private readonly IToastNotification toastNotification;
+
+        public CocktailCommentsController(UserManager<User> userManager,
                                           IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> modelMapper,
-                                          ICocktailCommentService cocktailCommentService)
+                                          ICocktailCommentService cocktailCommentService,
+                                          IToastNotification toastNotification)
         {
-            _context = context;
             this.userManager = userManager;
             this.modelMapper = modelMapper;
             this.cocktailCommentService = cocktailCommentService;
+            this.toastNotification = toastNotification;
         }
 
         // GET: Member/CocktailComments
@@ -66,45 +70,35 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromBody]CocktailCommentViewModel viewModel)
         {
-            //if (ModelState.IsValid)
-
-            var user = await this.userManager.GetUserAsync(User);
-            var userName = user.Email.Split('@')[0];
-
-            viewModel.UserId = user.Id;
-            viewModel.UserName = userName;
-            var commentDto = this.modelMapper.MapFrom(viewModel);
-
-
-            await this.cocktailCommentService.CreateAsync(commentDto);
-
-            return Json(viewModel);
-        }
-
-        // GET: Member/CocktailComments/Edit/
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            if (id == null)
+            try
             {
-                return NotFound();
+                var user = await this.userManager.GetUserAsync(User);
+                var userName = user.Email.Split('@')[0];
+
+                viewModel.UserId = user.Id;
+                viewModel.UserName = userName;
+                var commentDto = this.modelMapper.MapFrom(viewModel);
+
+
+                await this.cocktailCommentService.CreateAsync(commentDto);
+
+                return Json(viewModel);
+            }
+            catch (Exception)
+            {
+
+                this.toastNotification.AddErrorToastMessage("Text must be between 2 and 500 symbols.");
             }
 
-            var cocktailComment = await _context.CocktailComments.FindAsync(id);
-            if (cocktailComment == null)
-            {
-                return NotFound();
-            }
-            ViewData["CocktailId"] = new SelectList(_context.Cocktails, "Id", "Info", cocktailComment.CocktailId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", cocktailComment.UserId);
-            return View(cocktailComment);
+            return View(viewModel);
         }
 
         // POST: Member/CocktailComments/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,CocktailId,UserId,Body,CreatedOn,ModifiedOn,DeletedOn,IsDeleted")] CocktailComment cocktailComment)
+        public async Task<IActionResult> Edit(Guid id, string newBody)
         {
-            if (id != cocktailComment.Id)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -113,49 +107,34 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
             {
                 try
                 {
-                    _context.Update(cocktailComment);
-                    await _context.SaveChangesAsync();
+                    await this.cocktailCommentService.EditAsync(id, newBody);
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (BusinessLogicException)
                 {
-                  
+                    throw new BusinessLogicException(ExceptionMessages.GeneralOopsMessage);
                 }
-                return RedirectToAction(nameof(Index));
+                this.toastNotification.AddSuccessToastMessage("Comment magically edited.");
+                return RedirectToAction("Index", "Home");
             }
-            ViewData["CocktailId"] = new SelectList(_context.Cocktails, "Id", "Info", cocktailComment.CocktailId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", cocktailComment.UserId);
-            return View(cocktailComment);
+
+            return RedirectToAction("Index", "Home");
         }
 
-        // GET: Member/CocktailComments/Delete/
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cocktailComment = await _context.CocktailComments
-                .Include(c => c.Cocktail)
-                .Include(c => c.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cocktailComment == null)
-            {
-                return NotFound();
-            }
-
-            return View(cocktailComment);
-        }
-
+  
         // POST: Member/CocktailComments/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id, Guid cocktailId)
         {
-            var cocktailComment = await _context.CocktailComments.FindAsync(id);
-            _context.CocktailComments.Remove(cocktailComment);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (cocktailId == null || id == null)
+            {
+                return NotFound();
+            }
+
+            await this.cocktailCommentService.DeleteAsync(id, cocktailId);
+            this.toastNotification.AddSuccessToastMessage("Comment magically deleted.");
+
+            return RedirectToAction("Index", "Home");
         }
 
 

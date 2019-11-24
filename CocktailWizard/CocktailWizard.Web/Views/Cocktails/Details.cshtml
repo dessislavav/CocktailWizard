@@ -70,7 +70,7 @@
             </div>
 
             @* Bars offered in *@
-            <div class="tab-content tab-space justify-content-center">
+            <div class="tab-content tab-space d-flex justify-content-center">
                 <div class="tab-pane active text-center gallery" id="studio">
                     <div class="row">
                         @if (Model.Bars.Count == 0)
@@ -100,67 +100,83 @@
                     </div>
                 </div>
                 @* Add cocktail rating *@
-                <div class="tab-pane text-center gallery justify-content-center " id="works">
-                    <div class="row bootstrap snippets d-flex justify-content-center">
-                        <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div hidden class="form-group">
-                                <input asp-for="CocktailRatingViewModels.FirstOrDefault().CocktailId" type="hidden" value="@Model.Id">
-                            </div>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="star-source">
-                                        <svg>
-                                            <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
-                                                <stop stop-color="#bf209f" offset="0%"></stop>
-                                                <stop stop-color="#d62a9d" offset="60%"></stop>
-                                                <stop stop-color="#ED009E" offset="100%"></stop>
-                                            </linearGradient>
-                                            <symbol id="star" viewBox="153 89 106 108">
-                                                <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
-                                            </symbol>
-                                        </svg>
+                <div class="tab-pane text-center gallery justify-content-center" id="works">
+                    <div class="row">
+                        @* Add bar rating *@
+                        @if (Model.CurrentUserRating == null)
+                        {
+                            <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div hidden class="form-group">
+                                    <input asp-for="CocktailRatingViewModels.FirstOrDefault().CocktailId" type="hidden" value="@Model.Id">
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="star-source">
+                                            <svg>
+                                                <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
+                                                    <stop stop-color="#bf209f" offset="0%"></stop>
+                                                    <stop stop-color="#d62a9d" offset="60%"></stop>
+                                                    <stop stop-color="#ED009E" offset="100%"></stop>
+                                                </linearGradient>
+                                                <symbol id="star" viewBox="153 89 106 108">
+                                                    <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
+                                                </symbol>
+                                            </svg>
+                                        </div>
+                                        <div class="star-container">
+                                            <input type="radio" name="star" id="five" value="5">
+                                            <label for="five">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="four" value="4">
+                                            <label for="four">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="three" value="3">
+                                            <label for="three">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="two" value="2">
+                                            <label for="two">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input type="radio" name="star" id="one" value="1">
+                                            <label for="one">
+                                                <svg class="star">
+                                                    <use xlink:href="#star" />
+                                                </svg>
+                                            </label>
+                                            <input asp-for="CocktailRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
+                                        </div>
                                     </div>
-                                    <div class="star-container">
-                                        <input type="radio" name="star" id="five" value="5">
-                                        <label for="five">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="four" value="4">
-                                        <label for="four">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="three" value="3">
-                                        <label for="three">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="two" value="2">
-                                        <label for="two">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input type="radio" name="star" id="one" value="1">
-                                        <label for="one">
-                                            <svg class="star">
-                                                <use xlink:href="#star" />
-                                            </svg>
-                                        </label>
-                                        <input asp-for="CocktailRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
+                                </div>
+                                @* Button add rating *@
+                                <div class="form-group">
+                                    <input type="submit" value="Add rating" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        }
+                        else
+                        {
+                            <div style="align-content:center">
+                                <p class="card-description text-muted text-center">You've rated this bar already. Your rating:</p>
+                                <div class="containerrating" style="position:absolute; padding-left: 55px;">
+                                    <img src="~/assets/img/small_stars_empty.png" />
+                                    <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
+                                        <img src="~/assets/img/stars_small.png" />
                                     </div>
                                 </div>
                             </div>
-                            @* Button add rating *@
-                            <div class="form-group">
-                                <input type="submit" value="Add rating" class="btn btn-primary" />
-                            </div>
-                        </form>
+                        }
                     </div>
                 </div>
                 @* Add cocktail comment *@
@@ -193,9 +209,9 @@
                                             <ul id="new-comment-here" class="media-list">
                                                 @if (!Model.CocktailCommentViewModels.Any())
                                                 {
-                                                <h4 class="card-title">
-                                                    No comments found.
-                                                </h4>
+                                                    <h4 class="card-title">
+                                                        No comments found.
+                                                    </h4>
                                                 }
                                                 else
                                                 {
@@ -207,14 +223,66 @@
                                                             </a>
                                                             <div class="media-body">
                                                                 <span class="text-muted pull-right">
-                                                                    <small class="text-muted">
-                                                                        @item.CreatedOn
-                                                                    </small>
+                                                                    @if (item.ModifiedOn != null)
+                                                                    {
+                                                                        <small class="text-muted">
+                                                                            Edited on @item.ModifiedOn
+                                                                        </small>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <small class="text-muted">
+                                                                            @item.CreatedOn
+                                                                        </small>
+                                                                    }
                                                                 </span>
                                                                 <strong class="text-success">@item.UserName</strong>
-                                                                <p>
-                                                                    @item.Body
+                                                                <p style="text-align: left;margin-left: 16px;">
+                                                                    <span id="@item.Id+body" value="@item.Body">@item.Body</span>
                                                                 </p>
+                                                                @* Buttons to edit/delete comment *@
+                                                                @if (User.Identity.IsAuthenticated && item.UserName == User.Identity.Name.Split('@')[0])
+                                                                {
+                                                                    <div style="display: inline-flex;">
+                                                                        <form asp-area="Member" asp-controller="CocktailComments" asp-action="Delete">
+                                                                            <input asp-for="CocktailCommentViewModels.First().CocktailId" type="hidden" value="@Model.Id">
+                                                                            <input asp-for="CocktailCommentViewModels.First().Id" type="hidden" value="@item.Id">
+
+                                                                            <input type="submit" value="Delete" class="btn btn-outline-danger" style="width:60px;height:30px; padding-left:10px; padding-right:10px; padding-top:8px; padding-bottom:8px;" />
+                                                                        </form>
+                                                                        @*</div>
+                                                                            <div class="media-body">*@
+                                                                        <button id="@item.Id" type="button" class="btn btn-outline-success" style="width:60px;height:30px; padding-left:10px; padding-right:10px; padding-top:8px; padding-bottom:8px;" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
+                                                                            Edit
+                                                                        </button>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                            <!-- Modal to edit comment-->
+                                                            <div class="modal fade @item.Id" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form>
+                                                                                Edit Comment
+                                                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                                                <div class="form-group">
+                                                                                    <input type="text" id="@item.Id+CommentBody" data-val-required="true" class="form-control" placeholder="New text..." />
+                                                                                    <span class="text-danger"></span>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="button" class="btn btn-primary" value="@item.Id" onclick="SaveModal(this.value)"> Save changes</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </li>
                                                         <br />
@@ -237,6 +305,7 @@
 @section Scripts{
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/AddCocktailComment.js"></script>
+    <script src="~/js/EditCocktailComment.js"></script>
     <script src="~/js/AddRating.js"></script>
 
 }

@@ -63,5 +63,53 @@ namespace CocktailWizard.Services
             return cocktailCommentDtos;
 
         }
+
+        public async Task<CocktailCommentDto> DeleteAsync(Guid id, Guid cocktailId)
+        {
+            var comment = await this.context.CocktailComments
+                .Include(bc => bc.Cocktail)
+                .Include(bc => bc.User)
+                .Where(bc => bc.IsDeleted == false)
+                .Where(bc => bc.Id == id)
+                .Where(bc => bc.CocktailId== cocktailId)
+                .FirstOrDefaultAsync();
+
+            if (comment == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.CocktailCommentNull);
+            }
+
+            comment.DeletedOn = DateTime.UtcNow;
+            comment.IsDeleted = true;
+
+            this.context.Update(comment);
+            await this.context.SaveChangesAsync();
+
+            var commentDto = this.dtoMapper.MapFrom(comment);
+
+            return commentDto;
+        }
+
+        public async Task<CocktailCommentDto> EditAsync(Guid id, string newBody)
+        {
+            var comment = await this.context.CocktailComments
+                .Where(bc => bc.IsDeleted == false)
+                .FirstOrDefaultAsync(bc => bc.Id == id);
+
+            if (comment == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.CocktailCommentNull);
+            }
+
+            comment.ModifiedOn = DateTime.UtcNow;
+            comment.Body = newBody;
+
+            this.context.Update(comment);
+            await this.context.SaveChangesAsync();
+
+            var commentDto = this.dtoMapper.MapFrom(comment);
+
+            return commentDto;
+        }
     }
 }

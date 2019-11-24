@@ -72,25 +72,25 @@ namespace CocktailWizard.Services
 
         }
 
-        // Returns BarComment!!!
-        public async Task<BarComment> GetBarCommentAsync(Guid barId)
-        {
-            var barComment = await this.context.BarComments
-                .Include(bc => bc.Bar)
-                .Include(bc => bc.User)
-                .Where(bc => bc.IsDeleted == false)
-                .Where(bc => bc.BarId == barId)
-                .FirstOrDefaultAsync();
+        //// Returns BarComment!!!
+        //public async Task<BarComment> GetBarCommentAsync(Guid barId)
+        //{
+        //    var barComment = await this.context.BarComments
+        //        .Include(bc => bc.Bar)
+        //        .Include(bc => bc.User)
+        //        .Where(bc => bc.IsDeleted == false)
+        //        .Where(bc => bc.BarId == barId)
+        //        .FirstOrDefaultAsync();
 
-            if (barComment == null)
-            {
-                throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
-            }
+        //    if (barComment == null)
+        //    {
+        //        throw new BusinessLogicException(ExceptionMessages.BarCommentNull);
+        //    }
 
-            //var barCommentDto = this.dtoMapper.MapFrom(barComment);
+        //    //var barCommentDto = this.dtoMapper.MapFrom(barComment);
 
-            return barComment;
-        }
+        //    return barComment;
+        //}
 
         public async Task<BarCommentDto> DeleteAsync(Guid id, Guid barId)
         {  

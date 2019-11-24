@@ -80,6 +80,11 @@ namespace CocktailWizard.Web.Controllers
         // GET: /Bars/Details
         public async Task<IActionResult> Details(Guid id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var barDto = await this.barService.GetBarCocktails(id);
             var model = this.barViewModelMapper.MapFrom(barDto);
 
