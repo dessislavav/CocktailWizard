@@ -1,13 +1,17 @@
 ﻿using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Data.Entities;
 using CocktailWizard.Services;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Controllers
@@ -22,6 +26,7 @@ namespace CocktailWizard.Web.Controllers
         private readonly IBarRatingService barRatingService;
         private readonly IBarService barService;
         private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
+        private readonly UserManager<User> userManager;
 
         public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
                               IViewModelMapper<SearchBarDto, BarViewModel> searchBarVmMapper,
@@ -30,11 +35,13 @@ namespace CocktailWizard.Web.Controllers
                               IViewModelMapper<BarRatingDto, BarRatingViewModel> barRatingVmMapper,
                               IBarRatingService barRatingService,
                               IBarService barService,
-                              IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper)
+                              IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
+                              UserManager<User> userManager)
         {
             this.barViewModelMapper = barViewModelMapper;
             this.barService = barService;
             this.cocktailViewModelMapper = cocktailViewModelMapper;
+            this.userManager = userManager;
             this.searchBarVmMapper = searchBarVmMapper;
             this.barCommentVmMapper = barCommentVmMapper;
             this.barCommentService = barCommentService;
@@ -73,12 +80,8 @@ namespace CocktailWizard.Web.Controllers
         // GET: /Bars/Details
         public async Task<IActionResult> Details(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var barDto = await this.barService.GetBarCocktails(id);
+            var model = this.barViewModelMapper.MapFrom(barDto);
 
             var barCommentDtos = await this.barCommentService.GetBarCommentsAsync(id);
             var barCommentVM = this.barCommentVmMapper.MapFrom(barCommentDtos);
@@ -86,30 +89,42 @@ namespace CocktailWizard.Web.Controllers
             var barRatingDtos = await this.barRatingService.GetAllRatingsAsync(id);
             var barRatingVM = this.barRatingVmMapper.MapFrom(barRatingDtos);
 
-            var cocktailsVM = this.cocktailViewModelMapper.MapFrom(barDto.Cocktails);
-            var barVM = this.barViewModelMapper.MapFrom(barDto);
-            barVM.Cocktails = cocktailsVM;
+            var userId = this.userManager.GetUserId(HttpContext.User);
 
+            try
+            {
+                var currentUserRating = await this.barRatingService.GetRatingAsync(id, Guid.Parse(userId));
+                model.CurrentUserRating = currentUserRating.Value;
+            }
+            catch (Exception)
+            {
+                model.CurrentUserRating = null;
+            }        
+
+            var cocktailsVM = this.cocktailViewModelMapper.MapFrom(barDto.Cocktails);
+            
+            model.Cocktails = cocktailsVM;
+            
             //TODO: Fix logic here
             if (barCommentVM != null)
             {
-                barVM.BarCommentViewModels = barCommentVM;
+                model.BarCommentViewModels = barCommentVM;
             }
             else
             {
-                barVM.BarCommentViewModels = new List<BarCommentViewModel>();
+                model.BarCommentViewModels = new List<BarCommentViewModel>();
             }
             if (barCommentVM != null)
             {
-                barVM.BarRatingViewModels = barRatingVM;
+                model.BarRatingViewModels = barRatingVM;
             }
             else
             {
-                barVM.BarRatingViewModels = new List<BarRatingViewModel>();
+                model.BarRatingViewModels = new List<BarRatingViewModel>();
             }
 
 
-            return View(barVM);
+            return View(model);
         }
 
         [HttpGet]

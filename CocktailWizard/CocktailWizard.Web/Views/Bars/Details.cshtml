@@ -4,11 +4,11 @@
 }
 @inject UserManager<User> UserManager
 
-    <head>
-        <link rel="stylesheet" href="~/css/barsearchpartial.css" />
-        <link rel="stylesheet" href="~/css/StarRating.css" />
-        <link rel="stylesheet" href="~/css/CropRating.css" />
-    </head>
+<head>
+    <link rel="stylesheet" href="~/css/barsearchpartial.css" />
+    <link rel="stylesheet" href="~/css/StarRating.css" />
+    <link rel="stylesheet" href="~/css/CropRating.css" />
+</head>
 
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url(@Model.ImagePath)">
@@ -109,68 +109,84 @@
 
                         </div>
                     </div>
-                    @* Add bar rating *@
+                    @* Rating *@
                     <div class="tab-pane text-center gallery " id="works">
                         <div class="row">
-                            <form asp-area="Member" asp-controller="BarRatings" asp-action="Create">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div hidden class="form-group">
-                                    <input asp-for="BarRatingViewModels.FirstOrDefault().BarId" type="hidden" value="@Model.Id">
-                                </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="star-source">
-                                            <svg>
-                                                <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
-                                                    <stop stop-color="#bf209f" offset="0%"></stop>
-                                                    <stop stop-color="#d62a9d" offset="60%"></stop>
-                                                    <stop stop-color="#ED009E" offset="100%"></stop>
-                                                </linearGradient>
-                                                <symbol id="star" viewBox="153 89 106 108">
-                                                    <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
-                                                </symbol>
-                                            </svg>
-                                        </div>
-                                        <div class="star-container">
-                                            <input type="radio" name="star" id="five" value="5">
-                                            <label for="five">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
+                            @* Add bar rating *@
+                            @if (Model.CurrentUserRating == null)
+                            {
+                                <form asp-area="Member" asp-controller="BarRatings" asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div hidden class="form-group">
+                                        <input asp-for="BarRatingViewModels.FirstOrDefault().BarId" type="hidden" value="@Model.Id">
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="star-source">
+                                                <svg>
+                                                    <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
+                                                        <stop stop-color="#bf209f" offset="0%"></stop>
+                                                        <stop stop-color="#d62a9d" offset="60%"></stop>
+                                                        <stop stop-color="#ED009E" offset="100%"></stop>
+                                                    </linearGradient>
+                                                    <symbol id="star" viewBox="153 89 106 108">
+                                                        <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
+                                                    </symbol>
                                                 </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="four" value="4">
-                                            <label for="four">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="three" value="3">
-                                            <label for="three">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="two" value="2">
-                                            <label for="two">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="one" value="1">
-                                            <label for="one">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input asp-for="BarRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
+                                            </div>
+                                            <div class="star-container">
+                                                <input type="radio" name="star" id="five" value="5">
+                                                <label for="five">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="four" value="4">
+                                                <label for="four">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="three" value="3">
+                                                <label for="three">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="two" value="2">
+                                                <label for="two">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="one" value="1">
+                                                <label for="one">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input asp-for="BarRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
+                                            </div>
                                         </div>
                                     </div>
+                                    @* Button add rating *@
+                                    <div class="form-group">
+                                        <input type="submit" value="Add rating" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                        <div style="align-content:center">
+                            <p class="card-description text-muted text-center">You've rated this bar already. Your rating:</p>
+                            <div class="containerrating" style="position:absolute; padding-left: 55px;">
+                                <img src="~/assets/img/small_stars_empty.png" />
+                                <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
+                                    <img src="~/assets/img/stars_small.png" />
                                 </div>
-                                @* Button add rating *@
-                                <div class="form-group">
-                                    <input type="submit" value="Add rating" class="btn btn-primary" />
-                                </div>
-                            </form>
+                            </div>
+                        </div>
+                            }
                         </div>
                     </div>
                     @* Add bar comment *@
@@ -234,7 +250,7 @@
                                                                     <form asp-area="Member" asp-controller="BarComments" asp-action="Delete">
                                                                         <input asp-for="BarCommentViewModels.First().BarId" type="hidden" value="@Model.Id">
                                                                         <input asp-for="BarCommentViewModels.First().Id" type="hidden" value="@item.Id">
-                                        
+
                                                                         <input type="submit" value="Delete" class="btn btn-outline-danger" />
                                                                     </form>
                                                                 </div>

@@ -9,5 +9,6 @@ namespace CocktailWizard.Services.Contracts
     {
         Task<BarRatingDto> CreateAsync(BarRatingDto tempBarRating);
         Task<ICollection<BarRatingDto>> GetAllRatingsAsync(Guid barId);
+        Task<BarRatingDto> GetRatingAsync(Guid barId, Guid userId);
     }
 }

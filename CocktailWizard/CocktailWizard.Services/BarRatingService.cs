@@ -65,5 +65,24 @@ namespace CocktailWizard.Services
 
             return barRatingDtos;
         }
+
+        public async Task<BarRatingDto> GetRatingAsync(Guid barId, Guid userId)
+        {
+            var barRating = await this.context.BarRatings
+                .Include(br => br.Bar)
+                .Include(br => br.User)
+                .Where(br => br.IsDeleted == false)
+                .Where(br => br.BarId == barId 
+                 && br.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            if (barRating == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarRatingNull);
+            }
+            var barRatingDto = this.dtoMapper.MapFrom(barRating);
+
+            return barRatingDto;
+        }
     }
 }

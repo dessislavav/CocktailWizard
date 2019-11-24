@@ -46,5 +46,7 @@ namespace CocktailWizard.Web.Models
 
         public ICollection<BarCommentViewModel> BarCommentViewModels { get; set; }
         public ICollection<BarRatingViewModel> BarRatingViewModels { get; set; }
+
+        public double? CurrentUserRating { get; set; }
     }
 }
