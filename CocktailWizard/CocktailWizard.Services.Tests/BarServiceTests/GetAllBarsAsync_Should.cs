@@ -1,6 +1,7 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -63,6 +64,22 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 Assert.AreEqual(bar1.Id, result.First().Id);
                 Assert.AreEqual(bar2.Name, result.Last().Name);
                 Assert.AreEqual(bar2.Id, result.Last().Id);
+            }
+        }
+
+        [TestMethod]
+        public async Task ThrowWhen_NoBarsFound()
+        {
+            var options = TestUtilities.GetOptions(nameof(ThrowWhen_NoBarsFound));
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
+
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.GetAllBarsAsync());
             }
         }
     }

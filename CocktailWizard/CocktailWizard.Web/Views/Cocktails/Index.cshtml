@@ -97,8 +97,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <form asp-area="Manager" asp-controller="Cocktails" asp-action="Delete" asp-route-id="@cocktail.Id" method="post">
-                                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Delete</button>
+                                                <form asp-area="Manager" asp-controller="Bars" asp-action="Delete" asp-route-id="@cocktail.Id" method="post">
+                                                    <button data-id="@cocktail.Id" type="submit" class="btn btn-primary btn-sm btn-block delete-item">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -228,6 +228,7 @@ else
 @section scripts
 {
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/ModalCocktailsDeleteConfirm.js"></script>
     <script src="~/js/CocktailIndexModal.js"></script>
     <script src="~/js/deletecocktail.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

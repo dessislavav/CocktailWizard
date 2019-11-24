@@ -27,6 +27,5 @@
         error: function (msg) {
             console.dir(msg);
         }
-
     })
 });

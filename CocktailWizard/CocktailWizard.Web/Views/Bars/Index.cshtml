@@ -5,63 +5,66 @@
 }
 
 
-    <head>
-        <link rel="stylesheet" href="~/css/CropRating.css" />
-    </head>
+<head>
+    <link rel="stylesheet" href="~/css/CropRating.css" />
+</head>
 
-@if (User.IsInRole("Manager"))
-{
-    <div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/barsindex.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 class="title">
-                        Bars
-                    </h1>
-                    <br />
-                    <h5>The London bar scene is undoubtedly one of the most diverse in the world, with countless watering-holes to choose from, whatever your tastes might be. Some of the best bars in London are right under your nose, just waiting to be discovered; and we're all about helping you to find them. Whether you're looking to tap into the bars in London with live music, one of the many bars in London with a view, or even just to find out which bars in London open late; you can find your top London bar right here.</h5>
-                </div>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/barsindex.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title">
+                    Bars
+                </h1>
+                <br />
+                <h5>The London bar scene is undoubtedly one of the most diverse in the world, with countless watering-holes to choose from, whatever your tastes might be. Some of the best bars in London are right under your nose, just waiting to be discovered; and we're all about helping you to find them. Whether you're looking to tap into the bars in London with live music, one of the many bars in London with a view, or even just to find out which bars in London open late; you can find your top London bar right here.</h5>
             </div>
         </div>
     </div>
-    <div class="main main-raised">
-        <div class="profile-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div>
-                            <br />
+</div>
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <br />
+                        @if (User.IsInRole("Manager"))
+                        {
                             <partial name="_CreateBarModalPartial" , model="@Model.CreateNewBar" />
-                            <br />
-                            <table class="table-striped text-center" align="center">
-                                <thead>
-                                    <tr align="center">
-                                        <th width="20%"></th>
-                                        <th width="20%"></th>
-                                        <th width="30%"></th>
-                                        <th width="15%"></th>
-                                        <th width="15%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var bar in Model.TenBars)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <a asp-action="Details" asp-route-id="@bar.Id">
-                                                    <img src=@bar.ImagePath height=200 width=300>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <span id="@bar.Id+name" value="@bar.Name">@bar.Name</span>
-                                            </td>
-                                            <td>
-                                                <span>@bar.Address</span>
-                                            </td>
-                                            <td>
-                                                <span>@bar.Phone</span>
-                                            </td>
-                                            <td>
+                        }
+                        <br />
+                        <table class="table-striped text-center" align="center">
+                            <thead>
+                                <tr align="center">
+                                    <th width="20%"></th>
+                                    <th width="20%"></th>
+                                    <th width="30%"></th>
+                                    <th width="15%"></th>
+                                    <th width="15%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var bar in Model.TenBars)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-action="Details" asp-route-id="@bar.Id">
+                                                <img src=@bar.ImagePath height=200 width=300>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span id="@bar.Id+name" value="@bar.Name">@bar.Name</span>
+                                        </td>
+                                        <td>
+                                            <span>@bar.Address</span>
+                                        </td>
+                                        <td>
+                                            <span>@bar.Phone</span>
+                                        </td>
+                                        <td>
+                                            @if (User.IsInRole("Manager"))
+                                            {
                                                 <!-- EDIT Modal Button -->
                                                 <button id="@bar.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#editModal" onclick="showEditModal(this.id)">Edit</button>
                                                 <!-- EDIT Modal -->
@@ -113,45 +116,55 @@
                                                     </div>
                                                 </div>
                                                 <form asp-area="Manager" asp-controller="Bars" asp-action="Delete" asp-route-id="@bar.Id" method="post">
-                                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Delete</button>
+                                                    <button data-id="@bar.Id" type="submit" class="btn btn-primary btn-sm btn-block delete-item">Delete</button>
                                                 </form>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            <div class="align-content-center">
-                                @if (Model.PrevPage == null)
-                                {
-                                    <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
+                                            }
+                                            else
+                                            {
+                                                <div class="containerrating" style="position:absolute; margin-top: -14px">
+                                                    <img src="~/assets/img/small_stars_empty.png" />
+                                                    <div class="crop" style="width:@(bar.AverageRating*25.2)px">
+                                                        <img src="~/assets/img/stars_small.png" />
+                                                    </div>
+                                                </div>
+                                            }
+                                        </td>
+                                    </tr>
                                 }
-                                else
-                                {
-                                    <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
-                                    <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
-                                }
+                            </tbody>
+                        </table>
+                        <div class="align-content-center">
+                            @if (Model.PrevPage == null)
+                            {
+                                <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
+                            }
 
-                                <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
+                            <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
 
-                                @if (Model.NextPage == null)
-                                {
-                                    <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
-                                }
-                                else
-                                {
-                                    <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
-                                    <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
-                                }
-                            </div>
+                            @if (Model.NextPage == null)
+                            {
+                                <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-}
-else
-{
+</div>
+@*}
+    else
+    {
     <div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/barsindex.jpg)">
         <div class="container">
             <div class="row">
@@ -241,12 +254,13 @@ else
             </div>
         </div>
     </div>
-}
+    }*@
 
 
 @section scripts
 {
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/ModalBarsDeleteConfirm.js"></script>
     <script src="~/js/BarIndexModal.js"></script>
     <script src="~/js/deletebar.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

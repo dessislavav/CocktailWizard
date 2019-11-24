@@ -21,9 +21,9 @@ namespace CocktailWizard.Services
         private readonly IDtoMapper<Cocktail, CocktailDto> cocktailDtoMapper;
 
         public BarService(CWContext context,
-            IDtoMapper<Bar, BarDto> dtoMapper,
-            IDtoMapper<Bar, SearchBarDto> searchDtoMapper,
-            IDtoMapper<Cocktail, CocktailDto> cocktailDtoMapper)
+                          IDtoMapper<Bar, BarDto> dtoMapper,
+                          IDtoMapper<Bar, SearchBarDto> searchDtoMapper,
+                          IDtoMapper<Cocktail, CocktailDto> cocktailDtoMapper)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
             this.dtoMapper = dtoMapper ?? throw new ArgumentNullException(nameof(dtoMapper));
@@ -140,6 +140,11 @@ namespace CocktailWizard.Services
                 .Where(b => b.IsDeleted == false)
                 .OrderBy(b => b.Name)
                 .ToListAsync();
+
+            if (!allBars.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
+            }
 
             var mappedBars = this.dtoMapper.MapFrom(allBars);
 
@@ -316,6 +321,7 @@ namespace CocktailWizard.Services
                 var allBars = this.context.Bars.Where(b => b.IsDeleted == false).Include(b => b.Ratings);
                 var filteredByRating = await allBars.Where(b => byRating && b.Ratings.Any() ? (b.Ratings.Average(x => x.Value) >= ratingValue) : false).ToListAsync();
                 var mappedResult = this.searchDtoMapper.MapFrom(filteredByRating);
+
                 return mappedResult;
             }
 
@@ -342,9 +348,7 @@ namespace CocktailWizard.Services
                 var filteredByName = allBars.Where(b => byName && b.Name.Contains(terms));
                 var filteredByAddress = allBars.Where(b => byAddress && b.Address.Contains(terms));
                 var filteredByRating = allBars.Where(b => byRating && b.Ratings.Any() ? (b.Ratings.Average(x => x.Value) >= ratingValue) : false);
-
                 var filtered = filteredByName.Union(filteredByAddress).Union(filteredByRating);
-
                 var mappedResult = filtered.Select(b => this.searchDtoMapper.MapFrom(b)).ToList();
 
                 return mappedResult;

@@ -14,16 +14,10 @@ namespace CocktailWizard.Web.ViewComponents
 {
     public class RemoveCocktailsFromBarViewComponent : ViewComponent
     {
-        private readonly ICocktailService cocktailService;
-        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> mapper;
-        private readonly IViewModelMapper<BarDto, BarViewModel> barMapper;
         private readonly IBarService barService;
 
-        public RemoveCocktailsFromBarViewComponent(ICocktailService cocktailService, IViewModelMapper<CocktailDto, CocktailViewModel> mapper, IViewModelMapper<BarDto, BarViewModel> barMapper, IBarService barService)
+        public RemoveCocktailsFromBarViewComponent(IBarService barService)
         {
-            this.cocktailService = cocktailService;
-            this.mapper = mapper;
-            this.barMapper = barMapper;
             this.barService = barService;
         }
 

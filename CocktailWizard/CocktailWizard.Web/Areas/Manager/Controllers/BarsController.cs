@@ -104,7 +104,6 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Guid id)
         {
-
             try
             {
                 await this.barService.DeleteAsync(id);
