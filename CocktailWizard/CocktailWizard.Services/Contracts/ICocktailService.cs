@@ -9,7 +9,7 @@ namespace CocktailWizard.Services.Contracts
     {
         Task<CocktailDto> CreateAsync(CocktailDto tempCocktail);
         Task<CocktailDto> DeleteAsync(Guid id);
-        Task<CocktailDto> EditAsync(Guid id, string newName, string newInfo, string newImagePath);
+        Task<CocktailDto> EditAsync(Guid id, string newName, string newInfo);
         Task<ICollection<CocktailDto>> GetAllCocktailsAsync();
         Task<CocktailDto> GetCocktailAsync(Guid id);
         Task<DetailsCocktailDto> GetCocktailsBarAsync(Guid id);

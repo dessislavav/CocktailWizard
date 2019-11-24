@@ -176,7 +176,7 @@ namespace CocktailWizard.Services
             return barDto;
         }
 
-        public async Task<BarDto> EditAsync(Guid id, string newName, string newInfo, string newAddress, string newPhone, string newImagePath)
+        public async Task<BarDto> EditAsync(Guid id, string newName, string newInfo, string newAddress, string newPhone)
         {
             var bar = await this.context.Bars
                 .Where(b => b.IsDeleted == false)
@@ -193,7 +193,6 @@ namespace CocktailWizard.Services
                 bar.Info = newInfo;
                 bar.Address = newAddress;
                 bar.Phone = newPhone;
-                bar.ImagePath = newImagePath;
 
                 this.context.Update(bar);
                 await this.context.SaveChangesAsync();

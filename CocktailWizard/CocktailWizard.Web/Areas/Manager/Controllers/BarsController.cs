@@ -84,11 +84,11 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         // POST: Manager/Bars/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, string newName, string newInfo, string newAddress, string newPhone, string newImagePath)
+        public async Task<IActionResult> Edit(Guid id, string newName, string newInfo, string newAddress, string newPhone)
         {
             if (ModelState.IsValid)
             {
-                var barDto = await this.barService.EditAsync(id, newName, newInfo, newAddress, newPhone, newImagePath);
+                var barDto = await this.barService.EditAsync(id, newName, newInfo, newAddress, newPhone);
 
                 this.toastNotification.AddSuccessToastMessage("Bar successfully edited");
                 return RedirectToAction("Details", new { id = barDto.Id });

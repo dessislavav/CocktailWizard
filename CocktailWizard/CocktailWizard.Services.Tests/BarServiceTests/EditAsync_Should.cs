@@ -49,7 +49,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
             using (var assertContext = new CWContext(options))
             {
                 var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
-                var result = await sut.EditAsync(testGuid, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667", "newImagePath");
+                var result = await sut.EditAsync(testGuid, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667");
                 var edittedBar = await assertContext.Bars.FirstAsync();
                 Assert.AreEqual("newTestName", edittedBar.Name);
                 Assert.AreEqual("newTestInfo", edittedBar.Info);
@@ -100,7 +100,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
             using (var assertContext = new CWContext(options))
             {
                 var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
-                var result = await sut.EditAsync(testGuid, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667", "newImagePath");
+                var result = await sut.EditAsync(testGuid, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667");
                 Assert.IsInstanceOfType(result, typeof(BarDto));
             }
         }
@@ -137,7 +137,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
             using (var assertContext = new CWContext(options))
             {
                 var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
-                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.EditAsync(testGuid2, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667", "newImagePath"));
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.EditAsync(testGuid2, "newTestName", "newTestInfo", "newTestAddress", "111-333-6667"));
             }
         }
     }

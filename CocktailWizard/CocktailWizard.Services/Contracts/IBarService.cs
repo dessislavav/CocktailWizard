@@ -11,7 +11,7 @@ namespace CocktailWizard.Services
         Task<BarDto> RemoveCocktailsAsync(BarDto barDto, List<string> selectedCocktails);
         Task<BarDto> CreateAsync(BarDto tempBar);
         Task<BarDto> DeleteAsync(Guid id);
-        Task<BarDto> EditAsync(Guid id, string newName, string newInfo, string newAddress, string newPhone, string newImagePath);
+        Task<BarDto> EditAsync(Guid id, string newName, string newInfo, string newAddress, string newPhone);
         Task<ICollection<BarDto>> GetAllBarsAsync();
         Task<BarDto> GetBarAsync(Guid id);
         Task<BarDto> GetBarCocktails(Guid id);

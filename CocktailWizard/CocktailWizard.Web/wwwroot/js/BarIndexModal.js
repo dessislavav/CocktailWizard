@@ -19,10 +19,6 @@ function SaveEditModal(id) {
     let phoneInput = document.getElementById(currentPhoneId);
     let newPhoneInput = $(phoneInput).val();
 
-    let currentImagePathId = id + '+BarImagePath';
-    let imagePathInput = document.getElementById(currentImagePathId);
-    let newImagePathInput = $(imagePathInput).val();
-
     let oldNameId = id + '+name';
     let oldName = document.getElementById(oldNameId);
     $(oldName).text(newNameInput);
@@ -40,7 +36,6 @@ function SaveEditModal(id) {
                 'newInfo': newInfoInput,
                 'newAddress': newAddressInput,
                 'newPhone': newPhoneInput,
-                'newImagePath': newImagePathInput,
             },
             headers: {
                 RequestVerificationToken:

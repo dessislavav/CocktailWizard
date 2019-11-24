@@ -11,10 +11,6 @@ function SaveEditModal(id) {
     let infoInput = document.getElementById(currentInfoId);
     let newInfoInput = $(infoInput).val();
 
-    let currentImagePathId = id + '+CocktailImagePath';
-    let imagePathInput = document.getElementById(currentImagePathId);
-    let newImagePathInput = $(imagePathInput).val();
-
     let oldNameId = id + '+name';
     let oldName = document.getElementById(oldNameId);
     $(oldName).text(newNameInput);
@@ -30,7 +26,6 @@ function SaveEditModal(id) {
                 'id': id,
                 'newName': newNameInput,
                 'newInfo': newInfoInput,
-                'newImagePath': newImagePathInput,
             },
             headers: {
                 RequestVerificationToken:
