@@ -26,7 +26,6 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
             var id = Guid.NewGuid();
             var twoId = Guid.NewGuid();
             var barId = Guid.NewGuid();
-            var createdOn = DateTime.UtcNow;
 
             var entity = new BarComment
             {
@@ -34,7 +33,6 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
                 BarId = barId,
                 UserId = Guid.NewGuid(),
                 Body = "testbody",
-                CreatedOn = createdOn
             };
 
             var entityTwo = new BarComment
@@ -43,7 +41,6 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
                 BarId = barId,
                 UserId = Guid.NewGuid(),
                 Body = "testbodytwo",
-                CreatedOn = createdOn
             };
 
             var list = new List<BarCommentDto>()

@@ -27,15 +27,11 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
             var userId = Guid.NewGuid();
             var userIdTwo = Guid.NewGuid();
 
-            var createdOn = DateTime.UtcNow;
-            var createdOnTwo = DateTime.UtcNow;
-
             var entity = new BarRating
             {
                 BarId = barId,
                 UserId = userId,
                 Value = 2,
-                CreatedOn = createdOn
             };
 
             var entityTwo = new BarRating
@@ -43,7 +39,6 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
                 BarId = barId,
                 UserId = userIdTwo,
                 Value = 2,
-                CreatedOn = createdOnTwo
             };
              
             var list = new List<BarRatingDto>()

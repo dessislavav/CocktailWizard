@@ -35,7 +35,6 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 Info = "testInfo",
                 Address = "testAddress",
                 Phone = "111-333-666",
-                ImagePath = "testImagePath",
             };
 
             using (var arrangeContext = new CWContext(options))
@@ -55,7 +54,6 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 Assert.AreEqual("newTestInfo", edittedBar.Info);
                 Assert.AreEqual("newTestAddress", edittedBar.Address);
                 Assert.AreEqual("111-333-6667", edittedBar.Phone);
-                Assert.AreEqual("newImagePath", edittedBar.ImagePath);
             }
         }
 
@@ -76,7 +74,6 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 Info = "testInfo",
                 Address = "testAddress",
                 Phone = "111-333-666",
-                ImagePath = "testImagePath",
             };
 
             var dtoEntity = new BarDto
@@ -85,7 +82,6 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 Name = "testBar",
                 Info = "testInfo",
                 Address = "testAddress",
-                ImagePath = "testImagePath",
                 Phone = "111-333-666"
             };
 
@@ -123,7 +119,6 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
                 Info = "testInfo",
                 Address = "testAddress",
                 Phone = "111-333-666",
-                ImagePath = "testImagePath",
             };
 
             mapperMock.Setup(x => x.MapFrom(It.IsAny<Bar>())).Returns(It.IsAny<BarDto>);
