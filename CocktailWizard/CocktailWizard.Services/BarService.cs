@@ -49,7 +49,7 @@ namespace CocktailWizard.Services
             return mappedBar;
         }
 
-        public async Task<BarDto> GetBarCocktails(Guid id)
+        public async Task<BarDto> GetBarCocktailsAsync(Guid id)
         {
             var bar = await this.context.Bars
                 .Include(b => b.Ratings)

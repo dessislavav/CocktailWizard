@@ -14,7 +14,7 @@ namespace CocktailWizard.Services
         Task<BarDto> EditAsync(Guid id, string newName, string newInfo, string newAddress, string newPhone);
         Task<ICollection<BarDto>> GetAllBarsAsync();
         Task<BarDto> GetBarAsync(Guid id);
-        Task<BarDto> GetBarCocktails(Guid id);
+        Task<BarDto> GetBarCocktailsAsync(Guid id);
         Task<int> GetPageCountAsync(int barsPerPage);
         Task<ICollection<BarDto>> GetTenBarsOrderedByNameAsync(int currentPage);
         Task<ICollection<BarDto>> GetTopBarsAsync(int num);
