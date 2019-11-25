@@ -80,9 +80,12 @@ namespace CocktailWizard.Web.Controllers
                 viewModel.UserName = userName;
                 var commentDto = this.modelMapper.MapFrom(viewModel);
 
+                var newCommentDto = await this.barCommentService.CreateAsync(commentDto);
+                var newCommentVm = this.modelMapper.MapFrom(newCommentDto);
 
-                await this.barCommentService.CreateAsync(commentDto);
-                return Json(viewModel);
+                this.toastNotification.AddSuccessToastMessage("Comment magically posted.");
+
+                return PartialView("_AddBarCommentPartial", newCommentVm);
             }
             catch (Exception)
             {

@@ -20,11 +20,12 @@
         },
 
         success: function (data) {
-            console.log(data);
-            $('#new-comment-here').append(data.body);
+            $('#new-comment-here').append(data);
+            $('#comment-body').val('');
         },
  
         error: function (msg) {
+            $('#comment-body').focus();
             console.dir(msg);
         }
     })

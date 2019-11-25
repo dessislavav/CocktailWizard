@@ -10,7 +10,6 @@ namespace CocktailWizard.Services.Contracts
     {
         Task<BarCommentDto> CreateAsync(BarCommentDto tempBarComment);
         Task<BarCommentDto> DeleteAsync(Guid id, Guid barId);
-        //Task<BarComment> GetBarCommentAsync(Guid barId);
         Task<ICollection<BarCommentDto>> GetBarCommentsAsync(Guid barId);
         Task<BarCommentDto> EditAsync(Guid id, string newBody);
     }

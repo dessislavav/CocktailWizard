@@ -13,6 +13,7 @@ namespace CocktailWizard.Web.Mappers
             if (dtoEntity == null)
             {
                 return null;
+                // ArgumentNullException kaza edo, zashtot e vhoden parametar
             }
 
             return new BarCommentViewModel
