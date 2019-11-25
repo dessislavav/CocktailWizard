@@ -107,13 +107,12 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             try
             {
                 await this.barService.DeleteAsync(id);
+                this.toastNotification.AddSuccessToastMessage("Bar successfully deleted");
             }
             catch (Exception)
             {
                 this.toastNotification.AddWarningToastMessage("Bar couldn't be deleted");
             }
-
-            this.toastNotification.AddSuccessToastMessage("Bar successfully deleted");
             return RedirectToAction("Index", "Bars", new { area = "" });
         }
 

@@ -50,17 +50,17 @@
                     <div class="profile-tabs">
                         <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                <a class="nav-link active" href="#bars" role="tab" data-toggle="tab">
                                     <i class="material-icons">store_mall_directory</i> Offered In
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                                <a class="nav-link" href="#reviews" role="tab" data-toggle="tab">
                                     <i class="material-icons">rate_review</i>Rating
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                <a class="nav-link" href="#comments" role="tab" data-toggle="tab">
                                     <i class="material-icons">favorite</i> Comments
                                 </a>
                             </li>
@@ -71,7 +71,7 @@
 
             @* Bars offered in *@
             <div class="tab-content tab-space d-flex justify-content-center">
-                <div class="tab-pane active text-center gallery" id="studio">
+                <div class="tab-pane active text-center gallery" id="bars">
                     <div class="row">
                         @if (Model.Bars.Count == 0)
                         {
@@ -81,7 +81,6 @@
                         }
                         else
                         {
-
                             @foreach (var bar in @Model.Bars)
                             {
                                 <div class="col-md-4">
@@ -96,11 +95,10 @@
                                 </div>
                             }
                         }
-
                     </div>
                 </div>
                 @* Add cocktail rating *@
-                <div class="tab-pane text-center gallery justify-content-center" id="works">
+                <div class="tab-pane text-center gallery justify-content-center" id="reviews">
                     <div class="row">
                         @* Add bar rating *@
                         @if (Model.CurrentUserRating == null)
@@ -180,7 +178,7 @@
                     </div>
                 </div>
                 @* Add cocktail comment *@
-                <div class="tab-pane text-center gallery justify-content-center" id="favorite">
+                <div class="tab-pane text-center gallery justify-content-center" id="comments">
                     <div class="row">
                         <div class="row bootstrap snippets d-flex justify-content-center">
                             <div class="col-md-6 col-md-offset-2 col-sm-12 ">
@@ -188,7 +186,6 @@
                                     <div class="panel panel-info">
                                         <div class="panel-body">
                                             @* //TODO: think of a better restriction *@
-
                                             @if (User.Identity.IsAuthenticated)
                                             {
                                                 <form id="comment-to-db">
@@ -204,7 +201,6 @@
                                                 <div class="clearfix"></div>
                                                 <hr>
                                             }
-
                                             @* List cocktail comments *@
                                             <ul id="new-comment-here" class="media-list">
                                                 @if (!Model.CocktailCommentViewModels.Any())

@@ -57,32 +57,21 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             return View(model);
         }
 
-        // POST: Manager/Ingredients/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Create(IngredientViewModel ingredientViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                this.toastNotification.AddSuccessToastMessage("Ingredient successfully deleted");
-                await this.ingredientService.DeleteAsync(id);
-            }
-            catch (Exception)
-            {
-                this.toastNotification.AddWarningToastMessage("Ingredient couldn't be deleted");
-            }
+                var ingredientDto = this.ingredientViewModelMapper.MapFrom(ingredientViewModel);
 
+                await this.ingredientService.CreateIngredientAsync(ingredientDto);
+                this.toastNotification.AddSuccessToastMessage("Ingredient successfully created");
+                return RedirectToAction(nameof(Index));
+            }
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
+            this.toastNotification.AddWarningToastMessage("Ingredient couldn't be added");
             return RedirectToAction(nameof(Index));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody]IngredientViewModel ingredientViewModel)
-        {
-            var ingredientDto = this.ingredientViewModelMapper.MapFrom(ingredientViewModel);
-
-            await this.ingredientService.CreateIngredientAsync(ingredientDto);
-            this.toastNotification.AddSuccessToastMessage("Ingredient successfully created");
-            return Json(ingredientViewModel);
         }
 
 
@@ -95,10 +84,28 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             {
                 await this.ingredientService.EditAsync(id, newName);
                 this.toastNotification.AddSuccessToastMessage("Ingredient successfully edited");
+                return RedirectToAction(nameof(Index));
             }
 
             ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
-            this.toastNotification.AddSuccessToastMessage("Ingredient couldn't be edited");
+            this.toastNotification.AddWarningToastMessage("Ingredient couldn't be edited");
+            return RedirectToAction(nameof(Index));
+        }
+
+        // POST: Manager/Ingredients/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            try
+            {
+                await this.ingredientService.DeleteAsync(id);
+                this.toastNotification.AddSuccessToastMessage("Ingredient successfully deleted");
+            }
+            catch (Exception)
+            {
+                this.toastNotification.AddWarningToastMessage("Ingredient couldn't be deleted");
+            }
             return RedirectToAction(nameof(Index));
         }
     }

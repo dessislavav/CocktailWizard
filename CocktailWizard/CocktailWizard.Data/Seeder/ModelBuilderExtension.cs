@@ -433,12 +433,12 @@ namespace CocktailWizard.Data.Seeder
             var bar6 = new Bar
             {
                 Id = Guid.Parse("64C6592D-2C7B-42C4-B18D-5AC34BDC39D1"),
-                Name = "Drake & Morgan",
-                Info = "Our flagship bar & restaurant located in the heart of London's most exciting dining destination with two floors, two show stopping bars, an open kitchen and an extensive year-round outside space. Perfect for alfresco dining and drinks in the sun. Drake & Morgan at King's Cross offers a relaxed drinking and dining space in a beautiful setting. Open from an early morning until late evening, it's perfect for every occasion - from a business meeting and working lunch to a romantic dinner or after work drinks.",
-                Address = "6 Pancras Square, London, N1C 4AG",
-                ImagePath = "/assets/img/bars/drakeandmorgan.jpg",
-                Phone = "0203 826 4870",
-                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2481.8884131207687!2d-0.12620106137695375!3d51.53360647633398!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9f4c59afccfb8b53!2sDrake%20%26%20Morgan%20at%20King&#39;s%20Cross!5e0!3m2!1sen!2sbg!4v1574331218993!5m2!1sen!2sbg",
+                Name = "Nightjar",
+                Info = "Our flagship bar & restaurant located in the heart of London's most exciting dining destination with two floors, two show stopping bars, an open kitchen and an extensive year-round outside space. Perfect for alfresco dining and drinks in the sun. Nightjar offers a relaxed drinking and dining space in a beautiful setting. Open from an early morning until late evening, it's perfect for every occasion - from a business meeting and working lunch to a romantic dinner or after work drinks.",
+                Address = "129 City Rd, London, EC1V 1JB",
+                ImagePath = "/assets/img/bars/nightjar.jpg",
+                Phone = "0207 253 4101",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9929.097022005784!2d-0.0877761!3d51.5265294!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xffe5bb4f98cd7af9!2sNightjar!5e0!3m2!1sen!2sbg!4v1574664621210!5m2!1sen!2sbg",
             };
             var bar7 = new Bar
             {

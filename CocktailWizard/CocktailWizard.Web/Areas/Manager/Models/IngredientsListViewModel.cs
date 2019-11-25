@@ -16,5 +16,6 @@ namespace CocktailWizard.Web.Areas.Manager.Models
 
         public int TotalPages { get; set; }
         public ICollection<IngredientViewModel> TenIngredients { get; set; }
+        public IngredientViewModel CreateNewIngredient { get; set; }
     }
 }

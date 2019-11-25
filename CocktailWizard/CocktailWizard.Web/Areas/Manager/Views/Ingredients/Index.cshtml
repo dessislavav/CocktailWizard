@@ -17,18 +17,7 @@
             <div class="row">
                 <div class="col-md-12" align="center">
                     <br />
-                    <form>
-                        <div class="col-md-6">
-                            <div style="display:normal" id="ingrediens-div">
-                                <div class="m-4">
-                                    <div style="inline-size: max-content">
-                                        <input type="text" class="form-control" id="ingredient-name" placeholder="Name of the new ingredient..." />
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary btn-sm" id="ingrediens-to-db">Add new ingredient</button>
-                            </div>
-                        </div>
-                    </form>
+                    <partial name="_CreateIngredientModalPartial" , model="@Model.CreateNewIngredient" />
                     <br />
                     <table class="table-striped text-center" align="center">
                         <thead>
@@ -53,12 +42,10 @@
                                         }
                                     </td>
                                     <td>
-                                        <button id="@ingredient.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" onclick="showModal(this.id)">
-                                            Edit
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade @ingredient.Id" id="@ingredient.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <!-- EDIT Modal Button -->
+                                        <button id="@ingredient.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#editModal" onclick="showEditModal(this.id)">Edit</button>
+                                        <!-- EDIT Modal -->
+                                        <div class="modal fade @ingredient.Id" id="@ingredient.Id" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -71,14 +58,16 @@
                                                             Edit Ingredient
                                                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                                             <div class="form-group">
-                                                                <input type="text" id="@ingredient.Id+IngName" data-val-required="true" class="form-control" placeholder="New name..." />
                                                                 <span class="text-danger"></span>
+                                                                <label asp-for="@ingredient.Name" class="control-label"></label>
+                                                                <input asp-for="@ingredient.Name" id="@ingredient.Id+IngName" class="form-control" />
+                                                                <span asp-validation-for="@ingredient.Name" class="text-danger"></span>
                                                             </div>
                                                         </form>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" value="@ingredient.Id" onclick="SaveModal(this.value)"> Save changes</button>
+                                                        <button type="button" class="btn btn-primary" value="@ingredient.Id" onclick="SaveEditModal(this.value)">Edit</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,44 +105,9 @@
     </div>
 </div>
 
-@*<script>
-        function showModal(id) {
-            $(`.${id}`).modal('show');
-        };
-        function SaveModal(id) {
-            let currentElementId = id + '+IngName';
-            let input = document.getElementById(currentElementId);
-            let newNameValue = $(input).val();
-            let oldElementId = id + '+name';
-            let oldElement = document.getElementById(oldElementId);
-            $(oldElement).text(newNameValue);
-            $(`.${id}`).modal('hide');
-
-            $.ajax(
-
-                {
-                    type: "Post",
-                    url: "Ingredients/Edit",
-
-                    data: {
-                        'id': id,
-                        'newName': newNameValue
-                    },
-                    headers: {
-                        RequestVerificationToken:
-                            $('input:hidden[name="__RequestVerificationToken"]').val(),
-                    },
-
-                })
-        }
-    </script>*@
-
-
 @section scripts
 {
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/ModalIngredientsDeleteConfirm.js"></script>
-    <script src="~/js/AddIngredientAjax.js"></script>
-    <script src="~/js/IngredientsModal.js"></script>
-
+    <script src="~/js/EditIngredient.js"></script>
 }

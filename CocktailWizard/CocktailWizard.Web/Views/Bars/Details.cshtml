@@ -55,17 +55,17 @@
                         <div class="profile-tabs">
                             <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                    <a class="nav-link active" href="#cocktails" role="tab" data-toggle="tab">
                                         <i class="material-icons">local_bar</i> Cocktails
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                                    <a class="nav-link" href="#reviews" role="tab" data-toggle="tab">
                                         <i class="material-icons">rate_review</i> Rating
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                    <a class="nav-link" href="#comments" role="tab" data-toggle="tab">
                                         <i class="material-icons">favorite</i> Comments
                                     </a>
                                 </li>
@@ -75,7 +75,7 @@
                 </div>
                 @* Cocktails the bar offers *@
                 <div class="tab-content tab-space d-flex justify-content-center">
-                    <div class="tab-pane active text-center gallery" id="studio">
+                    <div class="tab-pane active text-center gallery" id="cocktails">
                         <div class="row">
                             <container style="width: -webkit-fill-available">
                                 @if (User.IsInRole("Manager"))
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     @* Rating *@
-                    <div class="tab-pane text-center gallery justify-content-center" id="works">
+                    <div class="tab-pane text-center gallery justify-content-center" id="reviews">
                         <div class="row">
                             @* Add bar rating *@
                             @if (Model.CurrentUserRating == null)
@@ -178,9 +178,9 @@
                             else
                             {
                                 <div style="align-content:center">
-                                    <p class="card-description text-muted text-center">You've rated this bar already. Your rating:</p>
-                                    <div class="containerrating" style="position:absolute; padding-left: 55px;">
-                                        <img src="~/assets/img/small_stars_empty.png" />
+                                    <h4 class="card-description text-muted text-center">You've rated this bar already. Your rating:</h4>
+                                    <div class="containerrating" style="position:absolute; padding-left: 90px;">
+                                        <img src="~/assets/img/small_stars_empty.png"/>
                                         <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
                                             <img src="~/assets/img/stars_small.png" />
                                         </div>
@@ -190,7 +190,7 @@
                         </div>
                     </div>
                     @* Add bar comment *@
-                    <div class="tab-pane text-center gallery justify-content-center" id="favorite">
+                    <div class="tab-pane text-center gallery justify-content-center" id="comments">
                         <div class="row">
                             <div class="row bootstrap snippets">
                                 <div class="col-md-6 col-md-offset-2 col-sm-12 ">
