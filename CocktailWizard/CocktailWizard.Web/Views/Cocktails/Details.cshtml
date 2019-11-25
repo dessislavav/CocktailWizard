@@ -70,7 +70,7 @@
             </div>
 
             @* Bars offered in *@
-            <div class="tab-content tab-space d-flex justify-content-center">
+            <div class="tab-content tab-space justify-content-center">
                 <div class="tab-pane active text-center gallery" id="cocktails">
                     <div class="row">
                         @if (Model.Bars.Count == 0)
@@ -83,14 +83,23 @@
                         {
                             @foreach (var bar in @Model.Bars)
                             {
-                                <partial name="_SearchBarResultPartial" model="bar" />
+                                <div class="col-md-4">
+                                    <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@bar.Id">
+                                        <img src="@bar.ImagePath" class="detailsimage">
+                                    </a>
+                                    <h4 class="card-title">
+                                        @bar.Name
+                                        <br>
+                                        <small class="card-description text-muted text-center">@bar.Address</small>
+                                    </h4>
+                                </div>
                             }
                         }
                     </div>
                 </div>
                 @* Add cocktail rating *@
                 <div class="tab-pane text-center gallery justify-content-center" id="reviews">
-                    <div class="row">
+                    <div class="row" style="padding-left: 455px">
                         @* Add bar rating *@
                         @if (Model.CurrentUserRating == null)
                         {
