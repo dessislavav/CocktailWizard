@@ -94,19 +94,9 @@
                             {
                                 @foreach (var cocktail in @Model.Cocktails)
                                 {
-                                    <div class="col-md-4">
-                                        <a asp-area="" asp-controller="Cocktails" asp-action="Details" asp-route-id="@cocktail.Id">
-                                            <img src="@cocktail.ImagePath" class="detailsimage">
-                                        </a>
-                                        <h4 class="card-title">
-                                            @cocktail.Name
-                                            <br>
-                                            <small class="card-description text-muted text-center">@cocktail.Info</small>
-                                        </h4>
-                                    </div>
+                                    <partial name="_SearchCocktailResultPartial" model="cocktail" />
                                 }
                             }
-
                         </div>
                     </div>
                     @* Rating *@
@@ -180,7 +170,7 @@
                                 <div style="align-content:center">
                                     <h4 class="card-description text-muted text-center">You've rated this bar already. Your rating:</h4>
                                     <div class="containerrating" style="position:absolute; padding-left: 90px;">
-                                        <img src="~/assets/img/small_stars_empty.png"/>
+                                        <img src="~/assets/img/small_stars_empty.png" />
                                         <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
                                             <img src="~/assets/img/stars_small.png" />
                                         </div>
