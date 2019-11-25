@@ -85,7 +85,7 @@ namespace CocktailWizard.Web.Controllers
                 return NotFound();
             }
 
-            var barDto = await this.barService.GetBarCocktails(id);
+            var barDto = await this.barService.GetBarCocktailsAsync(id);
             var model = this.barViewModelMapper.MapFrom(barDto);
 
             var barCommentDtos = await this.barCommentService.GetBarCommentsAsync(id);
