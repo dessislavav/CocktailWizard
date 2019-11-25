@@ -1,4 +1,6 @@
 ﻿using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using System.Collections.Generic;
@@ -12,8 +14,7 @@ namespace CocktailWizard.Web.Mappers
         {
             if (dtoEntity == null)
             {
-                return null;
-                // ArgumentNullException kaza edo, zashtot e vhoden parametar
+                throw new BusinessLogicException(ExceptionMessages.DtoEntityNull);
             }
 
             return new BarCommentViewModel
@@ -40,7 +41,7 @@ namespace CocktailWizard.Web.Mappers
         {
             if (entityVM == null)
             {
-                return null;
+                throw new BusinessLogicException(ExceptionMessages.EntityVmNull);
             }
 
             return new BarCommentDto

@@ -1,5 +1,7 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +15,13 @@ namespace CocktailWizard.Services.DtoMappers
         {
             if (entity == null)
             {
-                return null;
+                throw new BusinessLogicException(ExceptionMessages.EntityNull);
             }
 
             return new BarCommentDto
             {
                 Id = entity.Id,
                 BarId = entity.BarId,
-                //UserId = entity.UserId,
                 UserName = entity.User.Email.Split('@')[0],
                 Body = entity.Body,
                 CreatedOn = entity.CreatedOn,

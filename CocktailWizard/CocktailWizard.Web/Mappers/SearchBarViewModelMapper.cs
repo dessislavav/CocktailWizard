@@ -1,4 +1,6 @@
 ﻿using CocktailWizard.Data.DtoEntities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using System;
@@ -14,7 +16,7 @@ namespace CocktailWizard.Web.Mappers
         {
             if (dtoEntity == null)
             {
-                return null;
+                throw new BusinessLogicException(ExceptionMessages.DtoEntityNull);
             }
 
             return new BarViewModel
@@ -36,7 +38,7 @@ namespace CocktailWizard.Web.Mappers
         {
             if (entityVM == null)
             {
-                return null;
+                throw new BusinessLogicException(ExceptionMessages.EntityVmNull);
             }
 
             return new SearchBarDto

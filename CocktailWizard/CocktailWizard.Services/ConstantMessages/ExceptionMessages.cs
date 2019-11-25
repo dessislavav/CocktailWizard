@@ -4,6 +4,10 @@
     {
         public const string GeneralOopsMessage = "Oops, something went wrong!";
 
+        public const string EntityNull = "No entity found.";
+        public const string DtoEntityNull = "No DTO found.";
+        public const string EntityVmNull = "No View Model found.";
+
         public const string BarNull = "No bar found.";
         public const string CocktailNull = "No cocktail found.";
 

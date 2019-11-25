@@ -1,5 +1,7 @@
 ﻿using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.ConstantMessages;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,7 @@ namespace CocktailWizard.Services.DtoMappers
         {
             if (entity == null)
             {
-                return null;
+                throw new BusinessLogicException(ExceptionMessages.EntityNull);
             }
 
             return new DetailsCocktailDto
