@@ -80,8 +80,8 @@
                             <container style="width: -webkit-fill-available">
                                 @if (User.IsInRole("Manager"))
                                 {
-                                    @await Component.InvokeAsync("AddCocktailsToBar", new { Id = @Model.Id })
-                                    @await Component.InvokeAsync("RemoveCocktailsFromBar", new { Id = @Model.Id })
+                                    @await Component.InvokeAsync("AddBarsToCocktail", new { Id = @Model.Id })
+                                    @await Component.InvokeAsync("RemoveBarsFromCocktail", new { Id = @Model.Id })
                                 }
                             </container>
                             @if (Model.Bars.Count == 0)
@@ -108,8 +108,9 @@
                             }
                         </div>
                     </div>
+                </div>
                 @* Add cocktail rating *@
-                <div class="tab-pane text-center gallery justify-content-center" id="reviews">
+                <div class="tab-pane text-center gallery" id="reviews">
                     <div class="row">
                         @* Add cocktail rating *@
                         @if (!(User.Identity.IsAuthenticated))
@@ -217,23 +218,23 @@
                                                 <hr>
                                             }
                                             @* List cocktail comments *@
-                                        <ul id="new-comment-here" class="media-list">
-                                            @if (!Model.CocktailCommentViewModels.Any())
-                                            {
-                                                <h4 class="card-title">
-                                                    No comments found.
-                                                </h4>
-                                            }
-                                            else
-                                            {
-                                                @foreach (var cocktailCommentViewModel in Model.CocktailCommentViewModels)
+                                            <ul id="new-comment-here" class="media-list">
+                                                @if (!Model.CocktailCommentViewModels.Any())
                                                 {
-
-                                                    <partial name="_AddCocktailCommentPartial" model="cocktailCommentViewModel" />
-                                                    
+                                                    <h4 class="card-title">
+                                                        No comments found.
+                                                    </h4>
                                                 }
-                                            }
-                                        </ul>                                      
+                                                else
+                                                {
+                                                    @foreach (var cocktailCommentViewModel in Model.CocktailCommentViewModels)
+                                                    {
+
+                                                        <partial name="_AddCocktailCommentPartial" model="cocktailCommentViewModel" />
+
+                                                    }
+                                                }
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -245,6 +246,7 @@
         </div>
     </div>
 </div>
+   
 
 @section Scripts{
     <script src="~/lib/jquery/dist/jquery.js"></script>

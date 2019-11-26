@@ -113,5 +113,43 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
                 return RedirectToAction("Index", "Cocktails", new { area = "" });
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBars(AddBarsToCocktailsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var cocktaiDto = await this.cocktailService.GetCocktailAsync(model.Id);
+
+                await this.cocktailService.AddBarsAsync(cocktaiDto, model.SelectedBars);
+
+                this.toastNotification.AddSuccessToastMessage("Cocktails successfuly added");
+                return RedirectToAction("Details", new { id = cocktaiDto.Id });
+            }
+
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
+            this.toastNotification.AddWarningToastMessage("Bars were not added");
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveBars(RemoveBarsFromCocktailsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var cocktailDto = await this.cocktailService.GetCocktailAsync(model.Id);
+
+                await this.cocktailService.RemoveBarsAsync(cocktailDto, model.SelectedBars);
+
+                this.toastNotification.AddSuccessToastMessage("Bars successfuly removed");
+                return RedirectToAction("Details", new { id = cocktailDto.Id });
+            }
+
+            ModelState.AddModelError(string.Empty, ExceptionMessages.ModelError);
+            this.toastNotification.AddWarningToastMessage("Bars were not removed");
+            return View(model);
+        }
     }
 }

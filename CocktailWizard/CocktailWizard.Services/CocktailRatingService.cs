@@ -76,7 +76,7 @@ namespace CocktailWizard.Services
                  && br.UserId == userId)
                 .FirstOrDefaultAsync();
 
-            if (cocktailId == null)
+            if (cocktailRating == null)
             {
                 throw new BusinessLogicException(ExceptionMessages.CocktailRatingNull);
             }

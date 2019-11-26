@@ -117,9 +117,10 @@ namespace CocktailWizard.Services
             return allCocktailsDtos;
         }
 
-        public async Task<DetailsCocktailDto> GetCocktailsBarAsync(Guid id)
+        public async Task<DetailsCocktailDto> GetCocktailBarsAsync(Guid id)
         {
             var cocktail = await this.context.Cocktails
+                .Include(c => c.Ratings)
                 .Where(c => c.IsDeleted == false)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
@@ -130,6 +131,7 @@ namespace CocktailWizard.Services
 
             var detailsCocktailDto = this.detailsCocktailDtoMapper.MapFrom(cocktail);
             var bars = await this.context.BarCocktails
+                .Where(b => b.IsDeleted == false)
                 .Include(b => b.Bar)
                 .Where(b => b.CocktailId == cocktail.Id)
                 .Select(b => b.Bar)
@@ -258,6 +260,96 @@ namespace CocktailWizard.Services
 
             return cocktailDto;
         }
+
+        public async Task<CocktailDto> AddBarsAsync(CocktailDto cocktailDto, List<string> selectedBars)
+        {
+            var cocktail = await this.context.Cocktails
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == cocktailDto.Id);
+
+            if (cocktail == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+            }
+
+            if (!selectedBars.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
+            }
+
+            foreach (var item in selectedBars)
+            {
+                var bar = await this.context.Bars
+                    .Where(c => c.IsDeleted == false)
+                    .FirstOrDefaultAsync(c => c.Name == item) ?? throw new BusinessLogicException(ExceptionMessages.BarNull);
+
+                var barCocktail = await this.context.BarCocktails
+                    .Where(c => c.BarId == bar.Id && c.CocktailId == cocktail.Id)
+                    .FirstOrDefaultAsync();
+
+                if (barCocktail == null)
+                {
+                    barCocktail = new BarCocktail
+                    {
+                        Bar = bar,
+                        Cocktail = cocktail,
+                    };
+                    await this.context.BarCocktails.AddAsync(barCocktail);
+                    bar.BarCocktails.Add(barCocktail);
+                    cocktail.BarCocktails.Add(barCocktail);
+                }
+                else
+                {
+                    barCocktail.IsDeleted = false;
+                    barCocktail.DeletedOn = DateTime.MinValue;
+                }
+            }
+
+            await this.context.SaveChangesAsync();
+
+            return cocktailDto;
+        }
+
+        public async Task<CocktailDto> RemoveBarsAsync(CocktailDto cocktailDto, List<string> selectedBars)
+        {
+            var cocktail = await this.context.Cocktails
+                .Where(b => b.IsDeleted == false)
+                .FirstOrDefaultAsync(b => b.Id == cocktailDto.Id);
+
+            if (cocktail == null)
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
+            }
+
+            if (!selectedBars.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+            }
+
+            foreach (var item in selectedBars)
+            {
+                var bar = await this.context.Bars
+                    .Where(c => c.IsDeleted == false)
+                    .FirstOrDefaultAsync(c => c.Name == item) ?? throw new BusinessLogicException(ExceptionMessages.BarNull);
+
+                var barCocktail = await this.context.BarCocktails
+                    .Where(c => c.IsDeleted == false)
+                    .Where(c => c.CocktailId == cocktail.Id && c.BarId == bar.Id)
+                    .FirstOrDefaultAsync();
+
+                if (barCocktail == null)
+                {
+                    throw new BusinessLogicException(ExceptionMessages.BarNull);
+                }
+
+                barCocktail.IsDeleted = true;
+                barCocktail.DeletedOn = DateTime.UtcNow;
+            }
+            await this.context.SaveChangesAsync();
+
+            return cocktailDto;
+        }
+
 
         public async Task<ICollection<CocktailDto>> SearchAsync(string searchCriteria, bool byName, bool byRating, double ratingValue)
         {

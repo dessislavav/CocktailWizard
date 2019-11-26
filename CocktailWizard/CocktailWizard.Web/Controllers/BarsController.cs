@@ -135,7 +135,7 @@ namespace CocktailWizard.Web.Controllers
             {
                 model.BarCommentViewModels = new List<BarCommentViewModel>();
             }
-            if (barCommentVM != null)
+            if (barRatingVM != null)
             {
                 model.BarRatingViewModels = barRatingVM;
             }

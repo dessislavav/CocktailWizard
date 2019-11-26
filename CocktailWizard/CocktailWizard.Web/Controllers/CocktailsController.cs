@@ -100,7 +100,8 @@ namespace CocktailWizard.Web.Controllers
                 return NotFound();
             }
 
-            var dtoCocktail = await this.cocktailService.GetCocktailsBarAsync(id);
+            var dtoCocktail = await this.cocktailService.GetCocktailBarsAsync(id);
+            var model = this.detailsCocktailVmMapper.MapFrom(dtoCocktail);
 
             var cocktailCommentDtos = await this.cocktailCommentService.GetCocktailCommentsAsync(id);
             var cocktailCommentVM = this.cocktailCommentVmMapper.MapFrom(cocktailCommentDtos);
@@ -108,42 +109,40 @@ namespace CocktailWizard.Web.Controllers
             var cocktailRatingDtos = await this.cocktailRatingService.GetAllRatingsAsync(id);
             var cocktailRatingVM = this.cocktailRatingVmMapper.MapFrom(cocktailRatingDtos);
 
-            var barsVM = this.barVmMapper.MapFrom(dtoCocktail.Bars);
-            var cocktailVM = this.detailsCocktailVmMapper.MapFrom(dtoCocktail);
-            cocktailVM.Bars = barsVM;
-
             var userId = this.userManager.GetUserId(HttpContext.User);
 
             try
             {
                 var currentUserRating = await this.cocktailRatingService.GetRatingAsync(id, Guid.Parse(userId));
-                cocktailVM.CurrentUserRating = currentUserRating.Value;
+                model.CurrentUserRating = currentUserRating.Value;
             }
             catch (Exception)
             {
-                cocktailVM.CurrentUserRating = null;
+                model.CurrentUserRating = null;
             }
 
-            //TODO: Fix logic here
-            if (cocktailVM != null)
+            var barsVM = this.barVmMapper.MapFrom(dtoCocktail.Bars);
+            model.Bars = barsVM;
+
+            if (cocktailCommentVM != null)
             {
-                cocktailVM.CocktailCommentViewModels = cocktailCommentVM;
+                model.CocktailCommentViewModels = cocktailCommentVM;
             }
             else
             {
-                cocktailVM.CocktailCommentViewModels = new List<CocktailCommentViewModel>();
+                model.CocktailCommentViewModels = new List<CocktailCommentViewModel>();
             }
 
-            if (cocktailVM != null)
+            if (cocktailRatingVM != null)
             {
-                cocktailVM.CocktailRatingViewModels = cocktailRatingVM;
+                model.CocktailRatingViewModels = cocktailRatingVM;
             }
             else
             {
-                cocktailVM.CocktailRatingViewModels = new List<CocktailRatingViewModel>();
+                model.CocktailRatingViewModels = new List<CocktailRatingViewModel>();
             }
 
-            return View(cocktailVM);
+            return View(model);
         }
 
         [HttpGet]
