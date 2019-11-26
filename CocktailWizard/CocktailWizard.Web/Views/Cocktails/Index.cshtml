@@ -34,108 +34,8 @@
                             @await Component.InvokeAsync("CreateCocktail")
                         }
                         <br />
-                        <table class="table-striped text-center" align="center">
-                            <thead>
-                                <tr align="center">
-                                    <th width="20%"></th>
-                                    <th width="25%"></th>
-                                    <th width="40%"></th>
-                                    <th width="15%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var cocktail in Model.TenCocktails)
-                                {
-                                    <tr>
-                                        <td>
-                                            <a asp-action="Details" asp-route-id="@cocktail.Id">
-                                                <img src=@cocktail.ImagePath height=200 width=300>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <span>@cocktail.Name</span>
-                                        </td>
-                                        <td>
-                                            <span>@cocktail.Info</span>
-                                        </td>
-                                        <td>
-                                            @if (User.IsInRole("Manager"))
-                                            {
-                                                <!-- EDIT Modal Button -->
-                                                <button id="@cocktail.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#editModal" onclick="showEditModal(this.id)">Edit</button>
-                                                <!-- EDIT Modal -->
-                                                <div class="modal fade @cocktail.Id" id="@cocktail.Id" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form>
-                                                                    Edit Cocktail
-                                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                                    <div class="form-group">
-                                                                        <span class="text-danger"></span>
-                                                                        <label asp-for="@cocktail.Name" class="control-label"></label>
-                                                                        <input asp-for="@cocktail.Name" id="@cocktail.Id+CocktailName" class="form-control" />
-                                                                        <span asp-validation-for="@cocktail.Name" class="text-danger"></span>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label asp-for="@cocktail.Info" class="control-label"></label>
-                                                                        <input asp-for="@cocktail.Info" id="@cocktail.Id+CocktailInfo" class="form-control"/>
-                                                                        <span asp-validation-for="@cocktail.Info" class="text-danger"></span>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary" value="@cocktail.Id" onclick="SaveEditModal(this.value)">Edit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <form asp-area="Manager" asp-controller="Cocktails" asp-action="Delete" asp-route-id="@cocktail.Id" method="post">
-                                                    <button data-id="@cocktail.Id" type="submit" class="btn btn-primary btn-sm btn-block delete-item">Delete</button>
-                                                </form>
-                                            }
-                                            else
-                                            {
-                                                <div class="containerrating" style="position:absolute; margin-top:-13px">
-                                                    <img src="~/assets/img/small_stars_empty.png" />
-                                                    <div class="crop" style="width:@(cocktail.AverageRating*25.2)px">
-                                                        <img src="~/assets/img/stars_small.png" />
-                                                    </div>
-                                                </div>
-                                            }
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <div class="align-content-center">
-                            @if (Model.PrevPage == null)
-                            {
-                                <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
-                            }
-                            else
-                            {
-                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
-                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
-                            }
-
-                            <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
-
-                            @if (Model.NextPage == null)
-                            {
-                                <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
-                            }
-                            else
-                            {
-                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
-                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
-                            }
+                        <!-- Placeholder for loading cocktails table-->
+                        <div id="cocktailtableplaceholder">
                         </div>
                     </div>
                 </div>
@@ -150,5 +50,6 @@
     <script src="~/js/ModalCocktailsDeleteConfirm.js"></script>
     <script src="~/js/CocktailIndexModal.js"></script>
     <script src="~/js/deletecocktail.js"></script>
+    <script src="~/js/CocktailsTable.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

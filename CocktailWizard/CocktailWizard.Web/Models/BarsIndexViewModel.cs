@@ -14,7 +14,6 @@ namespace CocktailWizard.Web.Models
         public int? NextPage { get; set; }
 
         public int TotalPages { get; set; }
-        public ICollection<BarViewModel> TenBars { get; set; }
-        public BarViewModel CreateNewBar { get; set; }
+        public ICollection<BarViewModel> FiveBars { get; set; }
     }
 }

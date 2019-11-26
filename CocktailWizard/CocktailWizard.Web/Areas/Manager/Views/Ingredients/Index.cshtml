@@ -1,4 +1,6 @@
-﻿@model IngredientsListViewModel
+﻿@{
+    ViewData["Title"] = "Index";
+}
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url(/assets/img/crud-ingredients.jpg)">
     <div class="container">
@@ -17,88 +19,11 @@
             <div class="row">
                 <div class="col-md-12" align="center">
                     <br />
-                    <partial name="_CreateIngredientModalPartial" , model="@Model.CreateNewIngredient" />
+                    <partial name="_CreateIngredientModalPartial" />
                     <br />
-                    <table class="table-striped text-center" align="center">
-                        <thead>
-                            <tr align="center">
-                                <th width="50%"></th>
-                                <th width="25%"></th>
-                                <th width="25%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var ingredient in Model.TenIngredients)
-                            {
-                                <tr>
-                                    <td>
-                                        <span id="@ingredient.Id+name" value="@ingredient.Name">@ingredient.Name</span>
-                                    </td>
-                                    <td style="padding-top: 13px">
-                                        @using (Html.BeginForm("Delete", "Ingredients", new { id = ingredient.Id }, FormMethod.Post))
-                                        {
-                                            @Html.Hidden("Id", ingredient.Id)
-                                            <button data-id="@ingredient.Id" type="submit" class="btn btn-primary btn-sm btn-block delete-item">Delete</button>
-                                        }
-                                    </td>
-                                    <td>
-                                        <!-- EDIT Modal Button -->
-                                        <button id="@ingredient.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#editModal" onclick="showEditModal(this.id)">Edit</button>
-                                        <!-- EDIT Modal -->
-                                        <div class="modal fade @ingredient.Id" id="@ingredient.Id" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            Edit Ingredient
-                                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                            <div class="form-group">
-                                                                <span class="text-danger"></span>
-                                                                <label asp-for="@ingredient.Name" class="control-label"></label>
-                                                                <input asp-for="@ingredient.Name" id="@ingredient.Id+IngName" class="form-control" />
-                                                                <span asp-validation-for="@ingredient.Name" class="text-danger"></span>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" value="@ingredient.Id" onclick="SaveEditModal(this.value)">Edit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-
-                    @if (Model.PrevPage == null)
-                    {
-                        <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
-                    }
-                    else
-                    {
-                        <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
-                        <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
-                    }
-
-                    <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
-
-                    @if (Model.NextPage == null)
-                    {
-                        <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
-                    }
-                    else
-                    {
-                        <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
-                        <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
-                    }
+                    <!-- Placeholder for loading ingredients table-->
+                    <div id="ingredienttableplaceholder">
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,4 +35,5 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/js/ModalIngredientsDeleteConfirm.js"></script>
     <script src="~/js/EditIngredient.js"></script>
+    <script src="~/js/IngredientsTable.js"></script>
 }

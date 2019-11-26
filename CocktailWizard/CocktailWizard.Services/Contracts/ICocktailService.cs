@@ -14,7 +14,7 @@ namespace CocktailWizard.Services.Contracts
         Task<CocktailDto> GetCocktailAsync(Guid id);
         Task<DetailsCocktailDto> GetCocktailsBarAsync(Guid id);
         Task<int> GetPageCountAsync(int cocktailsPerPage);
-        Task<ICollection<CocktailDto>> GetTenCocktailsOrderedByNameAsync(int currentPage);
+        Task<ICollection<CocktailDto>> GetFiveCocktailsAsync(int currentPage, string sortOrder);
         Task<ICollection<CocktailDto>> GetTopCocktailsAsync(int num);
         Task<ICollection<CocktailDto>> SearchAsync(string searchCriteria, bool byName, bool byRating, double ratingValue);
     }

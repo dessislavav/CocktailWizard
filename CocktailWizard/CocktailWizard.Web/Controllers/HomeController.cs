@@ -16,24 +16,24 @@ namespace CocktailWizard.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
         private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
-        private readonly IBarService barService;
+        private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
         private readonly ICocktailService cocktailService;
+        private readonly IBarService barService;
         private readonly IMemoryCache cache;
 
 
-        public HomeController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper, 
-                              IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
-                              IBarService barService, 
-                              ICocktailService cocktailService, 
+        public HomeController(IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper,
+                              IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
+                              ICocktailService cocktailService,
+                              IBarService barService,
                               IMemoryCache cache)
         {
-            this.barViewModelMapper = barViewModelMapper; ;
-            this.cocktailViewModelMapper = cocktailViewModelMapper;
-            this.barService = barService;
-            this.cocktailService = cocktailService;
-            this.cache = cache;
+            this.cocktailViewModelMapper = cocktailViewModelMapper ?? throw new ArgumentNullException(nameof(cocktailViewModelMapper));
+            this.barViewModelMapper = barViewModelMapper ?? throw new ArgumentNullException(nameof(barViewModelMapper));
+            this.cocktailService = cocktailService ?? throw new ArgumentNullException(nameof(cocktailService));
+            this.barService = barService ?? throw new ArgumentNullException(nameof(barService));
+            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
         public async Task<IActionResult> Index()

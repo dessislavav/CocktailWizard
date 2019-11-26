@@ -8,6 +8,7 @@ using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,67 +22,79 @@ namespace CocktailWizard.Web.Controllers
         private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
         private readonly IViewModelMapper<SearchBarDto, BarViewModel> searchBarVmMapper;
         private readonly IViewModelMapper<BarCommentDto, BarCommentViewModel> barCommentVmMapper;
-        private readonly IBarCommentService barCommentService;
         private readonly IViewModelMapper<BarRatingDto, BarRatingViewModel> barRatingVmMapper;
-        private readonly IBarRatingService barRatingService;
-        private readonly IBarService barService;
         private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
         private readonly UserManager<User> userManager;
+        private readonly IBarCommentService barCommentService;
+        private readonly IBarRatingService barRatingService;
+        private readonly IBarService barService;
+        private readonly IToastNotification toastNotification;
 
         public BarsController(IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
                               IViewModelMapper<SearchBarDto, BarViewModel> searchBarVmMapper,
                               IViewModelMapper<BarCommentDto, BarCommentViewModel> barCommentVmMapper,
-                              IBarCommentService barCommentService,
                               IViewModelMapper<BarRatingDto, BarRatingViewModel> barRatingVmMapper,
+                              IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper,
+                              UserManager<User> userManager,
+                              IBarCommentService barCommentService,
                               IBarRatingService barRatingService,
                               IBarService barService,
-                              IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
-                              UserManager<User> userManager)
+                              IToastNotification toastNotification)
         {
-            this.barViewModelMapper = barViewModelMapper;
-            this.barService = barService;
-            this.cocktailViewModelMapper = cocktailViewModelMapper;
-            this.userManager = userManager;
-            this.searchBarVmMapper = searchBarVmMapper;
-            this.barCommentVmMapper = barCommentVmMapper;
-            this.barCommentService = barCommentService;
-            this.barRatingVmMapper = barRatingVmMapper;
-            this.barRatingService = barRatingService;
+            this.barViewModelMapper = barViewModelMapper ?? throw new ArgumentNullException(nameof(barViewModelMapper));
+            this.cocktailViewModelMapper = cocktailViewModelMapper ?? throw new ArgumentNullException(nameof(cocktailViewModelMapper));
+            this.searchBarVmMapper = searchBarVmMapper ?? throw new ArgumentNullException(nameof(searchBarVmMapper));
+            this.barRatingVmMapper = barRatingVmMapper ?? throw new ArgumentNullException(nameof(barRatingVmMapper));
+            this.barCommentVmMapper = barCommentVmMapper ?? throw new ArgumentNullException(nameof(searchBarVmMapper));
+            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            this.barService = barService ?? throw new ArgumentNullException(nameof(barService));
+            this.toastNotification = toastNotification ?? throw new ArgumentNullException(nameof(toastNotification));
+            this.barCommentService = barCommentService ?? throw new ArgumentNullException(nameof(barCommentService));
+            this.barRatingService = barRatingService ?? throw new ArgumentNullException(nameof(barRatingService));
         }
 
-        public async Task<IActionResult> Index(int? currPage, string sortOrder)
+        public IActionResult Index()
         {
-            this.ViewData["NameSortParm"] = (string.IsNullOrEmpty(sortOrder) || sortOrder == "Name") ? "name_desc" : "Name";
-            this.ViewData["RatingSortParm"] = sortOrder == "Rating" ? "rating_desc" : "Rating";
-            this.ViewData["CurrentSort"] = sortOrder;
-
-            var currentPage = currPage ?? 1;
-
-            var totalPages = await this.barService.GetPageCountAsync(5);
-            var tenBars = await this.barService.GetFiveBarsAsync(currentPage, sortOrder);
-            var mappedTenBars = this.barViewModelMapper.MapFrom(tenBars);
-
-            var model = new BarsIndexViewModel()
-            {
-                CurrPage = currentPage,
-                TotalPages = totalPages,
-                TenBars = mappedTenBars,
-            };
-
-            if (totalPages > currentPage)
-            {
-                model.NextPage = currentPage + 1;
-            }
-
-            if (currentPage > 1)
-            {
-                model.PrevPage = currentPage - 1;
-            }
-
-            return View(model);
+            return View();
         }
 
-        // GET: /Bars/Details
+        [HttpGet]
+        public async Task<IActionResult> GetFiveBars(int? currPage, string sortOrder)
+        {
+            try
+            {
+                var currentPage = currPage ?? 1;
+
+                var totalPages = await this.barService.GetPageCountAsync(5);
+                var tenBars = await this.barService.GetFiveBarsAsync(currentPage, sortOrder);
+                var mappedTenBars = this.barViewModelMapper.MapFrom(tenBars);
+
+                var model = new BarsIndexViewModel()
+                {
+                    CurrPage = currentPage,
+                    TotalPages = totalPages,
+                    FiveBars = mappedTenBars,
+                };
+
+                if (totalPages > currentPage)
+                {
+                    model.NextPage = currentPage + 1;
+                }
+
+                if (currentPage > 1)
+                {
+                    model.PrevPage = currentPage - 1;
+                }
+
+                return PartialView("_BarsIndexTable", model);
+            }
+            catch (Exception)
+            {
+                this.toastNotification.AddWarningToastMessage("Something went wrong, please try again");
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
         public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
@@ -108,13 +121,12 @@ namespace CocktailWizard.Web.Controllers
             catch (Exception)
             {
                 model.CurrentUserRating = null;
-            }        
+            }
 
             var cocktailsVM = this.cocktailViewModelMapper.MapFrom(barDto.Cocktails);
-            
+
             model.Cocktails = cocktailsVM;
-            
-            //TODO: Fix logic here
+
             if (barCommentVM != null)
             {
                 model.BarCommentViewModels = barCommentVM;
@@ -132,22 +144,29 @@ namespace CocktailWizard.Web.Controllers
                 model.BarRatingViewModels = new List<BarRatingViewModel>();
             }
 
-
             return View(model);
         }
 
         [HttpGet]
         public async Task<IActionResult> Search([FromQuery]SearchBarViewModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.SearchName) && model.Value == 0)
+            try
             {
+                if (string.IsNullOrWhiteSpace(model.SearchName) && model.Value == 0)
+                {
+                    return View();
+                }
+
+                var result = await this.barService.SearchAsync(model.SearchName, model.SearchByName, model.SearchByAddress, model.SearchByRating, model.Value);
+                model.SearchResults = result.Select(b => this.searchBarVmMapper.MapFrom(b)).ToList();
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                this.toastNotification.AddWarningToastMessage("Something went wrong, please try again");
                 return View();
             }
-
-            var result = await this.barService.SearchAsync(model.SearchName, model.SearchByName, model.SearchByAddress, model.SearchByRating, model.Value);
-            model.SearchResults = result.Select(b => this.searchBarVmMapper.MapFrom(b)).ToList();
-
-            return View(model);
         }
     }
 }

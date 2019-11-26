@@ -6,6 +6,7 @@ using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,63 +16,80 @@ namespace CocktailWizard.Web.Controllers
 {
     public class CocktailsController : Controller
     {
-        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper;
-        private readonly IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper;
-        private readonly IViewModelMapper<BarDto, BarViewModel> barViewModelMapper;
-        private readonly ICocktailService cocktailService;
+        private readonly IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailVmMapper;
         private readonly IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper;
+        private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper;
+        private readonly IViewModelMapper<CocktailDto, CocktailViewModel> cocktailVMMapper;
+        private readonly IViewModelMapper<BarDto, BarViewModel> barVmMapper;
+        private readonly UserManager<User> userManager;
+        private readonly ICocktailService cocktailService;
         private readonly ICocktailCommentService cocktailCommentService;
         private readonly ICocktailRatingService cocktailRatingService;
-        private readonly UserManager<User> userManager;
-        private readonly IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper;
+        private readonly IToastNotification toastNotification;
 
-        public CocktailsController(ICocktailService cocktailService, 
-                                   IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
-                                   IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailViewModelMapper, 
-                                   IViewModelMapper<BarDto, BarViewModel> barViewModelMapper,
+        public CocktailsController(ICocktailService cocktailService,
+                                   IViewModelMapper<DetailsCocktailDto, DetailsCocktailViewModel> detailsCocktailVMMapper,
                                    IViewModelMapper<CocktailCommentDto, CocktailCommentViewModel> cocktailCommentVmMapper,
-                                   ICocktailCommentService cocktailCommentService,
                                    IViewModelMapper<CocktailRatingDto, CocktailRatingViewModel> cocktailRatingVmMapper,
+                                   IViewModelMapper<CocktailDto, CocktailViewModel> cocktailVmMapper,
+                                   IViewModelMapper<BarDto, BarViewModel> barVmMapper,
+                                   UserManager<User> userManager,
+                                   ICocktailCommentService cocktailCommentService,
                                    ICocktailRatingService cocktailRatingService,
-                                   UserManager<User> userManager)
+                                   IToastNotification toastNotification)
         {
-            this.cocktailService = cocktailService;
-            this.cocktailViewModelMapper = cocktailViewModelMapper;
-            this.detailsCocktailViewModelMapper = detailsCocktailViewModelMapper;
-            this.barViewModelMapper = barViewModelMapper;
-            this.cocktailCommentVmMapper = cocktailCommentVmMapper;
-            this.cocktailCommentService = cocktailCommentService;
-            this.cocktailRatingService = cocktailRatingService;
-            this.userManager = userManager;
-            this.cocktailRatingVmMapper = cocktailRatingVmMapper;
+            this.cocktailCommentVmMapper = cocktailCommentVmMapper ?? throw new ArgumentNullException(nameof(cocktailCommentVmMapper));
+            this.detailsCocktailVmMapper = detailsCocktailVMMapper ?? throw new ArgumentNullException(nameof(detailsCocktailVMMapper));
+            this.cocktailRatingVmMapper = cocktailRatingVmMapper ?? throw new ArgumentNullException(nameof(cocktailRatingVmMapper));
+            this.cocktailVMMapper = cocktailVmMapper ?? throw new ArgumentNullException(nameof(cocktailVmMapper));
+            this.barVmMapper = barVmMapper ?? throw new ArgumentNullException(nameof(barVmMapper));
+            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            this.cocktailService = cocktailService ?? throw new ArgumentNullException(nameof(cocktailService));
+            this.cocktailCommentService = cocktailCommentService ?? throw new ArgumentNullException(nameof(cocktailCommentService));
+            this.cocktailRatingService = cocktailRatingService ?? throw new ArgumentNullException(nameof(cocktailRatingService));
+            this.toastNotification = toastNotification ?? throw new ArgumentNullException(nameof(toastNotification));
         }
-        // GET: /Cocktails
-        public async Task<IActionResult> Index(int? currPage)
+
+        public IActionResult Index()
         {
-            var currentPage = currPage ?? 1;
+            return View();
+        }
 
-            var totalPages = await this.cocktailService.GetPageCountAsync(10);
-            var tenCocktails = await this.cocktailService.GetTenCocktailsOrderedByNameAsync(currentPage);
-            var mappedTenCocktails = this.cocktailViewModelMapper.MapFrom(tenCocktails);
-
-            var model = new CocktailsIndexViewModel()
+        public async Task<IActionResult> GetFiveCocktails(int? currPage, string sortOrder)
+        {
+            try
             {
-                CurrPage = currentPage,
-                TotalPages = totalPages,
-                TenCocktails = mappedTenCocktails,
-            };
+                var currentPage = currPage ?? 1;
 
-            if (totalPages > currentPage)
+                var totalPages = await this.cocktailService.GetPageCountAsync(5);
+                var tenCocktails = await this.cocktailService.GetFiveCocktailsAsync(currentPage, sortOrder);
+                var mappedTenCocktails = this.cocktailVMMapper.MapFrom(tenCocktails);
+
+                var model = new CocktailsIndexViewModel()
+                {
+                    CurrPage = currentPage,
+                    TotalPages = totalPages,
+                    FiveCocktails = mappedTenCocktails,
+                };
+
+                if (totalPages > currentPage)
+                {
+                    model.NextPage = currentPage + 1;
+                }
+
+                if (currentPage > 1)
+                {
+                    model.PrevPage = currentPage - 1;
+                }
+
+                return PartialView("_CocktailsIndexTable", model);
+            }
+            catch (Exception)
             {
-                model.NextPage = currentPage + 1;
+                this.toastNotification.AddWarningToastMessage("Something went wrong, please try again");
+                return RedirectToAction(nameof(Index));
             }
 
-            if (currentPage > 1)
-            {
-                model.PrevPage = currentPage - 1;
-            }
-
-            return View(model);
         }
 
         // GET: /Cocktails/Details/
@@ -90,8 +108,8 @@ namespace CocktailWizard.Web.Controllers
             var cocktailRatingDtos = await this.cocktailRatingService.GetAllRatingsAsync(id);
             var cocktailRatingVM = this.cocktailRatingVmMapper.MapFrom(cocktailRatingDtos);
 
-            var barsVM = this.barViewModelMapper.MapFrom(dtoCocktail.Bars);
-            var cocktailVM = this.detailsCocktailViewModelMapper.MapFrom(dtoCocktail);
+            var barsVM = this.barVmMapper.MapFrom(dtoCocktail.Bars);
+            var cocktailVM = this.detailsCocktailVmMapper.MapFrom(dtoCocktail);
             cocktailVM.Bars = barsVM;
 
             var userId = this.userManager.GetUserId(HttpContext.User);
@@ -131,18 +149,26 @@ namespace CocktailWizard.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Search([FromQuery]SearchCocktailViewModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.SearchName))
+            try
             {
+                if (string.IsNullOrWhiteSpace(model.SearchName))
+                {
+                    return View();
+                }
+
+                var result = await this.cocktailService.SearchAsync(model.SearchName, model.SearchByName, model.SearchByRating, model.Value);
+
+                model.SearchResults = result
+                    .Select(b => this.cocktailVMMapper.MapFrom(b))
+                    .ToList();
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                this.toastNotification.AddWarningToastMessage("Something went wrong, please try again");
                 return View();
             }
-
-            var result = await this.cocktailService.SearchAsync(model.SearchName, model.SearchByName, model.SearchByRating, model.Value);
-
-            model.SearchResults = result
-                .Select(b => this.cocktailViewModelMapper.MapFrom(b))
-                .ToList();
-
-            return View(model);
         }
     }
 }

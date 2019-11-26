@@ -29,32 +29,46 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             this.toastNotification = toastNotification ?? throw new ArgumentException(nameof(toastNotification));
         }
 
-        public async Task<IActionResult> Index(int? currPage)
+        public IActionResult Index()
         {
-            var currentPage = currPage ?? 1;
+            return View();
+        }
 
-            var totalPages = await this.ingredientService.GetPageCountAsync(10);
-            var tenIngredients = await this.ingredientService.GetTenIngredientsOrderedByNameAsync(currentPage);
-            var mappedTenIngredients = this.ingredientViewModelMapper.MapFrom(tenIngredients);
-
-            var model = new IngredientsListViewModel()
+        public async Task<IActionResult> GetTenIngredients(int? currPage)
+        {
+            try
             {
-                CurrPage = currentPage,
-                TotalPages = totalPages,
-                TenIngredients = mappedTenIngredients,
-            };
+                var currentPage = currPage ?? 1;
 
-            if (totalPages > currentPage)
+                var totalPages = await this.ingredientService.GetPageCountAsync(10);
+                var tenIngredients = await this.ingredientService.GetTenIngredientsOrderedByNameAsync(currentPage);
+                var mappedTenIngredients = this.ingredientViewModelMapper.MapFrom(tenIngredients);
+
+                var model = new IngredientsListViewModel()
+                {
+                    CurrPage = currentPage,
+                    TotalPages = totalPages,
+                    TenIngredients = mappedTenIngredients,
+                };
+
+                if (totalPages > currentPage)
+                {
+                    model.NextPage = currentPage + 1;
+                }
+
+                if (currentPage > 1)
+                {
+                    model.PrevPage = currentPage - 1;
+                }
+
+                return PartialView("_IngredientsIndexTable", model);
+            }
+            catch (Exception)
             {
-                model.NextPage = currentPage + 1;
+                this.toastNotification.AddWarningToastMessage("Something went wrong, please try again");
+                return RedirectToAction(nameof(Index));
             }
 
-            if (currentPage > 1)
-            {
-                model.PrevPage = currentPage - 1;
-            }
-
-            return View(model);
         }
 
         [HttpPost]

@@ -1,5 +1,4 @@
-﻿@model BarsIndexViewModel
-
+﻿
 @{
     ViewData["Title"] = "Index";
 }
@@ -30,142 +29,11 @@
                         <br />
                         @if (User.IsInRole("Manager"))
                         {
-                            <partial name="_CreateBarModalPartial" , model="@Model.CreateNewBar" />
+                            <partial name="_CreateBarModalPartial"/>
                         }
                         <br />
-                        <table id="bartable" class="table-striped text-center" align="center">
-                            <thead>
-                                <tr align="center">
-                                    <th width="20%">
-                                        <a style="color:#9c27b0">Preview</a>
-                                    </th>
-                                    <th width="20%">
-                                        <a class="barTableClickHandler" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name<i class="material-icons" style="font-size:larger">unfold_more</i></a>
-                                    </th>
-                                    <th width="30%">
-                                        <a style="color:#9c27b0">Preview</a>
-                                    </th>
-                                    <th width="15%">
-                                        <a style="color:#9c27b0">Phone</a>
-                                    </th>
-                                    @if (User.IsInRole("Manager"))
-                                    {
-
-                                    }
-                                    else
-                                    {
-                                        <th width="15%">
-                                            <a class="barTableClickHandler" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Review<i class="material-icons" style="font-size:larger">unfold_more</i></a>
-                                        </th>
-                                    }
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var bar in Model.TenBars)
-                                {
-                                    <tr>
-                                        <td>
-                                            <a asp-action="Details" asp-route-id="@bar.Id">
-                                                <img src=@bar.ImagePath height=200 width=300>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <span id="@bar.Id+name" value="@bar.Name">@bar.Name</span>
-                                        </td>
-                                        <td>
-                                            <span>@bar.Address</span>
-                                        </td>
-                                        <td>
-                                            <span>@bar.Phone</span>
-                                        </td>
-                                        <td>
-                                            @if (User.IsInRole("Manager"))
-                                            {
-                                                <!-- EDIT Modal Button -->
-                                                <button id="@bar.Id" type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#editModal" onclick="showEditModal(this.id)">Edit</button>
-                                                <!-- EDIT Modal -->
-                                                <div class="modal fade @bar.Id" id="@bar.Id" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form>
-                                                                    Edit Bar
-                                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                                    <div class="form-group">
-                                                                        <span class="text-danger"></span>
-                                                                        <label asp-for="@bar.Name" class="control-label"></label>
-                                                                        <input asp-for="@bar.Name" id="@bar.Id+BarName" class="form-control" />
-                                                                        <span asp-validation-for="@bar.Name" class="text-danger"></span>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label asp-for="@bar.Info" class="control-label"></label>
-                                                                        <input asp-for="@bar.Info" id="@bar.Id+BarInfo" class="form-control" />
-                                                                        <span asp-validation-for="@bar.Info" class="text-danger"></span>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label asp-for="@bar.Address" class="control-label"></label>
-                                                                        <input asp-for="@bar.Address" id="@bar.Id+BarAddress" class="form-control" />
-                                                                        <span asp-validation-for="@bar.Address" class="text-danger"></span>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label asp-for="@bar.Phone" class="control-label"></label>
-                                                                        <input asp-for="@bar.Phone" id="@bar.Id+BarPhone" class="form-control" />
-                                                                        <span asp-validation-for="@bar.Phone" class="text-danger"></span>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary" value="@bar.Id" onclick="SaveEditModal(this.value)">Edit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <form asp-area="Manager" asp-controller="Bars" asp-action="Delete" asp-route-id="@bar.Id" method="post">
-                                                    <button data-id="@bar.Id" type="submit" class="btn btn-primary btn-sm btn-block delete-item">Delete</button>
-                                                </form>
-                                            }
-                                            else
-                                            {
-                                                <div class="containerrating" style="position:absolute; margin-top: -14px">
-                                                    <img src="~/assets/img/small_stars_empty.png" />
-                                                    <div class="crop" style="width:@(bar.AverageRating*25.2)px">
-                                                        <img src="~/assets/img/stars_small.png" />
-                                                    </div>
-                                                </div>
-                                            }
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <div class="align-content-center">
-                            @if (Model.PrevPage == null)
-                            {
-                                <a class="btn btn-sm btn-lighter btn-auto disabled">Prev</a>
-                            }
-                            else
-                            {
-                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" at="@Model.PrevPage">Prev</a>
-                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" at="@Model.PrevPage">@Model.PrevPage</a>
-                            }
-
-                            <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
-
-                            @if (Model.NextPage == null)
-                            {
-                                <a class="btn btn-sm btn-lighter btn-auto disabled">Next</a>
-                            }
-                            else
-                            {
-                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" at="@Model.NextPage">@Model.NextPage</a>
-                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" at="Next">Next</a>
-                            }
+                        <!-- Placeholder for loading bars table-->
+                        <div id="bartableplaceholder">
                         </div>
                     </div>
                 </div>
@@ -180,5 +48,6 @@
     <script src="~/js/ModalBarsDeleteConfirm.js"></script>
     <script src="~/js/BarIndexModal.js"></script>
     <script src="~/js/deletebar.js"></script>
+    <script src="~/js/BarsTable.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
