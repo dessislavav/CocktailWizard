@@ -53,7 +53,7 @@ namespace CocktailWizard.Services
         {
             var bar = await this.context.Bars
                 .Include(b => b.Ratings)
-                .Where(b => b.IsDeleted == false)       
+                .Where(b => b.IsDeleted == false)
                 .Include(b => b.Ratings)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
@@ -95,32 +95,57 @@ namespace CocktailWizard.Services
             return topBarsDtos;
         }
 
-        public async Task<ICollection<BarDto>> GetTenBarsOrderedByNameAsync(int currentPage)
+        public async Task<ICollection<BarDto>> GetFiveBarsAsync(int currentPage, string sortOrder)
         {
-            List<Bar> tenBars;
-            if (currentPage == 1)
+            try
             {
-                tenBars = await this.context.Bars
+                IQueryable<Bar> bars = this.context.Bars
                     .Include(b => b.Ratings)
-                    .Where(b => b.IsDeleted == false)
-                    .OrderBy(x => x.Name)
-                    .Take(10)
-                    .ToListAsync();
+                    .Where(b => b.IsDeleted == false);
+
+                ICollection<Bar> fiveBars;
+
+                switch (sortOrder)
+                {
+                    case "Name":
+                        bars = bars.OrderBy(b => b.Name);
+                        break;
+                    case "name_desc":
+                        bars = bars.OrderByDescending(b => b.Name);
+                        break;
+                    case "Rating":
+                        bars = bars.OrderBy(b => b.Ratings.Count());
+                        break;
+                    case "rating_desc":
+                        bars = bars.OrderByDescending(b => b.Ratings.Count());
+                        break;
+                    default:
+                        bars = bars.OrderBy(b => b.Name);
+                        break;
+                }
+
+                if (currentPage == 1)
+                {
+                    fiveBars = await bars
+                        .Take(5)
+                        .ToListAsync();
+                }
+                else
+                {
+                    fiveBars = await bars
+                        .Skip((currentPage - 1) * 5)
+                        .Take(5)
+                        .ToListAsync();
+                }
+
+                var dtoBars = this.dtoMapper.MapFrom(fiveBars);
+
+                return dtoBars;
             }
-            else
+            catch (Exception)
             {
-                tenBars = await this.context.Bars
-                    .Include(b => b.Ratings)
-                    .Where(b => b.IsDeleted == false)
-                    .OrderBy(x => x.Name)
-                    .Skip((currentPage - 1) * 10)
-                    .Take(10)
-                    .ToListAsync();
+                throw new BusinessLogicException(ExceptionMessages.BarNull);
             }
-
-            var dtoBars = this.dtoMapper.MapFrom(tenBars);
-
-            return dtoBars;
         }
 
         public async Task<int> GetPageCountAsync(int barsPerPage)

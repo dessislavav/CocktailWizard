@@ -49,12 +49,16 @@ namespace CocktailWizard.Web.Controllers
             this.barRatingService = barRatingService;
         }
 
-        public async Task<IActionResult> Index(int? currPage)
+        public async Task<IActionResult> Index(int? currPage, string sortOrder)
         {
+            this.ViewData["NameSortParm"] = (string.IsNullOrEmpty(sortOrder) || sortOrder == "Name") ? "name_desc" : "Name";
+            this.ViewData["RatingSortParm"] = sortOrder == "Rating" ? "rating_desc" : "Rating";
+            this.ViewData["CurrentSort"] = sortOrder;
+
             var currentPage = currPage ?? 1;
 
-            var totalPages = await this.barService.GetPageCountAsync(10);
-            var tenBars = await this.barService.GetTenBarsOrderedByNameAsync(currentPage);
+            var totalPages = await this.barService.GetPageCountAsync(5);
+            var tenBars = await this.barService.GetFiveBarsAsync(currentPage, sortOrder);
             var mappedTenBars = this.barViewModelMapper.MapFrom(tenBars);
 
             var model = new BarsIndexViewModel()
