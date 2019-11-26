@@ -22,9 +22,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Registered </th>
-                            <th> Username</th>
-                            <th>Email</th>
+                            <th width="20%">Registered </th>
+                            <th width="25%"> Username</th>
+                            <th width="42%">Email</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -53,16 +53,16 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>
+                            <th width="20%">
                                 Registered
                             </th>
-                            <th>
+                            <th width="25%">
                                 Username
                             </th>
-                            <th>
+                            <th width="20%">
                                 Email
                             </th>
-                            <th>
+                            <th width="22%">
                                 Reason
                             </th>
                         </tr>
@@ -70,20 +70,23 @@
                     <tbody>
                         @foreach (var item in Model.BannedUsers)
                         {
-                            <tr>
-                                <td>
-                                    @item.CreatedOn.ToShortDateString()
-                                </td>
-                                <td>
-                                    @item.UserName
-                                </td>
-                                <td>
-                                    @item.Email
-                                </td>
-                                <td>
-                                    @item.ReasonForBan
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @item.CreatedOn.ToShortDateString()
+                            </td>
+                            <td>
+                                @item.UserName
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                @item.ReasonForBan
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-danger" style="width:85px; padding-left:1px; padding-right:1px;" asp-area="Manager" asp-controller="Users" asp-action="Unban" asp-route-id="@item.Id">Unban</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

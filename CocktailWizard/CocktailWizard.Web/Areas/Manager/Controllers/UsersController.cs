@@ -63,5 +63,25 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
             this.toastNotification.AddWarningToastMessage("User couldn't be banned");
             return View(entity);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Unban(Guid id)
+        {
+            
+            var user = await this.banService.GetBannedUserAsync(id);
+            var userVM = this.userMapper.MapFrom(user);
+
+            return View(userVM);
+        }
+
+        [HttpPost, ActionName("Unban")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UnbanConfirmed(Guid id)
+        {
+
+            await this.banService.RemoveAsync(id);
+            this.toastNotification.AddSuccessToastMessage("User successfully unbanned!");
+            return RedirectToAction("Index", "Users");
+        }
     }
 }
