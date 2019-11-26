@@ -80,8 +80,9 @@ namespace CocktailWizard.Services
         public async Task<ICollection<BarDto>> GetTopBarsAsync(int num)
         {
             var topBars = await this.context.Bars
+                 .Include(b => b.Ratings)
                  .Where(b => b.IsDeleted == false)
-                 .OrderBy(b => b.Name)
+                 .OrderByDescending(b => b.Ratings.Count())
                  .Take(num)
                  .ToListAsync();
 

@@ -76,35 +76,47 @@
             <div class="tab-content tab-space d-flex justify-content-center">
                 <div class="tab-pane active text-center gallery" id="cocktails">
                     <div class="row">
-                        @if (Model.Bars.Count == 0)
-                        {
-                            <h4 class="card-title">
-                                No bars found.
-                            </h4>
-                        }
-                        else
-                        {
-                            @foreach (var bar in @Model.Bars)
+                        <div class="row">
+                            <container style="width: -webkit-fill-available">
+                                @if (User.IsInRole("Manager"))
+                                {
+                                    @await Component.InvokeAsync("AddCocktailsToBar", new { Id = @Model.Id })
+                                    @await Component.InvokeAsync("RemoveCocktailsFromBar", new { Id = @Model.Id })
+                                }
+                            </container>
+                            @if (Model.Bars.Count == 0)
                             {
-                                <div class="col-md-4">
-                                    <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@bar.Id">
-                                        <img src="@bar.ImagePath" class="detailsimage">
-                                    </a>
-                                    <h4 class="card-title">
-                                        @bar.Name
-                                        <br>
-                                        <small class="card-description text-muted text-center">@bar.Address</small>
-                                    </h4>
-                                </div>
+                                <h4 class="card-title">
+                                    No bars found.
+                                </h4>
                             }
-                        }
+                            else
+                            {
+                                @foreach (var bar in @Model.Bars)
+                                {
+                                    <div class="col-md-4">
+                                        <a asp-area="" asp-controller="Bars" asp-action="Details" asp-route-id="@bar.Id">
+                                            <img src="@bar.ImagePath" class="detailsimage">
+                                        </a>
+                                        <h4 class="card-title">
+                                            @bar.Name
+                                            <br>
+                                            <small class="card-description text-muted text-center">@bar.Address</small>
+                                        </h4>
+                                    </div>
+                                }
+                            }
+                        </div>
                     </div>
-                </div>
                 @* Add cocktail rating *@
-                <div class="tab-pane text-center gallery" id="reviews">
+                <div class="tab-pane text-center gallery justify-content-center" id="reviews">
                     <div class="row">
                         @* Add cocktail rating *@
-                        @if (Model.CurrentUserRating == null)
+                        @if (!(User.Identity.IsAuthenticated))
+                        {
+                            <h4 class="card-title">Login or register to add rating</h4>
+                        }
+                        else if (Model.CurrentUserRating == null)
                         {
                             <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -169,7 +181,7 @@
                         else
                         {
                             <div style="align-content:center">
-                                <p class="card-description text-muted text-center">You've rated this bar already. Your rating:</p>
+                                <p class="card-description text-muted text-center">You've already rated this bar. Your rating:</p>
                                 <div class="containerrating" style="position:absolute; padding-left: 55px;">
                                     <img src="~/assets/img/small_stars_empty.png" />
                                     <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">

@@ -113,7 +113,11 @@
                     <div class="tab-pane text-center gallery justify-content-center" id="reviews">
                         <div class="row">
                             @* Add bar rating *@
-                            @if (Model.CurrentUserRating == null)
+                            @if (!(User.Identity.IsAuthenticated))
+                            {
+                                <h4 class="card-title">Login or register to add rating</h4>
+                            }
+                            else if (Model.CurrentUserRating == null)
                             {
                                 <form asp-area="Member" asp-controller="BarRatings" asp-action="Create">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -178,7 +182,7 @@
                             else
                             {
                                 <div style="align-content:center">
-                                    <h4 class="card-description text-muted text-center">You've rated this bar already. Your rating:</h4>
+                                    <h4 class="card-description text-muted text-center">You've already rated this bar. Your rating:</h4>
                                     <div class="containerrating" style="position:absolute; padding-left: 90px;">
                                         <img src="~/assets/img/small_stars_empty.png" />
                                         <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
@@ -187,6 +191,7 @@
                                     </div>
                                 </div>
                             }
+
                         </div>
                     </div>
 

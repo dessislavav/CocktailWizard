@@ -44,8 +44,8 @@ namespace CocktailWizard.Services
             try
             {
                 IQueryable<Cocktail> cocktails = this.context.Cocktails
-                    .Include(b => b.Ratings)
-                    .Where(b => b.IsDeleted == false);
+                    .Include(c => c.Ratings)
+                    .Where(c => c.IsDeleted == false);
 
                 ICollection<Cocktail> fiveCocktails;
 
@@ -88,11 +88,13 @@ namespace CocktailWizard.Services
             }
             catch (Exception)
             {
-                throw new BusinessLogicException(ExceptionMessages.BarNull);
+
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
+
+
+
         }
-
-
 
         public async Task<int> GetPageCountAsync(int cocktailsPerPage)
         {
@@ -142,7 +144,9 @@ namespace CocktailWizard.Services
         public async Task<ICollection<CocktailDto>> GetTopCocktailsAsync(int num)
         {
             var topCocktails = await this.context.Cocktails
+                    .Include(c => c.Ratings)
                     .Where(b => b.IsDeleted == false)
+                    .OrderByDescending(c => c.Ratings.Count())
                     .Take(num)
                     .ToListAsync();
 
