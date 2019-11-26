@@ -39,32 +39,62 @@ namespace CocktailWizard.Services
             this.cocktailIngredientService = cocktailIngredientService ?? throw new ArgumentNullException(nameof(cocktailIngredientService));
         }
 
-        public async Task<ICollection<CocktailDto>> GetTenCocktailsOrderedByNameAsync(int currentPage)
+        public async Task<ICollection<CocktailDto>> GetFiveCocktailsAsync(int currentPage, string sortOrder)
         {
-            List<Cocktail> tenCocktails;
-            if (currentPage == 1)
+
+            try
             {
-                tenCocktails = await this.context.Cocktails
-                    .Include(x => x.Ratings)
-                    .Where(x => x.IsDeleted == false)
-                    .OrderBy(x => x.Name)
-                    .Take(10)
-                    .ToListAsync();
+                IQueryable<Cocktail> cocktails = this.context.Cocktails
+                    .Include(c => c.Ratings)
+                    .Where(c => c.IsDeleted == false);
+
+                ICollection<Cocktail> fiveCocktails;
+
+                switch (sortOrder)
+                {
+                    case "Name":
+                        cocktails = cocktails.OrderBy(b => b.Name);
+                        break;
+                    case "name_desc":
+                        cocktails = cocktails.OrderByDescending(b => b.Name);
+                        break;
+                    case "Rating":
+                        cocktails = cocktails.OrderBy(b => b.Ratings.Count());
+                        break;
+                    case "rating_desc":
+                        cocktails = cocktails.OrderByDescending(b => b.Ratings.Count());
+                        break;
+                    default:
+                        cocktails = cocktails.OrderBy(b => b.Name);
+                        break;
+                }
+
+                if (currentPage == 1)
+                {
+                    fiveCocktails = await cocktails
+                        .Take(5)
+                        .ToListAsync();
+                }
+                else
+                {
+                    fiveCocktails = await cocktails
+                        .Skip((currentPage - 1) * 5)
+                        .Take(5)
+                        .ToListAsync();
+                }
+
+                var dtoCocktails = this.dtoMapper.MapFrom(fiveCocktails);
+
+                return dtoCocktails;
             }
-            else
+            catch (Exception)
             {
-                tenCocktails = await this.context.Cocktails
-                    .Include(x => x.Ratings)
-                    .Where(x => x.IsDeleted == false)
-                    .OrderBy(x => x.Name)
-                    .Skip((currentPage - 1) * 10)
-                    .Take(10)
-                    .ToListAsync();
+
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
 
-            var dtoCocktails = this.dtoMapper.MapFrom(tenCocktails);
+          
 
-            return dtoCocktails;
         }
 
         public async Task<int> GetPageCountAsync(int cocktailsPerPage)

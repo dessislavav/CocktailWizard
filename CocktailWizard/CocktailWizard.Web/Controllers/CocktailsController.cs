@@ -46,12 +46,16 @@ namespace CocktailWizard.Web.Controllers
             this.cocktailRatingVmMapper = cocktailRatingVmMapper;
         }
         // GET: /Cocktails
-        public async Task<IActionResult> Index(int? currPage)
+        public async Task<IActionResult> Index(int? currPage, string sortOrder)
         {
+            this.ViewData["NameSortParm"] = (string.IsNullOrEmpty(sortOrder) || sortOrder == "Name") ? "name_desc" : "Name";
+            this.ViewData["RatingSortParm"] = sortOrder == "Rating" ? "rating_desc" : "Rating";
+            this.ViewData["CurrentSort"] = sortOrder;
+
             var currentPage = currPage ?? 1;
 
             var totalPages = await this.cocktailService.GetPageCountAsync(10);
-            var tenCocktails = await this.cocktailService.GetTenCocktailsOrderedByNameAsync(currentPage);
+            var tenCocktails = await this.cocktailService.GetFiveCocktailsAsync(currentPage, sortOrder);
             var mappedTenCocktails = this.cocktailViewModelMapper.MapFrom(tenCocktails);
 
             var model = new CocktailsIndexViewModel()

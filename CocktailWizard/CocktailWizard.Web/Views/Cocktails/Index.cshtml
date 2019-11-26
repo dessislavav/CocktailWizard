@@ -34,13 +34,28 @@
                             @await Component.InvokeAsync("CreateCocktail")
                         }
                         <br />
-                        <table class="table-striped text-center" align="center">
+                        <table id="cocktailtable" class="table-striped text-center" align="center">
                             <thead>
                                 <tr align="center">
-                                    <th width="20%"></th>
-                                    <th width="25%"></th>
-                                    <th width="40%"></th>
-                                    <th width="15%"></th>
+                                    <th width="20%">
+                                        <a style="color:#9c27b0">Preview</a>
+                                    </th>
+                                    <th width="20%">
+                                        <a class="cocktailTableClickHandler" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name<i class="material-icons" style="font-size:larger">unfold_more</i></a>
+                                    </th>
+                                    <th width="46%">
+                                        <a style="color:#9c27b0">Info</a>
+                                    </th>
+                                    @if (User.IsInRole("Manager"))
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <th width="14%">
+                                            <a class="cocktailTableClickHandler" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Rating<i class="material-icons" style="font-size:larger">unfold_more</i></a>
+                                        </th>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,8 +136,9 @@
                             }
                             else
                             {
-                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">Prev</a>
-                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.PrevPage">@Model.PrevPage</a>
+
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" at="@Model.PrevPage">Prev</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.PrevPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" at="@Model.PrevPage">@Model.PrevPage</a>
                             }
 
                             <button class="btn btn-sm btn-primary btn-auto">@Model.CurrPage</button>
@@ -133,8 +149,8 @@
                             }
                             else
                             {
-                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" id="ingredients-table" at="@Model.NextPage">@Model.NextPage</a>
-                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" id="ingredients-table" at="Next">Next</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto previous-pagination-button-table" at="@Model.NextPage">@Model.NextPage</a>
+                                <a asp-action="Index" asp-route-currPage="@Model.NextPage" asp-route-sortOrder="@ViewData["CurrentSort"]" class="btn btn-sm btn-lighter btn-auto next-pagination-button-table" at="Next">Next</a>
                             }
                         </div>
                     </div>
