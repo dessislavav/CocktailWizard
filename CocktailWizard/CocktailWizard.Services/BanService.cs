@@ -49,6 +49,17 @@ namespace CocktailWizard.Services
             return mappedUsers;
         }
 
+        public async Task<UserDto> GetBannedUserAsync(Guid id)
+        {
+            var user = await this.context.Users
+                .Include(u => u.Bans)
+                .Where(u => u.IsBanned == true)
+                .Where(u => u.Id == id)
+                .FirstOrDefaultAsync();
+
+            var mappedUser = this.dtoMapper.MapFrom(user);
+            return mappedUser;
+        }
         public async Task CreateAsync(Guid id, string description, int period)
         {
             var user = await this.context.Users.FirstOrDefaultAsync(b => b.Id == id);
@@ -94,7 +105,7 @@ namespace CocktailWizard.Services
                 throw new BusinessLogicException(ExceptionMessages.ModelError);
             }
 
-                ban.ExpiresOn = DateTime.UtcNow;
+            ban.ExpiresOn = DateTime.UtcNow;
                 ban.HasExpired = true;
                 ban.User.IsBanned = false;
                 ban.User.LockoutEnd = DateTime.UtcNow;
