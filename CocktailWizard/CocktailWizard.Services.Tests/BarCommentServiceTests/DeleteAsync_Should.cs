@@ -27,6 +27,7 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
 
             var id = Guid.NewGuid();
             var barId = Guid.NewGuid();
+            var userId = Guid.NewGuid();
             var createdOn = DateTime.UtcNow;
 
             var bar = new Bar
@@ -35,24 +36,31 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
                 Name = "testname"
             };
 
+            var user = new User
+            {
+                Id = userId,
+                UserName = "testUser",
+            };
+
             var entity = new BarComment
             {
                 Id = id,
                 BarId = barId,
+                Bar = bar,
                 UserId = Guid.NewGuid(),
+                User = user,
                 Body = "testbody",
                 CreatedOn = createdOn
             };
 
-            // bar.Comments.Add()
-
-            //barCommentService.Setup(x => x.GetBarCommentAsync(It.IsAny<Guid>()))
-            //.Returns(Task.FromResult(entity));
+            bar.Comments.Add(entity);
+            user.BarComments.Add(entity);
 
             using (var actContext = new CWContext(options))
             {
                 //Act
                 await actContext.Bars.AddAsync(bar);
+                await actContext.Users.AddAsync(user);
                 await actContext.BarComments.AddAsync(entity);
                 await actContext.SaveChangesAsync();
                 var service = new BarCommentService(actContext, mapperMock.Object);
@@ -63,12 +71,11 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
             using (var assertContext = new CWContext(options))
             {
                 //Assert
-
                 var result = await assertContext.BarComments.FirstAsync();
                 Assert.AreEqual(true, result.IsDeleted);
             }
-
         }
+
 
         [TestMethod]
         public async Task ThrowWhen_NoCommentFound()
@@ -86,61 +93,6 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
                 //Act & Assert
                 var sut = new BarCommentService(assertContext, mapperMock.Object);
                 await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.DeleteAsync(id, barId));
-            }
-        }
-
-        [TestMethod]
-        public async Task ReturnCorrectTypeOfInstance()
-        {
-            // Arrange
-            var options = TestUtilities.GetOptions(nameof(ThrowWhen_NoCommentFound));
-
-            var mapperMock = new Mock<IDtoMapper<BarComment, BarCommentDto>>();
-
-            var id = Guid.NewGuid();
-            var barId = Guid.NewGuid();
-            var createdOn = DateTime.UtcNow;
-            var userId = Guid.NewGuid();
-
-            var entity = new BarComment
-            {
-                Id = id,
-                BarId = barId,
-                UserId = userId,
-                Body = "testbody",
-                CreatedOn = createdOn
-            };
-
-            var dtoEntity = new BarCommentDto
-            {
-                Id = id,
-                BarId = barId,
-                UserId = userId,
-                Body = "testbody",
-                CreatedOn = createdOn
-
-            };
-
-            mapperMock.Setup(x => x.MapFrom(It.IsAny<BarComment>())).Returns(dtoEntity);
-
-            using (var actContext = new CWContext(options))
-            {
-                //Act
-                await actContext.BarComments.AddAsync(entity);
-                await actContext.SaveChangesAsync();
-            }
-            using (var assertContext = new CWContext(options))
-            {
-                //Assert
-                var sut = new BarCommentService(assertContext, mapperMock.Object);
-                var result = await sut.DeleteAsync(id, barId);
-
-                Assert.IsInstanceOfType(result, typeof(BarCommentDto));
-
-                Assert.AreEqual(dtoEntity.Id, result.Id);
-                Assert.AreEqual(dtoEntity.BarId, result.BarId);
-                Assert.AreEqual(dtoEntity.UserId, result.UserId);
-                Assert.AreEqual(dtoEntity.Body, result.Body);
             }
         }
     }
