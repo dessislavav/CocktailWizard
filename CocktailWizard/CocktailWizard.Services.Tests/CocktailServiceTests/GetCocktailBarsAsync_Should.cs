@@ -7,12 +7,14 @@ using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services.Tests.CocktailServiceTests
 {
     [TestClass]
-    public class GetCocktailsBarAsync_Should
+    public class GetCocktailBarsAsync_Should
     {
         [TestMethod]
         public async Task ReturnCorrectDtoWhen_ParamsAreValid()
@@ -29,6 +31,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
             var cocktailIngredientServiceMock = new Mock<ICocktailIngredientService>();
 
             var testGuid = Guid.NewGuid();
+            var barGuid = Guid.NewGuid();
 
             var cocktail = new Cocktail
             {
@@ -37,18 +40,37 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 ImagePath = "ImagePathOne"
             };
 
-            var cocktailDto = new CocktailDto
+            var cocktailDto = new DetailsCocktailDto
             {
                 Id = testGuid,
                 Name = "TestOneName",
-                ImagePath = "ImagePathOne"
+                ImagePath = "ImagePathOne",
+                AverageRating = 2,
+                Info = "testInfo"
+
+
 
             };
 
-            mapperMock.Setup(x => x.MapFrom(It.IsAny<Cocktail>())).Returns(cocktailDto);
+            var bar = new Bar
+            {
+                Id = barGuid,
+                Name = "testName"
+            };
+
+            var barCocktail = new BarCocktail
+            {
+                Bar = bar,
+                Cocktail = cocktail,
+
+            };
+
+            cocktailDetailsMapperMock.Setup(x => x.MapFrom(It.IsAny<Cocktail>())).Returns(cocktailDto);
 
             using (var arrangeContext = new CWContext(options))
             {
+                await arrangeContext.Bars.AddAsync(bar);
+                await arrangeContext.BarCocktails.AddAsync(barCocktail);
                 await arrangeContext.Cocktails.AddAsync(cocktail);
                 await arrangeContext.SaveChangesAsync();
             }
@@ -58,9 +80,9 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 //Act & Assert
                 var sut = new CocktailService(assertContext, mapperMock.Object, barMapperMock.Object, cocktailDetailsMapperMock.Object,
                     ingredientServiceMock.Object, cocktailIngredientServiceMock.Object);
-                var result = await sut.GetCocktailAsync(testGuid);
+                var result = await sut.GetCocktailBarsAsync(testGuid);
 
-                Assert.IsInstanceOfType(result, typeof(CocktailDto));
+                Assert.IsInstanceOfType(result, typeof(DetailsCocktailDto));
                 Assert.AreEqual("TestOneName", result.Name);
             }
         }
@@ -110,7 +132,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 var sut = new CocktailService(assertContext, mapperMock.Object, barMapperMock.Object, cocktailDetailsMapperMock.Object,
                     ingredientServiceMock.Object, cocktailIngredientServiceMock.Object);
 
-                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.GetCocktailAsync(testGuid2));
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.GetCocktailBarsAsync(testGuid2));
             }
         }
     }
