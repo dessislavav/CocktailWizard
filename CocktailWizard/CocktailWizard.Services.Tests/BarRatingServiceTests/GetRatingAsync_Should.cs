@@ -29,28 +29,26 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
 
             var bar = new Bar
             {
+                Name = "BarTest",
                 Id = barId,
-                Name = "testName",
-
             };
-
             var user = new User
             {
+                UserName = "userTest",
                 Id = userId,
-                UserName = "testName"
             };
 
             var entity = new BarRating
             {
-                BarId = barId,
-                UserId = userId,
+                BarId = bar.Id,
+                UserId = user.Id,
                 Value = 2
             };
 
             var entityDto = new BarRatingDto
             {
-                BarId = barId,
-                UserId = userId,
+                BarId = bar.Id,
+                UserId = user.Id,
                 Value = 2
             };
 

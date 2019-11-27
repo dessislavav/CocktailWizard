@@ -132,18 +132,19 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
         }
 
         [TestMethod]
-        public async Task CreateBarCocktailWithCorrectData()
+        public async Task CreateBarCocktailWithCorrectDataa()
         {
             //Arrange
-            var options = TestUtilities.GetOptions(nameof(CreateBarCocktailWithCorrectData));
+            var options = TestUtilities.GetOptions(nameof(CreateBarCocktailWithCorrectDataa));
             var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
             var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
             var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
-            var guid = Guid.NewGuid();
+            var barGuid = Guid.NewGuid();
+            var cocktailGuid = Guid.NewGuid();
 
             var entityDto = new BarDto
             {
-                Id = guid,
+                Id = barGuid,
                 Name = "testBar",
                 Info = "testInfo",
                 Address = "testAddress",
@@ -153,7 +154,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
 
             var bar = new Bar
             {
-                Id = guid,
+                Id = barGuid,
                 Name = "testBar",
                 Info = "testInfo",
                 Address = "testAddress",
@@ -163,7 +164,7 @@ namespace CocktailWizard.Services.Tests.BarServiceTests
 
             var cocktail = new Cocktail
             {
-                Id = Guid.NewGuid(),
+                Id = cocktailGuid,
                 Name = "testCocktail",
                 Info = "testCocktailInfo",
             };
