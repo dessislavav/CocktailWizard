@@ -1,6 +1,7 @@
 ﻿using CocktailWizard.Data.AppContext;
 using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.CustomExceptions;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -85,5 +86,7 @@ namespace CocktailWizard.Services.Tests.CocktailRatingServiceTests
                 Assert.AreEqual(entityTwo.UserId, result.Last().UserId);
             }
         }
+
+       
     }
 }

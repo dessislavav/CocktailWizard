@@ -42,6 +42,13 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 Info = "testInfo",
             };
 
+            var cocktail = new Cocktail
+            {
+                Id = guid,
+                Name = "testCocktail",
+                Info = "testCocktailInfo",
+            };
+
             var bar = new Bar
             {
                 Id = Guid.NewGuid(),
@@ -52,12 +59,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 Phone = "111-333-666"
             };
 
-            var cocktail = new Cocktail
-            {
-                Id = guid,
-                Name = "testCocktail",
-                Info = "testCocktailInfo",
-            };
+           
 
             var list = new List<string>() { "testBar" };
 
@@ -96,6 +98,13 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
 
             var guid = Guid.NewGuid();
 
+            var cocktail = new Cocktail
+            {
+                Id = guid,
+                Name = "testCocktail",
+                Info = "testCocktailInfo",
+            };
+
             var entityDto = new CocktailDto
             {
                 Id = guid,
@@ -113,11 +122,11 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 Phone = "111-333-666"
             };
 
-            var cocktail = new Cocktail
+        
+            var barCocktail = new BarCocktail
             {
-                Id = guid,
-                Name = "testCocktail",
-                Info = "testCocktailInfo",
+                Bar = bar,
+                Cocktail = cocktail
             };
 
             var list = new List<string>() { "testBar" };
@@ -127,6 +136,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 //Act
                 await actContext.Bars.AddAsync(bar);
                 await actContext.Cocktails.AddAsync(cocktail);
+                await actContext.BarCocktails.AddAsync(barCocktail);
                 await actContext.SaveChangesAsync();
             }
 
@@ -203,112 +213,112 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
             }
         }
 
-        //[TestMethod]
-        //public async Task ThrowWhen_NobarFound()
-        //{
-        //    //Arrange
-        //    var options = TestUtilities.GetOptions(nameof(ThrowWhen_NobarFound));
-        //    var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
-        //    var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
-        //    var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
-        //    var guid = Guid.NewGuid();
+        [TestMethod]
+        public async Task ThrowWhen_NobarFound()
+        {
+            //Arrange
+            var options = TestUtilities.GetOptions(nameof(ThrowWhen_NobarFound));
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
+            var guid = Guid.NewGuid();
 
-        //    var entityDto = new BarDto
-        //    {
-        //        Id = Guid.NewGuid(),
-        //        Name = "testBar",
-        //        Info = "testInfo",
-        //        Address = "testAddress",
-        //        ImagePath = "testImagePath",
-        //        Phone = "111-333-666"
-        //    };
+            var entityDto = new BarDto
+            {
+                Id = Guid.NewGuid(),
+                Name = "testBar",
+                Info = "testInfo",
+                Address = "testAddress",
+                ImagePath = "testImagePath",
+                Phone = "111-333-666"
+            };
 
-        //    var bar = new Bar
-        //    {
-        //        Id = guid,
-        //        Name = "testBar",
-        //        Info = "testInfo",
-        //        Address = "testAddress",
-        //        ImagePath = "testImagePath",
-        //        Phone = "111-333-666"
-        //    };
+            var bar = new Bar
+            {
+                Id = guid,
+                Name = "testBar",
+                Info = "testInfo",
+                Address = "testAddress",
+                ImagePath = "testImagePath",
+                Phone = "111-333-666"
+            };
 
-        //    var cocktail = new Cocktail
-        //    {
-        //        Id = Guid.NewGuid(),
-        //        Name = "testCocktail",
-        //        Info = "testCocktailInfo",
-        //    };
+            var cocktail = new Cocktail
+            {
+                Id = Guid.NewGuid(),
+                Name = "testCocktail",
+                Info = "testCocktailInfo",
+            };
 
-        //    var list = new List<string>() { "testCocktail" };
+            var list = new List<string>() { "testCocktail" };
 
-        //    using (var arrangeContext = new CWContext(options))
-        //    {
-        //        await arrangeContext.Bars.AddAsync(bar);
-        //        await arrangeContext.Cocktails.AddAsync(cocktail);
-        //        await arrangeContext.SaveChangesAsync();
-        //    }
+            using (var arrangeContext = new CWContext(options))
+            {
+                await arrangeContext.Bars.AddAsync(bar);
+                await arrangeContext.Cocktails.AddAsync(cocktail);
+                await arrangeContext.SaveChangesAsync();
+            }
 
-        //    using (var assertContext = new CWContext(options))
-        //    {
-        //        //Act & Assert
-        //        var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
-        //        await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.AddCocktailsAsync(entityDto, list));
-        //    }
-        //}
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.AddCocktailsAsync(entityDto, list));
+            }
+        }
 
-        //[TestMethod]
-        //public async Task ThrowWhen_ListIsEmpty()
-        //{
-        //    //Arrange
-        //    var options = TestUtilities.GetOptions(nameof(ThrowWhen_ListIsEmpty));
-        //    var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
-        //    var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
-        //    var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
-        //    var guid = Guid.NewGuid();
+        [TestMethod]
+        public async Task ThrowWhen_ListIsEmpty()
+        {
+            //Arrange
+            var options = TestUtilities.GetOptions(nameof(ThrowWhen_ListIsEmpty));
+            var mapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+            var searchMapperMock = new Mock<IDtoMapper<Bar, SearchBarDto>>();
+            var cocktailMapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
+            var guid = Guid.NewGuid();
 
-        //    var entityDto = new BarDto
-        //    {
-        //        Id = Guid.NewGuid(),
-        //        Name = "testBar",
-        //        Info = "testInfo",
-        //        Address = "testAddress",
-        //        ImagePath = "testImagePath",
-        //        Phone = "111-333-666"
-        //    };
+            var entityDto = new BarDto
+            {
+                Id = Guid.NewGuid(),
+                Name = "testBar",
+                Info = "testInfo",
+                Address = "testAddress",
+                ImagePath = "testImagePath",
+                Phone = "111-333-666"
+            };
 
-        //    var bar = new Bar
-        //    {
-        //        Id = guid,
-        //        Name = "testBar",
-        //        Info = "testInfo",
-        //        Address = "testAddress",
-        //        ImagePath = "testImagePath",
-        //        Phone = "111-333-666"
-        //    };
+            var bar = new Bar
+            {
+                Id = guid,
+                Name = "testBar",
+                Info = "testInfo",
+                Address = "testAddress",
+                ImagePath = "testImagePath",
+                Phone = "111-333-666"
+            };
 
-        //    var cocktail = new Cocktail
-        //    {
-        //        Id = Guid.NewGuid(),
-        //        Name = "testCocktail",
-        //        Info = "testCocktailInfo",
-        //    };
+            var cocktail = new Cocktail
+            {
+                Id = Guid.NewGuid(),
+                Name = "testCocktail",
+                Info = "testCocktailInfo",
+            };
 
-        //    var list = new List<string>();
+            var list = new List<string>();
 
-        //    using (var arrangeContext = new CWContext(options))
-        //    {
-        //        await arrangeContext.Bars.AddAsync(bar);
-        //        await arrangeContext.Cocktails.AddAsync(cocktail);
-        //        await arrangeContext.SaveChangesAsync();
-        //    }
+            using (var arrangeContext = new CWContext(options))
+            {
+                await arrangeContext.Bars.AddAsync(bar);
+                await arrangeContext.Cocktails.AddAsync(cocktail);
+                await arrangeContext.SaveChangesAsync();
+            }
 
-        //    using (var assertContext = new CWContext(options))
-        //    {
-        //        //Act & Assert
-        //        var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
-        //        await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.AddCocktailsAsync(entityDto, list));
-        //    }
-        //}
+            using (var assertContext = new CWContext(options))
+            {
+                //Act & Assert
+                var sut = new BarService(assertContext, mapperMock.Object, searchMapperMock.Object, cocktailMapperMock.Object);
+                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.AddCocktailsAsync(entityDto, list));
+            }
+        }
     }
 }

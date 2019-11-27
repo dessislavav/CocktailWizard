@@ -61,11 +61,6 @@ namespace CocktailWizard.Services
                 .Where(cc => cc.CocktailId == cocktailId)
                 .ToListAsync();
 
-            if (!cocktailRatings.Any())
-            {
-                throw new BusinessLogicException(ExceptionMessages.CocktailRatingNull);
-            }
-
             var cocktailRatingDtos = this.dtoMapper.MapFrom(cocktailRatings);
 
             return cocktailRatingDtos;
