@@ -16,10 +16,10 @@ namespace CocktailWizard.Services.Tests.CocktailCommentServiceTests
     public class GetCocktailCommentsAsync_Should
     {
         [TestMethod]
-        public async Task ReturnInstanceOfCollectionCocktailCommentDtos()
+        public async Task ReturnCorrectInstanceOfCollectionCocktailCommentDtos()
         {
             //Arrange
-            var options = TestUtilities.GetOptions(nameof(ReturnInstanceOfCollectionCocktailCommentDtos));
+            var options = TestUtilities.GetOptions(nameof(ReturnCorrectInstanceOfCollectionCocktailCommentDtos));
 
             var mapperMock = new Mock<IDtoMapper<CocktailComment, CocktailCommentDto>>();
 

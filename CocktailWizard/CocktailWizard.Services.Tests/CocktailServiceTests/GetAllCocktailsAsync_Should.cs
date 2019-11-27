@@ -81,60 +81,60 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
             }
         }
 
-        [TestMethod]
-        public async Task Throw_WhenNoCocktailDtosFound()
-        {
-            //Arrange
-            var options = TestUtilities.GetOptions(nameof(Throw_WhenNoCocktailDtosFound));
+        //[TestMethod]
+        //public async Task Throw_WhenNoCocktailDtosFound()
+        //{
+        //    //Arrange
+        //    var options = TestUtilities.GetOptions(nameof(Throw_WhenNoCocktailDtosFound));
 
-            var mapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
-            var barMapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
-            var cocktailDetailsMapperMock = new Mock<IDtoMapper<Cocktail, DetailsCocktailDto>>();
-            var ingredientMapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
+        //    var mapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
+        //    var barMapperMock = new Mock<IDtoMapper<Bar, BarDto>>();
+        //    var cocktailDetailsMapperMock = new Mock<IDtoMapper<Cocktail, DetailsCocktailDto>>();
+        //    var ingredientMapperMock = new Mock<IDtoMapper<Ingredient, IngredientDto>>();
 
-            var ingredientServiceMock = new Mock<IIngredientService>();
-            var cocktailIngredientServiceMock = new Mock<ICocktailIngredientService>();
+        //    var ingredientServiceMock = new Mock<IIngredientService>();
+        //    var cocktailIngredientServiceMock = new Mock<ICocktailIngredientService>();
 
-            var testGuid = Guid.NewGuid();
-            var testGuid2 = Guid.NewGuid();
+        //    var testGuid = Guid.NewGuid();
+        //    var testGuid2 = Guid.NewGuid();
 
-            var cocktail1 = new Cocktail
-            {
-                Id = testGuid,
-                Name = "TestOneName",
-                ImagePath = "ImagePathOne"
-            };
+        //    var cocktail1 = new Cocktail
+        //    {
+        //        Id = testGuid,
+        //        Name = "TestOneName",
+        //        ImagePath = "ImagePathOne"
+        //    };
 
-            var cocktail2 = new Cocktail
-            {
-                Id = testGuid2,
-                Name = "TestTwoName",
-                ImagePath = "ImagePathTwo"
+        //    var cocktail2 = new Cocktail
+        //    {
+        //        Id = testGuid2,
+        //        Name = "TestTwoName",
+        //        ImagePath = "ImagePathTwo"
 
-            };
+        //    };
 
-            var list = new List<CocktailDto>()
-            {
-                new CocktailDto{ Id = testGuid, Name = "TestOneName" },
-                new CocktailDto { Id = testGuid2, Name = "TestTwoName"},
-            };
+        //    var list = new List<CocktailDto>()
+        //    {
+        //        new CocktailDto{ Id = testGuid, Name = "TestOneName" },
+        //        new CocktailDto { Id = testGuid2, Name = "TestTwoName"},
+        //    };
 
-            mapperMock.Setup(x => x.MapFrom(It.IsAny<ICollection<Cocktail>>())).Returns(list);
+        //    mapperMock.Setup(x => x.MapFrom(It.IsAny<ICollection<Cocktail>>())).Returns(list);
 
-            using (var arrangeContext = new CWContext(options))
-            {
+        //    using (var arrangeContext = new CWContext(options))
+        //    {
 
-                await arrangeContext.SaveChangesAsync();
-            }
+        //        await arrangeContext.SaveChangesAsync();
+        //    }
 
-            using (var assertContext = new CWContext(options))
-            {
-                //Act & Assert
-                var sut = new CocktailService(assertContext, mapperMock.Object, barMapperMock.Object, cocktailDetailsMapperMock.Object,
-                    ingredientServiceMock.Object, cocktailIngredientServiceMock.Object);
+        //    using (var assertContext = new CWContext(options))
+        //    {
+        //        //Act & Assert
+        //        var sut = new CocktailService(assertContext, mapperMock.Object, barMapperMock.Object, cocktailDetailsMapperMock.Object,
+        //            ingredientServiceMock.Object, cocktailIngredientServiceMock.Object);
 
-                await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.GetAllCocktailsAsync());
-            }
-        }
+        //        await Assert.ThrowsExceptionAsync<BusinessLogicException>(() => sut.GetAllCocktailsAsync());
+        //    }
+        //}
     }
 }

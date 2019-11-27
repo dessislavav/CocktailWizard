@@ -241,6 +241,17 @@ namespace CocktailWizard.Services
                 throw new BusinessLogicException(ExceptionMessages.BarNull);
             }
 
+            var barCocktails = await this.context.BarCocktails
+                .Where(b => b.BarId == bar.Id 
+                && b.IsDeleted == false)
+                .ToListAsync();
+
+            foreach (var item in barCocktails)
+            {
+                item.IsDeleted = true;
+                item.DeletedOn = DateTime.UtcNow;
+            }
+
             bar.IsDeleted = true;
             bar.DeletedOn = DateTime.UtcNow;
             await this.context.SaveChangesAsync();

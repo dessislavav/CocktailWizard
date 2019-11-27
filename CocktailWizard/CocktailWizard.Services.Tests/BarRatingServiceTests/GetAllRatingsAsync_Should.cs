@@ -17,10 +17,10 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
     public class GetAllRatingsAsync_Should
     {
         [TestMethod]
-        public async Task ReturnInstanceOfCollectionBarRatingDtos()
+        public async Task GetAllRatings_ReturnInstanceOfCollectionBarRatingDtos()
         {
             //Arrange
-            var options = TestUtilities.GetOptions(nameof(ReturnInstanceOfCollectionBarRatingDtos));
+            var options = TestUtilities.GetOptions(nameof(GetAllRatings_ReturnInstanceOfCollectionBarRatingDtos));
 
             var mapperMock = new Mock<IDtoMapper<BarRating, BarRatingDto>>();
 
@@ -46,6 +46,7 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
                 BarId = barId,
                 UserId = userId,
                 Value = 2,
+                CreatedOn = DateTime.UtcNow,
             };
 
             var entityTwo = new BarRating
@@ -53,6 +54,7 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
                 BarId = barId,
                 UserId = userIdTwo,
                 Value = 2,
+                CreatedOn = DateTime.UtcNow,
             };
              
             var list = new List<BarRatingDto>()
@@ -65,8 +67,8 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
 
             using (var arrangeContext = new CWContext(options))
             {
-                await arrangeContext.Bars.AddAsync(bar);
-                await arrangeContext.Users.AddAsync(user);
+                //await arrangeContext.Bars.AddAsync(bar);
+                //await arrangeContext.Users.AddAsync(user);
                 await arrangeContext.BarRatings.AddAsync(entity);
                 await arrangeContext.BarRatings.AddAsync(entityTwo);
                 await arrangeContext.SaveChangesAsync();
