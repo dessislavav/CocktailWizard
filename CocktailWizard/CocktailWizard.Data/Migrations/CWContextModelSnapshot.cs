@@ -95,7 +95,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
                             Address = "1a Principal Place, Worship Street, London, EC2A 2BA",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(747),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(6960),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9930.13386419354!2d-0.0794724!3d51.5217746!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfb717a4393ae1f7!2sThe%20Allegory!5e0!3m2!1sen!2sbg!4v1573065214726!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/the-allegory.jpg",
                             Info = "In the heart of Shoreditch's happening hub, Principal Place, The Allegory is an everyday escape in London’s buzzing unsquare mile. Linger over a long brunch before finishing with an espresso martini.Enjoy quick catch-ups over pastries and freshly ground coffee, wholesome sharing platters and creative cocktails with colleagues; these one-of-a-kind experiences will be found at The Allegory. With a beautiful alfresco terrace, large open plan bar and cosy candlelit corners, this is a destination you'll want to return to again and again.",
@@ -107,7 +107,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
                             Address = "1 Ropemaker Street, London, EC2Y 9HT",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3706),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2569),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9931.461092179858!2d-0.12384975375194002!3d51.515687677335066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604af32e9d343%3A0x422a8e0b815341b!2sThe%20Refinery!5e0!3m2!1sen!2sbg!4v1573065262411!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/the-refinery.jpg",
                             Info = "Statement wallpapers and furniture are complemented by soft lighting and cosy faux fur to create your uber chic, contemporary bar - The Refinery CityPoint. The all-day dining bar & restaurant features a private dining room, sunken lounge and alfresco terrace with a pizza oven in the summer. It suits all occasions from early morning breakfasts right through to late night drinks. Make the most of our set menus for larger groups, or pre order packages when you want a selection of nibbles to eat!",
@@ -119,7 +119,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
                             Address = "52 Holborn Viaduct, London, EC1A 2FD",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3737),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2622),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.7646347568057!2d-0.1070710840279029!3d51.517533917782934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b52ee3d7ad9%3A0xa677a8c2b71574ca!2sThe%20Fable!5e0!3m2!1sen!2sbg!4v1573065312782!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/the-fable.jpg",
                             Info = "Inspired by the fantasy world of fairy tales and Aesop's fables, The Fable near Holborn Viaduct in central London, is anything but ordinary. From the vintage typewriter, to the leather bound books, every detail tells a story. Whether you visit for crafted cocktails, a morning latte & eggs Benedict or dinner at dusk, expect to be entranced, enthralled and enchanted.",
@@ -131,7 +131,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
                             Address = "Devonshire Terrace, Devonshire Square, London, EC2M 4WY",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3745),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2634),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.788117828657!2d-0.0803738840278907!3d51.517103117814386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761cb30d422641%3A0x2c7c1dfd5e33c70!2sDevonshire%20Terrace!5e0!3m2!1sen!2sbg!4v1573065339941!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/devonshire-terrace.jpg",
                             Info = "In the heart of the peaceful Devonshire Square, moments from Liverpool Street Station, Devonshire Terrace is your everyday escape from the hustle and bustle of City life. From quick catch-ups over freshly ground coffee to relaxing after work cocktails in one of our many gorgeous spaces, sit back and relax and we'll take care of the rest. No need to wait for the warmer months to drink and dine alfresco, enjoy our all year round terrace with its beautiful glass domed roof to protect you from the elements.",
@@ -143,7 +143,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
                             Address = "58 Gresham Street, London, EC2V 7BB",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3752),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2643),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.788117828657!2d-0.0803738840278907!3d51.517103117814386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487603552b6c7317%3A0x8e08163a80221ab9!2sThe%20Anthologist!5e0!3m2!1sen!2sbg!4v1573065358702!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/the-anthologist.jpg",
                             Info = "Located right in the heart of the City, The Anthologist is the ideal backdrop for all your drink and food needs, from breakfast meetings to client updates over lunch, after work drinks or dinner with friends. Sample new wines or vintages from across the globe, a unique range of innovative cocktails and relaxed all - day dining fare.",
@@ -155,7 +155,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
                             Address = "129 City Rd, London, EC1V 1JB",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3757),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2651),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9929.097022005784!2d-0.0877761!3d51.5265294!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xffe5bb4f98cd7af9!2sNightjar!5e0!3m2!1sen!2sbg!4v1574664621210!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/nightjar.jpg",
                             Info = "Our flagship bar & restaurant located in the heart of London's most exciting dining destination with two floors, two show stopping bars, an open kitchen and an extensive year-round outside space. Perfect for alfresco dining and drinks in the sun. Nightjar offers a relaxed drinking and dining space in a beautiful setting. Open from an early morning until late evening, it's perfect for every occasion - from a business meeting and working lunch to a romantic dinner or after work drinks.",
@@ -167,7 +167,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
                             Address = "9 Cabot Square, London, E14 4EB",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3762),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2661),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.4112946113805!2d-0.025301484028207793!3d51.50566991865038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b7be6a030f%3A0x93dcb32d47e3e562!2sThe%20Pagination!5e0!3m2!1sen!2sbg!4v1573065408325!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/the-pagination.jpg",
                             Info = "Perfectly positioned on the riverside in Canary Wharf, next to the bridge leading over to West India Quay, The Pagination is the perfect antidote to busy London life. With industrial inspired details, exposed metals, and soft handwoven textures, it offers a sanctuary, day or night and the expansive terrace offers alfresco drinking and dining in both the warmer months and the colder due to the abundance of blankets and hot water bottles to keep you snug.",
@@ -179,7 +179,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
                             Address = "The Park Pavilion, London, E14 5FW",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3768),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2669),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39734.535778488505!2d-0.05813209602882269!3d51.50572144844429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b7642f2f9d%3A0x19f521ba29dd3f1a!2sThe%20Parlour!5e0!3m2!1sen!2sbg!4v1573065440869!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/the-parlour.jpg",
                             Info = "Located in the Park Pavilion on Canada Square, Canary Wharf, The Parlour is a striking & innovative all-day bar with style, substance & seasonally tempting drinks and food. A secret garden-inspired lounge with timber panelling is a must for cocktail lovers & perfect for pre- or post-dinner drinks, whilst the mixology table is ideal for those who want to mix & muddle for themselves. A stunning alfresco terrace, complete with its own bar provides the perfect playpen for those wanting to soak up the sun.",
@@ -191,7 +191,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
                             Address = "5-16 Gerrard Street, London, W1D 6JE",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3773),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2677),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.0790771431516!2d-0.13363628402805472!3d51.511765218204765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604d25acdb76d%3A0xc5c854eeaaa62990!2sOpium%20Cocktail%20bar%20and%20Dim%20Sum%20Parlour!5e0!3m2!1sen!2sbg!4v1573065470157!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/opium.jpg",
                             Info = "Opium Cocktail Bar & Dim Sum Parlour is a chic, hidden venue in the heart of Chinatown. Run by experienced London bar moguls Dre Masso and Eric Yu, Opium certainly has some pedigree behind it. The decor is oriental themed but again keeps an element of freshness with a twist that makes it modern and current; metal finishes on miss-matched Chinese furniture gives Opium, a contemporary London feel that is very welcome. Expect 3 bars of amazing Asian cocktails and a selection of dim sum - just a little teaser to get your appetite going.",
@@ -203,7 +203,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
                             Address = "16 Hertsmere Road, London, E14 4AX",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(3779),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(2687),
                             GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.3029276456064!2d-0.0260607840281346!3d51.5076582185051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b6306f0be9%3A0x793dfd9d17079629!2sThe%20Sipping%20Room!5e0!3m2!1sen!2sbg!4v1573065491821!5m2!1sen!2sbg",
                             ImagePath = "/assets/img/bars/the-sipping-room.jpg",
                             Info = "An escape from the everyday, The Sipping Room specialises in thoughtful, inspired menus, locally sourced ingredients, and innovative, handcrafted cocktails. Retreat from the world while you enjoy our unrivalled service in the most welcoming environment. Our stylish outdoor terrace provides the perfect alfresco respite throughout the seasons.",
@@ -241,280 +241,280 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5364),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(5864),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5876),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6859),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("3ebcd248-c91b-45e4-8900-90748828cc67"),
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5888),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6883),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("c2acdffb-a172-4b52-9316-8a5bbe02c16d"),
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5891),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6887),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
                             BarId = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5893),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6896),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
                             BarId = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5896),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6900),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5901),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6909),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5903),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6913),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5908),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6918),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("c2acdffb-a172-4b52-9316-8a5bbe02c16d"),
                             BarId = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5912),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6926),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("323bc1dd-c842-4689-bc7b-2953787a3129"),
                             BarId = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5919),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6938),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("1686f69d-baaf-4423-a857-4b4d1684496f"),
                             BarId = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5921),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6945),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
                             BarId = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5923),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6950),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
                             BarId = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5926),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6954),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
                             BarId = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5928),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6958),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("3ebcd248-c91b-45e4-8900-90748828cc67"),
                             BarId = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5931),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6962),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
                             BarId = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5935),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6969),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
                             BarId = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5937),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6973),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
                             BarId = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5939),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6977),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("c2acdffb-a172-4b52-9316-8a5bbe02c16d"),
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5941),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6981),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5953),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7000),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5966),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7027),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
                             BarId = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5898),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6905),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("3ebcd248-c91b-45e4-8900-90748828cc67"),
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5910),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6922),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("323bc1dd-c842-4689-bc7b-2953787a3129"),
                             BarId = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5915),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6930),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("1686f69d-baaf-4423-a857-4b4d1684496f"),
                             BarId = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5917),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6934),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
                             BarId = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5933),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6966),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5944),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6985),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("323bc1dd-c842-4689-bc7b-2953787a3129"),
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5946),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6988),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5948),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6992),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5950),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(6996),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5955),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7004),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5957),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7007),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5959),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7011),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("1686f69d-baaf-4423-a857-4b4d1684496f"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5961),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7016),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5963),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7023),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5968),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7030),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(5970),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7034),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(6014),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7038),
                             IsDeleted = false
                         },
                         new
                         {
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(6017),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 511, DateTimeKind.Local).AddTicks(7042),
                             IsDeleted = false
                         });
                 });
@@ -554,244 +554,244 @@ namespace CocktailWizard.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5b77d948-33fd-48ac-9667-c6fdeff97bb6"),
+                            Id = new Guid("9df5e420-71f3-4057-8cd6-009f044410e7"),
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
                             Body = "I must be honest I picked the place because I have never been there. I was by myself and the plan for me was to drink as I needed a night by myself to think and forget everything around me. The barman (by the accent was French) was freaking cool.asked a lot of questions, suggested drinks and was quick and nice to me all night long.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8058),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(988),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("53624229-da82-43c8-812c-9f813b27fe16"),
+                            Id = new Guid("9dc82a60-5f4c-4125-91f6-80496495ceaf"),
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
                             Body = "Great bar to visit after work. We have been visiting after work most Fridays and some weekdays for the best part of 2 years now. Good atmosphere, great decor and all round friendly staff. Highly recommended.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8090),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1039),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("e78382a1-700e-4e63-8922-acf0cab7b66a"),
+                            Id = new Guid("3adff53f-ccf8-470b-8106-a1d96d7672ec"),
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
                             Body = "I stumbled across while visiting Canary Wharf and I have to say I was really impressed by how nice and accomodating the staff were. I received a very warm welcome straight from walking through the doors, they looked like they had some sort of event in the evening as all the tables were reserved but they let me seat before the party arrived. I ordered for a beer and some nibbles which came quick and was really tasty. Excactly what I needed after a long day visiting and shopping.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8095),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1046),
                             IsDeleted = false,
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2")
                         },
                         new
                         {
-                            Id = new Guid("3eb70aff-6cf8-40bc-96af-a7f42de17011"),
+                            Id = new Guid("a6c006eb-f8e1-4e91-aeab-9349ae5e745b"),
                             BarId = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
                             Body = "Love this place. I've been coming here for 3 years and the staff are wonderful. Amazing service, great location and menu.  They are very dog friendly and treat mine like their own... Highly recommend this place.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8098),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1052),
                             IsDeleted = false,
                             UserId = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada")
                         },
                         new
                         {
-                            Id = new Guid("7d7a29c2-e8a9-40dd-aeb8-eaa60320d46b"),
+                            Id = new Guid("45c5599e-99ee-4a2f-876e-bdcc939c45d6"),
                             BarId = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
                             Body = "Sure, I am happy to provide more information. I visited for a work event yesterday evening. The place is good with some nice outside space. Drink options are ok/alright. Music was a big negative though ; as this was a work event we were there to network and talk. This was made impossible as the music volume suddenly (around 7.30pm) was increased dramatically making it impossible to continue any conversation.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8101),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1057),
                             IsDeleted = false,
                             UserId = new Guid("b3179225-fc8f-420a-a825-710fd46db592")
                         },
                         new
                         {
-                            Id = new Guid("5ee282f1-68e9-48ea-997e-4d4fa72e9d72"),
+                            Id = new Guid("0c7e36b9-f6bb-4267-bd30-b5f81ef62a20"),
                             BarId = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
                             Body = "It’s quite a nice place to go for some drinks and food after work, which is what I did. Although a little cold, there are blankets and warm things to keep you warm under the heaters. Food was good though we was told that the menu we was not the correct one, then was waiting around for ages.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8104),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1061),
                             IsDeleted = false,
                             UserId = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b")
                         },
                         new
                         {
-                            Id = new Guid("b9ffbb8c-a5b1-48c4-ad39-f0ea58a1aa17"),
+                            Id = new Guid("098cc251-4074-491f-a223-58f73a4493da"),
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
                             Body = "I went on Tuesday of the last week and the weather was horrible so I really like the detail of having some blankets outside and also the waitress was super nice and attentive. Best place in Canary wharf!",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8107),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1074),
                             IsDeleted = false,
                             UserId = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744")
                         },
                         new
                         {
-                            Id = new Guid("b5fa4677-bb80-46cd-9b41-674c5ca81fd8"),
+                            Id = new Guid("da2dc65e-0cc6-4d68-90c1-139de7e8e648"),
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
                             Body = "Stuff are friendly, location is charming.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8110),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1080),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("1cf0f809-a42e-4ed0-9ae1-9d6370f72290"),
+                            Id = new Guid("8f2c65fc-65d2-4e68-842a-fed430b6bc64"),
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
                             Body = "Awsome music and drinks.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8113),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1085),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("3b35857d-cd6b-43f2-8c7e-673ca6d4e18c"),
+                            Id = new Guid("0ab139d7-73c6-4260-8038-13f32b0e8e44"),
                             BarId = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
                             Body = "I organised my office Christmas party at the pagination and it was the most epic night ever. The staff were super efficient and executed my plan to the detail. In addition the venue is so nicely decorated for the Christmas holiday. I'm not a fan of vegan food but they didn't have a wide selection, if you aren't fussy then it's a place to check out.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8118),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1089),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("6c0d457a-b13e-4108-999c-93262931d918"),
+                            Id = new Guid("009a6673-7f27-441a-89ec-cf6faec9e6e2"),
                             BarId = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
                             Body = "One of Canary wharf's more relaxing venues for a breakfast meeting.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8120),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1094),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("0f258afd-582d-4f5a-9341-ee48ffbe0b34"),
+                            Id = new Guid("96a92858-9c2e-4c6d-949c-8547bf8e96af"),
                             BarId = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
                             Body = "A dog wandering around sniffing my legs on a Friday night in a well designed bar?",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8123),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1101),
                             IsDeleted = false,
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2")
                         },
                         new
                         {
-                            Id = new Guid("a2262a8a-33ed-49a3-8873-aaf4132455bd"),
+                            Id = new Guid("f734305f-81bd-48e6-adec-bb047be6c0ab"),
                             BarId = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
                             Body = "Open space, light, modern place. Cosy. No table cloth, table was a bit dirty. Friendly caring service. Food OK - nice BF omlette, but toast too crunchy and dry.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8126),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1106),
                             IsDeleted = false,
                             UserId = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada")
                         },
                         new
                         {
-                            Id = new Guid("75d7bcdf-2ab1-4e67-ac27-0633d2fabca1"),
+                            Id = new Guid("3a1b0b8a-d914-475f-8700-4e8a98656468"),
                             BarId = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
                             Body = "1 star because 0 doesn't seem to be an option... I had the misfortune of visiting for lunch and will never make that mistake again.I have been here for drinks before and while service has never been good it's never been noticably terrible before.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8129),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1111),
                             IsDeleted = false,
                             UserId = new Guid("b3179225-fc8f-420a-a825-710fd46db592")
                         },
                         new
                         {
-                            Id = new Guid("b2d93b14-6039-4ec5-ba0d-401612ef07d5"),
+                            Id = new Guid("9e129d47-ba3d-47c8-902b-01b86d53fc0b"),
                             BarId = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
                             Body = "Highly recommended to anyone looking for breakfast in the Canary Wharf district. Full veggie breakfast and buttermilk pancakes perfectly executed, with punctual service and a cozy atmosphere. Would go again.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8132),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1120),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("e6a4ea99-37df-4df4-ad2b-96bb4b3ff6a0"),
+                            Id = new Guid("3a80ea36-d6f3-4172-b918-f50bd21b0f8b"),
                             BarId = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
                             Body = "Get there early if you want to have a table or stool as it gets full very fast and most tables are pre reserved.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8135),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1125),
                             IsDeleted = false,
                             UserId = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b")
                         },
                         new
                         {
-                            Id = new Guid("71d4ae77-9d73-4067-ae7c-a9c392dd08e6"),
+                            Id = new Guid("982fec14-8950-4802-9202-1706ee786fcb"),
                             BarId = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
                             Body = "I been there few times and I can say that everything is fantastic. Especially Tony is a very good guy... I will defenitly come back.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8138),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1130),
                             IsDeleted = false,
                             UserId = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744")
                         },
                         new
                         {
-                            Id = new Guid("363f6608-b320-414b-95a9-a8e81e0ddff9"),
+                            Id = new Guid("11be5b7b-89cf-4b08-baeb-4fc898042da3"),
                             BarId = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
                             Body = "Nice seating area outside. Great place for a happy hour. Very friendly staff. Just didn't like the burgers we've ordered. Not really tasty. May try something else next time.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8175),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1134),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("19bda1a0-beb3-4295-af75-b626c4045aa9"),
+                            Id = new Guid("5305c6a6-3cf3-465e-9246-b6d52dc32f2d"),
                             BarId = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
                             Body = "Everything is good with this venue - except the food.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8179),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1139),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("19a3e811-d59e-41db-b155-72ad75b806fc"),
+                            Id = new Guid("8c979a6e-b286-4152-9dd1-f16a44cf2e56"),
                             BarId = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
                             Body = "We instantly felt welcome as soon as we walked in the door. The food was amazing and the staff were very warm and friendly and nothing was  too much trouble. The decor is stunning and I thoroughly recommend this bar/restaurant. We will definitely be going back.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8181),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1144),
                             IsDeleted = false,
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2")
                         },
                         new
                         {
-                            Id = new Guid("74990600-e91c-4650-b26c-217b4b91dde8"),
+                            Id = new Guid("4127af37-13fe-4219-8e3d-b95341a29ec3"),
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
                             Body = "Quite good.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8185),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1149),
                             IsDeleted = false,
                             UserId = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada")
                         },
                         new
                         {
-                            Id = new Guid("a77c701b-f3a6-4721-9d07-ed4094eac05b"),
+                            Id = new Guid("bf7e6216-4f1d-4628-8f93-cb4652bc31b7"),
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
                             Body = "Good lunchtime menu.. tasty meal, good price, great service and environment. Separate area for food or just drinks",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8187),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1153),
                             IsDeleted = false,
                             UserId = new Guid("b3179225-fc8f-420a-a825-710fd46db592")
                         },
                         new
                         {
-                            Id = new Guid("20758f31-fe19-44c4-acd7-b1af8b69201f"),
+                            Id = new Guid("a1df301e-41bd-4985-b575-c0a240996bf8"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
                             Body = "I really like this place and had my birthday drinks here after work.  Staff are accommodating, reasonable priced and the outside seating is great",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8190),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1161),
                             IsDeleted = false,
                             UserId = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b")
                         },
                         new
                         {
-                            Id = new Guid("9db87ea5-c8cd-4155-b888-006de638bda3"),
+                            Id = new Guid("d7d710a6-0c6b-4617-8352-f0a82221d5e0"),
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
                             Body = "One of my favourite bars!",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8193),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1170),
                             IsDeleted = false,
                             UserId = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744")
                         },
                         new
                         {
-                            Id = new Guid("84c0b1ee-adba-4c59-8c2b-29bbb5e81934"),
+                            Id = new Guid("0982c0ce-9369-4d8e-b109-a5b4dcfe421a"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
                             Body = "Good place, a bit expensive though!",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8196),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1175),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("731aa57b-0ca5-43c1-bc55-c54439ff75f1"),
+                            Id = new Guid("a91c8e58-2412-4149-bf55-3a88da8ca523"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
                             Body = "Nice inside with a reel modern feel. Cocktails were great!",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8200),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1180),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("3667fa78-0f4c-4937-96db-4ab87a8ea24f"),
+                            Id = new Guid("d6cc6e15-3710-47f4-bb3f-03617aec5154"),
                             BarId = new Guid("11f5779b-49b1-43ac-9153-5fa72d810b34"),
                             Body = "Stylish and great outdoor areas. Expensive.",
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 713, DateTimeKind.Local).AddTicks(8203),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(1187),
                             IsDeleted = false,
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2")
                         });
@@ -827,7 +827,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("19fb565f-df92-4f81-ac42-bc256d10469a"),
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1682),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8106),
                             IsDeleted = false,
                             Value = 4.0
                         },
@@ -835,7 +835,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("49b52950-a806-4075-8260-9ba0bdc1ab06"),
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1706),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8175),
                             IsDeleted = false,
                             Value = 5.0
                         },
@@ -843,7 +843,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("6c296d75-bcd2-4711-9a28-6d0b6bcaa34b"),
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1709),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8184),
                             IsDeleted = false,
                             Value = 4.7000000000000002
                         },
@@ -851,7 +851,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("4b6b8336-28df-48b2-a1fd-bade70b94eb6"),
                             UserId = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1711),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8191),
                             IsDeleted = false,
                             Value = 4.2000000000000002
                         },
@@ -859,7 +859,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("93532afb-fe74-43be-88a4-1c6948c634b8"),
                             UserId = new Guid("b3179225-fc8f-420a-a825-710fd46db592"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1714),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8200),
                             IsDeleted = false,
                             Value = 4.5
                         },
@@ -867,7 +867,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("64c6592d-2c7b-42c4-b18d-5ac34bdc39d1"),
                             UserId = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1717),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8208),
                             IsDeleted = false,
                             Value = 2.6000000000000001
                         },
@@ -875,7 +875,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("84552d70-e670-4391-bd7b-1b54b0282b61"),
                             UserId = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1719),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8214),
                             IsDeleted = false,
                             Value = 4.2999999999999998
                         },
@@ -883,7 +883,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("69ce843b-97c4-4164-8ba0-c8ca4ef02cf4"),
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1722),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8220),
                             IsDeleted = false,
                             Value = 4.2999999999999998
                         },
@@ -891,7 +891,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             BarId = new Guid("363ea8fb-60f3-4aa2-8041-394520e3fb41"),
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(1724),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(8226),
                             IsDeleted = false,
                             Value = 3.8999999999999999
                         });
@@ -931,7 +931,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(4894),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(6113),
                             ImagePath = "/assets/img/cocktails/cosmopolitan-cocktail.jpg",
                             Info = "Lipsmackingly sweet-and-sour, the Cosmopolitan cocktail of vodka, cranberry, orange liqueur and citrus is a good time in a glass. Perfect for a party.",
                             IsDeleted = false,
@@ -940,7 +940,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7765),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1487),
                             ImagePath = "/assets/img/cocktails/passionfruit-martini.jpg",
                             Info = "This easy passion fruit cocktail is bursting with zingy flavours and is perfect for celebrating with friends. Top with prosecco for a special tipple",
                             IsDeleted = false,
@@ -949,7 +949,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("3ebcd248-c91b-45e4-8900-90748828cc67"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7795),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1537),
                             ImagePath = "/assets/img/cocktails/raspberry-gin.jpg",
                             Info = "Preserve the taste of summer in a bottle with this raspberry gin, perfect topped up with tonic. The gin will keep its lovely pink hue for a few months",
                             IsDeleted = false,
@@ -958,7 +958,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("c2acdffb-a172-4b52-9316-8a5bbe02c16d"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7803),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1549),
                             ImagePath = "/assets/img/cocktails/sex-on-the-beach.jpg",
                             Info = "Combine vodka with peach schnapps and cranberry juice to make a classic sex on the beach cocktail. Garnish with cocktail cherries and orange slices.",
                             IsDeleted = false,
@@ -967,7 +967,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("1686f69d-baaf-4423-a857-4b4d1684496f"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7808),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1559),
                             ImagePath = "/assets/img/cocktails/pink-gin-iced-tea.jpg",
                             Info = "Blend pink gin with iced tea and you have this unique cocktail, made with spiced rum, elderflower and pink grapefruit. Serve in a jug for a sharing cocktail.",
                             IsDeleted = false,
@@ -976,7 +976,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7814),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1581),
                             ImagePath = "/assets/img/cocktails/long-island-ice-tea.jpg",
                             Info = "Mix a jug of this classic cocktail for a summer party. It's made with equal parts of vodka, gin, tequila, rum and triple sec, plus lime, cola and plenty of ice.",
                             IsDeleted = false,
@@ -985,7 +985,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7820),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1590),
                             ImagePath = "/assets/img/cocktails/michelada.jpg",
                             Info = "Cold lager, chilli powder, pepper and lime: spice up your lager with this Mexican cocktail, popular throughout Latin America and great for a summer party.",
                             IsDeleted = false,
@@ -994,7 +994,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("323bc1dd-c842-4689-bc7b-2953787a3129"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7825),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1599),
                             ImagePath = "/assets/img/cocktails/wine-sangria.jpg",
                             Info = "Try this refreshing twist on a traditional sangria and use white wine instead of red with elderflower to complement the fruit. Perfect for summer parties.",
                             IsDeleted = false,
@@ -1003,7 +1003,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7829),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1608),
                             ImagePath = "/assets/img/cocktails/bucks-fizz.jpg",
                             Info = "The simple and classic combination of orange juice and champagne makes a perfect cocktail for a celebratory brunch or party",
                             IsDeleted = false,
@@ -1012,7 +1012,7 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(7834),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 510, DateTimeKind.Utc).AddTicks(1618),
                             ImagePath = "/assets/img/cocktails/cranberry-vodka.jpg",
                             Info = "This bittersweet fruity vodka is best served well chilled in shot glasses. It can also be made with other berries like blackcurrants or strawberries.",
                             IsDeleted = false,
@@ -1055,100 +1055,100 @@ namespace CocktailWizard.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4b73d9b5-0e7d-4370-a0a0-f6e6b730971d"),
+                            Id = new Guid("b65b9a98-16b2-4158-b116-359c6dcab0f4"),
                             Body = "This drink is summer in a bottle! It tastes amazing on a hot summer day. I have been drinking this for a few years now and it's always as good as the first time. It has such a perfect long island flavor. I would buy it again, for sure. I would also recommend it for someone who doesn't like a strong tasting drink, it's very mild.",
                             CocktailId = new Guid("323bc1dd-c842-4689-bc7b-2953787a3129"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(27),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4672),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("c6a9d52b-b23c-44df-82c0-38c3a5b15085"),
+                            Id = new Guid("edfa68fe-d133-45c3-b258-cdb2293b78a6"),
                             Body = "I honestly wasnt a fan of this. My husband and friend at the time of trial actually enjoyed it. We brought it out of Walmart- it was something cheap a spur of the moment purchase. It tasted artificial. Like the lemonade could have been better along with the tea. It wasnt a good fit for me. I wouldn't buy my again. I would rather just make my own from scratch that way I know what exactly is in it.",
                             CocktailId = new Guid("323bc1dd-c842-4689-bc7b-2953787a3129"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(56),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4723),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("01b7b359-4522-46ab-8df4-0849e6cdbf07"),
+                            Id = new Guid("3f126062-b373-42c9-a725-9ca7a6fcbe27"),
                             Body = "loved!!!! loved!!!! loved!!!! judt a little loud on smell and strong spice taste. i do t drink anymore but I use to and j mean alot. price is affordable on pretty much any salary depends on how badly you want it I suppose. changes would be have more specials or do some drawing prices ect.",
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(60),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4730),
                             IsDeleted = false,
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2")
                         },
                         new
                         {
-                            Id = new Guid("4a14af63-f9a5-471f-a0fc-2c7a2789672f"),
+                            Id = new Guid("d5f63959-193e-4f54-aaa0-49a2464afc19"),
                             Body = "I drink this when I'm in the mood for long island ice tea. I love the flavor of the mix. It goes down smooth and taste great. This product compares well to similar products. I would definitely recommend this product to others. I will be purchasing this product again.",
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 714, DateTimeKind.Utc).AddTicks(62),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 512, DateTimeKind.Utc).AddTicks(4734),
                             IsDeleted = false,
                             UserId = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada")
                         },
                         new
                         {
-                            Id = new Guid("a2495c17-6756-4d76-b130-5590841c705d"),
+                            Id = new Guid("9e762781-f98e-40de-a595-008c5174ec05"),
                             Body = "My sister had made some long island iced tea for us. It tastes really good. Almost like an iced tea but with the alcohol. It is pretty expensive but you can get alternatives ones at the liquor store for cheap. I recommend to get it when you or anyone parties.",
                             CocktailId = new Guid("1686f69d-baaf-4423-a857-4b4d1684496f"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(65),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4745),
                             IsDeleted = false,
                             UserId = new Guid("b3179225-fc8f-420a-a825-710fd46db592")
                         },
                         new
                         {
-                            Id = new Guid("2d820c68-2973-4627-924a-00d9e3f47bff"),
+                            Id = new Guid("2fb5d55f-6452-4677-ad89-c959fca1e11c"),
                             Body = "It's very smooth. Mostly, it is affordable, easy to find and tastes great. I think this is a popular item all around, especially the brand.",
                             CocktailId = new Guid("1686f69d-baaf-4423-a857-4b4d1684496f"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(68),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4751),
                             IsDeleted = false,
                             UserId = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b")
                         },
                         new
                         {
-                            Id = new Guid("daab2acc-3dca-489d-90d9-6801ee471f57"),
+                            Id = new Guid("4b4c72d3-67bb-4f3d-9104-cde3e1dfa1f0"),
                             Body = "AWESOME!",
                             CocktailId = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(73),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4759),
                             IsDeleted = false,
                             UserId = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744")
                         },
                         new
                         {
-                            Id = new Guid("dbd58666-b152-4c6e-8724-a4b4d0cffba0"),
+                            Id = new Guid("bf37abfc-e389-47f9-9bf2-68532d9b3fad"),
                             Body = "My sister had made some long island iced tea for us. It tastes really good. Almost like an iced tea but with the alcohol. It is pretty expensive but you can get alternatives ones at the liquor store for cheap. I recommend to get it when you or anyone parties.",
                             CocktailId = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(76),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4765),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("e12edfe9-1486-4420-a4dc-bfa2b89f4ddf"),
+                            Id = new Guid("4ee568d0-5d5a-4678-b76b-bade1b378c3d"),
                             Body = "Awsome drink.",
                             CocktailId = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(80),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4770),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("1c35aacb-9b49-4a4c-898a-2b247e2df52e"),
+                            Id = new Guid("9d67896d-5790-4146-a433-6a4649f10a86"),
                             Body = "I think this is great for people that like really strong alcohol I’m not really a fan of it I tried it once at a gathering but I don’t think it will be my cuppa tea to actually purchase this at anytime.",
                             CocktailId = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(83),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4792),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("0aa7377e-95ea-4fa2-9352-56c5e9ce3780"),
+                            Id = new Guid("f29ee148-758a-48e4-af22-7122f2e09fda"),
                             Body = "This is a really good summer drink to have on the rocks or with Coke I love to have it sitting outside by a fire price of this is well worth the bottle of rum I highly recommend anybody trying this.",
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(86),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4797),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
@@ -1157,79 +1157,79 @@ namespace CocktailWizard.Data.Migrations
                             Id = new Guid("aa150fa0-708c-4bfd-8267-31081ec84e90"),
                             Body = "I actually like this drink. You can drink it alone. It's inexpensive. It's pretty strong. It's not too bitter but it does have a bit too much sweet & sour taste. I've bought it several times.",
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(97),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4816),
                             IsDeleted = false,
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2")
                         },
                         new
                         {
-                            Id = new Guid("2b24e281-d1df-4a31-b4d1-0626a037ed75"),
+                            Id = new Guid("8370fc47-3955-4709-8e56-c56581d7b354"),
                             Body = "This will always be one of my favorite drinks.",
                             CocktailId = new Guid("c2acdffb-a172-4b52-9316-8a5bbe02c16d"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(100),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4826),
                             IsDeleted = false,
                             UserId = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada")
                         },
                         new
                         {
-                            Id = new Guid("52545a30-fa60-4c15-bf20-4f63a827041a"),
+                            Id = new Guid("b1bd5abb-b47f-4317-a214-04d3bc35faab"),
                             Body = "This is by far one of my favourites! It is sweet and you don't think it's going to get you drunk but you can end up crawling if you don't drink it responsibly ;) , also it is super cheap and perfect for parties. I totally recommend it straight or with some ice.",
                             CocktailId = new Guid("c2acdffb-a172-4b52-9316-8a5bbe02c16d"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(103),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4832),
                             IsDeleted = false,
                             UserId = new Guid("b3179225-fc8f-420a-a825-710fd46db592")
                         },
                         new
                         {
-                            Id = new Guid("11cf71f9-55a1-4f23-bd8c-659d4d005d50"),
+                            Id = new Guid("0a3d1476-732e-4804-aaa0-c52de3de8ba3"),
                             Body = "perfect for those tea drinking friends you may have coming over to an event you are hosting at your house. very affordable and lasts a really long time compared to some other brands",
                             CocktailId = new Guid("3ebcd248-c91b-45e4-8900-90748828cc67"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(106),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4843),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("b7b90fcc-466b-413a-b049-5e828260b311"),
+                            Id = new Guid("1042c5b1-8efd-4dd3-a879-d106af183fc3"),
                             Body = "OH MY GOODNESS!!! I LOVE THIS STUFF!",
                             CocktailId = new Guid("3ebcd248-c91b-45e4-8900-90748828cc67"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(111),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4848),
                             IsDeleted = false,
                             UserId = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b")
                         },
                         new
                         {
-                            Id = new Guid("9a84edda-8388-4d5c-b61d-32fa258197a2"),
+                            Id = new Guid("fd612310-280b-4d99-a1a7-7f0c1f824dc5"),
                             Body = "One of my favorites to drink!",
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(114),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4853),
                             IsDeleted = false,
                             UserId = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744")
                         },
                         new
                         {
-                            Id = new Guid("7f1f8a68-a492-4cf0-95a3-4666c9d5b756"),
+                            Id = new Guid("03329baf-754c-44f1-ae1b-8d9bd0742367"),
                             Body = "It is ok..just ok. I wouldn't necessarily recommend. ",
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(117),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4859),
                             IsDeleted = false,
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e")
                         },
                         new
                         {
-                            Id = new Guid("3f6e5a9f-b450-4997-b665-80acf9d835b1"),
+                            Id = new Guid("f16678f3-a185-4145-b816-714ebe6d77fc"),
                             Body = "Tried this once at a party. I'm not a big fan of it, but this was good. It was better than expected. I would try again.",
                             CocktailId = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(120),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4865),
                             IsDeleted = false,
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260")
                         },
                         new
                         {
-                            Id = new Guid("9b73128f-e683-4000-a4ef-db54357cd4e5"),
+                            Id = new Guid("31ed05e3-8763-4a9f-a679-360004ca0a4a"),
                             Body = "Always a good one! Mix it with anything you like and it will be delicious. The flavour on its own is too strong for me, but if that's what you like than go for it babes! The bottle can last for ages so I think u get good value for what you've pay for. I would buy again",
                             CocktailId = new Guid("24e8a669-799a-48b7-bc6f-b6884a33d0c7"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(124),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 512, DateTimeKind.Local).AddTicks(4871),
                             IsDeleted = false,
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2")
                         });
@@ -1404,7 +1404,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("323bc1dd-c842-4689-bc7b-2953787a3129"),
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3197),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1886),
                             IsDeleted = false,
                             Value = 4.0
                         },
@@ -1412,7 +1412,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("2b113d19-305b-43f0-b149-44e86e7f8308"),
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3220),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1944),
                             IsDeleted = false,
                             Value = 5.0
                         },
@@ -1420,7 +1420,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("1686f69d-baaf-4423-a857-4b4d1684496f"),
                             UserId = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3222),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1949),
                             IsDeleted = false,
                             Value = 4.7000000000000002
                         },
@@ -1428,7 +1428,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("1dc069f0-0caa-4b64-82c0-66a744607ab1"),
                             UserId = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3225),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1954),
                             IsDeleted = false,
                             Value = 4.2000000000000002
                         },
@@ -1436,7 +1436,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("86a1c72c-4daf-4e26-a483-67b569b5271f"),
                             UserId = new Guid("b3179225-fc8f-420a-a825-710fd46db592"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3260),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1959),
                             IsDeleted = false,
                             Value = 4.5
                         },
@@ -1444,7 +1444,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("b725576e-25cb-4d3e-b661-68e6df37e2f7"),
                             UserId = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3262),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1964),
                             IsDeleted = false,
                             Value = 2.6000000000000001
                         },
@@ -1452,7 +1452,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("c2acdffb-a172-4b52-9316-8a5bbe02c16d"),
                             UserId = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3265),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1968),
                             IsDeleted = false,
                             Value = 4.2999999999999998
                         },
@@ -1460,7 +1460,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("3ebcd248-c91b-45e4-8900-90748828cc67"),
                             UserId = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3267),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1974),
                             IsDeleted = false,
                             Value = 4.2999999999999998
                         },
@@ -1468,7 +1468,7 @@ namespace CocktailWizard.Data.Migrations
                         {
                             CocktailId = new Guid("e9b10c8b-46ed-45a3-9c66-a2c92d74e112"),
                             UserId = new Guid("f069807c-7bce-4879-928f-4b5771524260"),
-                            CreatedOn = new DateTime(2019, 11, 27, 14, 57, 37, 714, DateTimeKind.Local).AddTicks(3270),
+                            CreatedOn = new DateTime(2019, 11, 27, 15, 8, 47, 513, DateTimeKind.Local).AddTicks(1978),
                             IsDeleted = false,
                             Value = 3.8999999999999999
                         });
@@ -1502,175 +1502,175 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("91767830-fb0e-4e77-a93a-d01eb2520553"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(2206),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(1238),
                             IsDeleted = false,
                             Name = "Whisky"
                         },
                         new
                         {
                             Id = new Guid("af31c27c-d4e5-4d19-8304-2c649adb2f49"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3480),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3557),
                             IsDeleted = false,
                             Name = "Gin"
                         },
                         new
                         {
                             Id = new Guid("8b4157a7-49f0-4487-b800-c569c9ec7dd6"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3498),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3590),
                             IsDeleted = false,
                             Name = "Vodka"
                         },
                         new
                         {
                             Id = new Guid("f97a5f83-f9da-43a3-bef9-67091533ccc9"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3505),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3600),
                             IsDeleted = false,
                             Name = "Rum"
                         },
                         new
                         {
                             Id = new Guid("4f036905-92af-4b1b-8879-41b0fa8f1020"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3510),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3608),
                             IsDeleted = false,
                             Name = "Tequila"
                         },
                         new
                         {
                             Id = new Guid("0303b014-79b5-4044-9994-85ac83f293fc"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3515),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3616),
                             IsDeleted = false,
                             Name = "Cointreau"
                         },
                         new
                         {
                             Id = new Guid("730bcb1e-ed31-4600-9e42-7019898154b5"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3521),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3624),
                             IsDeleted = false,
                             Name = "Cola"
                         },
                         new
                         {
                             Id = new Guid("7f5402b0-2136-4abb-b809-86c1cb502f62"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3526),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3631),
                             IsDeleted = false,
                             Name = "Ginger ale"
                         },
                         new
                         {
                             Id = new Guid("f9d9ac89-7c03-4a41-8a1a-b69262f89e16"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3530),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3637),
                             IsDeleted = false,
                             Name = "Club soda"
                         },
                         new
                         {
                             Id = new Guid("dd3b4dcd-1e23-4b02-bdf1-859d892a7d89"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3534),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3646),
                             IsDeleted = false,
                             Name = "Lemon Sour"
                         },
                         new
                         {
                             Id = new Guid("59bd8032-57f2-4193-8d40-c805ec7d6122"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3538),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3652),
                             IsDeleted = false,
                             Name = "Cinnamon Syrup"
                         },
                         new
                         {
                             Id = new Guid("2d403bd0-6656-48a3-80a5-1910f2526d94"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3542),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3658),
                             IsDeleted = false,
                             Name = "Triple sec"
                         },
                         new
                         {
                             Id = new Guid("99667755-0b3c-4746-89da-9d8dd7a6169a"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3546),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3665),
                             IsDeleted = false,
                             Name = "Cranberry juice"
                         },
                         new
                         {
                             Id = new Guid("5998858c-01e8-41d2-8116-798649a2763f"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3550),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3673),
                             IsDeleted = false,
                             Name = "Lime wedge"
                         },
                         new
                         {
                             Id = new Guid("b988748e-cd6a-48da-aa36-20773102e426"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3554),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3679),
                             IsDeleted = false,
                             Name = "Passoa"
                         },
                         new
                         {
                             Id = new Guid("5495d66c-52ff-43f3-b26d-1b5279e07767"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3558),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3686),
                             IsDeleted = false,
                             Name = "Sugar syrup"
                         },
                         new
                         {
                             Id = new Guid("e05c419e-2f82-425c-b769-2842179d7e85"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3562),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3692),
                             IsDeleted = false,
                             Name = "Prosecco"
                         },
                         new
                         {
                             Id = new Guid("12b1f952-2e1f-4758-9e80-1c1efba96cc5"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3616),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3699),
                             IsDeleted = false,
                             Name = "Raspberries"
                         },
                         new
                         {
                             Id = new Guid("7982b0ce-b116-44dd-85a8-06e66df516cc"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3621),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3706),
                             IsDeleted = false,
                             Name = "Strawberries"
                         },
                         new
                         {
                             Id = new Guid("145fd313-ef00-4003-b95a-a5e6558f255d"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3626),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3713),
                             IsDeleted = false,
                             Name = "Peach schnapps"
                         },
                         new
                         {
                             Id = new Guid("47cac5ab-7071-46c9-bfbb-0f6ffaff0f0b"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3630),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3722),
                             IsDeleted = false,
                             Name = "Oranges"
                         },
                         new
                         {
                             Id = new Guid("30743785-290f-460c-b16e-6fc992b44366"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3634),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3729),
                             IsDeleted = false,
                             Name = "Cherries"
                         },
                         new
                         {
                             Id = new Guid("cce2c9a4-e14a-4cf9-83ad-111fa4a19eaf"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3638),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3737),
                             IsDeleted = false,
                             Name = "Olives"
                         },
                         new
                         {
                             Id = new Guid("2d5dd44c-41d7-43d0-9139-81aa791089a3"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3642),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3746),
                             IsDeleted = false,
                             Name = "Apples"
                         },
                         new
                         {
                             Id = new Guid("ad6430e6-0b4b-49aa-b412-7d6f6ddbe5b0"),
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 712, DateTimeKind.Utc).AddTicks(3646),
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 509, DateTimeKind.Utc).AddTicks(3752),
                             IsDeleted = false,
                             Name = "Kiwis"
                         });
@@ -1703,14 +1703,14 @@ namespace CocktailWizard.Data.Migrations
                         new
                         {
                             Id = new Guid("297d06e6-c058-486f-a18a-06a971ebfcd7"),
-                            ConcurrencyStamp = "892c700a-9d03-4ef5-9454-0bd4f2c53470",
+                            ConcurrencyStamp = "e44012a2-f8f1-4f13-ad67-1550050873c4",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
                             Id = new Guid("6c8fcd7e-62f6-4f3e-a73d-acbfd60b97ab"),
-                            ConcurrencyStamp = "bd1f0df2-5c15-4065-86b6-64814a52993d",
+                            ConcurrencyStamp = "1be71a94-80b4-458e-a7d8-9d596d096698",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });
@@ -1784,8 +1784,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("7bd06fe6-79ca-43a1-862b-446a1466bb93"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "88410f01-e7ce-433f-8fc6-0d08c8531c5e",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 703, DateTimeKind.Utc).AddTicks(1154),
+                            ConcurrencyStamp = "f1254913-eda0-4849-8087-feefded3a535",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 494, DateTimeKind.Utc).AddTicks(7305),
                             Email = "manager@cw.com",
                             EmailConfirmed = false,
                             IsBanned = false,
@@ -1793,7 +1793,7 @@ namespace CocktailWizard.Data.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "MANAGER@CW.COM",
                             NormalizedUserName = "MANAGER@CW.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFSGup7qIFBcJ0LMIPcNnRmDeZhjJg962mYYI2xJCNeTU3BaXVWnIeQ11boU8qkJYw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKddnGwBRfJMWbdAE5ztREm+0r61OyOx61oJ9HUeifpuQ3leaUyMdLNrP47AgKH9aw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7I5VNHIJTSZNOT3KDWKNFUV5PVYBHGXN",
                             TwoFactorEnabled = false,
@@ -1803,8 +1803,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("8c09d76b-ae1e-48ba-8af3-dfb85889053e"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "83745c56-5066-43ae-aa5b-f14eb4811864",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(6184),
+                            ConcurrencyStamp = "bc59cfe6-cf1b-4ba7-9cbb-62636a796617",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(7456),
                             Email = "JohnSmith@Gmail.Com",
                             EmailConfirmed = false,
                             IsBanned = false,
@@ -1818,8 +1818,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("f069807c-7bce-4879-928f-4b5771524260"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "33ada0e3-5f61-4ffa-be3a-fb5ad97644b4",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(6264),
+                            ConcurrencyStamp = "2a7be0e5-a850-47bc-96d9-3d0aec17c943",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(7540),
                             Email = "BobRoss@Gmail.Com",
                             EmailConfirmed = false,
                             IsBanned = false,
@@ -1833,8 +1833,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("71183a0b-759e-4903-966f-e7325e8d2ea2"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "51016832-b449-4b20-892a-f609d619441f",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(6274),
+                            ConcurrencyStamp = "80ede0ef-d908-4c85-8930-daab65ed0a6f",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(7555),
                             Email = "DeanThomas@Gmail.Com",
                             EmailConfirmed = false,
                             IsBanned = false,
@@ -1848,8 +1848,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("b8ba7616-6ff1-4a98-b848-54dd38b11ada"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "95db369d-0a22-4725-8859-1dd5cefa63de",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(6281),
+                            ConcurrencyStamp = "898053f4-8f5a-4794-97c7-64ad0b4f000b",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(7566),
                             Email = "JackWinter@Gmail.Com",
                             EmailConfirmed = false,
                             IsBanned = false,
@@ -1863,8 +1863,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("b3179225-fc8f-420a-a825-710fd46db592"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6304736e-7a51-4f53-af06-a98ff7eb02a2",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(6288),
+                            ConcurrencyStamp = "b8692586-fd36-48cd-b055-c54dd3837dc4",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(7661),
                             Email = "KateP@Gmail.Com",
                             EmailConfirmed = false,
                             IsBanned = false,
@@ -1878,8 +1878,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("15e5f8bc-801c-4b10-87c6-0b4e3b7eba8b"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9ec24802-ed67-4d31-9d21-eef2f896348f",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(6296),
+                            ConcurrencyStamp = "d3367a27-4ef5-42ab-a9dc-7678ee0bf7f1",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(7673),
                             Email = "SandeepPatel@Gmail.Com",
                             EmailConfirmed = false,
                             IsBanned = false,
@@ -1893,8 +1893,8 @@ namespace CocktailWizard.Data.Migrations
                         {
                             Id = new Guid("5dd842c4-7706-4e9e-b481-189e2adcd744"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "33bf9918-fda4-4937-929b-5b91639dfc97",
-                            CreatedOn = new DateTime(2019, 11, 27, 12, 57, 37, 713, DateTimeKind.Utc).AddTicks(6303),
+                            ConcurrencyStamp = "d76f84b0-5d97-42c4-bc46-c475e4e07390",
+                            CreatedOn = new DateTime(2019, 11, 27, 13, 8, 47, 511, DateTimeKind.Utc).AddTicks(7706),
                             Email = "KumarJoshi@Gmail.Com",
                             EmailConfirmed = false,
                             IsBanned = false,

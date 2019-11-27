@@ -61,6 +61,11 @@ namespace CocktailWizard.Services
                 .Where(br => br.BarId == barId)
                 .ToListAsync();
 
+            if (!barRatings.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarRatingNull);
+            }
+
             var barRatingDtos = this.dtoMapper.MapFrom(barRatings);
 
             return barRatingDtos;

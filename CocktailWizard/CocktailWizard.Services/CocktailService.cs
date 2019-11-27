@@ -112,6 +112,11 @@ namespace CocktailWizard.Services
                 .OrderBy(b => b.Name)
                 .ToListAsync();
 
+            if (!allCocktails.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+            }
+
             var allCocktailsDtos = this.dtoMapper.MapFrom(allCocktails);
 
             return allCocktailsDtos;
@@ -130,12 +135,18 @@ namespace CocktailWizard.Services
             }
 
             var detailsCocktailDto = this.detailsCocktailDtoMapper.MapFrom(cocktail);
+
             var bars = await this.context.BarCocktails
                 .Where(b => b.IsDeleted == false)
                 .Include(b => b.Bar)
                 .Where(b => b.CocktailId == cocktail.Id)
                 .Select(b => b.Bar)
                 .ToListAsync();
+
+            if (!bars.Any())
+            {
+                throw new BusinessLogicException(ExceptionMessages.BarCocktailNull);
+            }
 
             var mappedBars = this.barDtoMapper.MapFrom(bars);
             detailsCocktailDto.Bars = mappedBars;
@@ -251,6 +262,7 @@ namespace CocktailWizard.Services
             {
                 throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
+
             cocktail.IsDeleted = true;
             cocktail.DeletedOn = DateTime.UtcNow;
 

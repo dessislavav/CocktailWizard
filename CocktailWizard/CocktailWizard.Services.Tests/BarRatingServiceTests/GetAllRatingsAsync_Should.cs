@@ -27,6 +27,19 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
             var userId = Guid.NewGuid();
             var userIdTwo = Guid.NewGuid();
 
+            var bar = new Bar
+            {
+                Id = barId,
+                Name = "testName",
+
+            };
+
+            var user = new User
+            {
+                Id = userId,
+                UserName = "testName"
+            };
+
             var entity = new BarRating
             {
                 BarId = barId,
@@ -51,6 +64,8 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
 
             using (var arrangeContext = new CWContext(options))
             {
+                await arrangeContext.Bars.AddAsync(bar);
+                await arrangeContext.Users.AddAsync(user);
                 await arrangeContext.BarRatings.AddAsync(entity);
                 await arrangeContext.BarRatings.AddAsync(entityTwo);
                 await arrangeContext.SaveChangesAsync();
@@ -70,8 +85,6 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
                 Assert.AreEqual(entityTwo.Value, result.Last().Value);
                 Assert.AreEqual(entityTwo.UserId, result.Last().UserId);
             }
-
-
 
         }
     }

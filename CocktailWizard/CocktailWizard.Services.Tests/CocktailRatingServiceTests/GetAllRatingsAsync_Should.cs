@@ -27,6 +27,18 @@ namespace CocktailWizard.Services.Tests.CocktailRatingServiceTests
             var userId = Guid.NewGuid();
             var userIdTwo = Guid.NewGuid();
 
+            var cocktail = new Cocktail
+            {
+                Id = cocktailId,
+                Name = "testName"
+            };
+
+            var user = new User
+            {
+                Id = userId,
+                UserName = "testName"
+            };
+
             var entity = new CocktailRating
             {
                 CocktailId = cocktailId,
@@ -51,6 +63,8 @@ namespace CocktailWizard.Services.Tests.CocktailRatingServiceTests
 
             using (var arrangeContext = new CWContext(options))
             {
+                await arrangeContext.Cocktails.AddAsync(cocktail);
+                await arrangeContext.Users.AddAsync(user);
                 await arrangeContext.CocktailRatings.AddAsync(entity);
                 await arrangeContext.CocktailRatings.AddAsync(entityTwo);
                 await arrangeContext.SaveChangesAsync();

@@ -10,6 +10,7 @@
 
         public const string BarNull = "No bar found.";
         public const string CocktailNull = "No cocktail found.";
+        public const string BarCocktailNull = "No BarCocktail found";
 
         public const string CocktailIngredientsNull = "No cocktail ingredients found.";
         public const string IngredientNull = "No ingredient found.";
