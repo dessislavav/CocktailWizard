@@ -1,8 +1,8 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/n5m3rut1wsx5j1xx?svg=true)](https://ci.appveyor.com/project/RadkoStanev/cocktailwizard)
-![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/HomeScreen.jpg)
-
 # CocktailWizard
 Web application that allows creation of cocktails and follows their distribution and success in amazing bars.
+
+![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/HomeScreen.jpg)
 
 ## Team Members
 * Radko Stanev - [GitHub](https://github.com/radkostanev)
