@@ -27,17 +27,28 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
             var userId = Guid.NewGuid();
             var userIdTwo = Guid.NewGuid();
 
+            var bar = new Bar
+            {
+                Name = "BarTest",
+                Id = barId,
+            };
+            var user = new User
+            {
+                UserName = "userTest",
+                Id = userId,
+            };
+
             var entity = new BarRating
             {
-                BarId = barId,
-                UserId = userId,
+                BarId = bar.Id,
+                UserId = user.Id,
                 Value = 2
             };
 
             var entityDto = new BarRatingDto
             {
-                BarId = barId,
-                UserId = userId,
+                BarId = bar.Id,
+                UserId = user.Id,
                 Value = 2
             };
 
@@ -47,6 +58,8 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
 
             using (var arrangeContext = new CWContext(options))
             {
+                await arrangeContext.Bars.AddAsync(bar);
+                await arrangeContext.Users.AddAsync(user);
                 await arrangeContext.BarRatings.AddAsync(entity);
                 await arrangeContext.SaveChangesAsync();
             }

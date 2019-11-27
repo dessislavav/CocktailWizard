@@ -481,7 +481,18 @@ namespace CocktailWizard.Data.Seeder
                 GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.3029276456064!2d-0.0260607840281346!3d51.5076582185051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b6306f0be9%3A0x793dfd9d17079629!2sThe%20Sipping%20Room!5e0!3m2!1sen!2sbg!4v1573065491821!5m2!1sen!2sbg",
             };
 
-            builder.Entity<Bar>().HasData(bar1, bar2, bar3, bar4, bar5, bar6, bar7, bar8, bar9, bar10);
+            var bar11 = new Bar
+            {
+                Id = Guid.Parse("15119893-8B0B-43E6-82AB-05B36788BC3A"),
+                Name = "Aviary",
+                Info = "Nestled between the City and Shoreditch, the 6,000 sq ft rooftop dining destination designed by Russell Sage Studio features an impressive central bar which elegantly divides the stylish restaurant area from the opulent bar lounge. The eclectic interiors bring the outdoors in with hanging planters alongside gold drinks cases, plush single seating and relaxed banquettes creating a bright, vibrant vibe.",
+                Address = "22-25 Finsbury Square, London, EC2A 1DX",
+                ImagePath = "/assets/img/bars/aviary.jpg",
+                Phone = "020 3873 4060",
+                GoogleMapsURL = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9930.120715470508!2d-0.085644!3d51.5218349!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb4a28ec580aab28!2sAviary%20-%20Rooftop%20Restaurant%20%26%20Terrace%20Bar!5e0!3m2!1sen!2sbg!4v1574860809123!5m2!1sen!2sbg",
+            };
+
+            builder.Entity<Bar>().HasData(bar1, bar2, bar3, bar4, bar5, bar6, bar7, bar8, bar9, bar10, bar11);
 
             //SEEDING BARCOCKTAILS
             //SEEDING BARCOCKTAILS
@@ -726,8 +737,38 @@ namespace CocktailWizard.Data.Seeder
                 CocktailId = passionFruit.Id,
                 CreatedOn = DateTime.Now
             };
+            var barCocktail41 = new BarCocktail
+            {
+                BarId = bar11.Id,
+                CocktailId = cranberryVodka.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail42 = new BarCocktail
+            {
+                BarId = bar11.Id,
+                CocktailId = passionFruit.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail43 = new BarCocktail
+            {
+                BarId = bar11.Id,
+                CocktailId = longIsland.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail44 = new BarCocktail
+            {
+                BarId = bar11.Id,
+                CocktailId = pinkGinIcedTea.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail45 = new BarCocktail
+            {
+                BarId = bar11.Id,
+                CocktailId = sexOnTheBeach.Id,
+                CreatedOn = DateTime.Now
+            };
 
-            builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10, barCocktail11, barCocktail12, barCocktail13, barCocktail14, barCocktail15, barCocktail16, barCocktail17, barCocktail18, barCocktail19, barCocktail20, barCocktail21, barCocktail22, barCocktail23, barCocktail24, barCocktail25, barCocktail26, barCocktail27, barCocktail28, barCocktail29, barCocktail30, barCocktail31, barCocktail32, barCocktail33, barCocktail34, barCocktail35, barCocktail36, barCocktail37, barCocktail38, barCocktail39, barCocktail40);
+            builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10, barCocktail11, barCocktail12, barCocktail13, barCocktail14, barCocktail15, barCocktail16, barCocktail17, barCocktail18, barCocktail19, barCocktail20, barCocktail21, barCocktail22, barCocktail23, barCocktail24, barCocktail25, barCocktail26, barCocktail27, barCocktail28, barCocktail29, barCocktail30, barCocktail31, barCocktail32, barCocktail33, barCocktail34, barCocktail35, barCocktail36, barCocktail37, barCocktail38, barCocktail39, barCocktail40, barCocktail41, barCocktail42, barCocktail43, barCocktail44, barCocktail45);
 
             //SEEDING MOCKUSERS
             //SEEDING MOCKUSERS
