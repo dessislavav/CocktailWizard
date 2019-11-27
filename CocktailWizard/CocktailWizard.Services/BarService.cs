@@ -191,6 +191,7 @@ namespace CocktailWizard.Services
                 Name = tempBar.Name,
                 Info = tempBar.Info,
                 Address = tempBar.Address,
+                GoogleMapsURL = tempBar.GoogleMapsURL,
                 ImagePath = tempBar.ImagePath,
                 Phone = tempBar.Phone
             };
