@@ -522,6 +522,12 @@ namespace CocktailWizard.Data.Seeder
                 CocktailId = bucksFizz.Id,
                 CreatedOn = DateTime.Now
             };
+            var barCocktail23 = new BarCocktail
+            {
+                BarId = bar2.Id,
+                CocktailId = michelada.Id,
+                CreatedOn = DateTime.Now
+            };
             var barCocktail7 = new BarCocktail
             {
                 BarId = bar3.Id,
@@ -540,10 +546,28 @@ namespace CocktailWizard.Data.Seeder
                 CocktailId = cranberryVodka.Id,
                 CreatedOn = DateTime.Now
             };
+            var barCocktail24 = new BarCocktail
+            {
+                BarId = bar3.Id,
+                CocktailId = raspberryGin.Id,
+                CreatedOn = DateTime.Now
+            };
             var barCocktail10 = new BarCocktail
             {
                 BarId = bar4.Id,
                 CocktailId = sexOnTheBeach.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail25 = new BarCocktail
+            {
+                BarId = bar4.Id,
+                CocktailId = whiteSangria.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail26 = new BarCocktail
+            {
+                BarId = bar4.Id,
+                CocktailId = pinkGinIcedTea.Id,
                 CreatedOn = DateTime.Now
             };
             var barCocktail11 = new BarCocktail
@@ -582,6 +606,12 @@ namespace CocktailWizard.Data.Seeder
                 CocktailId = raspberryGin.Id,
                 CreatedOn = DateTime.Now
             };
+            var barCocktail27 = new BarCocktail
+            {
+                BarId = bar6.Id,
+                CocktailId = cosmopolitan.Id,
+                CreatedOn = DateTime.Now
+            };
             var barCocktail17 = new BarCocktail
             {
                 BarId = bar7.Id,
@@ -606,10 +636,64 @@ namespace CocktailWizard.Data.Seeder
                 CocktailId = sexOnTheBeach.Id,
                 CreatedOn = DateTime.Now
             };
+            var barCocktail28 = new BarCocktail
+            {
+                BarId = bar8.Id,
+                CocktailId = bucksFizz.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail29 = new BarCocktail
+            {
+                BarId = bar8.Id,
+                CocktailId = whiteSangria.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail30 = new BarCocktail
+            {
+                BarId = bar8.Id,
+                CocktailId = cranberryVodka.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail31 = new BarCocktail
+            {
+                BarId = bar8.Id,
+                CocktailId = longIsland.Id,
+                CreatedOn = DateTime.Now
+            };
             var barCocktail21 = new BarCocktail
             {
                 BarId = bar9.Id,
                 CocktailId = passionFruit.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail32 = new BarCocktail
+            {
+                BarId = bar9.Id,
+                CocktailId = michelada.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail33 = new BarCocktail
+            {
+                BarId = bar9.Id,
+                CocktailId = bucksFizz.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail34 = new BarCocktail
+            {
+                BarId = bar9.Id,
+                CocktailId = cranberryVodka.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail35 = new BarCocktail
+            {
+                BarId = bar9.Id,
+                CocktailId = pinkGinIcedTea.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail36 = new BarCocktail
+            {
+                BarId = bar9.Id,
+                CocktailId = cosmopolitan.Id,
                 CreatedOn = DateTime.Now
             };
             var barCocktail22 = new BarCocktail
@@ -618,8 +702,32 @@ namespace CocktailWizard.Data.Seeder
                 CocktailId = bucksFizz.Id,
                 CreatedOn = DateTime.Now
             };
+            var barCocktail37 = new BarCocktail
+            {
+                BarId = bar10.Id,
+                CocktailId = michelada.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail38 = new BarCocktail
+            {
+                BarId = bar10.Id,
+                CocktailId = longIsland.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail39 = new BarCocktail
+            {
+                BarId = bar10.Id,
+                CocktailId = cosmopolitan.Id,
+                CreatedOn = DateTime.Now
+            };
+            var barCocktail40 = new BarCocktail
+            {
+                BarId = bar10.Id,
+                CocktailId = passionFruit.Id,
+                CreatedOn = DateTime.Now
+            };
 
-            builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10, barCocktail11, barCocktail12, barCocktail13, barCocktail14, barCocktail15, barCocktail16, barCocktail17, barCocktail18, barCocktail19, barCocktail20, barCocktail21, barCocktail22);
+            builder.Entity<BarCocktail>().HasData(barCocktail1, barCocktail2, barCocktail3, barCocktail4, barCocktail5, barCocktail6, barCocktail7, barCocktail8, barCocktail9, barCocktail10, barCocktail11, barCocktail12, barCocktail13, barCocktail14, barCocktail15, barCocktail16, barCocktail17, barCocktail18, barCocktail19, barCocktail20, barCocktail21, barCocktail22, barCocktail23, barCocktail24, barCocktail25, barCocktail26, barCocktail27, barCocktail28, barCocktail29, barCocktail30, barCocktail31, barCocktail32, barCocktail33, barCocktail34, barCocktail35, barCocktail36, barCocktail37, barCocktail38, barCocktail39, barCocktail40);
 
             //SEEDING MOCKUSERS
             //SEEDING MOCKUSERS

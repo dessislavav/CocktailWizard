@@ -27,55 +27,55 @@
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile">
-                        <div class="name">
-                            <h2 class="title">@Model.Name</h2>
-                            <row style="-webkit-appearance: meter;padding-right: 133px">
-                                <div class="containerrating" style="position:absolute; margin-top:-13px">
-                                    <img src="~/assets/img/small_stars_empty.png" />
-                                    <div class="crop" style="width:@(Model.AverageRating*25.2)px">
-                                        <img src="~/assets/img/stars_small.png" />
+            <div class="section text-center">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="name">
+                                <h2 class="title">@Model.Name</h2>
+                                <row style="-webkit-appearance: meter;padding-right: 133px">
+                                    <div class="containerrating" style="position:absolute; margin-top:-13px">
+                                        <img src="~/assets/img/small_stars_empty.png" />
+                                        <div class="crop" style="width:@(Model.AverageRating*25.2)px">
+                                            <img src="~/assets/img/stars_small.png" />
+                                        </div>
                                     </div>
-                                </div>
-                            </row>
-                            <br />
+                                </row>
+                                <br />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="description text-center" style="padding-top: 20px; padding-bottom: 20px">
-                <p>@Model.Info</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile-tabs">
-                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#cocktails" role="tab" data-toggle="tab">
-                                    <i class="material-icons">store_mall_directory</i> Offered In
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#reviews" role="tab" data-toggle="tab">
-                                    <i class="material-icons">rate_review</i>Rating
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#comments" role="tab" data-toggle="tab">
-                                    <i class="material-icons">favorite</i> Comments
-                                </a>
-                            </li>
-                        </ul>
+                <div class="description text-center" style="padding-top: 20px; padding-bottom: 20px">
+                    <p>@Model.Info</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#cocktails" role="tab" data-toggle="tab">
+                                        <i class="material-icons">store_mall_directory</i> Offered In
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#reviews" role="tab" data-toggle="tab">
+                                        <i class="material-icons">rate_review</i>Rating
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#comments" role="tab" data-toggle="tab">
+                                        <i class="material-icons">favorite</i> Comments
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            @* Bars offered in *@
-            <div class="tab-content tab-space d-flex justify-content-center">
-                <div class="tab-pane active text-center gallery" id="cocktails">
-                    <div class="row">
+                @* Bars offered in *@
+                <div class="tab-content tab-space d-flex justify-content-center">
+                    <div class="tab-pane active text-center gallery" id="cocktails">
                         <div class="row">
                             <container style="width: -webkit-fill-available">
                                 @if (User.IsInRole("Manager"))
@@ -108,133 +108,133 @@
                             }
                         </div>
                     </div>
-                </div>
-                @* Add cocktail rating *@
-                <div class="tab-pane text-center gallery" id="reviews">
-                    <div class="row">
-                        @* Add cocktail rating *@
-                        @if (!(User.Identity.IsAuthenticated))
-                        {
-                            <h4 class="card-title">Login or register to add rating</h4>
-                        }
-                        else if (Model.CurrentUserRating == null)
-                        {
-                            <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div hidden class="form-group">
-                                    <input asp-for="CocktailRatingViewModels.FirstOrDefault().CocktailId" type="hidden" value="@Model.Id">
-                                </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="star-source">
-                                            <svg>
-                                                <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
-                                                    <stop stop-color="#bf209f" offset="0%"></stop>
-                                                    <stop stop-color="#d62a9d" offset="60%"></stop>
-                                                    <stop stop-color="#ED009E" offset="100%"></stop>
-                                                </linearGradient>
-                                                <symbol id="star" viewBox="153 89 106 108">
-                                                    <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
-                                                </symbol>
-                                            </svg>
+                    @* Add cocktail rating *@
+                    <div class="tab-pane text-center gallery" id="reviews">
+                        <div class="row">
+                            @* Add cocktail rating *@
+                            @if (!(User.Identity.IsAuthenticated))
+                            {
+                                <h4 class="card-title">Login or register to add rating</h4>
+                            }
+                            else if (Model.CurrentUserRating == null)
+                            {
+                                <form asp-area="Member" asp-controller="CocktailRatings" asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div hidden class="form-group">
+                                        <input asp-for="CocktailRatingViewModels.FirstOrDefault().CocktailId" type="hidden" value="@Model.Id">
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="star-source">
+                                                <svg>
+                                                    <linearGradient x1="50%" y1="5.41294643%" x2="87.5527344%" y2="65.4921875%" id="grad">
+                                                        <stop stop-color="#bf209f" offset="0%"></stop>
+                                                        <stop stop-color="#d62a9d" offset="60%"></stop>
+                                                        <stop stop-color="#ED009E" offset="100%"></stop>
+                                                    </linearGradient>
+                                                    <symbol id="star" viewBox="153 89 106 108">
+                                                        <polygon id="star-shape" stroke="url(#grad)" stroke-width="5" fill="currentColor" points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"></polygon>
+                                                    </symbol>
+                                                </svg>
+                                            </div>
+                                            <div class="star-container">
+                                                <input type="radio" name="star" id="five" value="5">
+                                                <label for="five">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="four" value="4">
+                                                <label for="four">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="three" value="3">
+                                                <label for="three">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="two" value="2">
+                                                <label for="two">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input type="radio" name="star" id="one" value="1">
+                                                <label for="one">
+                                                    <svg class="star">
+                                                        <use xlink:href="#star" />
+                                                    </svg>
+                                                </label>
+                                                <input asp-for="CocktailRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
+                                            </div>
                                         </div>
-                                        <div class="star-container">
-                                            <input type="radio" name="star" id="five" value="5">
-                                            <label for="five">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="four" value="4">
-                                            <label for="four">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="three" value="3">
-                                            <label for="three">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="two" value="2">
-                                            <label for="two">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input type="radio" name="star" id="one" value="1">
-                                            <label for="one">
-                                                <svg class="star">
-                                                    <use xlink:href="#star" />
-                                                </svg>
-                                            </label>
-                                            <input asp-for="CocktailRatingViewModels.FirstOrDefault().Value" hidden="hidden" id="currentValue" value="" />
+                                    </div>
+                                    @* Button add rating *@
+                                    <div class="form-group">
+                                        <input type="submit" value="Add rating" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <div style="align-content:center">
+                                    <p class="card-description text-muted text-center">You've already rated this bar. Your rating:</p>
+                                    <div class="containerrating" style="position:absolute; padding-left: 55px;">
+                                        <img src="~/assets/img/small_stars_empty.png" />
+                                        <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
+                                            <img src="~/assets/img/stars_small.png" />
                                         </div>
                                     </div>
                                 </div>
-                                @* Button add rating *@
-                                <div class="form-group">
-                                    <input type="submit" value="Add rating" class="btn btn-primary" />
-                                </div>
-                            </form>
-                        }
-                        else
-                        {
-                            <div style="align-content:center">
-                                <p class="card-description text-muted text-center">You've already rated this bar. Your rating:</p>
-                                <div class="containerrating" style="position:absolute; padding-left: 55px;">
-                                    <img src="~/assets/img/small_stars_empty.png" />
-                                    <div class="crop" style="width:@(Model.CurrentUserRating*25.2)px">
-                                        <img src="~/assets/img/stars_small.png" />
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
-                </div>
-                @* Add cocktail comment *@
-                <div class="tab-pane text-center gallery justify-content-center" id="comments">
-                    <div class="row">
-                        <div class="row bootstrap snippets">
-                            <div class="col-md-6 col-md-offset-2 col-sm-12 ">
-                                <div class="comment-wrapper">
-                                    <div class="panel panel-info">
-                                        <div class="panel-body" style="width:450px;">
-                                            @* //TODO: think of a better restriction *@
-                                            @if (User.Identity.IsAuthenticated)
-                                            {
-                                                <form id="comment-to-db">
-                                                    <div>
+                    @* Add cocktail comment *@
+                    <div class="tab-pane text-center gallery justify-content-center" id="comments">
+                        <div class="row">
+                            <div class="row bootstrap snippets">
+                                <div class="col-md-6 col-md-offset-2 col-sm-12 ">
+                                    <div class="comment-wrapper">
+                                        <div class="panel panel-info">
+                                            <div class="panel-body" style="width:450px;">
+                                                @* //TODO: think of a better restriction *@
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <form id="comment-to-db">
                                                         <div>
-                                                            <input type="text" class="form-control" id="comment-body" placeholder="Comment Text" />
-                                                            <br>
+                                                            <div>
+                                                                <input type="text" class="form-control" id="comment-body" placeholder="Comment Text" />
+                                                                <br>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <button type="submit" class="btn btn-info pull-right" style="background-color:#9c27b0; width:130px;height:35px; padding-left:20px; padding-right:20px;">Post Comment</button>
-                                                </form>
-                                                <div class="clearfix"></div>
-                                                <hr>
-                                            }
-                                            @* List cocktail comments *@
-                                            <ul id="new-comment-here" class="media-list">
-                                                @if (!Model.CocktailCommentViewModels.Any())
-                                                {
-                                                    <h4 class="card-title">
-                                                        No comments found.
-                                                    </h4>
+                                                        <button type="submit" class="btn btn-info pull-right" style="background-color:#9c27b0; width:130px;height:35px; padding-left:20px; padding-right:20px;">Post Comment</button>
+                                                    </form>
+                                                    <div class="clearfix"></div>
+                                                    <hr>
                                                 }
-                                                else
-                                                {
-                                                    @foreach (var cocktailCommentViewModel in Model.CocktailCommentViewModels)
+                                                @* List cocktail comments *@
+                                                <ul id="new-comment-here" class="media-list">
+                                                    @if (!Model.CocktailCommentViewModels.Any())
                                                     {
-
-                                                        <partial name="_AddCocktailCommentPartial" model="cocktailCommentViewModel" />
-
+                                                        <h4 class="card-title">
+                                                            No comments found.
+                                                        </h4>
                                                     }
-                                                }
-                                            </ul>
+                                                    else
+                                                    {
+                                                        @foreach (var cocktailCommentViewModel in Model.CocktailCommentViewModels)
+                                                        {
+
+                                                            <partial name="_AddCocktailCommentPartial" model="cocktailCommentViewModel" />
+
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@
         </div>
     </div>
 </div>
-   
+
 
 @section Scripts{
     <script src="~/lib/jquery/dist/jquery.js"></script>
