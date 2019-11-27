@@ -91,9 +91,6 @@ namespace CocktailWizard.Services
 
                 throw new BusinessLogicException(ExceptionMessages.CocktailNull);
             }
-
-
-
         }
 
         public async Task<int> GetPageCountAsync(int cocktailsPerPage)
@@ -111,11 +108,6 @@ namespace CocktailWizard.Services
                 .Where(c => c.IsDeleted == false)
                 .OrderBy(b => b.Name)
                 .ToListAsync();
-
-            if (!allCocktails.Any())
-            {
-                throw new BusinessLogicException(ExceptionMessages.CocktailNull);
-            }
 
             var allCocktailsDtos = this.dtoMapper.MapFrom(allCocktails);
 
@@ -143,10 +135,10 @@ namespace CocktailWizard.Services
                 .Select(b => b.Bar)
                 .ToListAsync();
 
-            if (!bars.Any())
-            {
-                throw new BusinessLogicException(ExceptionMessages.BarCocktailNull);
-            }
+            //if (!bars.Any())
+            //{
+            //    throw new BusinessLogicException(ExceptionMessages.BarCocktailNull);
+            //}
 
             var mappedBars = this.barDtoMapper.MapFrom(bars);
             detailsCocktailDto.Bars = mappedBars;
@@ -261,6 +253,17 @@ namespace CocktailWizard.Services
             if (cocktail == null)
             {
                 throw new BusinessLogicException(ExceptionMessages.CocktailNull);
+            }
+
+            var barCocktails = await this.context.BarCocktails
+                .Where(b => b.CocktailId == cocktail.Id
+                && b.IsDeleted == false)
+                .ToListAsync();
+
+            foreach (var item in barCocktails)
+            {
+                item.IsDeleted = true;
+                item.DeletedOn = DateTime.UtcNow;
             }
 
             cocktail.IsDeleted = true;

@@ -82,11 +82,11 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
         }
 
         [TestMethod]
-        public async Task ReturnCorectTypeOfInstance()
+        public async Task ReturnCorrectTypeOfInstance()
         { 
 
             //Arrange
-            var options = TestUtilities.GetOptions(nameof(ReturnCorectTypeOfInstance));
+            var options = TestUtilities.GetOptions(nameof(ReturnCorrectTypeOfInstance));
             var mapper = new CocktailDtoMapper();
 
             var mapperMock = new Mock<IDtoMapper<Cocktail, CocktailDto>>();
