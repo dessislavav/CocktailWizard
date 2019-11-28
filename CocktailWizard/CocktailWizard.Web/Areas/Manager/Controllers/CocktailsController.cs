@@ -81,10 +81,15 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         {
             try
             {
+                //var cocktailDto = await this.cocktailService.EditAsync(id, newName, newInfo);
+                //var cocktailVM = this.cocktailViewModelMapper.MapFrom(cocktailDto);
+                //this.toastNotification.AddSuccessToastMessage("Cocktail successfully edited");
+                //return View(cocktailVM);
                 var cocktailDto = await this.cocktailService.EditAsync(id, newName, newInfo);
-                var cocktailVM = this.cocktailViewModelMapper.MapFrom(cocktailDto);
                 this.toastNotification.AddSuccessToastMessage("Cocktail successfully edited");
-                return View(cocktailVM);
+                return RedirectToAction("Index", "Cocktails", new { area = "" });
+
+
             }
             catch (Exception)
             {

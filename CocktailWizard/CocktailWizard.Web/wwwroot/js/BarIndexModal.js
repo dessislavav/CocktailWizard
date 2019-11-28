@@ -22,6 +22,20 @@ function SaveEditModal(id) {
     let oldNameId = id + '+name';
     let oldName = document.getElementById(oldNameId);
     $(oldName).text(newNameInput);
+
+    let oldInfoId = id + '+info';
+    let oldInfo = document.getElementById(oldInfoId);
+    $(oldInfo).text(newInfoInput);
+
+    let oldAddressId = id + '+address';
+    let oldAddress = document.getElementById(oldAddressId);
+    $(oldAddress).text(newAddressInput);
+    console.log(newAddressInput);
+
+    let oldPhoneId = id + '+phone';
+    let oldPhone = document.getElementById(oldPhoneId);
+    $(oldPhone).text(newPhoneInput);
+
     $(`.${id}`).modal('hide');
 
     $.ajax(
