@@ -14,6 +14,11 @@ function SaveEditModal(id) {
     let oldNameId = id + '+name';
     let oldName = document.getElementById(oldNameId);
     $(oldName).text(newNameInput);
+
+    let oldInfoId = id + '+info';
+    let oldInfo = document.getElementById(oldInfoId);
+    $(oldInfo).text(newInfoInput);
+    console.log(oldInfo);
     $(`.${id}`).modal('hide');
 
     $.ajax(

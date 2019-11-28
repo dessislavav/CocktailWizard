@@ -37,10 +37,12 @@
                         </a>
                     </td>
                     <td>
-                        <span>@cocktail.Name</span>
+                        @*<span>@cocktail.Name</span>*@
+                        <span id="@cocktail.Id+name" value="@cocktail.Name">@cocktail.Name</span>
+
                     </td>
                     <td>
-                        <span>@cocktail.Info</span>
+                        <span id="@cocktail.Id+info" value="@cocktail.Info">@cocktail.Info</span>
                     </td>
                     <td>
                         @if (User.IsInRole("Manager"))
