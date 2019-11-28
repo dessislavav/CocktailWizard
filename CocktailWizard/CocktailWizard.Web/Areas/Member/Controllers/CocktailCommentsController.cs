@@ -1,16 +1,13 @@
-﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using System;
 using System.Threading.Tasks;
@@ -122,7 +119,7 @@ namespace CocktailWizard.Web.Areas.Member.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-  
+
         // POST: Member/CocktailComments/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

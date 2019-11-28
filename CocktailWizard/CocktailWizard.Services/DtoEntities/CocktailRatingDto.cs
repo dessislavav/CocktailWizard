@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CocktailWizard.Data.DtoEntities
+namespace CocktailWizard.Services.DtoEntities
 {
-    public class BarRatingDto
+    public class CocktailRatingDto
     {
         public double Value { get; set; }
         public Guid UserId { get; set; }
         public string UserName { get; set; }
-        public Guid BarId { get; set; }
+        public Guid CocktailId { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
         public DateTime? DeletedOn { get; set; }

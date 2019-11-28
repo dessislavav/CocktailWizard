@@ -1,8 +1,7 @@
-﻿using System;
+﻿using CocktailWizard.Services.DtoEntities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
 
 namespace CocktailWizard.Services.Contracts
 {

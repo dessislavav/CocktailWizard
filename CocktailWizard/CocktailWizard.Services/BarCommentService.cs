@@ -1,11 +1,10 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -74,8 +73,8 @@ namespace CocktailWizard.Services
 
 
         public async Task<BarCommentDto> DeleteAsync(Guid id, Guid barId)
-        {  
-            
+        {
+
             var comment = await this.context.BarComments
                 .Include(bc => bc.Bar)
                 .Include(bc => bc.User)

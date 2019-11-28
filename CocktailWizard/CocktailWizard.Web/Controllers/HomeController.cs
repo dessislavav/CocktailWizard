@@ -1,16 +1,16 @@
-﻿using System;
+﻿using CocktailWizard.Models;
+using CocktailWizard.Services;
+using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.DtoEntities;
+using CocktailWizard.Web.Mappers.Contracts;
+using CocktailWizard.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CocktailWizard.Models;
-using CocktailWizard.Services;
-using CocktailWizard.Web.Mappers.Contracts;
-using CocktailWizard.Web.Models;
-using CocktailWizard.Data.DtoEntities;
-using Microsoft.Extensions.Caching.Memory;
-using CocktailWizard.Services.Contracts;
 
 namespace CocktailWizard.Controllers
 {

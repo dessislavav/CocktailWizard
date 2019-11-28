@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CocktailWizard.Data.DtoEntities
+namespace CocktailWizard.Services.DtoEntities
 {
     public class BarDto
     {

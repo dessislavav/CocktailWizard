@@ -1,7 +1,7 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace CocktailWizard.Services.DtoMappers
 {
     public class BarCommentDtoMapper : IDtoMapper<BarComment, BarCommentDto>
     {
-       
+
         public BarCommentDto MapFrom(BarComment entity)
         {
             if (entity == null)

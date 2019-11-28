@@ -1,13 +1,12 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services.Tests.CocktailServiceTests
@@ -30,7 +29,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
             var ingredientServiceMock = new Mock<IIngredientService>();
             var cocktailIngredientServiceMock = new Mock<ICocktailIngredientService>();
 
-            string[] ingredients = new string[] { "TestIngredient"};
+            string[] ingredients = new string[] { "TestIngredient" };
 
             var entityDto = new CocktailDto
             {
@@ -133,7 +132,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
             var ingredientServiceMock = new Mock<IIngredientService>();
             var cocktailIngredientServiceMock = new Mock<ICocktailIngredientService>();
 
-            string[] ingredients = new string[] {};
+            string[] ingredients = new string[] { };
 
             var entityDto = new CocktailDto
             {

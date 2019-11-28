@@ -1,7 +1,7 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
 using CocktailWizard.Services;
 using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Web.Areas.Member.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
@@ -12,7 +12,6 @@ using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Controllers
@@ -66,8 +65,8 @@ namespace CocktailWizard.Web.Controllers
                 var currentPage = currPage ?? 1;
 
                 var totalPages = await this.barService.GetPageCountAsync(5);
-                var tenBars = await this.barService.GetFiveBarsAsync(currentPage, sortOrder);
-                var mappedTenBars = this.barViewModelMapper.MapFrom(tenBars);
+                var fiveBars = await this.barService.GetFiveBarsAsync(currentPage, sortOrder);
+                var mappedTenBars = this.barViewModelMapper.MapFrom(fiveBars);
 
                 var model = new BarsIndexViewModel()
                 {

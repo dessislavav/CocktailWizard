@@ -1,7 +1,7 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -49,7 +49,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
             var ingredientServiceMock = new Mock<IIngredientService>();
             var cocktailIngredientServiceMock = new Mock<ICocktailIngredientService>();
 
-            using(var assertContext = new CWContext(options))
+            using (var assertContext = new CWContext(options))
             {
                 //Act & Assert
                 Assert.ThrowsException<ArgumentNullException>(() => new CocktailService(null, mapperMock.Object, barMapperMock.Object,

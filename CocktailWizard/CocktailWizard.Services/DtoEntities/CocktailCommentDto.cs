@@ -1,13 +1,14 @@
 ﻿using System;
 
-namespace CocktailWizard.Data.DtoEntities
+namespace CocktailWizard.Services.DtoEntities
 {
-    public class CocktailRatingDto
+    public class CocktailCommentDto
     {
-        public double Value { get; set; }
+        public Guid Id { get; set; }
+        public Guid CocktailId { get; set; }
         public Guid UserId { get; set; }
         public string UserName { get; set; }
-        public Guid CocktailId { get; set; }
+        public string Body { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public DateTime? ModifiedOn { get; set; }
         public DateTime? DeletedOn { get; set; }

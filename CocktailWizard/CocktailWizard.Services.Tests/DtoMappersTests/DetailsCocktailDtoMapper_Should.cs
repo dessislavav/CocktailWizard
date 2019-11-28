@@ -1,11 +1,10 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CocktailWizard.Services.Tests.DtoMappersTests
 {

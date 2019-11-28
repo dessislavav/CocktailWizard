@@ -1,7 +1,7 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -38,7 +38,7 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
             };
 
             var entity = new BarComment
-            { 
+            {
 
                 Id = id,
                 BarId = barId,
@@ -47,7 +47,7 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
                 CreatedOn = createdOn
             };
 
-        mapperMock.Setup(x => x.MapFrom(It.IsAny<BarComment>())).Returns(entityDto);
+            mapperMock.Setup(x => x.MapFrom(It.IsAny<BarComment>())).Returns(entityDto);
 
 
             using (var assertContext = new CWContext(options))
@@ -76,7 +76,7 @@ namespace CocktailWizard.Services.Tests.BarCommentServiceTests
         [TestMethod]
         public async Task ThrowWhen_DtoPassedIsNull()
         {
-            
+
             //Arrange
             var options = TestUtilities.GetOptions(nameof(CorrectlyCreateBarComment));
 

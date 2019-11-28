@@ -1,6 +1,6 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Services.ConstantMessages;
+﻿using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using System.Collections.Generic;

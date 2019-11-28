@@ -1,12 +1,10 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CocktailWizard.Services.DtoMappers
 {

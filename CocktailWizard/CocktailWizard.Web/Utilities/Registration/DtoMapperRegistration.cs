@@ -1,5 +1,5 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +11,7 @@ namespace CocktailWizard.Web.Utilities.Registration
         public static IServiceCollection AddCustomDtoMappers(this IServiceCollection services)
         {
             services.AddSingleton<IDtoMapper<Bar, BarDto>, BarDtoMapper>();
-            services.AddSingleton<IDtoMapper<Bar, SearchBarDto>,  SearchBarDtoMapper>();
+            services.AddSingleton<IDtoMapper<Bar, SearchBarDto>, SearchBarDtoMapper>();
 
             services.AddSingleton<IDtoMapper<Cocktail, CocktailDto>, CocktailDtoMapper>();
             services.AddSingleton<IDtoMapper<Cocktail, DetailsCocktailDto>, DetailsCocktailDtoMapper>();

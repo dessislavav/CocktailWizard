@@ -1,9 +1,9 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -72,7 +72,7 @@ namespace CocktailWizard.Services
                 .Include(br => br.Bar)
                 .Include(br => br.User)
                 .Where(br => br.IsDeleted == false)
-                .Where(br => br.BarId == barId 
+                .Where(br => br.BarId == barId
                  && br.UserId == userId)
                 .FirstOrDefaultAsync();
 

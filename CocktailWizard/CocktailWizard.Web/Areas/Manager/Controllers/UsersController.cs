@@ -1,5 +1,5 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Services.Contracts;
+﻿using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -19,8 +19,8 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         private readonly IViewModelMapper<UserDto, UserViewModel> userMapper;
         private readonly IToastNotification toastNotification;
 
-        public UsersController(IBanService banService, 
-                               IViewModelMapper<UserDto, UserViewModel> userMapper, 
+        public UsersController(IBanService banService,
+                               IViewModelMapper<UserDto, UserViewModel> userMapper,
                                IToastNotification toastNotification)
         {
             this.banService = banService ?? throw new ArgumentNullException(nameof(banService));
@@ -67,7 +67,7 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         [HttpGet]
         public async Task<IActionResult> Unban(Guid id)
         {
-            
+
             var user = await this.banService.GetBannedUserAsync(id);
             var userVM = this.userMapper.MapFrom(user);
 

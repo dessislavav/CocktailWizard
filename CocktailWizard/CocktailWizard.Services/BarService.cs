@@ -1,15 +1,15 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
+using CocktailWizard.Services.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CocktailWizard.Services.Extensions;
 
 namespace CocktailWizard.Services
 {
@@ -243,7 +243,7 @@ namespace CocktailWizard.Services
             }
 
             var barCocktails = await this.context.BarCocktails
-                .Where(b => b.BarId == bar.Id 
+                .Where(b => b.BarId == bar.Id
                 && b.IsDeleted == false)
                 .ToListAsync();
 

@@ -1,17 +1,14 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
-using CocktailWizard.Services.DtoMappers;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services
@@ -33,7 +30,7 @@ namespace CocktailWizard.Services
             if (param == "active")
             {
                 users = await this.context.Users
-                    .Where(u => u.IsBanned == false 
+                    .Where(u => u.IsBanned == false
                     && u.UserName != "manager@cw.com")
                     .ToListAsync();
             }
@@ -94,11 +91,11 @@ namespace CocktailWizard.Services
         public async Task RemoveAsync(Guid id)
         {
 
-                var ban = await this.context.Bans
-                .Include(u => u.User)
-                .Where(b => b.User.Id == id
-                && b.HasExpired == false)
-                .FirstOrDefaultAsync();
+            var ban = await this.context.Bans
+            .Include(u => u.User)
+            .Where(b => b.User.Id == id
+            && b.HasExpired == false)
+            .FirstOrDefaultAsync();
 
             if (ban == null)
             {
@@ -106,12 +103,12 @@ namespace CocktailWizard.Services
             }
 
             ban.ExpiresOn = DateTime.UtcNow;
-                ban.HasExpired = true;
-                ban.User.IsBanned = false;
-                ban.User.LockoutEnd = DateTime.UtcNow;
-                ban.User.LockoutEnabled = false;
+            ban.HasExpired = true;
+            ban.User.IsBanned = false;
+            ban.User.LockoutEnd = DateTime.UtcNow;
+            ban.User.LockoutEnabled = false;
 
-                await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync();
         }
 
         public async Task CheckForExpiredBansAsync()

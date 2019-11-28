@@ -1,11 +1,10 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CocktailWizard.Services.Tests.DtoMappersTests
 {
@@ -20,20 +19,21 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
 
             var barComment = new BarComment
             {
-                Bar = new Bar 
-                { 
+                Bar = new Bar
+                {
                     Id = Guid.NewGuid(),
                     Name = "testBar",
                     Info = "testInfo",
                     ImagePath = "testPath",
                     Address = "testAddress",
                     GoogleMapsURL = "GoogleMapsURL",
-                    Phone = "111-333-666" 
+                    Phone = "111-333-666"
                 },
-                User = new User {
+                User = new User
+                {
                     Id = Guid.NewGuid(),
                     UserName = "testUsername@aaa.aa",
-                    Email = "testUsername@aaa.aa" 
+                    Email = "testUsername@aaa.aa"
                 },
                 Body = "testBody",
                 CreatedOn = DateTime.MinValue,
@@ -54,7 +54,7 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
 
             var barComment = new BarComment
             {
-                Bar = new Bar 
+                Bar = new Bar
                 {
                     Id = Guid.NewGuid(),
                     Name = "testBar",
@@ -62,13 +62,13 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
                     ImagePath = "testPath",
                     Address = "testAddress",
                     GoogleMapsURL = "GoogleMapsURL",
-                    Phone = "111-333-666" 
+                    Phone = "111-333-666"
                 },
-                User = new User 
-                { 
+                User = new User
+                {
                     Id = Guid.NewGuid(),
                     UserName = "testUsername@aaa.aa",
-                    Email = "testUsername@aaa.aa" 
+                    Email = "testUsername@aaa.aa"
                 },
                 Body = "testBody",
                 CreatedOn = DateTime.MinValue,
@@ -95,42 +95,42 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             {
                 new BarComment
                 {
-                Bar = new Bar 
-                { 
+                Bar = new Bar
+                {
                     Id = Guid.NewGuid(),
-                    Name = "testBar", 
+                    Name = "testBar",
                     Info = "testInfo",
                     ImagePath = "testPath"
                     , Address = "testAddress",
                     GoogleMapsURL = "GoogleMapsURL",
-                    Phone = "111-333-666" 
+                    Phone = "111-333-666"
                 },
-                User = new User 
-                { 
+                User = new User
+                {
                     Id = Guid.NewGuid(),
                     UserName = "testUsername@aaa.aa",
-                    Email = "testUsername@aaa.aa" 
+                    Email = "testUsername@aaa.aa"
                 },
                 Body = "testBody",
                 CreatedOn = DateTime.MinValue,
                 },
                 new BarComment
                 {
-                Bar = new Bar 
-                { 
+                Bar = new Bar
+                {
                     Id = Guid.NewGuid(),
                     Name = "testBar2",
                     Info = "testInfo2",
                     ImagePath = "testPath2",
                     Address = "testAddress2",
                     GoogleMapsURL = "GoogleMapsURL2",
-                    Phone = "111-333-6662" 
+                    Phone = "111-333-6662"
                 },
-                User = new User 
-                { 
+                User = new User
+                {
                     Id = Guid.NewGuid(),
                     UserName = "testUsername2@aaa.aa",
-                    Email = "testUsername2@aaa.aa" 
+                    Email = "testUsername2@aaa.aa"
                 },
                 Body = "testBody2",
                 CreatedOn = DateTime.MinValue,
@@ -155,17 +155,17 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             {
                 new BarComment
                 {
-                Bar = new Bar 
-                { 
+                Bar = new Bar
+                {
                     Id = Guid.NewGuid(),
-                    Name = "testBar", 
+                    Name = "testBar",
                     Info = "testInfo",
                     ImagePath = "testPath",
                     Address = "testAddress",
                     GoogleMapsURL = "GoogleMapsURL",
-                    Phone = "111-333-666" 
+                    Phone = "111-333-666"
                 },
-                User = new User 
+                User = new User
                 {
                     Id = Guid.NewGuid(),
                     UserName = "testUsername@aaa.aa",
@@ -176,21 +176,21 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
                 },
                 new BarComment
                 {
-                Bar = new Bar 
-                { 
-                    Id = Guid.NewGuid(), 
-                    Name = "testBar2", 
-                    Info = "testInfo2", 
-                    ImagePath = "testPath2", 
-                    Address = "testAddress2", 
-                    GoogleMapsURL = "GoogleMapsURL2", 
-                    Phone = "111-333-6662" 
+                Bar = new Bar
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "testBar2",
+                    Info = "testInfo2",
+                    ImagePath = "testPath2",
+                    Address = "testAddress2",
+                    GoogleMapsURL = "GoogleMapsURL2",
+                    Phone = "111-333-6662"
                 },
                 User = new User
-                { 
+                {
                     Id = Guid.NewGuid(),
                     UserName = "testUsername2@aaa.aa",
-                    Email = "testUsername2@aaa.aa" 
+                    Email = "testUsername2@aaa.aa"
                 },
                 Body = "testBody2",
                 CreatedOn = DateTime.MinValue,

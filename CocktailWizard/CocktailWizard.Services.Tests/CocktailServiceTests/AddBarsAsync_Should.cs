@@ -1,8 +1,8 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.Contracts;
 using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,6 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services.Tests.CocktailServiceTests
@@ -59,7 +58,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 Phone = "111-333-666"
             };
 
-           
+
 
             var list = new List<string>() { "testBar" };
 
@@ -83,7 +82,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
 
         [TestMethod]
         public async Task ReturnCorrectTypeOfInstance()
-        { 
+        {
 
             //Arrange
             var options = TestUtilities.GetOptions(nameof(ReturnCorrectTypeOfInstance));
@@ -122,7 +121,7 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
                 Phone = "111-333-666"
             };
 
-        
+
             var barCocktail = new BarCocktail
             {
                 Bar = bar,

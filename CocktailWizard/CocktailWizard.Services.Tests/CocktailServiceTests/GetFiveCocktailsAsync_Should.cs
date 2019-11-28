@@ -1,14 +1,13 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
 using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services.Tests.CocktailServiceTests
@@ -60,8 +59,8 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
 
             var list = new List<CocktailDto>()
             {
-                new CocktailDto{ Id = testGuid, Name = "TestOneName" }, 
-                new CocktailDto { Id = testGuid2, Name = "TestTwoName"}, 
+                new CocktailDto{ Id = testGuid, Name = "TestOneName" },
+                new CocktailDto { Id = testGuid2, Name = "TestTwoName"},
                 new CocktailDto { Id = testGuid3, Name = "TestThreeName"}
             };
 
@@ -324,4 +323,3 @@ namespace CocktailWizard.Services.Tests.CocktailServiceTests
     }
 }
 
-        

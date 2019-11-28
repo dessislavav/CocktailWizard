@@ -1,11 +1,10 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Data.Entities;
+﻿using CocktailWizard.Data.Entities;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CocktailWizard.Services.Tests.DtoMappersTests
 {
@@ -21,16 +20,17 @@ namespace CocktailWizard.Services.Tests.DtoMappersTests
             var cocktailComment = new CocktailComment
             {
                 Cocktail = new Cocktail
-                { 
+                {
                     Id = Guid.NewGuid(),
                     Name = "testCocktail",
                     Info = "testInfo",
                     ImagePath = "testPath",
                 },
-                User = new User {
+                User = new User
+                {
                     Id = Guid.NewGuid(),
                     UserName = "testUsername@aaa.aa",
-                    Email = "testUsername@aaa.aa" 
+                    Email = "testUsername@aaa.aa"
                 },
                 Body = "testBody",
                 CreatedOn = DateTime.MinValue,

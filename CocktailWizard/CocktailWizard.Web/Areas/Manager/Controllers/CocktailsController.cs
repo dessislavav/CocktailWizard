@@ -1,17 +1,15 @@
-﻿using CocktailWizard.Data.DtoEntities;
-using CocktailWizard.Services.ConstantMessages;
+﻿using CocktailWizard.Services.ConstantMessages;
 using CocktailWizard.Services.Contracts;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.Providers;
 using CocktailWizard.Web.Areas.Manager.Models;
 using CocktailWizard.Web.Mappers.Contracts;
 using CocktailWizard.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using NToastNotify;
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Web.Areas.Manager.Controllers
@@ -25,8 +23,8 @@ namespace CocktailWizard.Web.Areas.Manager.Controllers
         private readonly IToastNotification toastNotification;
         private readonly IFileServiceProvider fileServiceProvider;
 
-        public CocktailsController(IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper, 
-                                   ICocktailService cocktailService, 
+        public CocktailsController(IViewModelMapper<CocktailDto, CocktailViewModel> cocktailViewModelMapper,
+                                   ICocktailService cocktailService,
                                    IToastNotification toastNotification,
                                    IFileServiceProvider fileServiceProvider)
         {

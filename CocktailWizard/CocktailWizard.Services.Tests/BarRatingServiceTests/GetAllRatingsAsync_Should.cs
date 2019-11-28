@@ -1,14 +1,12 @@
 ﻿using CocktailWizard.Data.AppContext;
-using CocktailWizard.Data.DtoEntities;
 using CocktailWizard.Data.Entities;
-using CocktailWizard.Services.CustomExceptions;
+using CocktailWizard.Services.DtoEntities;
 using CocktailWizard.Services.DtoMappers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CocktailWizard.Services.Tests.BarRatingServiceTests
@@ -56,7 +54,7 @@ namespace CocktailWizard.Services.Tests.BarRatingServiceTests
                 Value = 2,
                 CreatedOn = DateTime.UtcNow,
             };
-             
+
             var list = new List<BarRatingDto>()
             {
                 new BarRatingDto{ BarId = barId, UserId = userId, Value = 2 },
