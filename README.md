@@ -47,7 +47,7 @@ Web application that allows creation of cocktails and follows their distribution
      * Manage bars – CRUD operations for bars
      * Set cocktails as available in particular bars 
      
-* Create Bar Modal
+* Create Cocktail Modal
 ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/CreateModal.jpg)
 
 * Edit Bar Modal
