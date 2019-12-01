@@ -33,16 +33,19 @@ Web application that allows creation of cocktails and follows their distribution
 #### Private Part
 
 * After login, users see everything visible to website visitors and additionally they can:
+    
+     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/LoginView.jpg)
+     
      * Rate bars
      * Rate cocktails (regardless of which bar offers them)
-     * Leave a comment for a bar
-     * Leave a comment for a cocktail
-     
-     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/LoginView.jpg)
      
      ![Alt text](addRating.jpg)
      
+     * Leave a comment for a bar
+     * Leave a comment for a cocktail
+     
      ![Alt text](addComment.jpg)
+     
 
 #### Administrative Part
 * Admins can:
