@@ -15,7 +15,7 @@ Web application that allows creation of cocktails and follows their distribution
 * **Administrative part** available for administrators only
 
 #### Public Part
-* The public part consists of a home page displaying top rated bars and cocktails in separate sections on the page as well as login page and register page.
+* The public part consists of a home page displaying top-rated bars and cocktails in separate sections on the page as well as login page and register page.
 
 ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/HomeScreen_2.jpg)
 * Upon clicking a bar, the visitor can see details for the bar and the cocktails it offers
@@ -39,6 +39,10 @@ Web application that allows creation of cocktails and follows their distribution
      * Leave a comment for a cocktail
      
      ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/LoginView.jpg)
+     
+     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/add rating.jpg)
+     
+     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/add comment.jpg)
 
 #### Administrative Part
 * Admins can:
