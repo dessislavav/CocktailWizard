@@ -40,9 +40,9 @@ Web application that allows creation of cocktails and follows their distribution
      
      ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/LoginView.jpg)
      
-     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/add rating.jpg)
+     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/addRating.jpg)
      
-     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/add comment.jpg)
+     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/addComment.jpg)
 
 #### Administrative Part
 * Admins can:
