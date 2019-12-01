@@ -11,11 +11,11 @@ Web application that allows creation of cocktails and follows their distribution
 ## Project Description
 ### Areas
 * **Public part** -  accessible without authentication
-* **Private part** available for registered users only
-* **Administrative part** available for administrators only
+* **Private part** - available for registered users only
+* **Administrative part** - available for administrators only
 
 #### Public Part
-* The public part consists of a home page displaying top-rated bars and cocktails in separate sections on the page as well as login page and register page.
+* The public part consists of a home page displaying top-rated bars and cocktails in separate sections on the page, as well as login page and register page.
 
 ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/HomeScreen_2.jpg)
 * Upon clicking a bar, the visitor can see details for the bar and the cocktails it offers
@@ -25,7 +25,7 @@ Web application that allows creation of cocktails and follows their distribution
 
 ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/CocktailDetails.jpg)
 * It also includes **searching possibility** for: 
-     * Bars: by Name, Address and Rating	as well as for 
+     * Bars: by Name, Address and Rating, as well as for 
      * Cocktails: by Name, Ingredient/s and Rating
      
 ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/Search.jpg)
@@ -78,7 +78,7 @@ Web application that allows creation of cocktails and follows their distribution
 * Caching for performance optimization
 * DTO (data transfer objects) used
 * Server-side pagination present
-* Used branches durring development ot features
+* Used branches during development ot features
 * Used Azure DevOps to manage personal development tasks
 * 90% Unit test code coverage of the business logic
 
