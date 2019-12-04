@@ -39,12 +39,12 @@ Web application that allows creation of cocktails and follows their distribution
      * Rate bars
      * Rate cocktails (regardless of which bar offers them)
      
-     ![Alt text](addRating.jpg)
+     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/addRating.jpg)
      
      * Leave a comment for a bar
      * Leave a comment for a cocktail
      
-     ![Alt text](addComment.jpg)
+     ![Alt text](https://github.com/radkostanev/CocktailWizard/blob/master/Images/addComment.jpg)
      
 
 #### Administrative Part
